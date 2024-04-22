@@ -1,1 +1,1 @@
-# 42cursus-cub3d-
+# 42cursus-cub3d
