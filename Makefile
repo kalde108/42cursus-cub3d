@@ -88,14 +88,14 @@ $(NAME) : $(LIBS_PATH) $(OBJS) | PREMAKE
 	@echo "$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)" >> $(LOGFILE)
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@echo "$(MODE)" > $(MODE_TRACE)
-	@printf "\n$(BOLD)\
- ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ \n\
-██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗\n\
-██║     ██║   ██║██████╔╝ █████╔╝██║  ██║\n\
-██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║\n\
-╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝\n\
- ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ \n$(RESET)\
-                      @kchillon @ibertran\n"
+	@printf "\n$(BOLD)\n\
+ ██████$(RED)╗$(RESET)██$(RED)╗$(RESET)   ██$(RED)╗$(RESET)██████$(RED)╗$(RESET) ██████$(RED)╗$(RESET) ██████$(RED)╗$(RESET) $(RESET)\n\
+██$(RED)╔════╝$(RESET)██$(RED)║$(RESET)   ██$(RED)║$(RESET)██$(RED)╔══$(RESET)██$(RED)╗╚════$(RESET)██$(RED)╗$(RESET)██$(RED)╔══$(RESET)██$(RED)╗$(RESET)\n\
+██$(RED)║$(RESET)     ██$(RED)║$(RESET)   ██$(RED)║$(RESET)██████$(RED)╔╝$(RESET)█████$(RED)╔╝$(RESET) ██$(RED)║$(RESET)  ██$(RED)║$(RESET)\n\
+██$(RED)║$(RESET)     ██$(RED)║$(RESET)   ██$(RED)║$(RESET)██$(RED)╔══$(RESET)██$(RED)╗ ╚═══$(RESET)██$(RED)╗$(RESET)██$(RED)║$(RESET)  ██$(RED)║$(RESET)\n\
+$(RED)╚$(RESET)██████$(RED)╗╚$(RESET)██████$(RED)╔╝$(RESET)██████$(RED)╔╝$(RESET)██████$(RED)╔╝$(RESET)██████$(RED)╔╝$(RESET)\n\
+ $(RED)╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ $(RESET)\n\
+                     @kchillon @ibertran\n"
 
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 	@true || echo "$(NAME)_object"
