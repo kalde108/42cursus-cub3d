@@ -14,6 +14,7 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
 	main \
+	
 
 # ********** PARSING ********** #
 
@@ -21,6 +22,26 @@ SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
 
 INIT_DIR = parsing/
 INIT_SRC = \
+	check_scene_format \
+	set_scene_info \
+	open_cub_file \
+
+# ********** SCENE ********** #
+
+SRC += $(addprefix $(SCENE_DIR),$(SCENE_SRC))
+
+SCENE_DIR = scene/
+SCENE_SRC = \
+	init_scene \
+	destroy_scene \
+
+# ********** DEBUG ********** #
+
+SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
+
+DEBUG_DIR = DEBUG/
+DEBUG_SRC = \
+	DEBUG_REMOVE \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
