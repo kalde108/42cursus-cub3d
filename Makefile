@@ -13,27 +13,48 @@ OBJS = $(patsubst %.c,$(BUILD_DIR)%.o,$(SRCS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
+	ft_mlx_free \
+	ft_mlx_init \
 	main \
+	render \
 
-# ********** PARSING ********** #
+# ********** HOOK ********** #
 
-SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
+SRC += $(addprefix $(HOOK_DIR),$(HOOK_SRC))
 
-INIT_DIR = parsing/
-INIT_SRC = \
+HOOK_DIR = hook/
+HOOK_SRC = \
+	keydown_hook \
+	keyup_hook \
+
+# ********** DRAW ********** #
+
+SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
+
+DRAW_DIR = draw/
+DRAW_SRC = \
+	clean_screen \
+	draw_square \
+	put_pixel \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \
 	libft/libft.a \
+	minilibx/libmlx_Linux.a \
 		
 LIBS = \
 	$(patsubst lib%.a,%,$(notdir $(LIBS_PATH))) \
+	X11 \
+	m \
+	z \
+	Xext \
 
 INCS_DIR = incs/
 INCS = \
 	$(INCS_DIR) \
 	$(dir $(LIBS_PATH))$(INCS_DIR) \
+	minilibx/ \
 
 # *** CONFIG ***************************************************************** #
 
