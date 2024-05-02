@@ -6,10 +6,10 @@ int	ft_mlx_init(t_c3_env *env)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		return (1);
-	env->win = mlx_new_window(env->mlx, 1920, 1080, "Cub3D");
+	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!env->win)
 		return (1);
-	env->img.img = mlx_new_image(env->mlx, 1920, 1080);
+	env->img.img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 	if (!env->img.img)
 		return (1);
 	env->img.addr = mlx_get_data_addr(env->img.img,

@@ -16,7 +16,7 @@ SRC = \
 	ft_mlx_free \
 	ft_mlx_init \
 	main \
-	put_pixel \
+	render \
 
 # ********** HOOK ********** #
 
@@ -26,6 +26,16 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
+
+# ********** DRAW ********** #
+
+SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
+
+DRAW_DIR = draw/
+DRAW_SRC = \
+	clean_screen \
+	draw_square \
+	put_pixel \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

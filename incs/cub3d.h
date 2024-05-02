@@ -1,6 +1,9 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
+# define WIDTH		1024
+# define HEIGHT		576
+
 typedef struct s_c3_env
 {
 	void	*mlx;
@@ -12,13 +15,17 @@ typedef struct s_c3_env
 		int		bits_per_pixel;
 		int		line_length;
 		int		endian;
-	}		img;
-	int	key_state[280];	// 280 is the number of keys in the mlx library
-	struct toy
+	}	img;
+	int	key_state[280];	// arbitrary size (number of keys to handle)
+	struct toy	// toy = "t"est "o"bject "y"olo
 	{
 		int		x;
 		int		y;
-	}		player;
-}			t_c3_env;
+		float	y_speed;
+		float	x_speed;
+	}	player;
+}	t_c3_env;
+
+int	render(t_c3_env *env);
 
 #endif //CUB3D_H
