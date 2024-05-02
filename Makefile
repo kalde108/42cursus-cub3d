@@ -35,6 +35,7 @@ DRAW_DIR = draw/
 DRAW_SRC = \
 	clean_screen \
 	draw_square \
+	draw_v_line \
 	put_pixel \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #

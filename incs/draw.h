@@ -6,5 +6,6 @@
 void	clean_screen(t_c3_env *env);
 void	put_pixel(t_c3_env *env, int x, int y, int color);
 void	draw_square(t_c3_env *env, int x, int y, int size, int color); // test
+void	draw_v_line(t_c3_env *env, int x, int start, int end, int color);
 
 #endif
