@@ -5,8 +5,9 @@
 #include <math.h>
 
 # include <stdio.h>
+# include <stdlib.h>
 
-char	worldMap[mapWidth][mapHeight]=
+char	test_map[mapWidth][mapHeight]=
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -34,6 +35,36 @@ char	worldMap[mapWidth][mapHeight]=
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+double	dist_to_wall(t_v2d_i *map_pos, t_v2d_d delta_dist, t_v2d_i step, t_v2d_d side_dist)
+{
+	int	hit;
+	int	side;
+
+	hit = 0;
+	while (hit == 0)
+	{
+		if (side_dist.x < side_dist.y)
+		{
+			side_dist.x += delta_dist.x;
+			map_pos->x += step.x;
+			side = 0;
+		}
+		else
+		{
+			side_dist.y += delta_dist.y;
+			map_pos->y += step.y;
+			side = 1;
+		}
+		if (test_map[map_pos->x][map_pos->y] > 0)
+			hit = 1;
+	}
+
+	if (side == 0)
+		return (side_dist.x - delta_dist.x);
+	else
+		return (side_dist.y - delta_dist.y);
+}
+
 void	simple_raycasting(t_c3_env *env)
 {
 	int		x;
@@ -41,120 +72,83 @@ void	simple_raycasting(t_c3_env *env)
 	x = 0;
 	while (x < WIDTH)
 	{
-		double	cameraX;
-		double	rayDirX;
-		double	rayDirY;
+		t_v2d_d	ray_dir;
 
-		cameraX = 2 * x / (double)WIDTH - 1;
-		rayDirX = env->dirX + env->planeX * cameraX;
-		rayDirY = env->dirY + env->planeY * cameraX;
+		ray_dir.x = env->dir.x + env->plane.x * (2 * x / (double)WIDTH - 1);
+		ray_dir.y = env->dir.y + env->plane.y * (2 * x / (double)WIDTH - 1);
 
-		int mapX;
-		int mapY;
+		t_v2d_i	map_pos;
 
-		mapX = (int)env->posX;
-		mapY = (int)env->posY;
+		map_pos.x = (int)env->pos.x;
+		map_pos.y = (int)env->pos.y;
 
-		double sideDistX;
-		double sideDistY;
+		t_v2d_d delta_dist;
 
-		double deltaDistX;
-		double deltaDistY;
-
-		if (rayDirX == 0)
-			deltaDistX = 1e30;
+		if (ray_dir.x == 0)
+			delta_dist.x = 1e30;
 		else
-			deltaDistX = fabs(1 / rayDirX);
-		if (rayDirY == 0)
-			deltaDistY = 1e30;
+			delta_dist.x = fabs(1 / ray_dir.x);
+		if (ray_dir.y == 0)
+			delta_dist.y = 1e30;
 		else
-			deltaDistY = fabs(1 / rayDirY);
+			delta_dist.y = fabs(1 / ray_dir.y);
 		
-		double perpWallDist;
 
-		int stepX;
-		int stepY;
-
-		int hit;
-		int side;
-
-		hit = 0;
-
-		if (rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (env->posX - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - env->posX) * deltaDistX;
-		}
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (env->posY - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - env->posY) * deltaDistY;
-		}
-
-		while (hit == 0)
-		{
-			if (sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			if (worldMap[mapX][mapY] > 0)
-				hit = 1;
-		}
-
-		if (side == 0)
-			perpWallDist = (mapX - env->posX + (1 - stepX) / 2) / rayDirX;
-		else
-			perpWallDist = (mapY - env->posY + (1 - stepY) / 2) / rayDirY;
+		t_v2d_i step;
 		
-		int lineHeight;
+		t_v2d_d side_dist;
 
-		lineHeight = (int)(HEIGHT / perpWallDist);
+		if (ray_dir.x < 0)
+		{
+			step.x = -1;
+			side_dist.x = (env->pos.x - map_pos.x) * delta_dist.x;
+		}
+		else
+		{
+			step.x = 1;
+			side_dist.x = (map_pos.x + 1.0 - env->pos.x) * delta_dist.x;
+		}
+		if (ray_dir.y < 0)
+		{
+			step.y = -1;
+			side_dist.y = (env->pos.y - map_pos.y) * delta_dist.y;
+		}
+		else
+		{
+			step.y = 1;
+			side_dist.y = (map_pos.y + 1.0 - env->pos.y) * delta_dist.y;
+		}
 
-		int drawStart;
-		int drawEnd;
+		int line_height;
+		int draw_start;
+		int draw_end;
 
-		drawStart = -lineHeight / 2 + HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		drawEnd = lineHeight / 2 + HEIGHT / 2;
-		if (drawEnd >= HEIGHT)
-			drawEnd = HEIGHT - 1;
-		
+		line_height = (int)(HEIGHT / dist_to_wall(&map_pos, delta_dist, step, side_dist));
+
+		draw_start = -line_height / 2 + HEIGHT / 2;
+		if (draw_start < 0)
+			draw_start = 0;
+		draw_end = line_height / 2 + HEIGHT / 2;
+		if (draw_end >= HEIGHT)
+			draw_end = HEIGHT - 1;
+
 		int color;
 
-		if (worldMap[mapX][mapY] == 1)
+		if (test_map[map_pos.x][map_pos.y] == 1)
 			color = 0x00FF0000;
-		else if (worldMap[mapX][mapY] == 2)
+		else if (test_map[map_pos.x][map_pos.y] == 2)
 			color = 0x0000FF00;
-		else if (worldMap[mapX][mapY] == 3)
+		else if (test_map[map_pos.x][map_pos.y] == 3)
 			color = 0x000000FF;
-		else if (worldMap[mapX][mapY] == 4)
+		else if (test_map[map_pos.x][map_pos.y] == 4)
 			color = 0x00FFFF00;
 		else
 			color = 0x00FFFFFF;
+	
+		// if (side == 1)
+		// 	color = color / 2;
 		
-		if (side == 1)
-			color = color / 2;
-		
-		draw_v_line(env, x, drawStart, drawEnd, color);
+		draw_v_line(env, x, draw_start, draw_end, color);
 		x++;
 	}
 }

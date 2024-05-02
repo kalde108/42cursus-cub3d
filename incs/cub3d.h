@@ -7,6 +7,24 @@
 #define mapWidth 24
 #define mapHeight 24
 
+typedef struct s_v2d_d
+{
+	double	x;
+	double	y;
+}	t_v2d_d;
+
+typedef struct s_v2d_i
+{
+	int	x;
+	int	y;
+}	t_v2d_i;
+
+// typedef struct s_vertex
+// {
+// 	t_vector_2d	pos;
+// 	t_vector_2d	dir;
+// }	t_vertex;
+
 typedef struct s_c3_env
 {
 	void	*mlx;
@@ -20,14 +38,10 @@ typedef struct s_c3_env
 		int		endian;
 	}	img;
 	int	key_state[280];	// arbitrary size (number of keys to handle)
-	double	posX;	// player x position
-	double	posY;	// player y position
-	double	dirX;	// direction vector's x
-	double	dirY;	// direction vector's y
-	double	planeX;	// camera plane x
-	double	planeY;	// camera plane y
-	double	time;
-	double	oldTime;
+	t_v2d_d	pos;	// player position
+	t_v2d_d	dir;	// player direction
+	t_v2d_d	plane;	// camera plane
+	t_v2d_i	map_pos;
 }	t_c3_env;
 
 int	render(t_c3_env *env);

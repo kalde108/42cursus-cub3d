@@ -11,14 +11,10 @@ int main(void)
 	t_c3_env	env;
 
 	env = (t_c3_env){0};
-	env.posX = 22;
-	env.posY = 12;
-	env.dirX = -1;
-	env.dirY = 0;
-	env.planeX = 0;
-	env.planeY = 0.66;
-	env.time = 0;
-	env.oldTime = 0;
+	env.pos = (t_v2d_d){22, 12};
+	env.dir = (t_v2d_d){-1, 0};
+	env.plane = (t_v2d_d){0, 0.66};
+	env.map_pos = (t_v2d_i){(int)env.pos.x, (int)env.pos.y};
 	if (ft_mlx_init(&env))
 	{
 		ft_mlx_free(&env);
