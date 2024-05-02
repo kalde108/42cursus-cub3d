@@ -16,10 +16,6 @@ int main(void)
 		ft_mlx_free(&env);
 		return (1);
 	}
-	env.player.x = 100;
-	env.player.y = 100;
-	env.player.x_speed = 0.0;
-	env.player.y_speed = 0.0;
 	mlx_hook(env.win, DestroyNotify, StructureNotifyMask, &mlx_loop_end, env.mlx);
 	mlx_hook(env.win, KeyPress, KeyPressMask, &keydown_hook, &env);
 	mlx_hook(env.win, KeyRelease, KeyReleaseMask, &keyup_hook, &env);

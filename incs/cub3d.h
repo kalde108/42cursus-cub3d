@@ -17,13 +17,6 @@ typedef struct s_c3_env
 		int		endian;
 	}	img;
 	int	key_state[280];	// arbitrary size (number of keys to handle)
-	struct toy	// toy = "t"est "o"bject "y"olo
-	{
-		int		x;
-		int		y;
-		float	y_speed;
-		float	x_speed;
-	}	player;
 }	t_c3_env;
 
 int	render(t_c3_env *env);
