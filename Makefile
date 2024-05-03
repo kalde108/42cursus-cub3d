@@ -45,6 +45,9 @@ SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
 RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
+	ft_dda \
+	get_line_y \
+	ray_calculation \
 	raycasting \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
