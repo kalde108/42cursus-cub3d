@@ -61,7 +61,6 @@ typedef struct s_c3_env
 int	render(t_c3_env *env);
 
 // a ranger
-void	simple_raycasting(t_c3_env *env);
 int	get_color(int type, t_v2d_d ray_dir, int side, double perp_wall_dist);
 
 #endif //CUB3D_H
