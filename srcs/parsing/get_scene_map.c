@@ -1,0 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_scene_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/02 04:11:35 by ibertran         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+#include <errno.h>
+#include <stdlib.h>
+
+#include "libft.h"
+#include "parsing.h"
+
+	void DEBUG_print_vector_map(t_vector *map); //REMOVE
+
+static int	add_map_line(char *str, t_vector *map);
+static int	is_line_valid(char *str);
+
+int	get_scene_map(int fd, t_cubscene *ptr)
+{
+	t_vector	map;
+	char		*gnl;
+	int			status;
+
+	if (ft_vector_init(&map, (t_vinfos){sizeof(t_vector), 0, ft_vvector_free}))
+		return (1);
+	errno = 0;
+	status = 0;
+	while (!status && !get_next_line(fd, &gnl) && gnl)
+	{
+		ft_replace_char(gnl, '\n', '\0');
+		if (is_line_valid(gnl))
+			status = add_map_line(gnl, &map);
+		else
+			status = -1;
+		free(gnl);
+	}
+	if (status || errno)
+	{
+		ft_vector_free(&map);
+		return (1);
+	}
+	DEBUG_print_vector_map(&map);
+	ptr->map = map;
+	return (0);
+}
+
+static int	add_map_line(char *str, t_vector *map)
+{
+	t_vector	line;
+
+	if (ft_vector_init(&line, (t_vinfos){sizeof(char), 0, NULL}))
+		return (1);
+	if (ft_vector_join(&line, str, ft_strlen(str))
+		|| ft_vector_add(map, &line))
+	{
+		ft_vector_free(&line);
+		return (1);
+	}
+	return (0);
+}
+
+static int	is_line_valid(char *str)
+{
+	static char	spawn = '\0';
+	char		c;
+
+	c = *str++;
+	while (c)
+	{
+		if (!ft_ischarset(c, MAP_CHARSET))
+		{
+			ft_dprintf(STDERR_FILENO, MAP_ERR, c, INVAL_CHAR);
+			return (0);
+		}
+		if (ft_ischarset(c, SPAWN_CHARSET))
+		{
+			if (spawn)
+			{
+				ft_dprintf(STDERR_FILENO, MAP_ERR2, MULTIPLE_SPAWN);
+				return (0);
+			}
+			else
+				spawn = c;
+		}
+		c = *str++;
+	}
+	return (1);
+}

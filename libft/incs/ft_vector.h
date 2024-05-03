@@ -25,7 +25,7 @@ typedef struct s_vinfos
 {
 	size_t			data_size;
 	size_t			capacity;
-	void			(*del)(void **);
+	void			(*del)(void *);
 }	t_vinfos;
 
 typedef struct s_vector
@@ -65,9 +65,9 @@ void	*ft_vector_search(t_vector *v, const void *item);
 int		ft_vector_sort(t_vector *v, int (*cmp)(void *, void *));
 
 //UTILITY
-void	ft_vclose(void **var);
-void	ft_vfree(void **var);
-void	ft_vvector_free(void	**ptr);
+void	ft_vclose(void *var);
+void	ft_vfree(void *var);
+void	ft_vvector_free(void *ptr);
 void	ft_vprint_char(void *ptr, size_t index);
 void	ft_vprint_vchar(void *ptr, size_t index);
 void	ft_vprint_int(void *ptr, size_t index);
