@@ -15,6 +15,7 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	ft_mlx_free \
 	ft_mlx_init \
+	get_color \
 	main \
 	render \
 

@@ -32,6 +32,11 @@
 // 		return (side_dist.y - delta_dist.y);
 // }
 
+// void	ray_calculation(t_c3_env *env, t_v2d_d	ray_dir)
+// {
+
+// }
+
 void	simple_raycasting(t_c3_env *env)
 {
 	int		x;
@@ -131,57 +136,8 @@ void	simple_raycasting(t_c3_env *env)
 		draw_end = line_height / 2 + HEIGHT / 2;
 		if (draw_end >= HEIGHT)
 			draw_end = HEIGHT - 1;
-
-		int color;
-		// int	r;
-		// int	g;
-		// int	b;
-
-		if (test_map[map_pos.x][map_pos.y] == 1)
-			color = 0x00FF0000;
-		else if (test_map[map_pos.x][map_pos.y] == 2)
-			color = 0x0000FF00;
-		else if (test_map[map_pos.x][map_pos.y] == 3)
-			color = 0x000000FF;
-		else if (test_map[map_pos.x][map_pos.y] == 4)
-			color = 0x00FFFF00;
-		else
-			color = 0x00FFFFFF;
-	
-		if (side == 0)
-		{
-			int r = (color >> 16) & 0x000000FF;
-			int	g = (color >> 8) & 0x000000FF;
-			int	b = color & 0x000000FF;
-			if (ray_dir.x > 0)
-				color = (r / 3 << 16) + (g / 3 << 8) + b / 3;
-			else if (ray_dir.x < 0)
-				color = (r / 2 << 16) + (g / 2 << 8) + b / 2;
-		}
-		else if (ray_dir.y < 0)
-		{
-			int r = (color >> 16) & 0x000000FF;
-			int	g = (color >> 8) & 0x000000FF;
-			int	b = color & 0x000000FF;
-			color = (r / 4 << 16) + (g / 4 << 8) + b / 4;
-		}
-
-		// if (test_map[map_pos.x][map_pos.y])
-		// {
-		// 	r = 255 * perp_wall_dist / 20;
-		// 	if (r > 255)
-		// 		r = 255;
-		// 	g = 0;
-		// 	b = 255 - r;
-		// 	color = (r << 16) + (g << 8) + b;
-		// }
-		// else
-		// {
-		// 	// color = 0;
-		// 	color = 0x00FFFFFF;
-		// }
 		
-		draw_v_line(env, x, draw_start, draw_end, color);
+		draw_v_line(env, x, draw_start, draw_end, get_color(test_map[map_pos.x][map_pos.y], ray_dir, side, perp_wall_dist));
 		x++;
 	}
 }
