@@ -18,6 +18,7 @@ SRC = \
 	get_color \
 	main \
 	render \
+	update_player \
 
 # ********** PARSING ********** #
 
