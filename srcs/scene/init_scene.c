@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 02:29:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 15:38:29 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 20:57:45 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ void	init_scene(t_cubscene *ptr)
 	ptr->texture.east = NULL;
 	ptr->floor.a = 255;
 	ptr->ceilling.a = 255;
-	ptr->map = (t_vector){0};
 }

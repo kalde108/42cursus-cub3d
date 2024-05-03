@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 15:41:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 21:46:32 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 	dup = ft_strdup(str);
 	if (!dup)
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL_SCENE, strerror(errno));
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
 		return (1);
 	}
 	else if (id == ID_NORTH)

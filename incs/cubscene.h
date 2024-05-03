@@ -43,7 +43,10 @@ typedef struct s_cubscene
 	t_cubscene_textures	texture;
 	t_cubscene_color	floor;
 	t_cubscene_color	ceilling;
-	t_vector			map;
+	// t_vector			map;
+	char				*map;
+	int					width;
+	int					height;
 }	t_cubscene;
 
 #endif //SCENE_H

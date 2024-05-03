@@ -81,7 +81,7 @@ SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
 DEBUG_DIR = DEBUG/
 DEBUG_SRC = \
 	DEBUG_REMOVE \
-	DEBUG_PRINT_MAP_VECTOR \
+	DEBUG_PRINT_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 17:45:59 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 21:45:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SCENE_ERR2 "Error\n%s: %s\n"
 # define MAP_ERR "Error\nMAP: %c: %s\n"
 # define MAP_ERR2 "Error\nMAP: %s\n"
-# define FATAL_SCENE "Scene loading failed"
+# define FATAL "Fatal error"
 # define NO_SCENE "No argument, expected one file in format [*.cub]"
 # define TOO_MAN_ARG "Too many arguments, expected one file in format [*.cub]"
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
@@ -38,7 +38,7 @@
 
 int	get_scene_textures(int fd, t_cubscene *ptr);
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
-int	get_scene_map(int fd, t_cubscene *ptr);
-int	convert_map(t_vector *map);
+int	get_scene_map(int fd, t_cubscene *scene);
+int	convert_map(t_vector *map, t_cubscene *scene);
 
 #endif //PARSING_H
