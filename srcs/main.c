@@ -44,17 +44,17 @@ int main(int ac, char **av)
 	init_scene(&env.scene);
 	if (check_scene_format(av + 1)
 		|| get_cubscene(av[1], &env.scene)
-		|| get_player_spawn(test_map, &env.pos, &env.dir))
+		|| get_player_spawn(test_map, &env.player))
 	{
 		destroy_scene(&env.scene);
 		return (1);
 	}
 	DEBUG_print_vector_map(&env.scene.map);
-	printf("\nPLAYER SPAWN(%fx,%fy)\nDIRECTION(%fx,%fy)\n\n", env.pos.x, env.pos.y, env.dir.x, env.dir.y);
+	printf("\nPLAYER SPAWN(%fx,%fy)\nDIRECTION(%fx,%fy)\n\n", env.player.pos.x, env.player.pos.y, env.player.dir.x, env.player.dir.y);
 
-	env.plane = (t_v2d_d){0, 0.66};
-	env.move_speed = 0.03;
-	env.rot_speed = 0.01;
+	// env.player.plane = (t_v2d_d){0, 0.66};
+	env.player.mv_speed = 0.03;
+	env.player.rt_speed = 0.01;
 	if (ft_mlx_init(&env))
 	{
 		ft_mlx_free(&env);

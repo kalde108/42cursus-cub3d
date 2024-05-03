@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:07:07 by ibertran          #+#    #+#             */
-/*   Updated: 2024/04/19 22:13:56 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 19:55:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "ft_char.h"
 # include "ft_integer.h"
 # include "ft_lst.h"
+# include "ft_math.h"
 # include "ft_mem.h"
 # include "ft_misc.h"
 # include "ft_string.h"

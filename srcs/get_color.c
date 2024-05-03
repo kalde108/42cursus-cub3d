@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	get_color(int type, t_v2d_d ray_dir, int side, double perp_wall_dist)
+int	get_color(char type, t_v2d_d ray_dir, int side, double perp_wall_dist)
 {
 		int color;
 		float	alpha;
@@ -14,14 +14,14 @@ int	get_color(int type, t_v2d_d ray_dir, int side, double perp_wall_dist)
 		(void)perp_wall_dist;
 		alpha = 1;
 
-		if (type == 1)
+		if (type == '1')
 			color = 0x00FF0000;
-		else if (type == 2)
-			color = 0x0000FF00;
-		else if (type == 3)
-			color = 0x000000FF;
-		else if (type == 4)
-			color = 0x00FFFF00;
+		// else if (type == 2)
+		// 	color = 0x0000FF00;
+		// else if (type == 3)
+		// 	color = 0x000000FF;
+		// else if (type == 4)
+		// 	color = 0x00FFFF00;
 		else
 			color = 0x00FFFFFF;
 	

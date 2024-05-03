@@ -20,7 +20,7 @@ void	ft_dda(t_ray *ray)
 			ray->map_pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (test_map[ray->map_pos.x][ray->map_pos.y] > 0)
+		if (test_map[ray->map_pos.x][ray->map_pos.y] > '0')
 			hit = 1;
 	}
 }
