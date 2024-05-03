@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 # *** FILES ****************************************************************** #
 
@@ -18,6 +18,18 @@ SRC = \
 	get_color \
 	main \
 	render \
+
+# ********** PARSING ********** #
+
+SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
+
+INIT_DIR = parsing/
+INIT_SRC = \
+	check_scene_format \
+	set_texture \
+	open_cub_file \
+	get_scene_textures \
+	get_scene_map \
 
 # ********** DRAW ********** #
 
@@ -50,6 +62,24 @@ RAYCASTING_SRC = \
 	ray_calculation \
 	raycasting \
 
+# ********** SCENE ********** #
+
+SRC += $(addprefix $(SCENE_DIR),$(SCENE_SRC))
+
+SCENE_DIR = scene/
+SCENE_SRC = \
+	init_scene \
+	destroy_scene \
+
+# ********** DEBUG ********** #
+
+SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
+
+DEBUG_DIR = DEBUG/
+DEBUG_SRC = \
+	DEBUG_REMOVE \
+	DEBUG_PRINT_MAP_VECTOR \
+
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \
@@ -66,8 +96,8 @@ LIBS = \
 INCS_DIR = incs/
 INCS = \
 	$(INCS_DIR) \
-	$(dir $(LIBS_PATH))$(INCS_DIR) \
-	minilibx/ \
+	$(dir $(LIBS_PATH)) \
+	$(addsuffix $(INCS_DIR),$(dir $(LIBS_PATH))) \
 
 # *** CONFIG ***************************************************************** #
 
@@ -194,8 +224,8 @@ norminette :
 
 .PHONY : print%
 print% :
-	echo $(patsubst print%,%,$@)=
-	echo $($(patsubst print%,%,$@))
+	@echo $(patsubst print%,%,$@)=
+	@echo $($(patsubst print%,%,$@))
 
 .PHONY : count
 count :

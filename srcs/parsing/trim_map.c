@@ -1,18 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vvector_free.c                                  :+:      :+:    :+:   */
+/*   trim_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 01:28:04 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/02 01:46:47 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/02 03:55:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-
-void	ft_vvector_free(void	*ptr)
-{
-	ft_vector_free((t_vector *)ptr);
-}

@@ -34,11 +34,20 @@ char	test_map[mapWidth][mapHeight]=
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int main(void)
+int main(int ac, char **av)
 {
 	t_c3_env	env;
 
 	env = (t_c3_env){0};
+	init_scene(&env.scene);
+	int status = check_scene_format(av + 1) || get_cubscene(av[1], &env.scene);
+	// DEBUG_print(&scene);
+	if (status)
+	{
+		destroy_scene(&env.scene);
+		return (1);
+	}
+
 	env.pos = (t_v2d_d){22, 12};
 	env.dir = (t_v2d_d){-1, 0};
 	env.plane = (t_v2d_d){0, 0.66};
@@ -55,5 +64,7 @@ int main(void)
 	mlx_loop_hook(env.mlx, &render, &env);
 	mlx_loop(env.mlx);
 	ft_mlx_free(&env);
+	destroy_scene(&env.scene);
 	return (0);
+	(void)ac;
 }

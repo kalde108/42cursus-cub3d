@@ -1,5 +1,13 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
+
+# include <cubscene.h>
+
+int		check_scene_format(char **argv);
+int		get_cubscene(char *path, t_cubscene *ptr);
+
+int		init_scene(t_cubscene *ptr);
+void	destroy_scene(t_cubscene *ptr);
 
 # define WIDTH		2048
 # define HEIGHT		1152
@@ -31,6 +39,7 @@ typedef struct s_v2d_i
 
 typedef struct s_c3_env
 {
+	t_cubscene	scene;
 	void	*mlx;
 	void	*win;
 	struct s_img

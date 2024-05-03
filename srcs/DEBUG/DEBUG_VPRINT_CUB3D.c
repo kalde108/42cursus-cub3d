@@ -1,18 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vvector_free.c                                  :+:      :+:    :+:   */
+/*   DEBUG_VPRINT_CUB3D.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 01:28:04 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/02 01:46:47 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/03/13 04:52:29 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/02 04:11:40 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
-
-void	ft_vvector_free(void	*ptr)
-{
-	ft_vector_free((t_vector *)ptr);
-}
