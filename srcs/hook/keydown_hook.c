@@ -30,6 +30,16 @@ int	keydown_hook(int keycode, t_c3_env *env)
 		printf("D\n");
 		env->key_state[KEY_D] = 1;
 	}
+	else if (keycode == XK_Left)
+	{
+		printf("LEFT\n");
+		env->key_state[KEY_LEFT] = 1;
+	}
+	else if (keycode == XK_Right)
+	{
+		printf("RIGHT\n");
+		env->key_state[KEY_RIGHT] = 1;
+	}
 	else if (keycode == XK_space)
 	{
 		printf("SPACE\n");

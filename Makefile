@@ -15,6 +15,7 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	ft_mlx_free \
 	ft_mlx_init \
+	get_color \
 	main \
 	render \
 
@@ -30,6 +31,17 @@ INIT_SRC = \
 	get_scene_textures \
 	get_scene_map \
 
+# ********** DRAW ********** #
+
+SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
+
+DRAW_DIR = draw/
+DRAW_SRC = \
+	clean_screen \
+	draw_square \
+	draw_v_line \
+	put_pixel \
+
 # ********** HOOK ********** #
 
 SRC += $(addprefix $(HOOK_DIR),$(HOOK_SRC))
@@ -39,15 +51,16 @@ HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
 
-# ********** DRAW ********** #
+# ******* RAYCASTING ******* #
 
-SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
+SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
-DRAW_DIR = draw/
-DRAW_SRC = \
-	clean_screen \
-	draw_square \
-	put_pixel \
+RAYCASTING_DIR = raycasting/
+RAYCASTING_SRC = \
+	ft_dda \
+	get_line_y \
+	ray_calculation \
+	raycasting \
 
 # ********** SCENE ********** #
 
@@ -89,7 +102,7 @@ INCS = \
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
-OFLAGS 		=
+OFLAGS 		=	-O3
 
 CPPFLAGS 	= 	$(addprefix -I, $(INCS)) \
 				$(addprefix -D, $(DEFINES)) \
@@ -236,6 +249,14 @@ VALGRIND = \
 .PHONY : valgrind
 valgrind : debug
 	$(VALGRIND) ./$(NAME)
+
+CALLGRIND = \
+	valgrind \
+	--tool=callgrind \
+
+.PHONY : callgrind
+callgrind : debug
+	$(CALLGRIND) ./$(NAME)
 
 # *** SPECIAL TARGETS ******************************************************** #
 
