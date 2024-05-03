@@ -29,6 +29,8 @@ void	DEBUG_VPRINT_CUB3D(void *ptr, size_t index)
 		printf("%s %s", "\e[41m", "\e[0m");
 	else if (c == '0')
 		printf("%s %s", "\e[40m", "\e[0m");
+	else if (c == ' ')
+		printf(".");
 	else
 		printf("%c", *(char *)ptr);
 	(void)index;

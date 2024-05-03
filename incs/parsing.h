@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 15:42:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 17:45:59 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@
 int	get_scene_textures(int fd, t_cubscene *ptr);
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int	get_scene_map(int fd, t_cubscene *ptr);
+int	convert_map(t_vector *map);
 
 #endif //PARSING_H
