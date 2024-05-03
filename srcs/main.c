@@ -14,7 +14,8 @@ int main(void)
 	env.pos = (t_v2d_d){22, 12};
 	env.dir = (t_v2d_d){-1, 0};
 	env.plane = (t_v2d_d){0, 0.66};
-	env.map_pos = (t_v2d_i){(int)env.pos.x, (int)env.pos.y};
+	env.move_speed = 0.03;
+	env.rot_speed = 0.01;
 	if (ft_mlx_init(&env))
 	{
 		ft_mlx_free(&env);

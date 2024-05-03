@@ -35,34 +35,91 @@ char	test_map[mapWidth][mapHeight]=
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-double	dist_to_wall(t_v2d_i *map_pos, t_v2d_d delta_dist, t_v2d_i step, t_v2d_d side_dist)
-{
-	int	hit;
-	int	side;
+// double	dist_to_wall(t_v2d_i *map_pos, t_v2d_d delta_dist, t_v2d_i step, t_v2d_d side_dist)
+// {
+// 	int	hit;
+// 	int	side;
 
-	hit = 0;
-	while (hit == 0)
+// 	hit = 0;
+// 	while (hit == 0)
+// 	{
+// 		if (side_dist.x < side_dist.y)
+// 		{
+// 			side_dist.x += delta_dist.x;
+// 			map_pos->x += step.x;
+// 			side = 0;
+// 		}
+// 		else
+// 		{
+// 			side_dist.y += delta_dist.y;
+// 			map_pos->y += step.y;
+// 			side = 1;
+// 		}
+// 		if (test_map[map_pos->x][map_pos->y] > 0)
+// 			hit = 1;
+// 	}
+
+// 	if (side == 0)
+// 		return (side_dist.x - delta_dist.x);
+// 	else
+// 		return (side_dist.y - delta_dist.y);
+// }
+
+void	update_pos(t_c3_env *env)
+{
+	if (env->key_state[KEY_W])
 	{
-		if (side_dist.x < side_dist.y)
-		{
-			side_dist.x += delta_dist.x;
-			map_pos->x += step.x;
-			side = 0;
-		}
-		else
-		{
-			side_dist.y += delta_dist.y;
-			map_pos->y += step.y;
-			side = 1;
-		}
-		if (test_map[map_pos->x][map_pos->y] > 0)
-			hit = 1;
+		if (test_map[(int)(env->pos.x + env->dir.x * env->move_speed)][(int)env->pos.y] == 0)
+			env->pos.x += env->dir.x * env->move_speed;
+		if (test_map[(int)env->pos.x][(int)(env->pos.y + env->dir.y * env->move_speed)] == 0)
+			env->pos.y += env->dir.y * env->move_speed;
+	}
+	if (env->key_state[KEY_S])
+	{
+		if (test_map[(int)(env->pos.x - env->dir.x * env->move_speed)][(int)env->pos.y] == 0)
+			env->pos.x -= env->dir.x * env->move_speed;
+		if (test_map[(int)env->pos.x][(int)(env->pos.y - env->dir.y * env->move_speed)] == 0)
+			env->pos.y -= env->dir.y * env->move_speed;
+	}
+	if (env->key_state[KEY_A])
+	{
+		if (test_map[(int)(env->pos.x - env->dir.y * env->move_speed)][(int)env->pos.y] == 0)
+			env->pos.x -= env->dir.y * env->move_speed;
+		if (test_map[(int)env->pos.x][(int)(env->pos.y + env->dir.x * env->move_speed)] == 0)
+			env->pos.y += env->dir.x * env->move_speed;
+	}
+	if (env->key_state[KEY_D])
+	{
+		if (test_map[(int)(env->pos.x + env->dir.y * env->move_speed)][(int)env->pos.y] == 0)
+			env->pos.x += env->dir.y * env->move_speed;
+		if (test_map[(int)env->pos.x][(int)(env->pos.y - env->dir.x * env->move_speed)] == 0)
+			env->pos.y -= env->dir.x * env->move_speed;
+	}
+	if (env->key_state[KEY_LEFT])
+	{
+		double	old_dir_x;
+		double	old_plane_x;
+
+		old_dir_x = env->dir.x;
+		env->dir.x = env->dir.x * cos(env->rot_speed) - env->dir.y * sin(env->rot_speed);
+		env->dir.y = old_dir_x * sin(env->rot_speed) + env->dir.y * cos(env->rot_speed);
+		old_plane_x = env->plane.x;
+		env->plane.x = env->plane.x * cos(env->rot_speed) - env->plane.y * sin(env->rot_speed);
+		env->plane.y = old_plane_x * sin(env->rot_speed) + env->plane.y * cos(env->rot_speed);
 	}
 
-	if (side == 0)
-		return (side_dist.x - delta_dist.x);
-	else
-		return (side_dist.y - delta_dist.y);
+	if (env->key_state[KEY_RIGHT])
+	{
+		double	old_dir_x;
+		double	old_plane_x;
+
+		old_dir_x = env->dir.x;
+		env->dir.x = env->dir.x * cos(-env->rot_speed) - env->dir.y * sin(-env->rot_speed);
+		env->dir.y = old_dir_x * sin(-env->rot_speed) + env->dir.y * cos(-env->rot_speed);
+		old_plane_x = env->plane.x;
+		env->plane.x = env->plane.x * cos(-env->rot_speed) - env->plane.y * sin(-env->rot_speed);
+		env->plane.y = old_plane_x * sin(-env->rot_speed) + env->plane.y * cos(-env->rot_speed);
+	}
 }
 
 void	simple_raycasting(t_c3_env *env)
@@ -77,11 +134,6 @@ void	simple_raycasting(t_c3_env *env)
 		ray_dir.x = env->dir.x + env->plane.x * (2 * x / (double)WIDTH - 1);
 		ray_dir.y = env->dir.y + env->plane.y * (2 * x / (double)WIDTH - 1);
 
-		t_v2d_i	map_pos;
-
-		map_pos.x = (int)env->pos.x;
-		map_pos.y = (int)env->pos.y;
-
 		t_v2d_d delta_dist;
 
 		if (ray_dir.x == 0)
@@ -92,7 +144,11 @@ void	simple_raycasting(t_c3_env *env)
 			delta_dist.y = 1e30;
 		else
 			delta_dist.y = fabs(1 / ray_dir.y);
-		
+
+		t_v2d_i	map_pos;
+
+		map_pos.x = (int)env->pos.x;
+		map_pos.y = (int)env->pos.y;
 
 		t_v2d_i step;
 		
@@ -123,7 +179,40 @@ void	simple_raycasting(t_c3_env *env)
 		int draw_start;
 		int draw_end;
 
-		line_height = (int)(HEIGHT / dist_to_wall(&map_pos, delta_dist, step, side_dist));
+		int	hit;
+		int	side;
+
+		hit = 0;
+		while (hit == 0)
+		{
+			if (side_dist.x < side_dist.y)
+			{
+				side_dist.x += delta_dist.x;
+				map_pos.x += step.x;
+				side = 0;
+			}
+			else
+			{
+				side_dist.y += delta_dist.y;
+				map_pos.y += step.y;
+				side = 1;
+			}
+			if (test_map[map_pos.x][map_pos.y] > 0)
+				hit = 1;
+		}
+
+		double	perp_wall_dist;
+
+		if (side == 0)
+			perp_wall_dist = side_dist.x - delta_dist.x;
+		else
+			perp_wall_dist = side_dist.y - delta_dist.y;
+
+		if (perp_wall_dist == 0)
+			line_height = HEIGHT;
+		else
+			line_height = (int)(HEIGHT / perp_wall_dist);
+		// line_height = (int)(HEIGHT / dist_to_wall(&map_pos, delta_dist, step, side_dist));
 
 		draw_start = -line_height / 2 + HEIGHT / 2;
 		if (draw_start < 0)
@@ -145,8 +234,10 @@ void	simple_raycasting(t_c3_env *env)
 		else
 			color = 0x00FFFFFF;
 	
-		// if (side == 1)
-		// 	color = color / 2;
+		if (side == 1)
+			color = color / 2;
+		// else if (ray_dir.y > 0)
+		// 	color = color / 4;
 		
 		draw_v_line(env, x, draw_start, draw_end, color);
 		x++;
@@ -157,6 +248,8 @@ int	render(t_c3_env *env)
 {
 	// printf("render\n");
 	clean_screen(env);
+
+	update_pos(env);
 
 	simple_raycasting(env);
 

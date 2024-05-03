@@ -41,7 +41,8 @@ typedef struct s_c3_env
 	t_v2d_d	pos;	// player position
 	t_v2d_d	dir;	// player direction
 	t_v2d_d	plane;	// camera plane
-	t_v2d_i	map_pos;
+	double	move_speed;
+	double	rot_speed;
 }	t_c3_env;
 
 int	render(t_c3_env *env);
