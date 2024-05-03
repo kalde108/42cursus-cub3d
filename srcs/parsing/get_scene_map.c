@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/02 04:11:35 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 18:11:36 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-
-	void DEBUG_print_vector_map(t_vector *map); //REMOVE
 
 static int	add_map_line(char *str, t_vector *map);
 static int	is_line_valid(char *str);
@@ -46,7 +44,6 @@ int	get_scene_map(int fd, t_cubscene *ptr)
 		ft_vector_free(&map);
 		return (1);
 	}
-	DEBUG_print_vector_map(&map);
 	ptr->map = map;
 	return (0);
 }

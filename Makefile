@@ -30,6 +30,7 @@ INIT_SRC = \
 	open_cub_file \
 	get_scene_textures \
 	get_scene_map \
+	convert_map \
 
 # ********** DRAW ********** #
 

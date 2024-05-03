@@ -17,7 +17,7 @@ void	destroy_scene(t_cubscene *ptr);
 #define mapWidth 24
 #define mapHeight 24
 
-extern char	test_map[mapWidth][mapHeight];
+extern char	**test_map;
 
 typedef struct s_v2d_d
 {
