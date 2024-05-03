@@ -1,8 +1,10 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 
-# define WIDTH		1024
-# define HEIGHT		576
+# define WIDTH		2048
+# define HEIGHT		1152
+// # define WIDTH		1024
+// # define HEIGHT		576
 
 #define mapWidth 24
 #define mapHeight 24

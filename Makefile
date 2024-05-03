@@ -208,6 +208,14 @@ VALGRIND = \
 valgrind : debug
 	$(VALGRIND) ./$(NAME)
 
+CALLGRIND = \
+	valgrind \
+	--tool=callgrind \
+
+.PHONY : callgrind
+callgrind : debug
+	$(CALLGRIND) ./$(NAME)
+
 # *** SPECIAL TARGETS ******************************************************** #
 
 -include $(DEPS)

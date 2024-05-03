@@ -3,6 +3,7 @@
 cub3d
 cub3d_bonus
 .vscode
+callgrind.out.*
 
 # Prerequisites
 *.d

@@ -175,10 +175,6 @@ void	simple_raycasting(t_c3_env *env)
 			side_dist.y = (map_pos.y + 1.0 - env->pos.y) * delta_dist.y;
 		}
 
-		int line_height;
-		int draw_start;
-		int draw_end;
-
 		int	hit;
 		int	side;
 
@@ -208,11 +204,16 @@ void	simple_raycasting(t_c3_env *env)
 		else
 			perp_wall_dist = side_dist.y - delta_dist.y;
 
+		int line_height;
+
 		if (perp_wall_dist == 0)
 			line_height = HEIGHT;
 		else
 			line_height = (int)(HEIGHT / perp_wall_dist);
 		// line_height = (int)(HEIGHT / dist_to_wall(&map_pos, delta_dist, step, side_dist));
+		
+		int draw_start;
+		int draw_end;
 
 		draw_start = -line_height / 2 + HEIGHT / 2;
 		if (draw_start < 0)
@@ -234,10 +235,14 @@ void	simple_raycasting(t_c3_env *env)
 		else
 			color = 0x00FFFFFF;
 	
-		if (side == 1)
+		if (side == 0)
+		{
 			color = color / 2;
-		// else if (ray_dir.y > 0)
-		// 	color = color / 4;
+		}
+		else if (ray_dir.y < 0)
+		{
+			color = color / 4;
+		}
 		
 		draw_v_line(env, x, draw_start, draw_end, color);
 		x++;
