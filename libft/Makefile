@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 11:21:32 by ibertran          #+#    #+#              #
-#    Updated: 2024/04/29 16:14:15 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/05/01 22:13:00 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ $(NAME) : $(OBJS) | PREMAKE
 ╚════██║██╔═══╝ ╚════╝██║     ██║██╔══██╗██╔══╝     ██║   \n\
      ██║███████╗      ███████╗██║██████╔╝██║        ██║   \n\
      ╚═╝╚══════╝      ╚══════╝╚═╝╚═════╝ ╚═╝        ╚═╝   \n$(RESET)\
-                                              @ibertran\n"
+                                    @ibertran @kchillon\n"
 
 $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 	@true || echo "$(NAME)_object"

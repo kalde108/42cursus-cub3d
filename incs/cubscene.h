@@ -24,9 +24,10 @@ typedef enum e_identifier
 
 typedef struct s_cubscene_color
 {
-	int	r;
-	int	g;
-	int	b;
+	unsigned char	a;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 }	t_cubscene_color;
 
 typedef struct s_cubscene_textures

@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 
 # *** FILES ****************************************************************** #
 
@@ -14,7 +14,6 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
 	main \
-	
 
 # ********** PARSING ********** #
 
@@ -23,8 +22,10 @@ SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
 INIT_DIR = parsing/
 INIT_SRC = \
 	check_scene_format \
-	set_scene_info \
+	set_texture \
 	open_cub_file \
+	get_scene_textures \
+	get_scene_map \
 
 # ********** SCENE ********** #
 
@@ -42,6 +43,7 @@ SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
 DEBUG_DIR = DEBUG/
 DEBUG_SRC = \
 	DEBUG_REMOVE \
+	DEBUG_PRINT_MAP_VECTOR \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

@@ -6,7 +6,7 @@
 #    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 06:32:49 by ibertran          #+#    #+#              #
-#    Updated: 2024/04/05 18:13:17 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/05/02 02:41:26 by ibertran         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ STR_SRC = \
 	countwords \
 	generate_rand_str \
 	isnumber \
+	replace_char \
 	split \
 	str_in_array \
 	strchr \

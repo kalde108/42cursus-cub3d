@@ -3,7 +3,7 @@
 
 # include <cubscene.h>
 
-int		check_scene_format(char *path);
+int		check_scene_format(char **argv);
 int		get_cubscene(char *path, t_cubscene *ptr);
 
 int		init_scene(t_cubscene *ptr);

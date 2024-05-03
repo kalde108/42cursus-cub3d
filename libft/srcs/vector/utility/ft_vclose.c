@@ -6,13 +6,13 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:11:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/04/19 22:11:07 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/02 01:47:48 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_vclose(void **var)
+void	ft_vclose(void *var)
 {
 	if (!var)
 		return ;
