@@ -18,15 +18,6 @@ SRC = \
 	main \
 	render \
 
-# ********** HOOK ********** #
-
-SRC += $(addprefix $(HOOK_DIR),$(HOOK_SRC))
-
-HOOK_DIR = hook/
-HOOK_SRC = \
-	keydown_hook \
-	keyup_hook \
-
 # ********** DRAW ********** #
 
 SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
@@ -37,6 +28,23 @@ DRAW_SRC = \
 	draw_square \
 	draw_v_line \
 	put_pixel \
+
+# ********** HOOK ********** #
+
+SRC += $(addprefix $(HOOK_DIR),$(HOOK_SRC))
+
+HOOK_DIR = hook/
+HOOK_SRC = \
+	keydown_hook \
+	keyup_hook \
+
+# ******* RAYCASTING ******* #
+
+SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
+
+RAYCASTING_DIR = raycasting/
+RAYCASTING_SRC = \
+	raycasting \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
@@ -60,7 +68,7 @@ INCS = \
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
-OFLAGS 		=
+OFLAGS 		=	-O3
 
 CPPFLAGS 	= 	$(addprefix -I, $(INCS)) \
 				$(addprefix -D, $(DEFINES)) \

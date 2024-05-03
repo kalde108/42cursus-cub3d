@@ -9,6 +9,8 @@
 #define mapWidth 24
 #define mapHeight 24
 
+extern char	test_map[mapWidth][mapHeight];
+
 typedef struct s_v2d_d
 {
 	double	x;
@@ -47,6 +49,7 @@ typedef struct s_c3_env
 	double	rot_speed;
 }	t_c3_env;
 
+void	simple_raycasting(t_c3_env *env);
 int	render(t_c3_env *env);
 
 #endif //CUB3D_H
