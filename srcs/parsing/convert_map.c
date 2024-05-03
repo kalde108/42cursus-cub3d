@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 18:12:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 18:35:23 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ static void	DEBUG_GLOBAL_MAP(t_vector *map)
 		test_map[i] = ((t_vector *)ft_vector_get(map, i))->ptr;
 		i++;
 	}
+	test_map[i] = NULL;
 }

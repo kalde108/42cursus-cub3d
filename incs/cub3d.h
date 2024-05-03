@@ -3,12 +3,6 @@
 
 # include <cubscene.h>
 
-int		check_scene_format(char **argv);
-int		get_cubscene(char *path, t_cubscene *ptr);
-
-int		init_scene(t_cubscene *ptr);
-void	destroy_scene(t_cubscene *ptr);
-
 # define WIDTH		2048
 # define HEIGHT		1152
 // # define WIDTH		1024
@@ -57,6 +51,13 @@ typedef struct s_c3_env
 	double	move_speed;
 	double	rot_speed;
 }	t_c3_env;
+
+int		check_scene_format(char **argv);
+int		get_cubscene(char *path, t_cubscene *ptr);
+
+int		init_scene(t_cubscene *ptr);
+void	destroy_scene(t_cubscene *ptr);
+int		get_player_spawn(char **map, t_v2d_d *pos, t_v2d_d *dir);
 
 int	render(t_c3_env *env);
 

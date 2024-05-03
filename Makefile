@@ -32,6 +32,7 @@ INIT_SRC = \
 	get_scene_textures \
 	get_scene_map \
 	convert_map \
+	get_player_spawn \
 
 # ********** DRAW ********** #
 
