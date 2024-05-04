@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 15:41:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,42 @@
 #include <errno.h>
 #include <string.h>
 
+#include "mlx.h"
 #include "libft.h"
 #include "cubscene.h"
 #include "parsing.h"
 
+static int	set_texture_filepath(char *filepath, t_tex *ptr);
 static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture);
 static int	get_color_channel(char *tok, unsigned char *channel, char *idtok);
 
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 {
-	char	*dup;
-
 	if (id == ID_FLOOR)
 		return (set_texture_color(tok, str, &ptr->floor));
 	else if (id == ID_CEILING)
 		return (set_texture_color(tok, str, &ptr->ceilling));
-	dup = ft_strdup(str);
-	if (!dup)
-	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL_SCENE, strerror(errno));
+	if (is_xmp_file(str))
 		return (1);
-	}
-	else if (id == ID_NORTH)
-		ptr->texture.north = dup;
-	else if (id == ID_SOUTH)
-		ptr->texture.south = dup;
-	else if (id == ID_WEST)
-		ptr->texture.west = dup;
-	else
-		ptr->texture.east = dup;
+	if (set_texture_filepath(str, ptr->texture + id))
+		return (1);
 	return (0);
 }
+
+static int	set_texture_filepath(char *filepath, t_tex *ptr)
+{
+	char	*dup;
+
+	dup = ft_strdup(filepath);
+	if (NULL == dup)
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
+		return (1);
+	}
+	ptr->filepath = dup;
+	return (0);
+}
+
 
 static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture)
 {
@@ -62,14 +67,12 @@ static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture)
 		return (1);
 	if (ft_strtok(NULL, " ,\n"))
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR); //CHECK ERROR MSG
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, AMBIGUOUS_DEF);
 		return (1);
 	}
 	texture->a = 0;
 	return (0);
 }
-
-# include <stdio.h>
 
 static int	get_color_channel(char *tok, unsigned char *channel, char *idtok)
 {

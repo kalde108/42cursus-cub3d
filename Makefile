@@ -19,6 +19,7 @@ SRC = \
 	main \
 	render \
 	update_player \
+	get_coords \
 
 # ********** PARSING ********** #
 
@@ -33,6 +34,8 @@ INIT_SRC = \
 	get_scene_map \
 	convert_map \
 	get_player_spawn \
+	is_xmp_file \
+	is_player_enclosed \
 
 # ********** DRAW ********** #
 
@@ -93,7 +96,7 @@ SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
 DEBUG_DIR = DEBUG/
 DEBUG_SRC = \
 	DEBUG_REMOVE \
-	DEBUG_PRINT_MAP_VECTOR \
+	DEBUG_PRINT_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

@@ -3,11 +3,23 @@
 #include "cubscene.h"
 #include "libft.h"
 
-void	destroy_scene(t_cubscene *ptr)
+static void	destroy_scene_textures(t_cubscene *scene);
+
+void	destroy_scene(t_cubscene *scene)
 {
-	free(ptr->texture.north);
-	free(ptr->texture.south);
-	free(ptr->texture.west);
-	free(ptr->texture.east);
-	ft_vector_free(&ptr->map);
+	destroy_scene_textures(scene);
+	free(scene->map);
+}
+
+static void	destroy_scene_textures(t_cubscene *scene)
+{
+	int	i;
+
+	i = 0;
+	while (i < TEXTURES)
+	{
+		free(scene->texture[i].filepath);
+		free(scene->texture[i].ptr);
+		i++;
+	}
 }

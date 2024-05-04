@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 23:01:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/01 22:56:13 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 01:43:42 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-
-# include "stdio.h"
 
 int	check_scene_format(char **argv)
 {
@@ -32,10 +30,11 @@ int	check_scene_format(char **argv)
 		return (1);
 	}
 	len = ft_strlen(argv[0]);
-	if (len < 4 || ft_strcmp(argv[0] + len - 4, ".cub"))
+	if (len < 4 || ft_strcmp(argv[0] + len - 4, CUB_EXT))
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, argv[0], INVAL_FILE);
 		return (1);
 	}
 	return (0);
 }
+
