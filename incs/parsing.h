@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 04:46:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 05:07:45 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define INVAL_COLOR "Invalid color format, expected [R,G,B]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"
-# define NO_SPAWN "Missing player spawn character"
+# define NO_SPAWN "Missing player spawn character, expected [N] [S] [E] or [W]"
 # define MULTIPLE_SPAWN "Multiple player spawn characters"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 

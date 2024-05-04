@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 05:00:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 05:16:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "parsing.h"
+
+void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
 
 static int	is_enclosed(t_cubscene *scene, int x, int y);
 
@@ -50,7 +52,7 @@ static int	is_enclosed(t_cubscene *scene, int x, int y)
 {
 	char	*c;
 
-	c =scene->map + (y * scene->width) + x;
+	c = scene->map + (y * scene->width) + x;
 	if (*c == '1')
 		return (0);
 	if (x == 0 || x == scene->width - 1
@@ -61,5 +63,9 @@ static int	is_enclosed(t_cubscene *scene, int x, int y)
 	return (is_enclosed(scene, x + 1, y)
 		|| is_enclosed(scene, x - 1, y)
 		|| is_enclosed(scene, x, y + 1)
-		|| is_enclosed(scene, x, y - 1));
+		|| is_enclosed(scene, x, y + 1)
+		|| is_enclosed(scene, x + 1, y + 1)
+		|| is_enclosed(scene, x + 1, y - 1)
+		|| is_enclosed(scene, x - 1, y + 1)
+		|| is_enclosed(scene, x - 1, y - 1));
 }

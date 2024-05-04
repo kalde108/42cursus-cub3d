@@ -9,7 +9,7 @@
 char	**test_map;
 
 void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
-void	DEBUG_print(t_cubscene *ptr); //REMOVE
+void		DEBUG_print(t_cubscene *ptr); //REMOVE
 
 int main(int ac, char **av)
 {
