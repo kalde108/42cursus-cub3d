@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:09:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 02:55:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,13 @@ static int	get_color_channel(char *tok, unsigned char *channel, char *idtok);
 
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 {
-	t_img *img;
-
 	if (id == ID_FLOOR)
 		return (set_texture_color(tok, str, &ptr->floor));
 	else if (id == ID_CEILING)
 		return (set_texture_color(tok, str, &ptr->ceilling));
 	if (is_xmp_file(str))
 		return (1);
-	if (id == ID_NORTH)
-		img = &ptr->texture.no;
-	else if (id == ID_SOUTH)
-		img = &ptr->texture.so;
-	else if (id == ID_EAST)
-		img = &ptr->texture.ea;
-	else
-		img = &ptr->texture.we;
-	if (set_texture_filepath(str, img))
+	if (set_texture_filepath(str, ptr->texture + id))
 		return (1);
 	return (0);
 }

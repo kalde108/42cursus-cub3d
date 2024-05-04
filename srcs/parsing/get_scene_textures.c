@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:10:41 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 02:56:19 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ static int	is_defined(char *tok, t_identifier id, t_cubscene scene)
 	if ((id == ID_FLOOR && scene.floor.a == 255)
 		|| (id == ID_CEILING && scene.ceilling.a == 255))
 		return (0);
-	else if ((id == ID_NORTH && !scene.texture.no.filepath)
-		|| (id == ID_SOUTH && !scene.texture.so.filepath)
-		|| (id == ID_EAST && !scene.texture.ea.filepath)
-		|| (id == ID_WEST && !scene.texture.we.filepath))
+	else if (NULL == scene.texture[id].filepath)
 		return (0);
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, MULTI_ID);
 	return (1);

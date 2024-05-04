@@ -9,6 +9,7 @@
 char	**test_map;
 
 void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
+void	DEBUG_print(t_cubscene *ptr); //REMOVE
 
 int main(int ac, char **av)
 {
@@ -23,6 +24,7 @@ int main(int ac, char **av)
 		destroy_scene(&env.scene);
 		return (1);
 	}
+	DEBUG_print(&env.scene);
 	DEBUG_PRINT_MAP(env.scene);
 	printf("\nPLAYER SPAWN(%fx,%fy)\nDIRECTION(%fx,%fy)\n\n", env.player.pos.x, env.player.pos.y, env.player.dir.x, env.player.dir.y);
 

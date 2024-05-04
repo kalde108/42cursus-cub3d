@@ -11,6 +11,13 @@
 # define FLOOR "F"
 # define CEILING "C"
 
+//TEXTURES ARRAY
+# define TEXTURES 4
+# define NO 0
+# define SO 1
+# define EA 2
+# define WE 3
+
 typedef enum e_identifier
 {
 	ID_INVAL = -1,
@@ -48,10 +55,9 @@ typedef struct s_cubscene_textures
 
 typedef struct s_cubscene
 {
-	t_cubscene_textures	texture;
+	t_img				texture[TEXTURES];
 	t_cubscene_color	floor;
 	t_cubscene_color	ceilling;
-	// t_vector			map;
 	char				*map;
 	int					width;
 	int					height;
