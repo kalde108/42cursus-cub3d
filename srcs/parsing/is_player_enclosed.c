@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 05:16:13 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 05:22:22 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ static int	is_enclosed(t_cubscene *scene, int x, int y)
 		|| *c == ' ')
 		return (-1);
 	*c = '1';
-	return (is_enclosed(scene, x + 1, y)
-		|| is_enclosed(scene, x - 1, y)
-		|| is_enclosed(scene, x, y + 1)
-		|| is_enclosed(scene, x, y + 1)
-		|| is_enclosed(scene, x + 1, y + 1)
+	return (is_enclosed(scene, x, y - 1)
 		|| is_enclosed(scene, x + 1, y - 1)
+		|| is_enclosed(scene, x + 1, y)
+		|| is_enclosed(scene, x + 1, y + 1)
+		|| is_enclosed(scene, x , y + 1)
 		|| is_enclosed(scene, x - 1, y + 1)
+		|| is_enclosed(scene, x - 1, y)
 		|| is_enclosed(scene, x - 1, y - 1));
 }
