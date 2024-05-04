@@ -21,7 +21,6 @@ typedef struct s_player
 	t_v2d_d	plane;	// camera plane
 	double	mv_speed;
 	double	rt_speed;
-	double	fov;
 }	t_player;
 
 

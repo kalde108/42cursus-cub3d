@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 18:12:34 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 18:36:00 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ static void	get_player_orientation(char c, t_player *player)
 		i++;
 	player->dir.x = x[i];
 	player->dir.y = y[i];
-	player->plane.x = -y[i] * 2.0;
-	player->plane.y = x[i] * 2.0;
+	player->plane.x = -y[i] * 1.0;
+	player->plane.y = x[i] * 1.0;
 }
