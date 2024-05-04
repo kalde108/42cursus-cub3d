@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 19:26:11 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "cubscene.h"
 #include "parsing.h"
 
-static int	set_texture_filepath(char *filepath, t_img *ptr);
+static int	set_texture_filepath(char *filepath, t_tex *ptr);
 static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture);
 static int	get_color_channel(char *tok, unsigned char *channel, char *idtok);
 
@@ -36,7 +36,7 @@ int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 	return (0);
 }
 
-static int	set_texture_filepath(char *filepath, t_img *ptr)
+static int	set_texture_filepath(char *filepath, t_tex *ptr)
 {
 	char	*dup;
 

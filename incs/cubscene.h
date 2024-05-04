@@ -43,19 +43,19 @@ typedef struct s_img
 	void	*ptr;
 	int		width;
 	int		height;
-}	t_img;
+}	t_tex;
 
 typedef struct s_cubscene_textures
 {
-	t_img	so;
-	t_img	no;
-	t_img	ea;
-	t_img	we;
+	t_tex	so;
+	t_tex	no;
+	t_tex	ea;
+	t_tex	we;
 }	t_cubscene_textures;
 
 typedef struct s_cubscene
 {
-	t_img				texture[TEXTURES];
+	t_tex				texture[TEXTURES];
 	t_cubscene_color	floor;
 	t_cubscene_color	ceilling;
 	char				*map;

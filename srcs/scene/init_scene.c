@@ -6,13 +6,13 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 02:29:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:53:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cubscene.h"
 
-void	init_img(t_img *img)
+void	init_text(t_tex *img)
 {
 	img->filepath = NULL;
 	img->ptr = NULL;
@@ -24,7 +24,7 @@ void	init_scene(t_cubscene *ptr)
 
 	i = 0;
 	while (i < TEXTURES)
-		init_img(ptr->texture + i++);
+		init_text(ptr->texture + i++);
 	ptr->floor.a = 255;
 	ptr->ceilling.a = 255;
 }
