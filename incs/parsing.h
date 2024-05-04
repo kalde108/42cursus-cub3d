@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:06:03 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 04:46:37 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,17 @@
 # define INVAL_CHAR "Invalid character"
 # define NO_SPAWN "Missing player spawn character"
 # define MULTIPLE_SPAWN "Multiple player spawn characters"
+# define NON_ENCLOSED "Spawn position not surrounded by walls"
 
 //MAP_CHARSET
 # define MAP_CHARSET " 01NSEW"
 # define SPAWN_CHARSET "NSEW"
 
-
-int	get_scene_textures(int fd, t_cubscene *ptr);
-int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
-int	get_scene_map(int fd, t_cubscene *scene);
-int	convert_map(t_vector *map, t_cubscene *scene);
-int	is_xmp_file(char *filepath);
+int		get_scene_textures(int fd, t_cubscene *ptr);
+int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
+int		get_scene_map(int fd, t_cubscene *scene);
+int		convert_map(t_vector *map, t_cubscene *scene);
+int		is_xmp_file(char *filepath);
+char	*get_coords(t_cubscene *scene, int x, int y);
 
 #endif //PARSING_H

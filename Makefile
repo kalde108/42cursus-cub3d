@@ -35,6 +35,7 @@ INIT_SRC = \
 	convert_map \
 	get_player_spawn \
 	is_xmp_file \
+	is_player_enclosed \
 
 # ********** DRAW ********** #
 
