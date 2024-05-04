@@ -3,7 +3,7 @@
 #include "cubscene.h"
 #include "libft.h"
 
-static void destroy_scene_textures(t_cubscene *scene);
+static void	destroy_scene_textures(t_cubscene *scene);
 
 void	destroy_scene(t_cubscene *scene)
 {
