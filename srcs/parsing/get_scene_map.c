@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 21:18:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 01:09:57 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	add_map_line(char *str, t_vector *map)
 
 static int	is_line_valid(char *str)
 {
-	static char	spawn = '\0';
 	char		c;
 
 	c = *str++;
@@ -81,16 +80,6 @@ static int	is_line_valid(char *str)
 		{
 			ft_dprintf(STDERR_FILENO, MAP_ERR, c, INVAL_CHAR);
 			return (0);
-		}
-		if (ft_ischarset(c, SPAWN_CHARSET))
-		{
-			if (spawn)
-			{
-				ft_dprintf(STDERR_FILENO, MAP_ERR2, MULTIPLE_SPAWN);
-				return (0);
-			}
-			else
-				spawn = c;
 		}
 		c = *str++;
 	}

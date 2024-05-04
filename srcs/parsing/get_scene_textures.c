@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 15:40:17 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 02:10:41 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	tokenize_line(char *line, t_cubscene *ptr)
 		return (1);
 	if (!ft_strtok(NULL, " \n"))
 		return (0);
-	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, INVAL_DEF);
+	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, AMBIGUOUS_DEF);
 	return (1);
 }
 
@@ -89,10 +89,10 @@ static int	is_defined(char *tok, t_identifier id, t_cubscene scene)
 	if ((id == ID_FLOOR && scene.floor.a == 255)
 		|| (id == ID_CEILING && scene.ceilling.a == 255))
 		return (0);
-	else if ((id == ID_NORTH && !scene.texture.north)
-		|| (id == ID_SOUTH && !scene.texture.south)
-		|| (id == ID_EAST && !scene.texture.east)
-		|| (id == ID_WEST && !scene.texture.west))
+	else if ((id == ID_NORTH && !scene.texture.no.filepath)
+		|| (id == ID_SOUTH && !scene.texture.so.filepath)
+		|| (id == ID_EAST && !scene.texture.ea.filepath)
+		|| (id == ID_WEST && !scene.texture.we.filepath))
 		return (0);
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, MULTI_ID);
 	return (1);

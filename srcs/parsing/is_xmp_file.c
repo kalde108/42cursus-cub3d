@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_scene.c                                       :+:      :+:    :+:   */
+/*   is_xmp_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 02:29:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:16:11 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/05/04 01:43:26 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/04 01:45:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubscene.h"
+#include <unistd.h>
 
-void	init_img(t_img *img)
-{
-	img->filepath = NULL;
-	img->ptr = NULL;
-}
+#include "libft.h"
+#include "parsing.h"
 
-void	init_scene(t_cubscene *ptr)
+int	is_xmp_file(char *filepath)
 {
-	init_img(&ptr->texture.no);
-	init_img(&ptr->texture.so);
-	init_img(&ptr->texture.ea);
-	init_img(&ptr->texture.we);
-	ptr->floor.a = 255;
-	ptr->ceilling.a = 255;
+	const int	len = ft_strlen(filepath);
+
+	if (len < 4 || ft_strcmp(filepath + len - 4, XMP_EXT))
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, filepath, INVAL_PATH);
+		return (1);
+	}
+	return (0);
 }

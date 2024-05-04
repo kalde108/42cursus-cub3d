@@ -19,6 +19,7 @@ SRC = \
 	main \
 	render \
 	update_player \
+	get_coords \
 
 # ********** PARSING ********** #
 
@@ -33,6 +34,7 @@ INIT_SRC = \
 	get_scene_map \
 	convert_map \
 	get_player_spawn \
+	is_xmp_file \
 
 # ********** DRAW ********** #
 

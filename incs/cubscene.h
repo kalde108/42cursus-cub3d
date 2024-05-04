@@ -30,12 +30,20 @@ typedef struct s_cubscene_color
 	unsigned char	b;
 }	t_cubscene_color;
 
+typedef struct s_img
+{
+	char	*filepath;
+	void	*ptr;
+	int		width;
+	int		height;
+}	t_img;
+
 typedef struct s_cubscene_textures
 {
-	char	*south;
-	char	*north;
-	char	*east;
-	char	*west;
+	t_img	so;
+	t_img	no;
+	t_img	ea;
+	t_img	we;
 }	t_cubscene_textures;
 
 typedef struct s_cubscene

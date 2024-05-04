@@ -5,9 +5,15 @@
 
 void	destroy_scene(t_cubscene *ptr)
 {
-	free(ptr->texture.north);
-	free(ptr->texture.south);
-	free(ptr->texture.west);
-	free(ptr->texture.east);
+	free(ptr->texture.no.filepath);
+	free(ptr->texture.so.filepath);
+	free(ptr->texture.ea.filepath);
+	free(ptr->texture.we.filepath);
 	free(ptr->map);
+}
+
+void	destroy_texture(t_img *img)
+{
+	free(img->filepath);
+	free(img->ptr); //
 }

@@ -17,8 +17,8 @@ int main(int ac, char **av)
 	env = (t_c3_env){0};
 	init_scene(&env.scene);
 	if (check_scene_format(av + 1)
-		|| get_cubscene(av[1], &env.scene))
-		// || get_player_spawn(test_map, &env.player))
+		|| get_cubscene(av[1], &env.scene)
+		|| get_player_spawn(env.scene, &env.player))
 	{
 		destroy_scene(&env.scene);
 		return (1);
