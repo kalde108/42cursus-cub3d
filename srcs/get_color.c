@@ -62,7 +62,7 @@ int	get_color(char type, t_v2d_d ray_dir, int side, double perp_wall_dist)
 		// // color = (color & 0x00FFFFFF) | (alpha << 24);
 		// color += 0xFF000000;
 
-		// if (test_map[map_pos.x][map_pos.y])
+		// if (test_map[map_pos.y][map_pos.x])
 		// {
 		// 	r = 255 * perp_wall_dist / 20;
 		// 	if (r > 255)

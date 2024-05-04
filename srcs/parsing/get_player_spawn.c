@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 19:59:07 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 18:12:34 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	get_player_spawn(char **map, t_player *player)
 		{
 			if (ft_ischarset(map[y][x], SPAWN_CHARSET))
 			{
-				player->pos.x = y;
-				player->pos.y = x;
+				player->pos.x = x;
+				player->pos.y = y;
 				get_player_orientation(map[y][x], player);
 				map[y][x] = '0';
 				return (0);
@@ -55,6 +55,6 @@ static void	get_player_orientation(char c, t_player *player)
 		i++;
 	player->dir.x = x[i];
 	player->dir.y = y[i];
-	player->plane.x = player->dir.y * 0.66;
-	player->plane.y = -player->dir.x * 0.66;
+	player->plane.x = -y[i] * 2.0;
+	player->plane.y = x[i] * 2.0;
 }

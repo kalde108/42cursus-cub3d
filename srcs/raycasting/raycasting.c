@@ -23,7 +23,7 @@ void	simple_raycasting(t_c3_env *env)
 			x,
 			line_y[0],
 			line_y[1],
-			get_color(test_map[ray.map_pos.x][ray.map_pos.y],
+			get_color(test_map[ray.map_pos.y][ray.map_pos.x],
 				ray.ray_dir,
 				ray.side,
 				perp_wall_dist));

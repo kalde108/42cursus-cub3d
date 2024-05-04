@@ -21,21 +21,25 @@ typedef struct s_player
 	t_v2d_d	plane;	// camera plane
 	double	mv_speed;
 	double	rt_speed;
+	double	fov;
 }	t_player;
+
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
 
 typedef struct s_c3_env
 {
 	t_cubscene	scene;
 	void		*mlx;
 	void		*win;
-	struct s_img
-	{
-		void	*img;
-		char	*addr;
-		int		bits_per_pixel;
-		int		line_length;
-		int		endian;
-	}			img;
+	t_img		img;
 	int			key_state[280];	// arbitrary size (number of keys to handle)
 	t_player	player;
 }	t_c3_env;

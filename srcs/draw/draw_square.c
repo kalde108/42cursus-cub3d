@@ -1,6 +1,6 @@
 #include "draw.h"
 
-void	draw_square(t_c3_env *env, int x, int y, int size, int color)
+void	draw_square(t_img *img, int x, int y, int size, int color)
 {
 	int	half_size;
 	int	i;
@@ -13,7 +13,7 @@ void	draw_square(t_c3_env *env, int x, int y, int size, int color)
 		j = -half_size;
 		while (j < half_size)
 		{
-			put_pixel(env, x + j, y + i, color);
+			put_pixel(img, x + j, y + i, color);
 			j++;
 		}
 		i++;
