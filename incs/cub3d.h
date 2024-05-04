@@ -28,7 +28,7 @@ typedef struct s_c3_env
 	t_cubscene	scene;
 	void		*mlx;
 	void		*win;
-	struct s_img
+	struct s_mlximg
 	{
 		void	*img;
 		char	*addr;
@@ -44,8 +44,9 @@ int		check_scene_format(char **argv);
 int		get_cubscene(char *path, t_cubscene *ptr);
 
 int		init_scene(t_cubscene *ptr);
+void	init_text(t_tex *img);
 void	destroy_scene(t_cubscene *ptr);
-int		get_player_spawn(char **map, t_player *player);
+int		get_player_spawn(t_cubscene scene, t_player *player);
 
 int	render(t_c3_env *env);
 

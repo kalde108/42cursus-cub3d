@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:58:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 17:46:24 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 21:05:25 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include "libft.h"
 #include "parsing.h"
 
-int	get_cubscene(char *path, t_cubscene *ptr)
+int	get_cubscene(char *path, t_cubscene *scene)
 {
-	int	status;
-	int	fd;
+	int			status;
+	int			fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -29,11 +29,9 @@ int	get_cubscene(char *path, t_cubscene *ptr)
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, path, strerror(errno));
 		return (1);
 	}
-	status = get_scene_textures(fd, ptr);
+	status = get_scene_textures(fd, scene);
 	if (!status)
-		status = get_scene_map(fd, ptr);
-	if (!status)
-		status = convert_map(&ptr->map);
+		status = get_scene_map(fd, scene);
 	close(fd);
 	return (status);
 }

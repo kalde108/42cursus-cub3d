@@ -6,26 +6,33 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 18:35:23 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/03 21:47:11 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <string.h>
+
 #include "libft.h"
+#include "parsing.h"
 
-extern char		**test_map; //REMOVE
-
+static void	remove_empty_lines(t_vector *map);
 static int	get_map_width(t_vector *map);
 static int	fill_lines(t_vector *map, int width);
+static char	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene);
 
-static void	DEBUG_GLOBAL_MAP(t_vector *map); //REMOVE
-
-int	convert_map(t_vector *map)
+int	convert_map(t_vector *map, t_cubscene *scene)
 {
-	const int	width = get_map_width(map);
-
-	if (fill_lines(map, width))
+	remove_empty_lines(map);
+	scene->height = map->total;
+	scene->width = get_map_width(map);
+	if (fill_lines(map, scene->width))
 		return (1);
-	DEBUG_GLOBAL_MAP(map); //REMOVE
+	scene->map = map_vector_to_array(map, scene);
+	if (!scene->map)
+		return (1);
 	return (0);
 }
 
@@ -60,28 +67,48 @@ static int	fill_lines(t_vector *map, int width)
 		{
 			if (ft_vector_add(line, " "))
 			{
-				//ERROR MESSAGE
+				ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
 				return (1);
 			}
 		}
-		if (ft_vector_add(line, "\0"))	//SHOULD BE REMOVE WITH FUTURE DATA STRUCTURE
-			return (1);					//SHOULD BE REMOVE WITH FUTURE DATA STRUCTURE
 		line = ft_vector_get(map, i++);
 	}
 	return (0);
 }
 
-#include <stdio.h>
-#include <stdlib.h>
-
-static void	DEBUG_GLOBAL_MAP(t_vector *map)
+static void	remove_empty_lines(t_vector *map)
 {
-	test_map = malloc(sizeof(char *) * (map->total + 1));
-	size_t i = 0;
-	while (i < map->total)
+	t_vector	*line;
+
+	line = ft_vector_get(map, 0);
+	while (line && !line->total)
 	{
-		test_map[i] = ((t_vector *)ft_vector_get(map, i))->ptr;
+		ft_vector_delete(map, 0);
+		line = ft_vector_get(map, 0);
+	}
+	line = ft_vector_get(map, map->total - 1);
+	while (line && !line->total)
+	{
+		ft_vector_delete(map, map->total - 1);
+		line = ft_vector_get(map, map->total - 1);
+	}
+}
+
+static char	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene)
+{
+	char		*maparray;
+	t_vector	*line;
+	size_t		i;
+
+	maparray = malloc(sizeof(char) * scene->width * scene->height);
+	if (!maparray)
+		return (NULL);
+	i = 0;
+	while (i < mapvector->total)
+	{
+		line = ft_vector_get(mapvector, i);
+		ft_memcpy(maparray + (i * scene->width), line->ptr, line->total);
 		i++;
 	}
-	test_map[i] = NULL;
+	return (maparray);
 }

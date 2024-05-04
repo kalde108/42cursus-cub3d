@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
+NO ./path_to_the_north_texture.xmp
+WE ./path_to_the_west_texture.xmp
 MA ./invalid
-EA ./path_to_the_east_texture
+EA ./path_to_the_east_texture.xmp
 F 220,0,0
 C 225,30,0
 

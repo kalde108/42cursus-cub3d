@@ -1,5 +1,5 @@
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef CUBSCENE_H
+# define CUBSCENE_H
 
 # include "ft_vector.h"
 
@@ -10,6 +10,13 @@
 # define EAST "EA"
 # define FLOOR "F"
 # define CEILING "C"
+
+//TEXTURES ARRAY
+# define TEXTURES 4
+# define NO 0
+# define SO 1
+# define EA 2
+# define WE 3
 
 typedef enum e_identifier
 {
@@ -30,20 +37,30 @@ typedef struct s_cubscene_color
 	unsigned char	b;
 }	t_cubscene_color;
 
+typedef struct s_img
+{
+	char	*filepath;
+	void	*ptr;
+	int		width;
+	int		height;
+}	t_tex;
+
 typedef struct s_cubscene_textures
 {
-	char	*south;
-	char	*north;
-	char	*east;
-	char	*west;
+	t_tex	so;
+	t_tex	no;
+	t_tex	ea;
+	t_tex	we;
 }	t_cubscene_textures;
 
 typedef struct s_cubscene
 {
-	t_cubscene_textures	texture;
+	t_tex				texture[TEXTURES];
 	t_cubscene_color	floor;
 	t_cubscene_color	ceilling;
-	t_vector			map;
+	char				*map;
+	int					width;
+	int					height;
 }	t_cubscene;
 
-#endif //SCENE_H
+#endif //CUBSCENE_H
