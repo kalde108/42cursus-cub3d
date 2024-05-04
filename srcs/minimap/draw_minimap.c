@@ -11,14 +11,14 @@ static void	draw_map(t_c3_env *env)
 	int		color;
 
 	i = 0;
-	while (i < MAP_HEIGHT)
+	while (i < env->scene.height)
 	{
 		j = 0;
-		while (j < MAP_WIDTH)
+		while (j < env->scene.width)
 		{
-			if (test_map[i][j] == '1')
+			if (env->scene.map[i * env->scene.width + j] == '1')
 				color = 0x00FF0000;
-			else if (test_map[i][j] == '0')
+			else if (env->scene.map[i * env->scene.width + j] == '0')
 				color = 0xbc8128;
 			else
 			{

@@ -42,9 +42,9 @@ static void	update_pos(t_c3_env *env)
 	offset.x = ((move_vec.x >= 0) - (move_vec.x < 0)) * OFFSET;
 	offset.y = ((move_vec.y >= 0) - (move_vec.y < 0)) * OFFSET;
 	offset = (t_v2d_d){0, 0}; // remove this line
-	if (test_map[(int)env->player.pos.y][(int)(env->player.pos.x + move_vec.x + offset.x)] == '0')
+	if (env->scene.map[(int)env->player.pos.y * env->scene.width + (int)(env->player.pos.x + move_vec.x + offset.x)] == '0')
 		env->player.pos.x += move_vec.x;
-	if (test_map[(int)(env->player.pos.y + move_vec.y + offset.y)][(int)env->player.pos.x] == '0')
+	if (env->scene.map[(int)(env->player.pos.y + move_vec.y + offset.y) * env->scene.width + (int)env->player.pos.x] == '0')
 		env->player.pos.y += move_vec.y;
 }
 

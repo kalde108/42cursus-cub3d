@@ -14,7 +14,7 @@ typedef struct s_ray
 }	t_ray;
 
 void	ray_calculation(t_c3_env *env, t_ray *ray, int x);
-void	ft_dda(t_ray *ray);
+void	ft_dda(t_cubscene *scene, t_ray *ray);
 void	get_line_y(int *line_y, double perp_wall_dist);
 
 #endif

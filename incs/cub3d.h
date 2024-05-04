@@ -9,11 +9,6 @@
 // # define WIDTH		1024
 // # define HEIGHT		576
 
-#define mapWidth 24
-#define mapHeight 24
-
-extern char	**test_map;
-
 typedef struct s_player
 {
 	t_v2d_d	pos;	// player position
