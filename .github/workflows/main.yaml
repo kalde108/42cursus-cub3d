@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install MLX dependencies
+      run : sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 
     - name: Install dependencies
       run: make
