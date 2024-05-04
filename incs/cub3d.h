@@ -44,7 +44,7 @@ int		check_scene_format(char **argv);
 int		get_cubscene(char *path, t_cubscene *ptr);
 
 int		init_scene(t_cubscene *ptr);
-void	init_img(t_img *img);
+void	init_text(t_tex *img);
 void	destroy_scene(t_cubscene *ptr);
 int		get_player_spawn(t_cubscene scene, t_player *player);
 int		is_player_enclosed(t_cubscene *scene, t_player *player);
