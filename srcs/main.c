@@ -9,7 +9,7 @@
 char	**test_map;
 
 void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
-void	DEBUG_print(t_cubscene *ptr); //REMOVE
+void		DEBUG_print(t_cubscene *ptr); //REMOVE
 
 int main(int ac, char **av)
 {
@@ -19,7 +19,8 @@ int main(int ac, char **av)
 	init_scene(&env.scene);
 	if (check_scene_format(av + 1)
 		|| get_cubscene(av[1], &env.scene)
-		|| get_player_spawn(env.scene, &env.player))
+		|| get_player_spawn(env.scene, &env.player)
+		|| !is_player_enclosed(&env.scene, &env.player))
 	{
 		destroy_scene(&env.scene);
 		return (1);

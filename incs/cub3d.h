@@ -47,6 +47,7 @@ int		init_scene(t_cubscene *ptr);
 void	init_text(t_tex *img);
 void	destroy_scene(t_cubscene *ptr);
 int		get_player_spawn(t_cubscene scene, t_player *player);
+int		is_player_enclosed(t_cubscene *scene, t_player *player);
 
 int	render(t_c3_env *env);
 
