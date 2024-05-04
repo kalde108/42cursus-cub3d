@@ -1,5 +1,5 @@
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef CUBSCENE_H
+# define CUBSCENE_H
 
 # include "ft_vector.h"
 
@@ -63,4 +63,4 @@ typedef struct s_cubscene
 	int					height;
 }	t_cubscene;
 
-#endif //SCENE_H
+#endif //CUBSCENE_H
