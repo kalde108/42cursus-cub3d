@@ -41,8 +41,11 @@ static void	step_init(t_c3_env *env, t_ray *ray)
 
 void	ray_calculation(t_c3_env *env, t_ray *ray, int x)
 {
-	ray->ray_dir.x = env->player.dir.x + env->player.plane.x * (2 * x / (double)WIDTH - 1);
-	ray->ray_dir.y = env->player.dir.y + env->player.plane.y * (2 * x / (double)WIDTH - 1);
+	double	camera_x;
+
+	camera_x = (2 * x / (double)WIDTH - 1);
+	ray->ray_dir.x = env->player.dir.x + env->player.plane.x * camera_x;
+	ray->ray_dir.y = env->player.dir.y + env->player.plane.y * camera_x;
 	delta_dist_init(ray);
 	ray->map_pos.x = (int)env->player.pos.x;
 	ray->map_pos.y = (int)env->player.pos.y;

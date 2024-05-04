@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "raycasting.h"
 
-void	ft_dda(t_ray *ray)
+void	ft_dda(t_cubscene *scene, t_ray *ray)
 {
 	int	hit;
 
@@ -20,7 +20,7 @@ void	ft_dda(t_ray *ray)
 			ray->map_pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (test_map[ray->map_pos.x][ray->map_pos.y] > '0')
+		if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] > '0')
 			hit = 1;
 	}
 }

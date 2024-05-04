@@ -13,7 +13,7 @@ void	simple_raycasting(t_c3_env *env)
 	while (x < WIDTH)
 	{
 		ray_calculation(env, &ray, x);
-		ft_dda(&ray);
+		ft_dda(&env->scene, &ray);
 		if (ray.side == 0)
 			perp_wall_dist = ray.side_dist.x - ray.delta_dist.x;
 		else
@@ -23,7 +23,7 @@ void	simple_raycasting(t_c3_env *env)
 			x,
 			line_y[0],
 			line_y[1],
-			get_color(test_map[ray.map_pos.x][ray.map_pos.y],
+			get_color(env->scene.map[ray.map_pos.y * env->scene.width + ray.map_pos.x],
 				ray.ray_dir,
 				ray.side,
 				perp_wall_dist));

@@ -44,8 +44,11 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 DRAW_DIR = draw/
 DRAW_SRC = \
 	clean_screen \
+	draw_line \
+	draw_line_gradient \
 	draw_square \
 	draw_v_line \
+	floor_and_ceiling \
 	put_pixel \
 
 # ********** HOOK ********** #
@@ -56,6 +59,15 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
+
+# ********* MINIMAP ********* #
+
+SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
+
+MINIMAP_DIR = minimap/
+MINIMAP_SRC = \
+	draw_view_cone \
+	draw_minimap \
 
 # ******* RAYCASTING ******* #
 

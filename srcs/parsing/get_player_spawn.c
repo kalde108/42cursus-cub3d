@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_spawn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 01:10:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 19:50:08 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ static void	get_player_orientation(char c, t_player *player)
 		i++;
 	player->dir.x = x[i];
 	player->dir.y = y[i];
-	player->plane.x = player->dir.y * 0.66;
-	player->plane.y = -player->dir.x * 0.66;
+	player->plane.x = -y[i] * 1.0;
+	player->plane.y = x[i] * 1.0;
 }

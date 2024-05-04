@@ -5,8 +5,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
-
-char	**test_map;
+# include <math.h>
 
 void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
 void		DEBUG_print(t_cubscene *ptr); //REMOVE
@@ -29,9 +28,9 @@ int main(int ac, char **av)
 	DEBUG_PRINT_MAP(env.scene);
 	printf("\nPLAYER SPAWN(%fx,%fy)\nDIRECTION(%fx,%fy)\n\n", env.player.pos.x, env.player.pos.y, env.player.dir.x, env.player.dir.y);
 
-	// env.player.plane = (t_v2d_d){0, 0.66};
 	env.player.mv_speed = 0.03;
 	env.player.rt_speed = 0.01;
+
 	if (ft_mlx_init(&env))
 	{
 		ft_mlx_free(&env);

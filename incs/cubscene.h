@@ -37,7 +37,7 @@ typedef struct s_cubscene_color
 	unsigned char	b;
 }	t_cubscene_color;
 
-typedef struct s_img
+typedef struct s_tex
 {
 	char	*filepath;
 	void	*ptr;

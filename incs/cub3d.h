@@ -9,11 +9,6 @@
 // # define WIDTH		1024
 // # define HEIGHT		576
 
-#define mapWidth 24
-#define mapHeight 24
-
-extern char	**test_map;
-
 typedef struct s_player
 {
 	t_v2d_d	pos;	// player position
@@ -23,19 +18,22 @@ typedef struct s_player
 	double	rt_speed;
 }	t_player;
 
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
+
 typedef struct s_c3_env
 {
 	t_cubscene	scene;
 	void		*mlx;
 	void		*win;
-	struct s_mlximg
-	{
-		void	*img;
-		char	*addr;
-		int		bits_per_pixel;
-		int		line_length;
-		int		endian;
-	}			img;
+	t_img		img;
 	int			key_state[280];	// arbitrary size (number of keys to handle)
 	t_player	player;
 }	t_c3_env;
