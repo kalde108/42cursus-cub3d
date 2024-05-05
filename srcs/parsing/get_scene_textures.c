@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 01:19:12 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/06 01:20:16 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include "parsing.h"
 
-static int	tokenize_line(char *line, t_cubscene *ptr , int defined[IDENTIFIERS]);
+static int			tokenize_line(char *line, t_cubscene *ptr, int *defined);
 static t_identifier	get_identifier(char *str);
 static int			is_defined(char *tok, int *control);
 
@@ -42,7 +42,7 @@ int	get_scene_textures(int fd, t_cubscene *ptr)
 	return (status);
 }
 
-static int	tokenize_line(char *line, t_cubscene *ptr , int defined[IDENTIFIERS])
+static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 {
 	char			*tok;
 	char			*value;
