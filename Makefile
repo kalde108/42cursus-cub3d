@@ -30,6 +30,7 @@ INIT_SRC = \
 	destroy_scene \
 	open_mlx_window \
 	destroy_cubenv \
+	load_textures \
 
 # ********** PARSING ********** #
 

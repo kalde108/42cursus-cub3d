@@ -55,6 +55,6 @@ typedef struct s_cubscene
 	int					height;
 }	t_cubscene;
 
-void	destroy_scene(t_cubscene *scene);
+void	destroy_scene(t_cubscene *scene, void *mlx_ptr);
 
 #endif //CUBSCENE_H

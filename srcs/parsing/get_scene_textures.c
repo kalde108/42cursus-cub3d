@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 02:56:19 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/05 03:17:02 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	tokenize_line(char *line, t_cubscene *ptr)
 	value = ft_strtok(NULL, " \n");
 	if (value && set_texture(tok, value, id, ptr))
 		return (1);
-	if (!ft_strtok(NULL, " \n"))
+	if (NULL == ft_strtok(NULL, " \n"))
 		return (0);
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, AMBIGUOUS_DEF);
 	return (1);

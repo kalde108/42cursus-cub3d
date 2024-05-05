@@ -7,7 +7,7 @@
 
 # define WIDTH		2048
 # define HEIGHT		1152
-# define WIN_NAME	"Cub3D - @kchillon @ibertran "
+# define WIN_NAME	"Cub3D - @kchillon @ibertran"
 
 typedef struct s_img
 {
@@ -33,7 +33,7 @@ int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
 void	destroy_cubenv(t_c3_env *env);
 int		open_mlx_window(t_c3_env *env);
-
+int		load_textures(void *mlx_ptr, t_cubscene *scene);
 
 int		render(t_c3_env *env);
 

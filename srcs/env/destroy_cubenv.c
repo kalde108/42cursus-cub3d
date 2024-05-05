@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 23:49:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/05 01:53:00 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/05 03:41:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	ft_mlx_free(t_c3_env *env);
 
 void	destroy_cubenv(t_c3_env *env)
 {
-	destroy_scene(&env->scene);
+	destroy_scene(&env->scene, env->mlx);
 	ft_mlx_free(env);
 }
 

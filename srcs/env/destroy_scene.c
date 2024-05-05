@@ -1,17 +1,18 @@
 #include <stdlib.h>
 
+#include "mlx.h"
 #include "cubscene.h"
 #include "libft.h"
 
-static void	destroy_scene_textures(t_cubscene *scene);
+static void	destroy_scene_textures(t_cubscene *scene, void *mlx_ptr);
 
-void	destroy_scene(t_cubscene *scene)
+void	destroy_scene(t_cubscene *scene, void *mlx_ptr)
 {
-	destroy_scene_textures(scene);
+	destroy_scene_textures(scene, mlx_ptr);
 	free(scene->map);
 }
 
-static void	destroy_scene_textures(t_cubscene *scene)
+static void	destroy_scene_textures(t_cubscene *scene, void *mlx_ptr)
 {
 	int	i;
 
@@ -19,7 +20,7 @@ static void	destroy_scene_textures(t_cubscene *scene)
 	while (i < TEXTURES)
 	{
 		free(scene->texture[i].filepath);
-		free(scene->texture[i].ptr);
+		mlx_destroy_image(mlx_ptr, scene->texture[i].ptr);
 		i++;
 	}
 }

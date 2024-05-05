@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 22:51:56 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/05 03:34:57 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 //FILE EXTENTIONS
 # define CUB_EXT ".cub"
-# define XMP_EXT ".xmp"
+# define XMP_EXT ".xpm"
 
 //ERROR MESSAGES
 # define SCENE_ERR "Error\n%s\n"

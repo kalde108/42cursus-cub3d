@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 23:04:20 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/05 03:07:58 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	get_player_spawn(t_cubscene scene, t_player *player)
 	size_t			i;
 
 	player->pos.x = -1;
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
 		if (ft_ischarset(scene.map[i], SPAWN_CHARSET))
 		{
@@ -39,7 +39,6 @@ int	get_player_spawn(t_cubscene scene, t_player *player)
 			get_player_orientation(scene.map[i], player);
 			scene.map[i] = '0';
 		}
-		i++;
 	}
 	if (player->pos.x == -1)
 		ft_dprintf(STDERR_FILENO, MAP_ERR2, NO_SPAWN);

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:58:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 21:05:25 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/05 03:03:12 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_cubscene(char *path, t_cubscene *scene)
 	if (fd == -1)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, path, strerror(errno));
-		return (1);
+		return (-1);
 	}
 	status = get_scene_textures(fd, scene);
 	if (!status)

@@ -1,7 +1,7 @@
-NO ../assets/basic_wall.xmp
-SO ../assets/basic_wall.xmp
-WE ../assets/basic_wall.xmp
-EA ../assets/basic_wall.xmp
+NO assets/basic_wall.xpm
+SO assets/basic_wall.xpm
+WE assets/basic_wall.xpm
+EA assets/basic_wall.xpm
 
 F 255,255,255
 C 0,0,0

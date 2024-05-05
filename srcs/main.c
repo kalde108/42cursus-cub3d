@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
 	DEBUG_PRINT_MAP(env.scene); //REMOVE
-	if (open_mlx_window(&env))
+	if (load_textures(env.mlx, &env.scene) || open_mlx_window(&env))
 	{
 		destroy_cubenv(&env);
 		return (1);
