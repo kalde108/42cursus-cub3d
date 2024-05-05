@@ -26,7 +26,6 @@ SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
 INIT_DIR = env/
 INIT_SRC = \
 	init_cubenv \
-	init_scene \
 	destroy_scene \
 	open_mlx_window \
 	destroy_cubenv \
