@@ -45,14 +45,6 @@ typedef struct s_tex
 	int		height;
 }	t_tex;
 
-typedef struct s_cubscene_textures
-{
-	t_tex	so;
-	t_tex	no;
-	t_tex	ea;
-	t_tex	we;
-}	t_cubscene_textures;
-
 typedef struct s_cubscene
 {
 	t_tex				texture[TEXTURES];
@@ -62,5 +54,7 @@ typedef struct s_cubscene
 	int					width;
 	int					height;
 }	t_cubscene;
+
+void	destroy_scene(t_cubscene *scene);
 
 #endif //CUBSCENE_H

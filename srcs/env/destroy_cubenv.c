@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_scene.c                                       :+:      :+:    :+:   */
+/*   destroy_cubenv.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 02:29:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/05/04 23:49:23 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/05 01:53:00 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+
+#include "mlx.h"
+#include "cub3d.h"
 #include "cubscene.h"
 
-void	init_text(t_tex *img)
+static void	ft_mlx_free(t_c3_env *env);
+
+void	destroy_cubenv(t_c3_env *env)
 {
-	img->filepath = NULL;
-	img->ptr = NULL;
+	destroy_scene(&env->scene);
+	ft_mlx_free(env);
 }
 
-void	init_scene(t_cubscene *ptr)
+static void	ft_mlx_free(t_c3_env *env)
 {
-	int	i;
-
-	i = 0;
-	while (i < TEXTURES)
-		init_text(ptr->texture + i++);
-	ptr->floor.a = 255;
-	ptr->ceilling.a = 255;
+	if (env->img.img)
+		mlx_destroy_image(env->mlx, env->img.img);
+	if (env->win)
+		mlx_destroy_window(env->mlx, env->win);
+	if (env->mlx)
+		mlx_destroy_display(env->mlx);
+	if (env->mlx)
+		free(env->mlx);
 }

@@ -2,22 +2,12 @@
 # define CUB3D_H
 
 # include "ft_math.h"
-# include <cubscene.h>
+# include "cubscene.h"
+# include "player.h"
 
 # define WIDTH		2048
 # define HEIGHT		1152
-// # define WIDTH		1024
-// # define HEIGHT		576
-
-typedef struct s_player
-{
-	t_v2d_d	pos;	// player position
-	t_v2d_d	dir;	// player orientation
-	t_v2d_d	plane;	// camera plane
-	double	mv_speed;
-	double	rt_speed;
-}	t_player;
-
+# define WIN_NAME	"Cub3D - @kchillon @ibertran "
 
 typedef struct s_img
 {
@@ -38,16 +28,14 @@ typedef struct s_c3_env
 	t_player	player;
 }	t_c3_env;
 
-int		check_scene_format(char **argv);
-int		get_cubscene(char *path, t_cubscene *ptr);
 
-int		init_scene(t_cubscene *ptr);
-void	init_text(t_tex *img);
-void	destroy_scene(t_cubscene *ptr);
-int		get_player_spawn(t_cubscene scene, t_player *player);
-int		is_player_enclosed(t_cubscene *scene, t_player *player);
+int		check_arguments(int ac, char **av);
+int		init_cubenv(t_c3_env *env, char *arg);
+void	destroy_cubenv(t_c3_env *env);
+int		open_mlx_window(t_c3_env *env);
 
-int	render(t_c3_env *env);
+
+int		render(t_c3_env *env);
 
 // a ranger
 int	get_color(char type, t_v2d_d ray_dir, int side, double perp_wall_dist);

@@ -10,39 +10,20 @@
 void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
 void		DEBUG_print(t_cubscene *ptr); //REMOVE
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_c3_env	env;
 
 	env = (t_c3_env){0};
-	init_scene(&env.scene);
-	if (check_scene_format(av + 1)
-		|| get_cubscene(av[1], &env.scene)
-		|| get_player_spawn(env.scene, &env.player)
-		|| !is_player_enclosed(&env.scene, &env.player))
+	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
+		return (1);
+	DEBUG_PRINT_MAP(env.scene); //REMOVE
+	if (open_mlx_window(&env))
 	{
-		destroy_scene(&env.scene);
+		destroy_cubenv(&env);
 		return (1);
 	}
-	DEBUG_print(&env.scene);
-	DEBUG_PRINT_MAP(env.scene);
-	printf("\nPLAYER SPAWN(%fx,%fy)\nDIRECTION(%fx,%fy)\n\n", env.player.pos.x, env.player.pos.y, env.player.dir.x, env.player.dir.y);
-
-	env.player.mv_speed = 0.03;
-	env.player.rt_speed = 0.01;
-
-	if (ft_mlx_init(&env))
-	{
-		ft_mlx_free(&env);
-		return (1);
-	}
-	mlx_hook(env.win, DestroyNotify, StructureNotifyMask, &mlx_loop_end, env.mlx);
-	mlx_hook(env.win, KeyPress, KeyPressMask, &keydown_hook, &env);
-	mlx_hook(env.win, KeyRelease, KeyReleaseMask, &keyup_hook, &env);
-	mlx_loop_hook(env.mlx, &render, &env);
 	mlx_loop(env.mlx);
-	ft_mlx_free(&env);
-	destroy_scene(&env.scene);
+	destroy_cubenv(&env);
 	return (0);
-	(void)ac;
 }
