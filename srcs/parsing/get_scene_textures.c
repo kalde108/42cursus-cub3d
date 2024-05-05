@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/05 03:17:02 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/06 01:19:12 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,25 @@
 #include "libft.h"
 #include "parsing.h"
 
-static int			tokenize_line(char *line, t_cubscene *ptr);
+static int	tokenize_line(char *line, t_cubscene *ptr , int defined[IDENTIFIERS]);
 static t_identifier	get_identifier(char *str);
-static int			is_defined(char *tok, t_identifier id, t_cubscene scene);
+static int			is_defined(char *tok, int *control);
 
 int	get_scene_textures(int fd, t_cubscene *ptr)
 {
+	int		defined[IDENTIFIERS];
 	int		status;
 	char	*gnl;
 	int		parsed;
 
+	ft_memset(defined, 0, sizeof(int) * IDENTIFIERS);
 	status = 0;
 	parsed = 0;
 	while (parsed < 6 && !status && !get_next_line(fd, &gnl) && gnl)
 	{
 		if (gnl[0] != '\n')
 		{
-			status = tokenize_line(gnl, ptr);
+			status = tokenize_line(gnl, ptr, defined);
 			parsed++;
 		}
 		free(gnl);
@@ -40,7 +42,7 @@ int	get_scene_textures(int fd, t_cubscene *ptr)
 	return (status);
 }
 
-static int	tokenize_line(char *line, t_cubscene *ptr)
+static int	tokenize_line(char *line, t_cubscene *ptr , int defined[IDENTIFIERS])
 {
 	char			*tok;
 	char			*value;
@@ -49,7 +51,7 @@ static int	tokenize_line(char *line, t_cubscene *ptr)
 	tok = ft_strtok(line, " \n");
 	if (tok)
 		id = get_identifier(tok);
-	if (!tok || id == ID_INVAL || is_defined(tok, id, *ptr))
+	if (!tok || id == ID_INVAL || is_defined(tok, defined + id))
 		return (1);
 	value = ft_strtok(NULL, " \n");
 	if (value && set_texture(tok, value, id, ptr))
@@ -84,13 +86,13 @@ static t_identifier	get_identifier(char *str)
 	return (ID_INVAL);
 }
 
-static int	is_defined(char *tok, t_identifier id, t_cubscene scene)
+static int	is_defined(char *tok, int *control)
 {
-	if ((id == ID_FLOOR && scene.floor.a == 255)
-		|| (id == ID_CEILING && scene.ceilling.a == 255))
+	if (0 == *control)
+	{
+		*control = 1;
 		return (0);
-	else if (NULL == scene.texture[id].filepath)
-		return (0);
+	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, MULTI_ID);
 	return (1);
 }

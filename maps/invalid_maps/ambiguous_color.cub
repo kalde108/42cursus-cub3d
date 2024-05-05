@@ -1,7 +1,7 @@
-SO ./path_to_the_south_texture.xmp
-WE ./path_to_the_west_texture.xmp
-NO ./path_to_the_north_texture.xmp
-EA ./path_to_the_east_texture.xmp
+SO assets/basic_wall.xpm
+WE assets/basic_wall.xpm
+NO assets/basic_wall.xpm
+EA assets/basic_wall.xpm
 
 F 220,0,0 ADSS
 C 225,30,0

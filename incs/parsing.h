@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/05 03:34:57 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/06 01:02:06 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "cubscene.h"
 # include "player.h"
+
+# define IDENTIFIERS 6
 
 //FILE EXTENTIONS
 # define CUB_EXT ".cub"

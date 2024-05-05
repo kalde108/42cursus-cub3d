@@ -1,10 +1,10 @@
-NO ./path_to_the_north_texture.xmp
-WE ./path_to_the_west_texture.xmp
-SO ./path_to_the_south_texture.xmp
-EA ./path_to_the_east_texture.xmp
+NO assets/basic_wall.xpm
+SO assets/basic_wall.xpm
+WE assets/basic_wall.xpm
+EA assets/basic_wall.xpm
 
-F 220,0,9
-C 225,30,0
+F 219,167,11
+C 29,93,204
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000000000001
