@@ -3,8 +3,8 @@ WE assets/basic_wall.xpm
 SO assets/basic_wall.xpm
 EA assets/basic_wall.xpm
 
-F 220,0,9
-C 225,30,0
+F 00,0,0
+C 0,0,0
 
 11111
 10001

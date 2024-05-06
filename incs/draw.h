@@ -11,4 +11,6 @@ void	draw_v_line(t_c3_env *env, int x, int start, int end, int color);
 void	floor_and_ceiling(t_c3_env *env);
 void	put_pixel(t_img *img, int x, int y, int color);
 
+t_tex	get_wall_texture(int side, t_v2d_d ray_dir, t_tex *textures);
+
 #endif

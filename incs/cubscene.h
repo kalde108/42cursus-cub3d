@@ -34,9 +34,13 @@ typedef enum e_identifier
 typedef struct s_tex
 {
 	char	*filepath;
-	void	*ptr;
+	void	*mlx_img;
 	int		width;
 	int		height;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_tex;
 
 typedef struct s_cubscene

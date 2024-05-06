@@ -20,9 +20,9 @@ static void	destroy_scene_textures(t_cubscene *scene, void *mlx_ptr)
 	while (i < TEXTURES)
 	{
 		free(scene->texture[i].filepath);
-		if (scene->texture[i].ptr)
+		if (scene->texture[i].mlx_img)
 		{
-			mlx_destroy_image(mlx_ptr, scene->texture[i].ptr);
+			mlx_destroy_image(mlx_ptr, scene->texture[i].mlx_img);
 		}
 		i++;
 	}

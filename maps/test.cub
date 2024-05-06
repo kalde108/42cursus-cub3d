@@ -1,7 +1,7 @@
-NO assets/basic_wall.xpm
-SO assets/basic_wall.xpm
-WE assets/basic_wall.xpm
-EA assets/basic_wall.xpm
+NO assets/basic_wall_NO.xpm
+SO assets/basic_wall_SO.xpm
+WE assets/basic_wall_WE.xpm
+EA assets/basic_wall_EA.xpm
 
 F 219,167,11
 C 29,93,204

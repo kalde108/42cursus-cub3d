@@ -60,6 +60,8 @@ DRAW_SRC = \
 	draw_v_line \
 	floor_and_ceiling \
 	put_pixel \
+	get_wall_texture \
+	draw_from_ray \
 
 # ********** HOOK ********** #
 
