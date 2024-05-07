@@ -13,6 +13,8 @@ OBJS = $(patsubst %.c,$(BUILD_DIR)%.o,$(SRCS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
+	get_coords \
+	get_keyindex \
 	main \
 	render \
 	update_player \

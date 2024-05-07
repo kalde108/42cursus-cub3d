@@ -3,12 +3,8 @@
 #include "cub3d.h"
 #include <X11/Xutil.h>
 
-# include <unistd.h>
-# include <stdio.h>
-# include <math.h>
-
-void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
-void		DEBUG_print(t_cubscene *ptr); //REMOVE
+void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
+void		DEBUG_print(t_cubscene *ptr);	//REMOVE
 
 int	main(int ac, char **av)
 {

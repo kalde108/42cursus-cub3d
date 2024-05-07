@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:38:14 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:44:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 
 static int	set_texture_filepath(char *filepath, t_tex *ptr);
 static int	set_texture_color(char *idtok, char *str, __uint32_t *texture);
-static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *idtok);
+static int	get_color_channel(char *tok,
+				__uint32_t *color,
+				int channel,
+				char *idtok);
 
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 {
@@ -65,7 +68,10 @@ static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 	return (0);
 }
 
-static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *idtok)
+static int	get_color_channel(char *tok,
+				__uint32_t *color,
+				int channel,
+				char *idtok)
 {
 	long	value;
 	size_t	i;

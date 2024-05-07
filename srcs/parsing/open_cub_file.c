@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:58:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 01:16:44 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 17:44:54 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,3 @@ int	get_cubscene(char *path, t_cubscene *scene)
 	close(fd);
 	return (status);
 }
-
-
-
-
-
-
