@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:10:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 14:02:06 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 15:39:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	ft_vector_init(t_vector *v,
 	v->ptr = malloc(v->infos.data_size * v->infos.capacity);
 	if (!v->ptr)
 		return (FAILURE);
+	ft_memset(v->ptr, '\0', data_size);
 	return (SUCCESS);
 }
