@@ -16,7 +16,7 @@ void	simple_raycasting(t_c3_env *env)
 	int		tex_x;
 
 	x = 0;
-	while (x <=WIDTH)
+	while (x < WIDTH)
 	{
 		ray_calculation(env, &ray, x);
 		ft_dda(&env->scene, &ray);

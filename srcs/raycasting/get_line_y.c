@@ -9,9 +9,9 @@ void	get_line_y(int *line_y, double perp_wall_dist)
 	else
 		line_height = (int)(HEIGHT / perp_wall_dist);
 	line_y[0] = -line_height / 2 + HEIGHT / 2;
-	if (line_y[0] < 0)
-		line_y[0] = 0;
+	// if (line_y[0] < 0)
+	// 	line_y[0] = 0;
 	line_y[1] = line_height / 2 + HEIGHT / 2;
-	if (line_y[1] >= HEIGHT)
-		line_y[1] = HEIGHT - 1;
+	// if (line_y[1] >= HEIGHT)
+	// 	line_y[1] = HEIGHT - 1;
 }
