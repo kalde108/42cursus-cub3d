@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 05:07:45 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 11:47:29 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 //MAP_CHARSET
 # define MAP_CHARSET " 01NSEW"
 # define SPAWN_CHARSET "NSEW"
+# define ENCLOSURE_CHARSET "1"
 
 int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
