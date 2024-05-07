@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_delete.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:09:31 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 19:33:29 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 14:02:50 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@ int	ft_vector_delete(t_vector *v, size_t index)
 		v->ptr + (index + 1) * v->infos.data_size,
 		(v->total - 1 - index) * v->infos.data_size);
 	v->total--;
-	// if (v->infos.capacity > 1 && v->total == (v->infos.capacity >> 2))
-	// 	return (ft_vector_resize(v, v->infos.capacity >> 1));
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_fd_content.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 22:08:12 by ibertran          #+#    #+#             */
-/*   Updated: 2024/04/19 22:08:14 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 13:54:14 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_fd_content(int fd, char **content)
 	t_vector	v;
 	int			ret;
 
-	if (ft_vector_init(&v, (t_vinfos){sizeof(char), 0, NULL}))
+	if (ft_vector_init(&v, sizeof(char), 0, NULL))
 		return (-1);
 	line = NULL;
 	ret = get_next_line(fd, &line);
