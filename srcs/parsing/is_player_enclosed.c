@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 13:06:24 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 13:48:17 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,7 @@ static int	is_enclosed(t_cubscene *scene, int x, int y)
 	t_vector	stack;
 	int			enclosed;
 
-	stack = (t_vector){0};
-	stack.infos.data_size = sizeof(t_v2d_i);
-	stack.infos.capacity = 0;
-	stack.infos.del = NULL;
-	if (ft_vector_init(&stack, stack.infos)
+	if (ft_vector_init(&stack, sizeof(t_v2d_i), 0, NULL)
 		|| ft_vector_add(&stack, &(t_v2d_i){x, y}))
 	{
 		ft_vector_free(&stack);

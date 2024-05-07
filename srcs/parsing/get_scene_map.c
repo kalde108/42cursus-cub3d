@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 01:09:57 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 13:58:39 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_scene_map(int fd, t_cubscene *scene)
 	t_vector	map;
 	int			status;
 
-	if (ft_vector_init(&map, (t_vinfos){sizeof(t_vector), 0, ft_vvector_free}))
+	if (ft_vector_init(&map, sizeof(t_vector), 0, ft_vvector_free))
 		return (1);
 	status = read_map_file(fd, &map);
 	if (!status)
@@ -58,7 +58,7 @@ static int	add_map_line(char *str, t_vector *map)
 {
 	t_vector	line;
 
-	if (ft_vector_init(&line, (t_vinfos){sizeof(char), 0, NULL}))
+	if (ft_vector_init(&line, sizeof(char), 0, NULL))
 		return (1);
 	if (ft_vector_join(&line, str, ft_strlen(str))
 		|| ft_vector_add(map, &line))
