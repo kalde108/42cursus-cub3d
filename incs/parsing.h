@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 17:32:10 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 21:03:49 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define MAP_ERR "Error\nMAP: %c: %s\n"
 # define MAP_ERR2 "Error\nMAP: %s\n"
 # define MLX_ERR "Error\nminilibx: %s: %s\n"
+# define MLX_ERR2 "Error\nminilibx: %s\n"
 # define FATAL "Fatal"
 # define NO_SCENE "No argument, expected one file in format [*.cub]"
 # define TOO_MAN_ARG "Too many arguments, expected one file in format [*.cub]"
