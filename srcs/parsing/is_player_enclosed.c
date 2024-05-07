@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 14:10:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:38:36 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "parsing.h"
-
-# include <stdio.h> //REMOVE
-
-void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
 
 static int	is_enclosed(t_cubscene *scene, int x, int y);
 static int	flood_fill_routine(t_cubscene *scene, t_vector *stack);
@@ -79,7 +75,7 @@ static int	flood_fill_routine(t_cubscene *scene, t_vector *stack)
 		|| pos.y < 0 || pos.y >= scene->height)
 		return (0);
 	c = scene->map + (pos.y * scene->width) + pos.x;
-	if (!ft_ischarset(*c, ENCLOSURE_CHARSET))
+	if (!ft_ischarset(*c, WALL_CHARSET))
 	{
 		*c = '1';
 		if (ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y - 1})

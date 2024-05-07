@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 19:45:52 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:38:56 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@
 # define INVAL_ID "Invalid identifier"
 # define MULTI_ID "Multiple definition of identifier"
 # define INVAL_PATH "Invalid definition, expected one file in format [*.xmp]"
-# define AMBIGUOUS_DEF "Ambiguous definition"
-# define INVAL_COLOR "Invalid color format, expected [R],[G],[B] ranging [0,255]"
+# define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"
 # define NO_SPAWN "Missing player spawn character, expected [N] [S] [E] or [W]"
@@ -47,7 +46,6 @@
 # define MAP_CHARSET " 01NSEW"
 # define WALL_CHARSET "1"
 # define SPAWN_CHARSET "NSEW"
-# define ENCLOSURE_CHARSET "1"
 
 int		get_cubscene(char *path, t_cubscene *ptr);
 int		get_player_spawn(t_cubscene scene, t_player *player);

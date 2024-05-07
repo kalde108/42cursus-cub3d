@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 19:46:09 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:38:14 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 	tok = ft_strtok(NULL, ",");
 	if (tok && get_color_channel(tok, color, 0, idtok))
 		return (1);
-	if (ft_strtok(NULL, " ,\n"))
-	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, AMBIGUOUS_DEF);
-		return (1);
-	}
 	return (0);
 }
 

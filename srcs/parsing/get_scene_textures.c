@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 18:48:07 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:40:40 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	get_scene_textures(int fd, t_cubscene *ptr)
 	ft_memset(defined, 0, sizeof(int) * IDENTIFIERS);
 	status = 0;
 	parsed = 0;
-	while (parsed < 6 && !status && !get_next_line(fd, &gnl) && gnl)
+	while (parsed < IDENTIFIERS && !status && !get_next_line(fd, &gnl) && gnl)
 	{
 		ft_replace_char(gnl, '\n', '\0');
 		if ('\0' != *gnl)
