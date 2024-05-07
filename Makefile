@@ -61,7 +61,7 @@ DRAW_SRC = \
 	floor_and_ceiling \
 	put_pixel \
 	get_wall_texture \
-	draw_from_ray \
+	get_tex_x \
 
 # ********** HOOK ********** #
 
