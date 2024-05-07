@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_scene_format.c                               :+:      :+:    :+:   */
+/*   check_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 23:01:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 22:24:14 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:30:37 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ int	check_arguments(int ac, char **av)
 
 static int	check_scene_format(char *arg)
 {
-	int	len;
+	const int	ext_len = ft_strlen(CUB_EXT);
+	int			len;
 
 	len = ft_strlen(arg);
-	if (len < 4 || ft_strcmp(arg + len - 4, CUB_EXT))
+	if (len < ext_len || ft_strcmp(arg + len - ext_len, CUB_EXT))
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, arg, INVAL_FILE);
 		return (1);
