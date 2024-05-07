@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/06 01:16:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 #include "parsing.h"
 
 static int	set_texture_filepath(char *filepath, t_tex *ptr);
-static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture);
-static int	get_color_channel(char *tok, unsigned char *channel, char *idtok);
+static int	set_texture_color(char *idtok, char *str, __uint32_t *texture);
+static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *idtok);
 
 int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 {
 	if (id == ID_FLOOR)
 		return (set_texture_color(tok, str, &ptr->floor));
 	else if (id == ID_CEILING)
-		return (set_texture_color(tok, str, &ptr->ceilling));
+		return (set_texture_color(tok, str, &ptr->ceiling));
 	if (is_xmp_file(str))
 		return (1);
 	if (set_texture_filepath(str, ptr->texture + id))
@@ -50,31 +50,29 @@ static int	set_texture_filepath(char *filepath, t_tex *ptr)
 	return (0);
 }
 
-
-static int	set_texture_color(char *idtok, char *str, t_cubscene_color *texture)
+static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 {
 	char	*tok;
 
 	errno = 0;
 	tok = ft_strtok(str, ",");
-	if (tok && get_color_channel(tok, &texture->r, idtok))
+	if (tok && get_color_channel(tok, color, 16, idtok))
 		return (1);
 	tok = ft_strtok(NULL, ",");
-	if (tok && get_color_channel(tok, &texture->g, idtok))
+	if (tok && get_color_channel(tok, color, 8, idtok))
 		return (1);
 	tok = ft_strtok(NULL, ",");
-	if (tok && get_color_channel(tok, &texture->b, idtok))
+	if (tok && get_color_channel(tok, color, 0, idtok))
 		return (1);
 	if (ft_strtok(NULL, " ,\n"))
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, AMBIGUOUS_DEF);
 		return (1);
 	}
-	texture->a = 0;
 	return (0);
 }
 
-static int	get_color_channel(char *tok, unsigned char *channel, char *idtok)
+static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *idtok)
 {
 	long	value;
 
@@ -86,7 +84,7 @@ static int	get_color_channel(char *tok, unsigned char *channel, char *idtok)
 	value = ft_strtol(tok, NULL);
 	if (!errno && value >= 0 && value <= 255)
 	{
-		*channel = value;
+		*color |= (value << channel);
 		return (0);
 	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_RANGE);

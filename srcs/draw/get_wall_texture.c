@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_scene.c                                       :+:      :+:    :+:   */
+/*   get_wall_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 02:29:16 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 19:38:13 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/06 03:31:15 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_math.h"
 #include "cubscene.h"
 
-void	init_text(t_tex *img)
+t_tex	get_wall_texture(int side, t_v2d_d ray_dir, t_tex *textures)
 {
-	img->filepath = NULL;
-	img->ptr = NULL;
-}
-
-void	init_scene(t_cubscene *ptr)
-{
-	int	i;
-
-	i = 0;
-	while (i < TEXTURES)
-		init_text(ptr->texture + i++);
-	ptr->floor.a = 255;
-	ptr->ceilling.a = 255;
+	if (0 == side)
+	{
+		if (ray_dir.x > 0)
+			return (textures[WE]);
+		else
+			return (textures[EA]);
+	}
+	else
+	{
+		if (ray_dir.y > 0)
+			return (textures[NO]);
+		else
+			return (textures[SO]);
+	}
 }

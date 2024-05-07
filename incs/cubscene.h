@@ -1,6 +1,8 @@
 #ifndef CUBSCENE_H
 # define CUBSCENE_H
 
+# include <stdint.h>
+
 # include "ft_vector.h"
 
 // IDENTIFIERS
@@ -29,38 +31,28 @@ typedef enum e_identifier
 	ID_CEILING
 }	t_identifier;
 
-typedef struct s_cubscene_color
-{
-	unsigned char	a;
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-}	t_cubscene_color;
-
 typedef struct s_tex
 {
 	char	*filepath;
-	void	*ptr;
+	void	*mlx_img;
 	int		width;
 	int		height;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_tex;
-
-typedef struct s_cubscene_textures
-{
-	t_tex	so;
-	t_tex	no;
-	t_tex	ea;
-	t_tex	we;
-}	t_cubscene_textures;
 
 typedef struct s_cubscene
 {
-	t_tex				texture[TEXTURES];
-	t_cubscene_color	floor;
-	t_cubscene_color	ceilling;
-	char				*map;
-	int					width;
-	int					height;
+	t_tex		texture[TEXTURES];
+	__uint32_t	floor;
+	__uint32_t	ceiling;
+	char		*map;
+	int			width;
+	int			height;
 }	t_cubscene;
+
+void	destroy_scene(t_cubscene *scene, void *mlx_ptr);
 
 #endif //CUBSCENE_H

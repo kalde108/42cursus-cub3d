@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 23:01:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/04 01:43:42 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/04 22:24:14 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,36 @@
 #include "libft.h"
 #include "parsing.h"
 
-int	check_scene_format(char **argv)
-{
-	int	len;
+static int	check_scene_format(char *arg);
 
-	if (!argv[0])
+int	check_arguments(int ac, char **av)
+{
+	if (ac == 1)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR, NO_SCENE);
 		return (1);
 	}
-	if (argv[1])
+	if (ac > 2)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR, TOO_MAN_ARG);
 		return (1);
 	}
-	len = ft_strlen(argv[0]);
-	if (len < 4 || ft_strcmp(argv[0] + len - 4, CUB_EXT))
+	if (check_scene_format(av[1]))
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, argv[0], INVAL_FILE);
 		return (1);
 	}
 	return (0);
 }
 
+static int	check_scene_format(char *arg)
+{
+	int	len;
+
+	len = ft_strlen(arg);
+	if (len < 4 || ft_strcmp(arg + len - 4, CUB_EXT))
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, arg, INVAL_FILE);
+		return (1);
+	}
+	return (0);
+}

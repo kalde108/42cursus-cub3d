@@ -13,21 +13,31 @@ OBJS = $(patsubst %.c,$(BUILD_DIR)%.o,$(SRCS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
-	ft_mlx_free \
-	ft_mlx_init \
 	get_color \
 	main \
 	render \
 	update_player \
 	get_coords \
 
-# ********** PARSING ********** #
+# ********** ENV ********** #
 
 SRC += $(addprefix $(INIT_DIR),$(INIT_SRC))
 
-INIT_DIR = parsing/
+INIT_DIR = env/
 INIT_SRC = \
-	check_scene_format \
+	init_cubenv \
+	destroy_scene \
+	open_mlx_window \
+	destroy_cubenv \
+	load_textures \
+
+# ********** PARSING ********** #
+
+SRC += $(addprefix $(PARSING_DIR),$(PARSING_SRC))
+
+PARSING_DIR = parsing/
+PARSING_SRC = \
+	check_arguments \
 	set_texture \
 	open_cub_file \
 	get_scene_textures \
@@ -50,6 +60,8 @@ DRAW_SRC = \
 	draw_v_line \
 	floor_and_ceiling \
 	put_pixel \
+	get_wall_texture \
+	draw_from_ray \
 
 # ********** HOOK ********** #
 
@@ -79,15 +91,6 @@ RAYCASTING_SRC = \
 	get_line_y \
 	ray_calculation \
 	raycasting \
-
-# ********** SCENE ********** #
-
-SRC += $(addprefix $(SCENE_DIR),$(SCENE_SRC))
-
-SCENE_DIR = scene/
-SCENE_SRC = \
-	init_scene \
-	destroy_scene \
 
 # ********** DEBUG ********** #
 

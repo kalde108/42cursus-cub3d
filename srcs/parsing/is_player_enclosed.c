@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_player_enclosed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 13:48:17 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 14:10:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
