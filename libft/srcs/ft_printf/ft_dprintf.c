@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 03:38:44 by ibertran          #+#    #+#             */
-/*   Updated: 2024/04/19 22:07:16 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 13:53:58 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_dprintf(int fd, const char *str, ...)
 	va_list		args;
 	t_vector	buffer;
 
-	if (!str || ft_vector_init(&buffer, (t_vinfos){sizeof(char), 0, NULL}))
+	if (!str || ft_vector_init(&buffer, sizeof(char), 0, NULL))
 		return (FAILURE);
 	va_start(args, str);
 	if (pf_build_buffer(str, &buffer, &args))
