@@ -4,7 +4,7 @@
 #include "cub3d.h"
 #include "draw.h"
 
-void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
+inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
 {
 	int				y;
 	unsigned int	*dst;

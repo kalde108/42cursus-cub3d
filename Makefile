@@ -13,7 +13,6 @@ OBJS = $(patsubst %.c,$(BUILD_DIR)%.o,$(SRCS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 SRC = \
-	get_color \
 	main \
 	render \
 	update_player \
@@ -53,13 +52,8 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	clean_screen \
-	draw_line \
-	draw_line_gradient \
-	draw_square \
 	draw_v_line \
 	floor_and_ceiling \
-	put_pixel \
 	get_wall_texture \
 	get_tex_x \
 
@@ -71,15 +65,6 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
-
-# ********* MINIMAP ********* #
-
-SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
-
-MINIMAP_DIR = minimap/
-MINIMAP_SRC = \
-	draw_view_cone \
-	draw_minimap \
 
 # ******* RAYCASTING ******* #
 
