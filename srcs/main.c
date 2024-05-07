@@ -17,8 +17,6 @@ int	main(int ac, char **av)
 	env = (t_c3_env){0};
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
-	DEBUG_print(&env.scene);
-	DEBUG_PRINT_MAP(env.scene); //REMOVE
 	if (load_textures(env.mlx, &env.scene) || open_mlx_window(&env))
 	{
 		destroy_cubenv(&env);

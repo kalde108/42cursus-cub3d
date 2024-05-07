@@ -16,7 +16,6 @@ SRC = \
 	main \
 	render \
 	update_player \
-	get_coords \
 
 # ********** ENV ********** #
 
@@ -43,7 +42,6 @@ PARSING_SRC = \
 	get_scene_map \
 	convert_map \
 	get_player_spawn \
-	is_xmp_file \
 	is_player_enclosed \
 
 # ********** DRAW ********** #
@@ -76,15 +74,6 @@ RAYCASTING_SRC = \
 	get_line_y \
 	ray_calculation \
 	raycasting \
-
-# ********** DEBUG ********** #
-
-SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
-
-DEBUG_DIR = DEBUG/
-DEBUG_SRC = \
-	DEBUG_REMOVE \
-	DEBUG_PRINT_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

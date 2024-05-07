@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 01:20:16 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 18:48:07 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ static int			is_defined(char *tok, int *control);
 int	get_scene_textures(int fd, t_cubscene *ptr)
 {
 	int		defined[IDENTIFIERS];
+	int		parsed;
 	int		status;
 	char	*gnl;
-	int		parsed;
 
 	ft_memset(defined, 0, sizeof(int) * IDENTIFIERS);
 	status = 0;
 	parsed = 0;
 	while (parsed < 6 && !status && !get_next_line(fd, &gnl) && gnl)
 	{
-		if (gnl[0] != '\n')
+		ft_replace_char(gnl, '\n', '\0');
+		if ('\0' != *gnl)
 		{
 			status = tokenize_line(gnl, ptr, defined);
 			parsed++;
@@ -42,24 +43,25 @@ int	get_scene_textures(int fd, t_cubscene *ptr)
 	return (status);
 }
 
+#include <stdio.h>
+
 static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 {
-	char			*tok;
+	char			*identifier;
 	char			*value;
 	t_identifier	id;
 
-	tok = ft_strtok(line, " \n");
-	if (tok)
-		id = get_identifier(tok);
-	if (!tok || id == ID_INVAL || is_defined(tok, defined + id))
+	identifier = ft_strtok(line, " ");
+	if (identifier)
+		id = get_identifier(identifier);
+	// printf("------tok=%s\n", identifier);
+	if (!identifier || id == ID_INVAL || is_defined(identifier, defined + id))
 		return (1);
-	value = ft_strtok(NULL, " \n");
-	if (value && set_texture(tok, value, id, ptr))
+	value = ft_strtok(NULL, "");
+	// printf("------value=%s\n", value);
+	if (value && set_texture(identifier, value, id, ptr))
 		return (1);
-	if (NULL == ft_strtok(NULL, " \n"))
-		return (0);
-	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, AMBIGUOUS_DEF);
-	return (1);
+	return (0);
 }
 
 static t_identifier	get_identifier(char *str)

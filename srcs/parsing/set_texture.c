@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 01:16:44 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 19:46:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr)
 		return (set_texture_color(tok, str, &ptr->floor));
 	else if (id == ID_CEILING)
 		return (set_texture_color(tok, str, &ptr->ceiling));
-	if (is_xmp_file(str))
-		return (1);
 	if (set_texture_filepath(str, ptr->texture + id))
 		return (1);
 	return (0);
@@ -75,11 +73,16 @@ static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *idtok)
 {
 	long	value;
+	size_t	i;
 
-	if (!ft_isdigit(tok[0]))
+	i = -1;
+	while (tok[++i])
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR);
-		return (1);
+		if (!ft_isdigit(tok[i]))
+		{
+			ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR);
+			return (1);
+		}
 	}
 	value = ft_strtol(tok, NULL);
 	if (!errno && value >= 0 && value <= 255)
@@ -90,3 +93,4 @@ static int	get_color_channel(char *tok, __uint32_t *color, int channel, char *id
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_RANGE);
 	return (1);
 }
+
