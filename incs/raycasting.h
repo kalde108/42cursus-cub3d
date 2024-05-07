@@ -20,5 +20,4 @@ void	ft_dda(t_cubscene *scene, t_ray *ray);
 int		get_tex_x(t_ray *ray, int width, t_player player);
 void	get_line_y(t_vline *line, double perp_wall_dist);
 
-
 #endif
