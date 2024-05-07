@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 05:55:31 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/06 05:56:57 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	load_textures(void *mlx_ptr, t_cubscene *scene)
 	{
 		if (convert_xmp(mlx_ptr, scene->texture + i))
 			ft_dprintf(STDERR_FILENO,
-			MLX_ERR,
-			scene->texture[i].filepath,
-			strerror(errno));
+				MLX_ERR,
+				scene->texture[i].filepath,
+				strerror(errno));
 		i++;
 	}
 	return (0);
