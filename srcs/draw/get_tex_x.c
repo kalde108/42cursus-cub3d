@@ -6,15 +6,14 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:40:32 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 15:06:07 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 16:14:40 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
 #include "raycasting.h"
-
-#include "stdio.h"
+#include "player.h"
 
 int	get_tex_x(t_ray *ray, int width, t_player player)
 {

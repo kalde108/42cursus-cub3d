@@ -1,8 +1,8 @@
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
-# include "cub3d.h"	// t_v2d_d, t_v2d_i
-# include "draw.h"	// t_vline
+# include "cub3d.h"
+# include "draw.h"
 
 typedef struct s_ray
 {

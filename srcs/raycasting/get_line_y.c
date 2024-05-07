@@ -1,4 +1,3 @@
-#include "cub3d.h"
 #include "draw.h"
 
 void	get_line_y(t_vline *line, double perp_wall_dist)

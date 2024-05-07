@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "player.h"
 #include "raycasting.h"
 
 #include <math.h>

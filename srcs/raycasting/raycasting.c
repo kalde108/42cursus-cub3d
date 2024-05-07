@@ -2,8 +2,6 @@
 #include "draw.h"
 #include "raycasting.h"
 
-#include <stdio.h>
-
 void	simple_raycasting(t_c3_env *env)
 {
 	t_ray	ray;
