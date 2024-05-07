@@ -15,7 +15,7 @@ void	draw_view_cone(t_c3_env *env)
 	x = 0;
 	while (x < WIDTH)
 	{
-		ray_calculation(env, &ray, x);
+		ray_calculation(&env->player, &ray, x);
 		ft_dda(&env->scene, &ray);
 		if (ray.side == 0)
 			perp_wall_dist = ray.side_dist.x - ray.delta_dist.x;
