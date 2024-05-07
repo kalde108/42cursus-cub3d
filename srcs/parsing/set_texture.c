@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:50:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 22:53:00 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ static int	get_color_channel(char *tok,
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_RANGE);
 	return (1);
 }
-
