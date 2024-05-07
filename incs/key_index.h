@@ -1,5 +1,5 @@
-#ifndef KEYCODE_H
-# define KEYCODE_H
+#ifndef KEY_INDEX_H
+# define KEY_INDEX_H
 
 enum e_keycode
 {

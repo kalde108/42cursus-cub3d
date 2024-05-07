@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_player_enclosed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 14:10:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 17:44:13 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 #include "libft.h"
 #include "parsing.h"
 
-# include <stdio.h> //REMOVE
-
-void 		DEBUG_PRINT_MAP(t_cubscene scene); //REMOVE
+void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
 
 static int	is_enclosed(t_cubscene *scene, int x, int y);
 static int	flood_fill_routine(t_cubscene *scene, t_vector *stack);

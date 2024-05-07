@@ -28,7 +28,6 @@ typedef struct s_c3_env
 	t_player	player;
 }	t_c3_env;
 
-
 int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
 void	destroy_cubenv(t_c3_env *env);
@@ -36,8 +35,5 @@ int		open_mlx_window(t_c3_env *env);
 int		load_textures(void *mlx_ptr, t_cubscene *scene);
 
 int		render(t_c3_env *env);
-
-// a ranger
-int	get_color(char type, t_v2d_d ray_dir, int side, double perp_wall_dist);
 
 #endif //CUB3D_H

@@ -5,6 +5,7 @@
 
 # define PLAYER_MOVEMENT_SPEED 0.03
 # define PLAYER_ROTATION_SPEED 0.01
+# define PLAYER_SIZE 0.1
 
 typedef struct s_player
 {

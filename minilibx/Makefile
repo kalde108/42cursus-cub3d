@@ -20,3 +20,5 @@ clean fclean	:
 	./configure clean
 
 re	: clean all
+
+norminette	:

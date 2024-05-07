@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 16:46:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 17:32:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_cubscene *scene);
 int		convert_map(t_vector *map, t_cubscene *scene);
 int		is_xmp_file(char *filepath);
-
 
 char	*get_coords(t_cubscene *scene, int x, int y);
 
