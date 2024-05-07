@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:44:09 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 20:50:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ static int	get_color_channel(char *tok,
 	long	value;
 	size_t	i;
 
-	i = -1;
+	i = 0;
+	if (tok[i] == '-')
+		i++;
 	while (tok[++i])
 	{
 		if (!ft_isdigit(tok[i]))
@@ -84,6 +86,7 @@ static int	get_color_channel(char *tok,
 			ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR);
 			return (1);
 		}
+		i++;
 	}
 	value = ft_strtol(tok, NULL);
 	if (!errno && value >= 0 && value <= 255)
