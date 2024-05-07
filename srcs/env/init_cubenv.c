@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <string.h>
 #include <stdlib.h>
-#include <errno.h>
 
 #include "mlx.h"
 #include "parsing.h"

@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "draw.h"
 #include "raycasting.h"
 
 void	simple_raycasting(t_c3_env *env)

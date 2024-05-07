@@ -14,7 +14,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-#include "cub3d.h"
 
 static void	get_player_orientation(char c, t_player *player);
 

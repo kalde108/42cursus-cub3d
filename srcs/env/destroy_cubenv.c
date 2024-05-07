@@ -14,7 +14,6 @@
 
 #include "mlx.h"
 #include "cub3d.h"
-#include "cubscene.h"
 
 static void	ft_mlx_free(t_c3_env *env);
 

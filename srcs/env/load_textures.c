@@ -15,7 +15,6 @@
 #include <unistd.h>
 
 #include "libft.h"
-#include "cubscene.h"
 #include "mlx.h"
 #include "parsing.h"
 

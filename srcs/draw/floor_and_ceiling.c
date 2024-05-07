@@ -6,13 +6,12 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:15 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:52:33 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 22:54:36 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// inline void	clean_screen(t_c3_env *env)
 static inline void	draw_ceiling(t_c3_env *env)
 {
 	register int			cursor;
@@ -34,7 +33,6 @@ static inline void	draw_ceiling(t_c3_env *env)
 	}
 }
 
-// inline void	clean_screen(t_c3_env *env)
 static inline void	draw_floor(t_c3_env *env)
 {
 	register int			cursor;

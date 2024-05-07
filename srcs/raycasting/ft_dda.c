@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubscene.h"
 #include "raycasting.h"
 
 void	ft_dda(t_cubscene *scene, t_ray *ray)

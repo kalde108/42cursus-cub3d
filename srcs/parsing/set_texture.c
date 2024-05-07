@@ -14,9 +14,7 @@
 #include <errno.h>
 #include <string.h>
 
-#include "mlx.h"
 #include "libft.h"
-#include "cubscene.h"
 #include "parsing.h"
 
 static int	set_texture_filepath(char *filepath, t_tex *ptr);

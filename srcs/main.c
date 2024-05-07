@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include "mlx.h"
-#include "mlx_tools.h"
 #include "cub3d.h"
-#include <X11/Xutil.h>
 
 void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
 void		DEBUG_print(t_cubscene *ptr);	//REMOVE
