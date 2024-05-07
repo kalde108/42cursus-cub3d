@@ -1,26 +1,32 @@
-#include "cub3d.h"
 #include <stdio.h>
 #include <unistd.h>
 
-void	draw_v_line(t_c3_env *env, int x, int start, int end, int tex_x, t_tex texture)
-{
-	int	y;
-	unsigned int	*dst;
-	double step	= 1.0 * texture.height / (end - start);
-	double tex_y = 0.0;
+#include "cub3d.h"
+#include "draw.h"
 
-	dst = (unsigned int *)env->img.addr;
-	if (start < 0)
+inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
+{
+	int				y;
+	unsigned int	*dst;
+	double			step;
+	double			tex_y;
+
+	dst = (unsigned int *)img->addr;
+	tex_y = 0.0;
+	step = 1.0 * texture->height / (line->end - line->start);
+	if (line->start < 0)
 	{
-		tex_y = -start * step;
-		start = 0;
+		tex_y = -line->start * step;
+		line->start = 0;
 	}
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	y = start;
-	while (y <= end)
+	if (line->end >= HEIGHT)
+		line->end = HEIGHT - 1;
+	y = line->start;
+	while (y <= line->end)
 	{
-		dst[(y++ << 11) + x] = *(unsigned int *)(texture.addr + (((int)tex_y * texture.line_length) + tex_x * (texture.bits_per_pixel / 8)));
+		dst[(y++ << 11) + line->x] = *(unsigned int *)(texture->addr + \
+									(((int)tex_y * texture->line_length) + \
+										tex_x * (texture->bits_per_pixel / 8)));
 		tex_y += step;
 	}
 }

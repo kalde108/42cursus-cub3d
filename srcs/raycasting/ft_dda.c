@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cubscene.h"
 #include "raycasting.h"
 
 void	ft_dda(t_cubscene *scene, t_ray *ray)
@@ -23,4 +23,8 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] > '0')
 			hit = 1;
 	}
+	if (ray->side == 0)
+		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
+	else
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
 }

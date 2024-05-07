@@ -1,6 +1,6 @@
-#include "cub3d.h"
+#include "draw.h"
 
-void	get_line_y(int *line_y, double perp_wall_dist)
+void	get_line_y(t_vline *line, double perp_wall_dist)
 {
 	int	line_height;
 
@@ -8,10 +8,6 @@ void	get_line_y(int *line_y, double perp_wall_dist)
 		line_height = HEIGHT;
 	else
 		line_height = (int)(HEIGHT / perp_wall_dist);
-	line_y[0] = -line_height / 2 + HEIGHT / 2;
-	// if (line_y[0] < 0)
-	// 	line_y[0] = 0;
-	line_y[1] = line_height / 2 + HEIGHT / 2;
-	// if (line_y[1] >= HEIGHT)
-	// 	line_y[1] = HEIGHT - 1;
+	line->start = -line_height / 2 + HEIGHT / 2;
+	line->end = line_height / 2 + HEIGHT / 2;
 }
