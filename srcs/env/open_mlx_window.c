@@ -1,8 +1,12 @@
 #include <X11/Xutil.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
 
+#include "libft.h"
 #include "mlx.h"
 #include "mlx_tools.h"
-#include "cub3d.h"
+#include "parsing.h"
 
 static void	setup_mlx_hooks(t_c3_env *env);
 
@@ -10,16 +14,25 @@ int	open_mlx_window(t_c3_env *env)
 {
 	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, WIN_NAME);
 	if (!env->win)
-		return (1);	//MSG
+	{
+		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
+		return (1);
+	}
 	env->img.img = mlx_new_image(env->mlx, WIDTH, HEIGHT);
 	if (!env->img.img)
-		return (1);	//MSG
+	{
+		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
+		return (1);
+	}
 	env->img.addr = mlx_get_data_addr(env->img.img,
 			&env->img.bits_per_pixel,
 			&env->img.line_length,
 			&env->img.endian);
 	if (!env->img.addr)
-		return (1);	//MSG
+	{
+		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
+		return (1);
+	}
 	setup_mlx_hooks(env);
 	return (0);
 }

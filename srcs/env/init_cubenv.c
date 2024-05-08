@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/05 20:22:05 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 21:04:14 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_cubenv(t_c3_env *env, char *arg)
 	env->mlx = mlx_init();
 	if (NULL == env->mlx)
 	{
-		ft_dprintf(STDERR_FILENO, MLX_ERR, FATAL, strerror(errno));
+		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
 	if (0 != get_cubscene(arg, &env->scene)
