@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 19:20:50 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "ft_math.h"
 # include "cubscene.h"
 # include "player.h"
+# include "key_index.h"
 
 # define WIDTH		2048
 # define HEIGHT		1152
@@ -36,7 +37,7 @@ typedef struct s_c3_env
 	void		*mlx;
 	void		*win;
 	t_img		img;
-	int			key_state[280];	// arbitrary size (number of keys to handle)
+	int			key_state[KEY_LAST];
 	t_player	player;
 }	t_c3_env;
 

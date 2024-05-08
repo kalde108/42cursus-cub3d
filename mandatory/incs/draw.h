@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:50:50 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 19:22:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_vline
 
 void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture);
 void	floor_and_ceiling(t_c3_env *env);
-
 t_tex	get_wall_texture(int side, t_v2d_d ray_dir, t_tex *textures);
 
 #endif

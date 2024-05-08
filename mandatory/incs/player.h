@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 19:24:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 
 typedef struct s_player
 {
-	t_v2d_d	pos;	// player position
-	t_v2d_d	dir;	// player orientation
-	t_v2d_d	plane;	// camera plane
+	t_v2d_d	pos;
+	t_v2d_d	dir;
+	t_v2d_d	plane;
 	double	mv_speed;
 	double	rt_speed;
 }	t_player;
