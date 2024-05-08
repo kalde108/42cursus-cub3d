@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 17:16:11 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 18:03:42 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "parsing.h"
-
-void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
 
 static int	is_enclosed(t_cubscene *scene, int x, int y);
 static int	flood_fill_routine(t_cubscene *scene, t_vector *stack);

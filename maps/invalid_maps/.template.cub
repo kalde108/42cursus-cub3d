@@ -1,7 +1,8 @@
 NO ../../assets/basic_wall.xpm
+SO ../../assets/basic_wall.xpm
 WE ../../assets/basic_wall.xpm
 EA ../../assets/basic_wall.xpm
-SO ./INVALID PATH
+
 F 220,0,0
 C 225,30,0
 
