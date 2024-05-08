@@ -79,8 +79,8 @@ RAYCASTING_SRC = \
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \
-	libft/libft.a \
-	minilibx/libmlx_Linux.a \
+	../libft/libft.a \
+	../minilibx/libmlx_Linux.a \
 		
 LIBS = \
 	$(patsubst lib%.a,%,$(notdir $(LIBS_PATH))) \
