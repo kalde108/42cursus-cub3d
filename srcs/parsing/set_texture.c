@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:50:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 18:09:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	get_color_channel(char *tok,
 	i = 0;
 	if (tok[i] == '-')
 		i++;
-	while (tok[++i])
+	while (tok[i])
 	{
 		if (!ft_isdigit(tok[i]))
 		{

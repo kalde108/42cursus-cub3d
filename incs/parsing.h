@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 17:59:31 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 18:02:53 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@
 
 //MAP_CHARSET
 # define MAP_CHARSET " 01NSEW"
-# define WALL_CHARSET "1"
 # define SPAWN_CHARSET "NSEW"
+# define ENCLOSURE_CHARSET "1"
+# define UNCLOSED_CHARSET " "
 
 int		get_cubscene(char *path, t_cubscene *ptr);
 int		get_player_spawn(t_cubscene scene, t_player *player);
