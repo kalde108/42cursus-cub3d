@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_player_enclosed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 17:44:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 17:16:11 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static int	is_enclosed(t_cubscene *scene, int x, int y)
 
 static int	flood_fill_routine(t_cubscene *scene, t_vector *stack)
 {
-	char		*c;
+	char		*ptr;
+	char		c;
 	t_v2d_i		pos;
 
 	pos = *(t_v2d_i *)ft_vector_get(stack, stack->total - 1);
@@ -76,15 +77,17 @@ static int	flood_fill_routine(t_cubscene *scene, t_vector *stack)
 	if (pos.x < 0 || pos.x >= scene->width
 		|| pos.y < 0 || pos.y >= scene->height)
 		return (0);
-	c = scene->map + (pos.y * scene->width) + pos.x;
-	if (!ft_ischarset(*c, ENCLOSURE_CHARSET))
-	{
-		*c = '1';
-		if (ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y - 1})
-			|| ft_vector_add(stack, &(t_v2d_i){pos.x - 1, pos.y})
-			|| ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y + 1})
-			|| ft_vector_add(stack, &(t_v2d_i){pos.x + 1, pos.y}))
-			return (-1);
-	}
+	ptr = scene->map + (pos.y * scene->width) + pos.x;
+	c = *ptr;
+	if (ft_ischarset(c, ENCLOSURE_CHARSET))
+		return (1);
+	if (ft_ischarset(c, UNCLOSED_CHARSET))
+		return (0);
+	*ptr = '1';
+	if (ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y - 1})
+		|| ft_vector_add(stack, &(t_v2d_i){pos.x - 1, pos.y})
+		|| ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y + 1})
+		|| ft_vector_add(stack, &(t_v2d_i){pos.x + 1, pos.y}))
+		return (-1);
 	return (1);
 }
