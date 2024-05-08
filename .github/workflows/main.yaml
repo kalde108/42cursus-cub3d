@@ -17,4 +17,5 @@ jobs:
       run : sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 
     - name: Compilation tests
-      run: make
+      run: cd mandatory && make
+      run: cd bonus && make
