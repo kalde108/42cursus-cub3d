@@ -6,12 +6,12 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/06 03:31:15 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 22:54:57 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_math.h"
 #include "cubscene.h"
+#include "ft_math.h"
 
 t_tex	get_wall_texture(int side, t_v2d_d ray_dir, t_tex *textures)
 {

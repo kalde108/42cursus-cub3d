@@ -13,7 +13,6 @@
 #include <math.h>
 
 #include "raycasting.h"
-#include "player.h"
 
 int	get_tex_x(t_ray *ray, int width, t_player player)
 {

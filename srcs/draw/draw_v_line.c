@@ -1,7 +1,15 @@
-#include <stdio.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_v_line.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/07 22:54:16 by ibertran         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "cub3d.h"
 #include "draw.h"
 
 inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)

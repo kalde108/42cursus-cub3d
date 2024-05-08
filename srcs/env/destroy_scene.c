@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   destroy_scene.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/07 22:51:20 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/07 22:51:21 by ibertran         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 #include "mlx.h"
 #include "cubscene.h"
-#include "libft.h"
 
 static void	destroy_scene_textures(t_cubscene *scene, void *mlx_ptr);
 

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:40:40 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/07 22:51:42 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	get_scene_textures(int fd, t_cubscene *ptr)
 	return (status);
 }
 
-#include <stdio.h>
-
 static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 {
 	char			*identifier;
@@ -54,11 +52,9 @@ static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 	identifier = ft_strtok(line, " ");
 	if (identifier)
 		id = get_identifier(identifier);
-	// printf("------tok=%s\n", identifier);
 	if (!identifier || id == ID_INVAL || is_defined(identifier, defined + id))
 		return (1);
 	value = ft_strtok(NULL, "");
-	// printf("------value=%s\n", value);
 	if (value && set_texture(identifier, value, id, ptr))
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 18:09:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 18:25:12 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 #include <errno.h>
 #include <string.h>
 
-#include "mlx.h"
 #include "libft.h"
-#include "cubscene.h"
 #include "parsing.h"
 
 static int	set_texture_filepath(char *filepath, t_tex *ptr);
@@ -97,4 +95,3 @@ static int	get_color_channel(char *tok,
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_RANGE);
 	return (1);
 }
-
