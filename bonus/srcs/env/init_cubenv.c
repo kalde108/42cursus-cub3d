@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 21:04:14 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 13:12:05 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 int	init_cubenv(t_c3_env *env, char *arg)
 {
 	env->mlx = mlx_init();
+	init_timer(&env->frame_timer, 0, MANUAL_RESET);
+	// env->frame_time = get_time();
 	if (NULL == env->mlx)
 	{
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);

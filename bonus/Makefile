@@ -74,7 +74,19 @@ RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
 	ray_calculation \
-	raycasting \
+	render_map \
+
+# ********** TIME ********** #
+
+SRC += $(addprefix $(TIME_DIR),$(TIME_SRC))
+
+TIME_DIR = time/
+TIME_SRC = \
+	get_elapsed_time \
+	get_time \
+	init_timer \
+	start_timer \
+	timer_is_over \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
@@ -88,6 +100,7 @@ LIBS = \
 	m \
 	z \
 	Xext \
+	pthread \
 
 INCS_DIR = incs/
 INCS = \
@@ -250,9 +263,11 @@ CALLGRIND = \
 	valgrind \
 	--tool=callgrind \
 
+MAP = maps/subject.cub
+
 .PHONY : callgrind
 callgrind : debug
-	$(CALLGRIND) ./$(NAME)
+	$(CALLGRIND) ./$(NAME) $(MAP)
 
 # *** SPECIAL TARGETS ******************************************************** #
 
