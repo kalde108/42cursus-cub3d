@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:15 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 15:43:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 15:58:01 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 // 	}
 // }
 
-static void	draw_floor(t_c3_env *env)
+static void	draw_floor_ceiling(t_c3_env *env)
 {
 	size_t		y;
 	const size_t		half_h = HEIGHT / 2;
@@ -75,32 +75,45 @@ static void	draw_floor(t_c3_env *env)
 
 		float	row_distance = posz / p;
 
-		float	floor_step_x = row_distance * (ray_dirx1 - ray_dirx0) / WIDTH;
-		float	floor_step_y = row_distance * (ray_diry1 - ray_diry0) / WIDTH;
+		t_v2d_d floor_step;
+		floor_step.x = row_distance * (ray_dirx1 - ray_dirx0) / WIDTH;
+		floor_step.y = row_distance * (ray_diry1 - ray_diry0) / WIDTH;
 
-		float	floor_x = env->player.pos.x + row_distance * ray_dirx0;
-		float	floor_y = env->player.pos.y + row_distance * ray_diry0;
+		t_v2d_d	floor;
+		floor.x = env->player.pos.x + row_distance * ray_dirx0;
+		floor.y = env->player.pos.y + row_distance * ray_diry0;
 
 		size_t	x = 0;
 		while (x < WIDTH)
 		{
-			int		cell_x = (int)(floor_x);
-			int		cell_y = (int)(floor_y);
+			t_v2d_i	cell;
 
-			int		f_tx = (int)(floor_tex->width * (floor_x - cell_x)) & (floor_tex->width - 1);
-			int		f_ty = (int)(floor_tex->height * (floor_y - cell_y)) & (floor_tex->height - 1);
+			cell.x = (int)(floor.x);
+			cell.y = (int)(floor.y);
 
-			int		c_tx = (int)(ceiling_tex->width * (floor_x - cell_x)) & (ceiling_tex->width - 1);
-			int		c_ty = (int)(ceiling_tex->height * (floor_y - cell_y)) & (ceiling_tex->height - 1);
+			if (cell.x < 0 || cell.x >= env->scene.width || cell.y < 0 || cell.y >= env->scene.height || env->scene.map[cell.y * env->scene.width + cell.x] != '0')
+			{
+				x++;
+				floor.x += floor_step.x;
+				floor.y += floor_step.y;
+				continue ;
+			}
 
-			floor_x += floor_step_x;
-			floor_y += floor_step_y;
+			t_v2d_i	floor_coord;
+			floor_coord.x = (int)(floor_tex->width * (floor.x - cell.x)) & (floor_tex->width - 1);
+			floor_coord.y = (int)(floor_tex->height * (floor.y - cell.y)) & (floor_tex->height - 1);
 
-			// *((__uint32_t *)env->img.addr + (y << 11) + x) = color;
-			__uint32_t	color = ((uint32_t *)floor_tex->addr)[floor_tex->width * f_ty + f_tx];
+			t_v2d_i	ceiling_coord;
+			ceiling_coord.x = (int)(ceiling_tex->width * (floor.x - cell.x)) & (ceiling_tex->width - 1);
+			ceiling_coord.y = (int)(ceiling_tex->height * (floor.y - cell.y)) & (ceiling_tex->height - 1);
+
+			floor.x += floor_step.x;
+			floor.y += floor_step.y;
+
+			__uint32_t	color = ((uint32_t *)floor_tex->addr)[floor_tex->width * floor_coord.y + floor_coord.x];
 			((__uint32_t *)env->img.addr)[y * WIDTH + x] = color;
 
-			color =  ((uint32_t *)ceiling_tex->addr)[ceiling_tex->width * c_ty + c_tx];
+			color =  ((uint32_t *)ceiling_tex->addr)[ceiling_tex->width * ceiling_coord.y + ceiling_coord.x];
 			((__uint32_t *)env->img.addr)[(HEIGHT - y - 1) * WIDTH + x] = color;
 
 			x++;
@@ -112,5 +125,5 @@ static void	draw_floor(t_c3_env *env)
 void	floor_and_ceiling(t_c3_env *env)
 {
 	// draw_ceiling(env);
-	draw_floor(env);
+	draw_floor_ceiling(env);
 }

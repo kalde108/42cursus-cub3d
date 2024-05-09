@@ -1,8 +1,8 @@
-W1 assets/basic_wall.xpm
-W2 assets/matrix_WE.xpm
+W1 assets/deepslate_tiles.xpm
+W2 assets/cracked_deepslate_tiles.xpm
 
-FL assets/matrix_SO_512.xpm
-CE assets/matrix_NO_512.xpm
+FL assets/basic_floor_128.xpm
+CE assets/ceiling1_128.xpm
 
         1111111111111111111111111
         1000000000110000000000001
