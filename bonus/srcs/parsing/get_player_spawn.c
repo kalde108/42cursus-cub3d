@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_spawn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/05 03:07:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 18:54:21 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	get_player_spawn(t_cubscene scene, t_player *player)
 				ft_dprintf(STDERR_FILENO, MAP_ERR2, MULTIPLE_SPAWN);
 				return (1);
 			}
-			player->pos.x = i % scene.width;
-			player->pos.y = i / scene.width;
+			player->pos.x = i % scene.width + 0.5;
+			player->pos.y = i / scene.width + 0.5;
 			get_player_orientation(scene.map[i], player);
 			scene.map[i] = '0';
 		}

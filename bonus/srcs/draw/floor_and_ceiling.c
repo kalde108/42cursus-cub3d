@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:15 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:54:36 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 13:40:54 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <pthread.h>
 
 static inline void	draw_ceiling(t_c3_env *env)
 {
@@ -26,6 +27,10 @@ static inline void	draw_ceiling(t_c3_env *env)
 	cursor = -1;
 	while (++cursor < max)
 	{
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
 		img_ptr[cursor++] = color;
 		img_ptr[cursor++] = color;
 		img_ptr[cursor++] = color;
@@ -50,12 +55,25 @@ static inline void	draw_floor(t_c3_env *env)
 		img_ptr[cursor++] = color;
 		img_ptr[cursor++] = color;
 		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
+		img_ptr[cursor++] = color;
 		img_ptr[cursor] = color;
 	}
 }
 
 void	floor_and_ceiling(t_c3_env *env)
 {
-	draw_ceiling(env);
-	draw_floor(env);
+	pthread_t	thread_ceiling;
+	pthread_t	thread_floor;
+
+	// draw_ceiling(env);
+	// draw_floor(env);
+	if (pthread_create(&thread_ceiling, NULL, (void *(*)(void *))draw_ceiling, env))
+		return ;
+	if (pthread_create(&thread_floor, NULL, (void *(*)(void *))draw_floor, env))
+		return ;
+	pthread_join(thread_ceiling, NULL);
+	pthread_join(thread_floor, NULL);
 }
