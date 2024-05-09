@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:09 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/08 19:23:11 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-// hook
+//HOOKS
 int	keydown_hook(int keycode, t_c3_env *mlx);
 int	keyup_hook(int keycode, t_c3_env *mlx);
 
