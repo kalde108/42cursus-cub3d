@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:40 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:52:42 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 18:01:35 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "key_index.h"
+#include "libft.h"
 
 #include <math.h>
 
@@ -51,12 +52,16 @@ static void	update_pos(t_c3_env *env)
 	move_vec = get_move_vec(env);
 	offset.x = ((move_vec.x >= 0) - (move_vec.x < 0)) * PLAYER_SIZE;
 	offset.y = ((move_vec.y >= 0) - (move_vec.y < 0)) * PLAYER_SIZE;
-	if (env->scene.map[(int)env->player.pos.y * env->scene.width + \
-		(int)(env->player.pos.x + move_vec.x + offset.x)] == '0')
+	if (ft_ischarset(env->scene.map[(int)env->player.pos.y * env->scene.width + \
+	 	(int)(env->player.pos.x + move_vec.x + offset.x)], WALLKABLE_CHARSET))
 		env->player.pos.x += move_vec.x;
-	if (env->scene.map[(int)(env->player.pos.y + move_vec.y + offset.y) * \
-		env->scene.width + (int)env->player.pos.x] == '0')
+	// if (env->scene.map[(int)env->player.pos.y * env->scene.width + \
+	// 	(int)(env->player.pos.x + move_vec.x + offset.x)] == '0')
+	if (ft_ischarset(env->scene.map[(int)(env->player.pos.y + move_vec.y + \
+		offset.y) * env->scene.width + (int)env->player.pos.x], WALLKABLE_CHARSET))
 		env->player.pos.y += move_vec.y;
+	// if (env->scene.map[(int)(env->player.pos.y + move_vec.y + offset.y) * \
+	// 	env->scene.width + (int)env->player.pos.x] == '0')
 }
 
 static void	apply_rotation(t_c3_env *env, double angle)

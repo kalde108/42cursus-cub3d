@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 14:15:45 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 17:50:12 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 
 //MAP_CHARSET
-# define MAP_CHARSET " 012NSEW"
+# define MAP_CHARSET " 012FCNSEW"
 # define SPAWN_CHARSET "NSEW"
 # define ENCLOSURE_CHARSET "12"
 # define UNCLOSED_CHARSET " "

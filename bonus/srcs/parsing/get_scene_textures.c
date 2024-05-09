@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 14:13:38 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 17:47:23 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ static t_identifier	get_identifier(char *str)
 	const char		*indentifier[] = {
 		WALL1,
 		WALL2,
-		FLOOR,
+		FLOOR1,
+		FLOOR2,
+		CARPET,
 		CEILING,
+		LAMP,
 		NULL
 	};
 	t_identifier	i;

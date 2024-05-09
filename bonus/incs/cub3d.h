@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 18:06:00 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # define WIDTH		2048
 # define HEIGHT		1152
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
+
+# define WIDTH_LOG2	11
+
+// # define GROUND_CHARSET "0FC"
+
+# define WALL_CHARSET "12"
 
 typedef struct s_img
 {

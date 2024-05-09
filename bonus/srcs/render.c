@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:10 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:12 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 18:35:08 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int	render(t_c3_env *env)
 {
-	floor_and_ceiling(env);
 	update_player(env);
+	floor_and_ceiling(env);
 	simple_raycasting(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	return (0);
