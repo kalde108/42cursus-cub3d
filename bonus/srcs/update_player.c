@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 19:37:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 21:07:29 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,9 @@ static void	update_pos(t_c3_env *env)
 	if (ft_ischarset(env->scene.map[(int)env->player.pos.y * env->scene.width + \
 	 	(int)(env->player.pos.x + move_vec.x + offset.x)], WALLKABLE_CHARSET))
 		env->player.pos.x += move_vec.x;
-	// if (env->scene.map[(int)env->player.pos.y * env->scene.width + \
-	// 	(int)(env->player.pos.x + move_vec.x + offset.x)] == '0')
 	if (ft_ischarset(env->scene.map[(int)(env->player.pos.y + move_vec.y + \
 		offset.y) * env->scene.width + (int)env->player.pos.x], WALLKABLE_CHARSET))
 		env->player.pos.y += move_vec.y;
-	// if (env->scene.map[(int)(env->player.pos.y + move_vec.y + offset.y) * \
-	// 	env->scene.width + (int)env->player.pos.x] == '0')
 }
 
 static void	apply_rotation(t_c3_env *env, double angle)
