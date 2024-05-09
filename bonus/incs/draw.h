@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:50:50 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 14:19:23 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ typedef struct s_vline
 void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture);
 void	floor_and_ceiling(t_c3_env *env);
 
-t_tex	get_wall_texture(int side, t_v2d_d ray_dir, t_tex *textures);
+t_tex	get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_tex *textures);
 
 #endif

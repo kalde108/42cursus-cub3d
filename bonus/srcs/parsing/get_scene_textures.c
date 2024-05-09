@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:42 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 14:13:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static int			is_defined(char *tok, int *control);
 
 int	get_scene_textures(int fd, t_cubscene *ptr)
 {
-	int		defined[IDENTIFIERS];
+	int		defined[ID_COUNT];
 	int		parsed;
 	int		status;
 	char	*gnl;
 
-	ft_memset(defined, 0, sizeof(int) * IDENTIFIERS);
+	ft_memset(defined, 0, sizeof(int) * ID_COUNT);
 	status = 0;
 	parsed = 0;
-	while (parsed < IDENTIFIERS && !status && !get_next_line(fd, &gnl) && gnl)
+	while (parsed < ID_COUNT && !status && !get_next_line(fd, &gnl) && gnl)
 	{
 		ft_replace_char(gnl, '\n', '\0');
 		if ('\0' != *gnl)
@@ -63,17 +63,15 @@ static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 static t_identifier	get_identifier(char *str)
 {
 	const char		*indentifier[] = {
-		NORTH,
-		SOUTH,
-		EAST,
-		WEST,
+		WALL1,
+		WALL2,
 		FLOOR,
 		CEILING,
 		NULL
 	};
 	t_identifier	i;
 
-	i = ID_NORTH;
+	i = 0;
 	while (indentifier[i])
 	{
 		if (!ft_strcmp(indentifier[i], str))

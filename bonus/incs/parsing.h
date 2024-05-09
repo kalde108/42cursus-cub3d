@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 18:25:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 14:15:45 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "cubscene.h"
 # include "player.h"
-
-# define IDENTIFIERS 6
 
 //FILE EXTENTIONS
 # define CUB_EXT ".cub"
@@ -44,9 +42,9 @@
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 
 //MAP_CHARSET
-# define MAP_CHARSET " 01NSEW"
+# define MAP_CHARSET " 012NSEW"
 # define SPAWN_CHARSET "NSEW"
-# define ENCLOSURE_CHARSET "1"
+# define ENCLOSURE_CHARSET "12"
 # define UNCLOSED_CHARSET " "
 
 int		get_cubscene(char *path, t_cubscene *ptr);

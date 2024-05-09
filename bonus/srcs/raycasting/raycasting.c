@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:24 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 14:20:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	simple_raycasting(t_c3_env *env)
 	{
 		ray_calculation(&env->player, &ray, line.x);
 		ft_dda(&env->scene, &ray);
-		texture = get_wall_texture(ray.side, ray.ray_dir, env->scene.texture);
+		texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.texture);
 		tex_x = get_tex_x(&ray, texture.width, env->player);
 		get_line_y(&line, ray.perp_wall_dist);
 		draw_v_line(&env->img, &line, tex_x, &texture);
