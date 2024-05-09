@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 22:52:40 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 18:01:35 by kchillon         ###   ########lyon.fr   */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/05/09 19:37:37 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "cub3d.h"
 #include "key_index.h"
@@ -90,6 +91,8 @@ static void	update_rotation(t_c3_env *env)
 
 void	update_player(t_c3_env *env)
 {
+	env->player.mv_speed = PLAYER_MOVEMENT_SPEED * env->frame_time;
+	env->player.rt_speed = PLAYER_ROTATION_SPEED * env->frame_time;
 	update_pos(env);
 	update_rotation(env);
 }

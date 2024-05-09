@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 14:20:46 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 19:40:22 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	simple_raycasting(t_c3_env *env)
+void	render_map(t_c3_env *env)
 {
 	t_ray	ray;
 	t_vline	line;

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 17:54:44 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 19:59:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ typedef struct s_tex
 typedef struct s_cubscene
 {
 	t_tex		texture[TEXTURE_COUNT];
-	__uint32_t	floor;
-	__uint32_t	ceiling;
 	char		*map;
 	int			width;
 	int			height;
