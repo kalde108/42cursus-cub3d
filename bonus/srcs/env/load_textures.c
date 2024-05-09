@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 17:13:45 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 14:10:18 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	load_textures(void *mlx_ptr, t_cubscene *scene)
 	int	i;
 
 	i = 0;
-	while (i < TEXTURES)
+	while (i < TEXTURE_COUNT)
 	{
 		if (convert_xmp(mlx_ptr, scene->texture + i))
 		{

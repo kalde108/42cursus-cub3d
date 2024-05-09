@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 22:51:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 13:26:24 by kchillon         ###   ########lyon.fr   */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/05/09 19:36:31 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -26,6 +27,12 @@
 
 # define FRAME_TIME	0.016666666666666666
 // # define FRAME_TIME	0.03333333333333333
+
+# define WIDTH_LOG2	11
+
+// # define GROUND_CHARSET "0FC"
+
+# define WALL_CHARSET "12"
 
 typedef struct s_img
 {
@@ -59,3 +66,60 @@ int		load_textures(void *mlx_ptr, t_cubscene *scene);
 int		render(t_c3_env *env);
 
 #endif //CUB3D_H
+
+/*
+
+char
+00000000
+
+type
+11XXXXXX
+
+wall address
+00XXXXXX
+
+empty address
+01XXXXXX
+
+portal address
+10XXXXXX
+
+wall id
+XX111111
+
+floor id
+XXXXX111
+
+ceiling id
+XX111XXX
+
+portal id
+XX111111
+
+
+short
+00000000 00000000
+
+type
+1111XXXX XXXXXXXX
+
+wall address
+0000XXXX XXXXXXXX
+
+not wall address
+0001XXXX XXXXXXXX
+
+wall id
+XXXXXXXX 11111111
+
+floor id
+XXXXXXXX XXXX1111
+
+ceiling id
+XXXXXXXX 1111XXXX
+
+
+int
+00000000 00000000 00000000 00000000
+
+*/

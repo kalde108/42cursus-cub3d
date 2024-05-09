@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubscene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:50:47 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 19:59:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,38 @@
 # include "ft_vector.h"
 
 // IDENTIFIERS
-# define NORTH "NO"
-# define SOUTH "SO"
-# define WEST "WE"
-# define EAST "EA"
-# define FLOOR "F"
-# define CEILING "C"
+# define WALL1 "W1"
+# define WALL2 "W2"
+# define FLOOR1 "FL1"
+# define FLOOR2 "FL2"
+# define CARPET "CA"
+# define CEILING "CE"
+# define LAMP "LA"
 
 //TEXTURES ARRAY
-# define TEXTURES 4
-# define NO 0
-# define SO 1
-# define EA 2
-# define WE 3
+enum e_textures
+{
+	W1 = 0,
+	W2,
+	FL1,
+	FL2,
+	CA,
+	CE,
+	LA,
+	TEXTURE_COUNT
+};
 
 typedef enum e_identifier
 {
 	ID_INVAL = -1,
-	ID_NORTH,
-	ID_SOUTH,
-	ID_EAST,
-	ID_WEST,
-	ID_FLOOR,
-	ID_CEILING
+	ID_WALL1,
+	ID_WALL2,
+	ID_FLOOR1,
+	ID_FLOOR2,
+	ID_CARPET,
+	ID_CEILING,
+	ID_LAMP,
+	ID_COUNT
 }	t_identifier;
 
 typedef struct s_tex
@@ -57,9 +66,7 @@ typedef struct s_tex
 
 typedef struct s_cubscene
 {
-	t_tex		texture[TEXTURES];
-	__uint32_t	floor;
-	__uint32_t	ceiling;
+	t_tex		texture[TEXTURE_COUNT];
 	char		*map;
 	int			width;
 	int			height;
