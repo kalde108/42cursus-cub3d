@@ -263,7 +263,7 @@ CALLGRIND = \
 	valgrind \
 	--tool=callgrind \
 
-MAP = maps/subject.cub
+MAP = maps/test.cub
 
 .PHONY : callgrind
 callgrind : debug
