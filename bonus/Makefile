@@ -15,8 +15,8 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	get_keyindex \
 	main \
-	render \
 	update_player \
+	# render \
 
 # ********** ENV ********** #
 
@@ -38,7 +38,7 @@ PARSING_DIR = parsing/
 PARSING_SRC = \
 	check_arguments \
 	set_texture \
-	open_cub_file \
+	get_cubscene \
 	get_scene_textures \
 	get_scene_map \
 	convert_map \
@@ -51,7 +51,7 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	draw_v_line \
+	# draw_v_line \
 	floor_and_ceiling \
 	get_wall_texture \
 	get_tex_x \
@@ -71,7 +71,7 @@ SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
 RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
-	ft_dda \
+	# ft_dda \
 	get_line_y \
 	ray_calculation \
 	render_map \

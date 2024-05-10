@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:19 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 01:44:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,5 @@ static void	setup_mlx_hooks(t_c3_env *env)
 		env->mlx);
 	mlx_hook(env->win, KeyPress, KeyPressMask, &keydown_hook, env);
 	mlx_hook(env->win, KeyRelease, KeyReleaseMask, &keyup_hook, env);
-	mlx_loop_hook(env->mlx, &render, env);
+	// mlx_loop_hook(env->mlx, &render, env);
 }

@@ -1,13 +1,9 @@
-W1 assets/deepslate_tiles.xpm
-W2 assets/cracked_deepslate_tiles.xpm
-
-FL1 assets/basic_floor_128.xpm
-FL2 assets/floor2_128.xpm
-CA assets/carpet1_128.xpm
-
-CE assets/ceiling1_128.xpm
-
-LA assets/lamp1_128.xpm
+Wa assets/deepslate_tiles.xpm
+Ww assets/cracked_deepslate_tiles.xpm
+Fz assets/basic_floor_128.xpm
+Fh assets/floor2_128.xpm
+Cd assets/carpet1_128.xpm
+Ce assets/ceiling1_128.xpm
 
         1111111111112221111111111
         1000000000120000000000001

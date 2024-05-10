@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 17:50:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 02:23:46 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@
 # define CUB_EXT ".cub"
 # define XMP_EXT ".xpm"
 
+//SPRITE TYPES
+# define SPRITE_FILE 1
+# define SPRITE_DIRECTORY 2
+
 //ERROR MESSAGES
 # define SCENE_ERR "Error\n%s\n"
 # define SCENE_ERR2 "Error\n%s: %s\n"
+# define SCENE_ERR3 "Error\n%s: %s: %s\n"
 # define MAP_ERR "Error\nMAP: %c: %s\n"
 # define MAP_ERR2 "Error\nMAP: %s\n"
 # define MLX_ERR "Error\nminilibx: %s: %s\n"
@@ -33,7 +38,7 @@
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
 # define INVAL_ID "Invalid identifier"
 # define MULTI_ID "Multiple definition of identifier"
-# define INVAL_PATH "Invalid definition, expected one file in format [*.xmp]"
+# define INVAL_PATH "Invalid definition, expected one file in format [*.xmp] or a directory"
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"

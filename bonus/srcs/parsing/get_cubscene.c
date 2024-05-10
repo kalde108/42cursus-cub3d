@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:58:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 21:04:20 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/09 22:30:10 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 int	get_cubscene(char *path, t_cubscene *scene)
 {
-	int			status;
-	int			fd;
+	int	status;
+	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)

@@ -3,47 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 17:47:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 03:14:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "libft.h"
 #include "parsing.h"
 
-static int			tokenize_line(char *line, t_cubscene *ptr, int *defined);
+static int			tokenize_line(char *line, t_cubscene *ptr, bool *defined);
 static t_identifier	get_identifier(char *str);
-static int			is_defined(char *tok, int *control);
+static int			is_defined(char *tok, bool *control);
 
 int	get_scene_textures(int fd, t_cubscene *ptr)
 {
-	int		defined[ID_COUNT];
-	int		parsed;
+	bool	defined[ID_COUNT];
 	int		status;
 	char	*gnl;
 
-	ft_memset(defined, 0, sizeof(int) * ID_COUNT);
+	ft_memset(defined, 0, sizeof(bool) * ID_COUNT);
 	status = 0;
-	parsed = 0;
-	while (parsed < ID_COUNT && !status && !get_next_line(fd, &gnl) && gnl)
+	while (!status && 0 == get_next_line(fd, &gnl) && gnl)
 	{
 		ft_replace_char(gnl, '\n', '\0');
-		if ('\0' != *gnl)
+		if ('\0' == *gnl)
 		{
-			status = tokenize_line(gnl, ptr, defined);
-			parsed++;
+			free(gnl);
+			return (0);
 		}
+		status = tokenize_line(gnl, ptr, defined);
 		free(gnl);
 	}
 	return (status);
 }
 
-static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
+static int	tokenize_line(char *line, t_cubscene *ptr, bool *defined)
 {
 	char			*identifier;
 	char			*value;
@@ -62,16 +62,11 @@ static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 
 static t_identifier	get_identifier(char *str)
 {
-	const char		*indentifier[] = {
-		WALL1,
-		WALL2,
-		FLOOR1,
-		FLOOR2,
-		CARPET,
-		CEILING,
-		LAMP,
-		NULL
-	};
+	const char		*indentifier[] = {WA, WB, WC, WD, WE, WF, WG, WH, WI, WJ,
+		WK, WL, WM, WN, WO, WP, WQ, WR, WS, WT, WU, WV, WW, WX, WY, WZ, FA, FB,
+		FC, FD, FE, FF, FG, FH, FI, FJ, FK, FL, FM, FN, FO, FP, FQ, FR, FS, FT,
+		FU, FV, FW, FX, FY, FZ, CA, CB, CC, CD, CE, CF, CG, CH, CI, CJ, CK, CL,
+		CM, CN, CO, CP, CQ, CR, CS, CT, CU, CV, CW, CX, CY, CZ, NULL};
 	t_identifier	i;
 
 	i = 0;
@@ -85,11 +80,11 @@ static t_identifier	get_identifier(char *str)
 	return (ID_INVAL);
 }
 
-static int	is_defined(char *tok, int *control)
+static int	is_defined(char *tok, bool *control)
 {
-	if (0 == *control)
+	if (false == *control)
 	{
-		*control = 1;
+		*control = true;
 		return (0);
 	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, MULTI_ID);
