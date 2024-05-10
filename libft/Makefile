@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 11:21:32 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/01 22:13:00 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/05/10 16:17:26 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INCS_DIR = incs/
 # *** CONFIG ***************************************************************** #
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
-OFLAGS 		=	
+OFLAGS 		=	-O3
 
 CPPFLAGS	= 	$(addprefix -I, $(INCS_DIR)) \
 				-MMD -MP \

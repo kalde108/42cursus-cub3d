@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_v_line.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:54:16 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 16:19:16 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
 {
-	int				y;
 	unsigned int	*dst;
+	unsigned int	*end_dst;
+	unsigned int	*tex;
 	double			step;
 	double			tex_y;
 
 	dst = (unsigned int *)img->addr;
+	tex = (unsigned int *)(texture->addr + (tex_x << 2));
 	tex_y = 0.0;
 	step = 1.0 * texture->height / (line->end - line->start);
 	if (line->start < 0)
@@ -29,12 +31,12 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
 	}
 	if (line->end >= HEIGHT)
 		line->end = HEIGHT - 1;
-	y = line->start;
-	while (y <= line->end)
+	dst += (line->start << 11) + line->x;
+	end_dst = dst + (line->end - line->start) * WIDTH;
+	while (dst <= end_dst)
 	{
-		dst[(y++ << 11) + line->x] = *(unsigned int *)(texture->addr + \
-									(((int)tex_y * texture->line_length) + \
-										tex_x * (texture->bits_per_pixel / 8)));
+		*dst = tex[(int)tex_y * texture->width];
+		dst += WIDTH;
 		tex_y += step;
 	}
 }
