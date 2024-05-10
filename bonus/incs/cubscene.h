@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 00:53:24 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 23:34:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_tex
 typedef struct s_cubscene
 {
 	t_tex		**texture;
-	char		*map;
+	short		*map;
 	int			width;
 	int			height;
 }	t_cubscene;

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 02:23:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 20:50:59 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,19 @@
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 
 //MAP_CHARSET
-# define MAP_CHARSET " 012FCNSEW"
+# define MAP_SPECIALS_CHARSET "NSEWPM"
+
 # define SPAWN_CHARSET "NSEW"
 # define ENCLOSURE_CHARSET "12"
 # define UNCLOSED_CHARSET " "
+
+enum e_maplayer
+{
+	MAP_LAYER,
+	FLOOR_LAYER,
+	CEILING_LAYER,
+	LAYERS_COUNT
+};
 
 int		get_cubscene(char *path, t_cubscene *ptr);
 int		get_player_spawn(t_cubscene scene, t_player *player);
@@ -59,5 +68,7 @@ int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_cubscene *scene);
 int		convert_map(t_vector *map, t_cubscene *scene);
+char	*get_map_charset(t_tex *textures);
+char	*get_layer_charset(t_tex *textures);
 
 #endif //PARSING_H

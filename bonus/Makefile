@@ -44,6 +44,7 @@ PARSING_SRC = \
 	convert_map \
 	get_player_spawn \
 	is_player_enclosed \
+	generate_map_charset \
 
 # ********** DRAW ********** #
 

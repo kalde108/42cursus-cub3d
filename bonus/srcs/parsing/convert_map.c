@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/03 21:47:11 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/10 23:59:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 #include "libft.h"
 #include "parsing.h"
 
-static void	remove_empty_lines(t_vector *map);
-static int	get_map_width(t_vector *map);
-static int	fill_lines(t_vector *map, int width);
-static char	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene);
+static int		get_map_width(t_vector *map);
+static int		fill_lines(t_vector *map, int width);
+static short	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene);
 
-int	convert_map(t_vector *map, t_cubscene *scene)
+int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
-	remove_empty_lines(map);
 	scene->height = map->total;
 	scene->width = get_map_width(map);
 	if (fill_lines(map, scene->width))
@@ -76,31 +74,13 @@ static int	fill_lines(t_vector *map, int width)
 	return (0);
 }
 
-static void	remove_empty_lines(t_vector *map)
+static short	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene)
 {
-	t_vector	*line;
-
-	line = ft_vector_get(map, 0);
-	while (line && !line->total)
-	{
-		ft_vector_delete(map, 0);
-		line = ft_vector_get(map, 0);
-	}
-	line = ft_vector_get(map, map->total - 1);
-	while (line && !line->total)
-	{
-		ft_vector_delete(map, map->total - 1);
-		line = ft_vector_get(map, map->total - 1);
-	}
-}
-
-static char	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene)
-{
-	char		*maparray;
+	short		*maparray;
 	t_vector	*line;
 	size_t		i;
 
-	maparray = malloc(sizeof(char) * scene->width * scene->height);
+	maparray = malloc(sizeof(short) * scene->width * scene->height);
 	if (!maparray)
 		return (NULL);
 	i = 0;
@@ -112,3 +92,4 @@ static char	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene)
 	}
 	return (maparray);
 }
+
