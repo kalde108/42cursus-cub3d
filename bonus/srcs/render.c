@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 19:45:10 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:09:42 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	render(t_c3_env *env)
 	dprintf(2, "fps: %f\n", 1 / env->frame_time);
 	update_player(env);
 	time = get_time();
-	floor_and_ceiling(env);
+	if (draw_backgound(env))
+		mlx_loop_end(env->mlx);
+	// draw_backgound(env);
 	dprintf(2, "floor_and_ceiling: %zums\n", get_time() - time);
 	time = get_time();
 	if (render_map(env))

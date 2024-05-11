@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:39:46 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:06:28 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_vline
 }	t_vline;
 
 void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture);
-void	floor_and_ceiling(t_c3_env *env);
 
 void	put_pixel(t_img *img, int x, int y, int color);
 void	put_pixel_alpha(t_img *img, int x, int y, int color);
