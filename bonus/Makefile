@@ -92,6 +92,14 @@ TIME_SRC = \
 	start_timer \
 	timer_is_over \
 
+# ********** DEBUG ********** #
+
+SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
+
+DEBUG_DIR = DEBUG/
+DEBUG_SRC = \
+	DISPLAY_SHORT_MAP
+
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \

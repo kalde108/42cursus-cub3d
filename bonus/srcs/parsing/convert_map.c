@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 16:57:34 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:39:01 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,23 @@ static int	fill_lines(t_vector *map, int width)
 static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
 	const size_t	size = scene->width * scene->height;
-	short		*maparray;
-	size_t		i;
+	short			*s_map;
+	size_t			i;
 
-	maparray = malloc(sizeof(short) * size);
-	if (!maparray)
+	s_map = malloc(sizeof(short) * size);
+	if (!s_map)
 		return (NULL);
 	i = 0;
 	while (i < size)
 	{
-		maparray[i] = get_cell_value(map, i / scene->width, i % scene->width);
+		if (get_cell_value(map, i / scene->width, i % scene->width, s_map + i))
+		{
+			free(s_map);
+			return (NULL);
+		}
 		i++;
+
 	}
-	return (maparray);
+	return (s_map);
 }
 

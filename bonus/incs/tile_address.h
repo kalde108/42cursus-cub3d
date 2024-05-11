@@ -8,6 +8,8 @@
 # define TYPE_PORTAL 0x2000
 // 0b0010 0000 0000 0000
 
+# define EMPTY_CELL -1
+
 # define TYPE_MASK 0xF000
 // 0b1111 0000 0000 0000
 

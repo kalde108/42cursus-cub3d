@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 13:09:46 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 15:17:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:28:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	search_line(t_vector *line, t_entity *monster, bool *found, int y)
 			monster->pos.x = i + 0.5;
 			monster->pos.y = y + 0.5;
 			init_monster(monster);
-			*cell = '0';
+			*cell = '.';
 		}
 	}
 	return (0);

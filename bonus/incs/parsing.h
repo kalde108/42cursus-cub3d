@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 16:56:15 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:37:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,6 @@ int		convert_map(t_vector *map, t_cubscene *scene);
 char	*get_map_charset(t_tex *textures);
 char	*get_layer_charset(t_tex *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
-short	get_cell_value(t_vector map[LAYERS_COUNT], int x, int y);
+int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
 
 #endif //PARSING_H

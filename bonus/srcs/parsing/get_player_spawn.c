@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 15:15:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:29:10 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	search_line(t_vector *line, t_entity *player, bool *found, int y)
 			player->pos.x = i + 0.5;
 			player->pos.y = y + 0.5;
 			get_player_orientation(*cell, player);
-			*cell = '0';
+			*cell = '.';
 		}
 	}
 	return (0);
