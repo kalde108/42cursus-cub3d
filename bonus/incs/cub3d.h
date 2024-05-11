@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 19:36:31 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 16:08:53 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # define CUB3D_H
 
 // # include <time.h>
+# include <pthread.h>
 
-# include "ft_math.h"
 # include "cubscene.h"
 # include "player.h"
 # include "ft_time.h"
@@ -24,6 +24,12 @@
 # define WIDTH		2048
 # define HEIGHT		1152
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
+
+# define FOV		90.0
+
+# ifndef CPUCORES
+#  define CPUCORES	1
+# endif
 
 # define FRAME_TIME	0.016666666666666666
 // # define FRAME_TIME	0.03333333333333333
@@ -45,14 +51,15 @@ typedef struct s_img
 
 typedef struct s_c3_env
 {
-	t_cubscene	scene;
-	void		*mlx;
-	void		*win;
-	t_img		img;
-	int			key_state[280];	// arbitrary size (number of keys to handle)
-	t_player	player;
-	t_timer		frame_timer;
-	double		frame_time;
+	t_cubscene		scene;
+	void			*mlx;
+	void			*win;
+	t_img			img;
+	int				key_state[280];	// arbitrary size (number of keys to handle)
+	t_player		player;
+	t_timer			frame_timer;
+	double			frame_time;
+	pthread_mutex_t	call_mutex;
 	// size_t		time;
 	// size_t		old_time;
 }	t_c3_env;
