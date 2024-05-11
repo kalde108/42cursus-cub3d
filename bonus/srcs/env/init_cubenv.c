@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 14:36:35 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 15:43:55 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ int	init_cubenv(t_c3_env *env, char *arg)
 		return (1);
 	}
 	if (0 != get_cubscene(arg, env))
-		// || 0 != get_player_spawn(env->scene, &env->player)
-		// || 0 != get_monster_spawn(env.scene, &env->monster)
-		// || 0 == is_player_enclosed(&env->scene, &env->player))
 	{
 		mlx_destroy_display(env->mlx);
 		free(env->mlx);

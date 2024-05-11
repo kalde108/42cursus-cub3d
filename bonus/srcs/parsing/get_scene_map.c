@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 14:48:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 15:54:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	get_scene_map(int fd, t_c3_env *env)
 	if (0 == status)
 		status = get_entities(map, env);
 	if (0 == status)
-		; // status = convert_map(map, scene);
+		status = convert_map(map, &env->scene);
 	i = 0;
 	while (i < LAYERS_COUNT)
 	{

@@ -47,6 +47,7 @@ PARSING_SRC = \
 	generate_map_charset \
 	get_entities \
 	get_monster_spawn \
+	get_cell_value \
 
 # ********** DRAW ********** #
 
@@ -115,6 +116,8 @@ INCS = \
 
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
 OFLAGS 		=	-O3
+
+DEFINES		=	CPUCORES=$(shell cat /proc/cpuinfo | grep cores | wc -l)
 
 CPPFLAGS 	= 	$(addprefix -I, $(INCS)) \
 				$(addprefix -D, $(DEFINES)) \

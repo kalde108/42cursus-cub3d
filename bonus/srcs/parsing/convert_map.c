@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 23:59:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 16:57:34 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 static int		get_map_width(t_vector *map);
 static int		fill_lines(t_vector *map, int width);
-static short	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene);
+static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene);
 
 int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
@@ -74,20 +74,19 @@ static int	fill_lines(t_vector *map, int width)
 	return (0);
 }
 
-static short	*map_vector_to_array(t_vector *mapvector, t_cubscene *scene)
+static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
+	const size_t	size = scene->width * scene->height;
 	short		*maparray;
-	t_vector	*line;
 	size_t		i;
 
-	maparray = malloc(sizeof(short) * scene->width * scene->height);
+	maparray = malloc(sizeof(short) * size);
 	if (!maparray)
 		return (NULL);
 	i = 0;
-	while (i < mapvector->total)
+	while (i < size)
 	{
-		line = ft_vector_get(mapvector, i);
-		ft_memcpy(maparray + (i * scene->width), line->ptr, line->total);
+		maparray[i] = get_cell_value(map, i / scene->width, i % scene->width);
 		i++;
 	}
 	return (maparray);
