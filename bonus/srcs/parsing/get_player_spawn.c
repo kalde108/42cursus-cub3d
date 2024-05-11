@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:42:47 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:40:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static int	search_line(t_vector *line, t_entity *player, bool *found, int y)
 	char	*cell;
 	size_t	i;
 
-	i = 0;
-	while (i < line->total)
+	i = -1;
+	while (++i < line->total)
 	{
-		cell = ft_vector_get(line, i++);
+		cell = ft_vector_get(line, i);
 		if (1 == ft_ischarset(*cell, SPAWN_CHARSET))
 		{
 			if (true == *found)
