@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 19:39:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:02:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define WIDTH		2048
 # define HEIGHT		1152
+// # define WIDTH		4096
+// # define HEIGHT		2304
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
 
 # define FOV		90.0
@@ -35,6 +37,7 @@
 // # define FRAME_TIME	0.03333333333333333
 
 # define WIDTH_LOG2	11
+// # define WIDTH_LOG2	12
 
 // # define GROUND_CHARSET "0FC"
 

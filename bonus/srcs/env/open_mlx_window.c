@@ -6,12 +6,13 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 17:58:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:00:05 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <X11/Xutil.h>
 #include <unistd.h>
+#include <math.h>
 
 #include "libft.h"
 #include "mlx.h"
@@ -43,6 +44,7 @@ int	open_mlx_window(t_c3_env *env)
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
+	env->img.line_length = log2(env->img.line_length);
 	setup_mlx_hooks(env);
 	return (0);
 }
