@@ -59,6 +59,10 @@ DRAW_SRC = \
 	get_wall_texture \
 	get_tex_x \
 	floor_and_ceiling \
+	draw_line \
+	draw_line_gradient \
+	put_pixel \
+	put_pixel_alpha \
 
 # ********** HOOK ********** #
 
@@ -68,6 +72,15 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
+
+# ******** MINIMAP ********* #
+
+SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
+
+MINIMAP_DIR = minimap/
+MINIMAP_SRC = \
+	draw_minimap \
+	draw_view_cone \
 
 # ******* RAYCASTING ******* #
 
@@ -127,7 +140,7 @@ OFLAGS 		=	-O3
 
 DEFINES		=	CPUCORES=$(shell cat /proc/cpuinfo | grep cores | wc -l)
 
-CPPFLAGS 	= 	$(addprefix -I, $(INCS)) \
+CPPFLAGS 	=	$(addprefix -I, $(INCS)) \
 				$(addprefix -D, $(DEFINES)) \
 				-MMD -MP \
 
