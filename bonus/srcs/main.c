@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 14:17:25 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d.h"
+
+# include <stdio.h>
+# include <math.h>
 
 void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
 void		DEBUG_print(t_cubscene *ptr);	//REMOVE
