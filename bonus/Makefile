@@ -16,7 +16,7 @@ SRC = \
 	get_keyindex \
 	main \
 	update_player \
-	# render \
+	render \
 
 # ********** ENV ********** #
 
@@ -55,10 +55,10 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	# draw_v_line \
-	floor_and_ceiling \
+	draw_v_line \
 	get_wall_texture \
 	get_tex_x \
+	#floor_and_ceiling \
 
 # ********** HOOK ********** #
 
@@ -75,7 +75,7 @@ SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
 RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
-	# ft_dda \
+	ft_dda \
 	get_line_y \
 	ray_calculation \
 	render_map \

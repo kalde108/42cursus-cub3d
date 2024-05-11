@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 19:52:34 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:57:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 int	render(t_c3_env *env)
 {
+	dprintf(2, "loop start\n");
 	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
 	// while (env->frame_time < FRAME_TIME)
 	// {
@@ -28,9 +29,11 @@ int	render(t_c3_env *env)
 	// }
 	start_timer(&env->frame_timer);
 	dprintf(2, "fps: %f\n", 1 / env->frame_time);
-	update_player(env);
-	floor_and_ceiling(env);
+	// update_player(env);
+	// floor_and_ceiling(env);
+	dprintf(2, "render map\n");
 	render_map(env);
+	dprintf(2, "put image to window\n");
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	return (0);
 }

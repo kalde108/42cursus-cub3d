@@ -6,12 +6,13 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/09 17:57:29 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 17:59:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 #include "libft.h"
+#include "tile_address.h"
 
 void	ft_dda(t_cubscene *scene, t_ray *ray)
 {
@@ -32,7 +33,7 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			ray->map_pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (ft_ischarset(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x], WALL_CHARSET))
+		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 			hit = 1;
 	}
 	if (ray->side == 0)
