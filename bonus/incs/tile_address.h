@@ -24,4 +24,6 @@
 # define ENTITY_MASK 0x00FF
 // 0b0000 0000 1111 1111
 
+# define CEILING_SHIFT 4
+
 #endif
