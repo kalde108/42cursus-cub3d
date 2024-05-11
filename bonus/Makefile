@@ -55,6 +55,10 @@ DRAW_SRC = \
 	floor_and_ceiling \
 	get_wall_texture \
 	get_tex_x \
+	draw_line \
+	draw_line_gradient \
+	put_pixel \
+	put_pixel_alpha \
 
 # ********** HOOK ********** #
 
@@ -64,6 +68,15 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
+
+# ******** MINIMAP ********* #
+
+SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
+
+MINIMAP_DIR = minimap/
+MINIMAP_SRC = \
+	draw_minimap \
+	draw_view_cone \
 
 # ******* RAYCASTING ******* #
 

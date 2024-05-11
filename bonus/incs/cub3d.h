@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 19:36:31 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 14:16:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 // # include <time.h>
 
-# include "ft_math.h"
 # include "cubscene.h"
 # include "player.h"
 # include "ft_time.h"
@@ -24,6 +23,8 @@
 # define WIDTH		2048
 # define HEIGHT		1152
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
+
+# define FOV		90.0
 
 # define FRAME_TIME	0.016666666666666666
 // # define FRAME_TIME	0.03333333333333333

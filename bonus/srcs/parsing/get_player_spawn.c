@@ -6,14 +6,18 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 18:54:21 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 14:19:22 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <math.h>
 
+#include "cub3d.h"
 #include "libft.h"
 #include "parsing.h"
+
+# include <stdio.h>
 
 static void	get_player_orientation(char c, t_player *player);
 
@@ -56,8 +60,8 @@ static void	get_player_orientation(char c, t_player *player)
 		i++;
 	player->dir.x = x[i];
 	player->dir.y = y[i];
-	player->plane.x = -y[i] * 1.0;
-	player->plane.y = x[i] * 1.0;
+	player->plane.x = -y[i] * tan(FOV / 2.0 * PI / 180.0);
+	player->plane.y = x[i] * tan(FOV / 2.0 * PI / 180.0);
 	player->mv_speed = PLAYER_MOVEMENT_SPEED;
 	player->rt_speed = PLAYER_ROTATION_SPEED;
 }
