@@ -126,7 +126,9 @@ INCS = \
 CFLAGS		=	-Wall -Wextra -Werror $(OFLAGS)
 OFLAGS 		=	-O3
 
-CPPFLAGS 	= 	$(addprefix -I, $(INCS)) \
+DEFINES		=	CPUCORES=$(shell cat /proc/cpuinfo | grep cores | wc -l)
+
+CPPFLAGS 	=	$(addprefix -I, $(INCS)) \
 				$(addprefix -D, $(DEFINES)) \
 				-MMD -MP \
 
