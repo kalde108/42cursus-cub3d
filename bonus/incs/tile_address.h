@@ -22,11 +22,12 @@
 # define PORTAL_MASK 0x00FF
 // 0b0000 0000 1111 1111
 
-# define CEILING_SHIFT 4
+# define CEILING_SHIFT 5
 
 # define IS_WALL(x) ((x & TYPE_MASK) == TYPE_WALL)
-// # define NOT_WALL(x) ((x & TYPE_MASK) ^ TYPE_WALL)
+# define NOT_WALL(x) ((x & TYPE_MASK) ^ TYPE_WALL)
 # define IS_FL_CE(x) ((x & TYPE_MASK) == TYPE_FL_CE)
+# define NOT_FL_CE(x) ((x & TYPE_MASK) ^ TYPE_FL_CE)
 # define IS_PORTAL(x) ((x & TYPE_MASK) == TYPE_PORTAL)
 
 # define GET_WALL(x) (x & WALL_MASK)

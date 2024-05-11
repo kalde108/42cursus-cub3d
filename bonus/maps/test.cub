@@ -3,8 +3,8 @@ Wb assets/cracked_deepslate_tiles.xpm
 Fa assets/basic_floor_128.xpm
 Fb assets/floor2_128.xpm
 Fc assets/carpet1_128.xpm
-Ca assets/lamp1_128.xpm
-Cb assets/ceiling1_128.xpm
+Ca assets/ceiling1_128.xpm
+Cb assets/lamp1_128.xpm
 
                    abbbaaaaaaaaaa
         aaaaaaaaaaab            a
@@ -42,10 +42,10 @@ aaaaaaaa aaaaaba aaaaaaaaaaaa
 
                                  
                     aaaaaaaaaaaa 
-         baaaaaaaa  aaaaaaaaaaaa 
-         a  aaaaa   aaabaabaabaa 
-         aa aabaaaaaaaaaaaaaaaaa 
-         a  aaaaa   aaaaaaaaaaaa 
+         baaaaaaaa  aaabaabaabaa 
+         a  aabaa   aaaaaaaaaaaa 
+         aa aaaaaaaaaaabaabaabaa 
+         a  aabaa   aaaaaaaaaaaa 
  aaaaaaaab  aaaaa   a     a      
     a         a   aaaaaa aaa 
     a         a   a a aa aaa 

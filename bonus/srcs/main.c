@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 18:22:41 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 19:22:21 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int ac, char **av)
 	}
 	DISPLAY_SHORT_MAP(&env);
 	mlx_loop(env.mlx);
-	dprintf(2, "mlx_loop ended\n");
 	destroy_cubenv(&env);
 	return (0);
 }

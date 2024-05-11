@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_cell_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 17:42:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 19:11:06 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 #include "tile_address.h"
-
-# include <stdio.h> 
 
 static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 

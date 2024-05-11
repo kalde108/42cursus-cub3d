@@ -58,7 +58,7 @@ DRAW_SRC = \
 	draw_v_line \
 	get_wall_texture \
 	get_tex_x \
-	#floor_and_ceiling \
+	floor_and_ceiling \
 
 # ********** HOOK ********** #
 
