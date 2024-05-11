@@ -45,6 +45,8 @@ PARSING_SRC = \
 	get_player_spawn \
 	is_player_enclosed \
 	generate_map_charset \
+	get_entities \
+	get_monster_spawn \
 
 # ********** DRAW ********** #
 

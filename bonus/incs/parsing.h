@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 20:50:59 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 15:16:07 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "cubscene.h"
 # include "player.h"
+# include "cub3d.h"
 
 //FILE EXTENTIONS
 # define CUB_EXT ".cub"
@@ -42,8 +43,10 @@
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"
-# define NO_SPAWN "Missing player spawn character, expected [N] [S] [E] or [W]"
-# define MULTIPLE_SPAWN "Multiple player spawn characters"
+# define NO_PLAYER "Missing player spawn character, expected [N] [S] [E] or [W]"
+# define MULTIPLE_PLAYER "Multiple player spawn characters"
+# define NO_MONSTER "Missing monster spawn character, expected [M]"
+# define MULTIPLE_MONSTER "Multiple monster spawn characters"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 
 //MAP_CHARSET
@@ -53,6 +56,8 @@
 # define ENCLOSURE_CHARSET "12"
 # define UNCLOSED_CHARSET " "
 
+# define MONSTER_CHAR 'M'
+
 enum e_maplayer
 {
 	MAP_LAYER,
@@ -61,14 +66,16 @@ enum e_maplayer
 	LAYERS_COUNT
 };
 
-int		get_cubscene(char *path, t_cubscene *ptr);
-int		get_player_spawn(t_cubscene scene, t_player *player);
-int		is_player_enclosed(t_cubscene *scene, t_player *player);
+int		get_cubscene(char *path, t_c3_env *env);
+int		get_player_spawn(t_vector *map, t_entity *player);
+int		is_player_enclosed(t_cubscene *scene, t_entity *player);
 int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
-int		get_scene_map(int fd, t_cubscene *scene);
+int		get_scene_map(int fd, t_c3_env *env);
+int		get_entities(t_vector *map, t_c3_env *env);
 int		convert_map(t_vector *map, t_cubscene *scene);
 char	*get_map_charset(t_tex *textures);
 char	*get_layer_charset(t_tex *textures);
+int		get_monster_spawn(t_vector *map, t_entity *monster);
 
 #endif //PARSING_H

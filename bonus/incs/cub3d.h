@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 19:36:31 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 13:07:32 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ typedef struct s_c3_env
 	void		*win;
 	t_img		img;
 	int			key_state[280];	// arbitrary size (number of keys to handle)
-	t_player	player;
+	t_entity	player;
+	t_entity	monster;
 	t_timer		frame_timer;
 	double		frame_time;
 	// size_t		time;

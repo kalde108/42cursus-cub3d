@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 23:30:07 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 14:48:58 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 
 #include "libft.h"
+#include "cub3d.h"
 #include "parsing.h"
 
 static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_tex **textures);
@@ -22,7 +23,7 @@ static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset);
 static int	add_map_line(char *str, t_vector map[LAYERS_COUNT]);
 static int	is_line_valid(char *str, const char *charset);
 
-int	get_scene_map(int fd, t_cubscene *scene)
+int	get_scene_map(int fd, t_c3_env *env)
 {
 	t_vector	map[LAYERS_COUNT];
 	int			status;
@@ -37,9 +38,11 @@ int	get_scene_map(int fd, t_cubscene *scene)
 		i++;
 	}
 	if (0 == status)
-		status = read_map_file(fd, map, scene->texture);
+		status = read_map_file(fd, map, env->scene.texture);
 	if (0 == status)
-		status = convert_map(map, scene);
+		status = get_entities(map, env);
+	if (0 == status)
+		; // status = convert_map(map, scene);
 	i = 0;
 	while (i < LAYERS_COUNT)
 	{
@@ -89,7 +92,6 @@ static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset)
 			free(gnl);
 			return (0);
 		}
-		ft_dprintf(2, "%s\n", gnl);
 		if (is_line_valid(gnl, charset))
 			status = add_map_line(gnl, map);
 		else
