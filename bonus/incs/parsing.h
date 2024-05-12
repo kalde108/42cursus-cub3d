@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 15:00:22 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 17:46:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,10 @@
 # define XMP_EXT ".xpm"
 
 //SPRITE TYPES
-# define SPRITE_FILE 1
-# define SPRITE_DIRECTORY 2
+# define TEXTURE_FILE 1
+# define TEXTURE_DIRECTORY 2
 
 //ERROR MESSAGES
-# define SCENE_ERR "Error\n%s\n"
-# define SCENE_ERR2 "Error\n%s: %s\n"
-# define SCENE_ERR3 "Error\n%s: %s: %s\n"
-# define MAP_ERR "Error\nMAP: %c: %s\n"
-# define MAP_ERR2 "Error\nMAP: %s\n"
-# define MLX_ERR "Error\nminilibx: %s: %s\n"
-# define MLX_ERR2 "Error\nminilibx: %s\n"
-# define FATAL "Fatal"
 # define NO_SCENE "No argument, expected one file in format [*.cub]"
 # define TOO_MAN_ARG "Too many arguments, expected one file in format [*.cub]"
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
@@ -58,6 +50,9 @@
 
 # define MONSTER_CHAR 'M'
 
+# define WALKABLE -51
+# define MISSING -97
+
 enum e_maplayer
 {
 	MAP_LAYER,
@@ -78,5 +73,6 @@ char	*get_map_charset(t_tex *textures);
 char	*get_layer_charset(t_tex *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
 int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
+int		get_directory_textures(char *dirpath, t_tex *texture);
 
 #endif //PARSING_H

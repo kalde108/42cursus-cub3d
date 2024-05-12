@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 14:46:17 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 17:52:22 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int		get_path_type(char *tok, char *path);
 static int		set_texture_filepath(char *filepath, t_tex *ptr);
@@ -28,12 +29,10 @@ int	set_texture(char *tok, char *path, t_identifier id, t_cubscene *scene)
 {
 	const int	type = get_path_type(tok, path);
 
-	if (SPRITE_FILE == type)
+	if (TEXTURE_FILE == type)
 		return (set_texture_filepath(path, get_texture_ptr(id, scene->texture)));
-	// else if (SPRITE_DIRECTORY == type)
-	// {
-	// 	;
-	// }
+	else if (TEXTURE_DIRECTORY == type)
+		return (get_directory_textures(path, get_texture_ptr(id, scene->texture)));
 	else
 		return (1);
 	return (0);
@@ -54,9 +53,9 @@ static int	get_path_type(char *tok, char *path)
 		return (-1);
 	}
 	if (0 != S_ISREG(buf.st_mode))
-		return (SPRITE_FILE);
+		return (TEXTURE_FILE);
 	else if (0 != S_ISDIR(buf.st_mode))
-		return (SPRITE_DIRECTORY);
+		return (TEXTURE_DIRECTORY);
 	else
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR3, tok, path, INVAL_PATH);
@@ -81,7 +80,7 @@ static int	set_texture_filepath(char *filepath, t_tex *texture)
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
 		return (1);
 	}
-	texture->sprite = ptr;
+	texture->frames = ptr;
 	texture->n = 1;
 	return (0);
 }

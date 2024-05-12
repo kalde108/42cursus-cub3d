@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_spawn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 20:40:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:32 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "cub3d.h"
 #include "libft.h"
+#include "cubdef.h"
 #include "parsing.h"
 
 static int	search_line(t_vector *line, t_entity *player, bool *found, int y);

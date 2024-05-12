@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_wall_texture.c                                 :+:      :+:    :+:   */
+/*   cubdef.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:03:20 by ibertran         ###   ########lyon.fr   */
+/*   Created: 2024/05/12 16:21:27 by ibertran          #+#    #+#             */
+/*   Updated: 2024/05/12 16:22:22 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubscene.h"
-#include "ft_math.h"
-#include "tile_address.h"
+#ifndef CUBDEF_H
+# define CUBDEF_H
 
-t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_tex **textures)
-{
-	t_tex *texture_block;
+//ERROR MESSAGES
+# define SCENE_ERR "Error\n%s\n"
+# define SCENE_ERR2 "Error\n%s: %s\n"
+# define SCENE_ERR3 "Error\n%s: %s: %s\n"
+# define MAP_ERR "Error\nMAP: %c: %s\n"
+# define MAP_ERR2 "Error\nMAP: %s\n"
+# define MLX_ERR "Error\nminilibx: %s: %s\n"
+# define MLX_ERR2 "Error\nminilibx: %s\n"
+# define FATAL "Fatal"
 
-	texture_block = &textures[WALL][GET_WALL(scene->map[map_pos.y * scene->width + map_pos.x])];
-	if (texture_block->n == 1)
-		return (texture_block->frames);
-	return (NULL);
-}
+#endif //CUBDEF_H

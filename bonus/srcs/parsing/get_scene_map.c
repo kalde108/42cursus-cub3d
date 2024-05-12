@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 15:54:13 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:46 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "libft.h"
 #include "cub3d.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_tex **textures);
 static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset);

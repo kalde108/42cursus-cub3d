@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_mlx_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 20:00:05 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:22:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "mlx.h"
 #include "mlx_tools.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static void	setup_mlx_hooks(t_c3_env *env);
 
