@@ -6,7 +6,7 @@
 
 # include <stdio.h>
 
-static void	render_enemy(t_c3_env *env, t_entity *entity)
+static inline void	render_entitie(t_c3_env *env, t_entity *entity)
 {
 	t_v2d_d	sprite_pos;
 
@@ -27,31 +27,33 @@ static void	render_enemy(t_c3_env *env, t_entity *entity)
 
 	sprite_screen_x = ((int)(WIDTH / 2) * (1 + transform.x / transform.y));
 
+	int	v_move_screen = (int)(V_MOVE / transform.y);
+
 	t_v2d_i sprite_size;
-	sprite_size.y = ft_abs((int)(HEIGHT / transform.y));
+	sprite_size.y = ft_abs((int)(HEIGHT / transform.y)) / V_DIV;
 
 	t_v2d_i draw_start;
-	draw_start.y = -sprite_size.y / 2 + HEIGHT / 2;
+	draw_start.y = -sprite_size.y / 2 + HEIGHT / 2 + v_move_screen;
 	if (draw_start.y < 0)
 		draw_start.y = 0;
 	
 	t_v2d_i draw_end;
-	draw_end.y = sprite_size.y / 2 + HEIGHT / 2;
+	draw_end.y = sprite_size.y / 2 + HEIGHT / 2 + v_move_screen;
 	if (draw_end.y >= HEIGHT)
 		draw_end.y = HEIGHT - 1;
 	
-	sprite_size.x = ft_abs((int)(HEIGHT / transform.y));
+	sprite_size.x = ft_abs((int)(HEIGHT / transform.y)) / U_DIV;
 	draw_start.x = -sprite_size.x / 2 + sprite_screen_x;
 	if (draw_start.x < 0)
 		draw_start.x = 0;
 	draw_end.x = sprite_size.x / 2 + sprite_screen_x;
 	if (draw_end.x >= WIDTH)
 		draw_end.x = WIDTH - 1;
-	
+
 	int stripe;
 
 	stripe = draw_start.x;
-	while (stripe < draw_end.x)
+	while (stripe <= draw_end.x)
 	{
 		t_v2d_i tex_pos;
 		tex_pos.x = (int)(256 * (stripe - (-sprite_size.x / 2 + sprite_screen_x)) *
@@ -60,15 +62,17 @@ static void	render_enemy(t_c3_env *env, t_entity *entity)
 		{
 			int y;
 			y = draw_start.y;
-			while (y < draw_end.y)
+			while (y <= draw_end.y && y < HEIGHT)
 			{
 				int d;
-				d = (y) * 256 - HEIGHT * 128 + sprite_size.y * 128;
-				tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y) / 256;
+				// d = (y - v_move_screen) * 256 - HEIGHT * 128 + sprite_size.y * 128;
+				d = y - HEIGHT / 2 + sprite_size.y / 2 - v_move_screen;
+				// tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y);
+				tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y);
 				int color;
 				color = *(int *)(entity->sprites[0].sprite->addr + (tex_pos.y * entity->sprites[0].sprite->line_length + tex_pos.x * (entity->sprites[0].sprite->bits_per_pixel / 8)));
 				if ((color & 0x00FFFFFF) != 0)
-					put_pixel(&env->img, stripe, y, color);
+					((int *)env->img.addr)[(y << WIDTH_LOG2) + stripe] = color;
 				y++;
 			}
 		}
@@ -86,7 +90,7 @@ void	render_entities(t_c3_env *env)
 	while (i < env->entity_count)
 	{
 		entity = &env->entities[i];
-		render_enemy(env, entity);
+		render_entitie(env, entity);
 		// if (entity->type == MONSTER)
 		// 	render_enemy(env, entity);
 		// else if (entity->type == BOXES)
