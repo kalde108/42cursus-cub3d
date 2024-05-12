@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 13:49:45 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 21:17:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,10 @@
 # define XMP_EXT ".xpm"
 
 //SPRITE TYPES
-# define SPRITE_FILE 1
-# define SPRITE_DIRECTORY 2
+# define TEXTURE_FILE 1
+# define TEXTURE_DIRECTORY 2
 
 //ERROR MESSAGES
-# define SCENE_ERR "Error\n%s\n"
-# define SCENE_ERR2 "Error\n%s: %s\n"
-# define SCENE_ERR3 "Error\n%s: %s: %s\n"
-# define MAP_ERR "Error\nMAP: %c: %s\n"
-# define MAP_ERR2 "Error\nMAP: %s\n"
-# define MLX_ERR "Error\nminilibx: %s: %s\n"
-# define MLX_ERR2 "Error\nminilibx: %s\n"
-# define FATAL "Fatal"
 # define NO_SCENE "No argument, expected one file in format [*.cub]"
 # define TOO_MAN_ARG "Too many arguments, expected one file in format [*.cub]"
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
@@ -59,6 +51,9 @@
 
 # define MONSTER_CHAR 'M'
 
+# define WALKABLE -51
+# define MISSING -97
+
 enum e_maplayer
 {
 	MAP_LAYER,
@@ -74,10 +69,11 @@ int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_c3_env *env);
 int		get_entities(t_vector *map, t_c3_env *env);
-int		convert_map(t_vector *map, t_cubscene *scene);
+int		convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene);
 char	*get_map_charset(t_tex *textures);
 char	*get_layer_charset(t_tex *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
 int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
+int		get_directory_textures(char *dirpath, t_tex *texture);
 
 #endif //PARSING_H

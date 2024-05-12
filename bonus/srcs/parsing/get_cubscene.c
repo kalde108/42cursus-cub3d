@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 00:58:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 14:06:47 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:18 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "libft.h"
 #include "cub3d.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 int	get_cubscene(char *path, t_c3_env *env)
 {

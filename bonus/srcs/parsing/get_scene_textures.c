@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 03:14:20 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int			tokenize_line(char *line, t_cubscene *ptr, bool *defined);
 static t_identifier	get_identifier(char *str);

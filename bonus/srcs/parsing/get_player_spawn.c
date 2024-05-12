@@ -1,21 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_player_spawn.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 13:50:41 by kchillon         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 #include <math.h>
 #include <stdbool.h>
 
 #include "cub3d.h"
 #include "libft.h"
+#include "cubdef.h"
 #include "parsing.h"
 
 static int	search_line(t_vector *line, t_player *player, bool *found, int y);

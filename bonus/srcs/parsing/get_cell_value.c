@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cell_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:11:06 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 15:55:55 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,32 @@
 
 static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 
+# include "stdio.h"
+
 int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
 {
-	const char	wall = get_layer_cell(map, y, x, MAP_LAYER);
-	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER);
-	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER);
+	const char	wall = get_layer_cell(map, y, x, MAP_LAYER) - 'a';
+	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
+	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER) - 'a';
 
-	if ('.' == wall)
+	if (WALKABLE == wall && MISSING != floor && MISSING != ceiling)
 	{
-		if (floor && ceiling)
-		{
-			*cell = TYPE_FL_CE | floor - 'a' | (ceiling - 'a') << CEILING_SHIFT;
-			return (0);
-		}
-		else
-			return (-1); //map invalide
-	}
-	if (wall)
-	{
-		*cell = TYPE_WALL | wall - 'a';
+		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 		return (0);
 	}
-	if (floor && ceiling)
+	if (WALKABLE == wall)
 	{
-		*cell = TYPE_FL_CE | floor - 'a' | (ceiling - 'a') << CEILING_SHIFT;
+		//INVALID MAP ERROR MESSAGE
+		return (-1); 
+	}
+	if (MISSING != wall)
+	{
+		*cell = TYPE_WALL | wall;
+		return (0);
+	}
+	if (MISSING != floor && MISSING != ceiling)
+	{
+		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 		return (0);
 	}
 	*cell = EMPTY_CELL;

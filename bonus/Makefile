@@ -38,17 +38,18 @@ SRC += $(addprefix $(PARSING_DIR),$(PARSING_SRC))
 PARSING_DIR = parsing/
 PARSING_SRC = \
 	check_arguments \
-	set_texture \
-	get_cubscene \
-	get_scene_textures \
-	get_scene_map \
 	convert_map \
-	get_player_spawn \
-	is_player_enclosed \
 	generate_map_charset \
+	get_cell_value \
+	get_cubscene \
 	get_entities \
 	get_monster_spawn \
-	get_cell_value \
+	get_player_spawn \
+	get_scene_map \
+	get_scene_textures \
+	is_player_enclosed \
+	read_texture_directory \
+	set_texture \
 
 # ********** DRAW ********** #
 
