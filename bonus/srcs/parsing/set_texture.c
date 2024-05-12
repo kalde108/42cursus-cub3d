@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 03:11:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 14:46:17 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	set_texture(char *tok, char *path, t_identifier id, t_cubscene *scene)
 
 	if (SPRITE_FILE == type)
 		return (set_texture_filepath(path, get_texture_ptr(id, scene->texture)));
-	else if (SPRITE_DIRECTORY == type)
-	{
-		;
-	}
+	// else if (SPRITE_DIRECTORY == type)
+	// {
+	// 	;
+	// }
 	else
 		return (1);
 	return (0);
@@ -90,7 +90,7 @@ static t_tex	*get_texture_ptr(t_identifier id, t_tex **textures)
 {
 	if (id <= ID_CZ)
 		return (textures[id / 26] + (id % 26));
-	else
-		;
+	// else
+	// 	;
 	return (0);
 }
