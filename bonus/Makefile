@@ -16,6 +16,7 @@ SRC = \
 	get_keyindex \
 	main \
 	update_player \
+	update_entities \
 	render \
 
 # ********** ENV ********** #
