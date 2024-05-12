@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 20:40:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:50:41 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 #include "libft.h"
 #include "parsing.h"
 
-static int	search_line(t_vector *line, t_entity *player, bool *found, int y);
-static void	get_player_orientation(char c, t_entity *player);
+static int	search_line(t_vector *line, t_player *player, bool *found, int y);
+static void	get_player_orientation(char c, t_player *player);
 
-int	get_player_spawn(t_vector *map, t_entity *player)
+int	get_player_spawn(t_vector *map, t_player *player)
 {
 	bool		found;
 	t_vector	*line;
@@ -43,7 +43,7 @@ int	get_player_spawn(t_vector *map, t_entity *player)
 	return (0);
 }
 
-static int	search_line(t_vector *line, t_entity *player, bool *found, int y)
+static int	search_line(t_vector *line, t_player *player, bool *found, int y)
 {
 	char	*cell;
 	size_t	i;
@@ -69,7 +69,7 @@ static int	search_line(t_vector *line, t_entity *player, bool *found, int y)
 	return (0);
 }
 
-static void	get_player_orientation(char c, t_entity *player)
+static void	get_player_orientation(char c, t_player *player)
 {
 	const char		charset[] = {'N', 'S', 'E', 'W'};
 	const double	x[] = {0, 0, 1, -1};

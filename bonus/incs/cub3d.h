@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 20:02:10 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:51:16 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "cubscene.h"
 # include "player.h"
+# include "entity.h"
 # include "ft_time.h"
 
 # define WIDTH		2048
@@ -59,7 +60,7 @@ typedef struct s_c3_env
 	void			*win;
 	t_img			img;
 	int				key_state[280];	// arbitrary size (number of keys to handle)
-	t_entity		player;
+	t_player		player;
 	t_entity		monster;
 	t_timer			frame_timer;
 	double			frame_time;

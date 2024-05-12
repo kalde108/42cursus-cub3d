@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_tex_x.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:40:32 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 13:07:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:50:18 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "raycasting.h"
 
-int	get_tex_x(t_ray *ray, int width, t_entity player)
+int	get_tex_x(t_ray *ray, int width, t_player player)
 {
 	double	wall_x;
 
