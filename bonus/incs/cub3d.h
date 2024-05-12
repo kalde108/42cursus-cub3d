@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 16:08:53 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:02:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define WIDTH		2048
 # define HEIGHT		1152
+// # define WIDTH		4096
+// # define HEIGHT		2304
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
 
 # define FOV		90.0
@@ -35,6 +37,7 @@
 // # define FRAME_TIME	0.03333333333333333
 
 # define WIDTH_LOG2	11
+// # define WIDTH_LOG2	12
 
 // # define GROUND_CHARSET "0FC"
 
@@ -56,19 +59,18 @@ typedef struct s_c3_env
 	void			*win;
 	t_img			img;
 	int				key_state[280];	// arbitrary size (number of keys to handle)
-	t_player		player;
+	t_entity		player;
+	t_entity		monster;
 	t_timer			frame_timer;
 	double			frame_time;
 	pthread_mutex_t	call_mutex;
-	// size_t		time;
-	// size_t		old_time;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
 void	destroy_cubenv(t_c3_env *env);
 int		open_mlx_window(t_c3_env *env);
-int		load_textures(void *mlx_ptr, t_cubscene *scene);
+int		load_textures(void *mlx_ptr, t_tex **textures);
 
 int		render(t_c3_env *env);
 

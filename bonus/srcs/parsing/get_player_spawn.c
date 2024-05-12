@@ -6,49 +6,70 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 18:15:54 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 14:19:22 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:40:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <math.h>
+#include <stdbool.h>
 
 #include "cub3d.h"
 #include "libft.h"
 #include "parsing.h"
 
-# include <stdio.h>
+static int	search_line(t_vector *line, t_entity *player, bool *found, int y);
+static void	get_player_orientation(char c, t_entity *player);
 
-static void	get_player_orientation(char c, t_player *player);
-
-int	get_player_spawn(t_cubscene scene, t_player *player)
+int	get_player_spawn(t_vector *map, t_entity *player)
 {
-	const size_t	size = scene.width * scene.height;
-	size_t			i;
+	bool		found;
+	t_vector	*line;
+	size_t		i;
 
-	player->pos.x = -1;
-	i = -1;
-	while (++i < size)
+	found = false;
+	i = 0;
+	while (i < map->total)
 	{
-		if (ft_ischarset(scene.map[i], SPAWN_CHARSET))
-		{
-			if (player->pos.x != -1)
-			{
-				ft_dprintf(STDERR_FILENO, MAP_ERR2, MULTIPLE_SPAWN);
-				return (1);
-			}
-			player->pos.x = i % scene.width + 0.5;
-			player->pos.y = i / scene.width + 0.5;
-			get_player_orientation(scene.map[i], player);
-			scene.map[i] = '0';
-		}
+		line = ft_vector_get(map, i++);
+		if (search_line(line, player, &found, i))
+			return (-1);
 	}
-	if (player->pos.x == -1)
-		ft_dprintf(STDERR_FILENO, MAP_ERR2, NO_SPAWN);
-	return (player->pos.x == -1);
+	if (false == found)
+	{
+		ft_dprintf(STDERR_FILENO, MAP_ERR2, NO_PLAYER);
+		return (-1);
+	}
+	return (0);
 }
 
-static void	get_player_orientation(char c, t_player *player)
+static int	search_line(t_vector *line, t_entity *player, bool *found, int y)
+{
+	char	*cell;
+	size_t	i;
+
+	i = -1;
+	while (++i < line->total)
+	{
+		cell = ft_vector_get(line, i);
+		if (1 == ft_ischarset(*cell, SPAWN_CHARSET))
+		{
+			if (true == *found)
+			{
+				ft_dprintf(STDERR_FILENO, MAP_ERR2, MULTIPLE_PLAYER);
+				return (-1);
+			}
+			*found = true;
+			player->pos.x = i + 0.5;
+			player->pos.y = y + 0.5;
+			get_player_orientation(*cell, player);
+			*cell = '.';
+		}
+	}
+	return (0);
+}
+
+static void	get_player_orientation(char c, t_entity *player)
 {
 	const char		charset[] = {'N', 'S', 'E', 'W'};
 	const double	x[] = {0, 0, 1, -1};

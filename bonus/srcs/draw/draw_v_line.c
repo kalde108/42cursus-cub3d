@@ -6,13 +6,15 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 16:19:16 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:01:12 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
+# include <stdio.h>
+
+inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture)
 {
 	unsigned int	*dst;
 	unsigned int	*end_dst;
@@ -31,7 +33,7 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_tex *texture)
 	}
 	if (line->end >= HEIGHT)
 		line->end = HEIGHT - 1;
-	dst += (line->start << 11) + line->x;
+	dst += (line->start << WIDTH_LOG2) + line->x;
 	end_dst = dst + (line->end - line->start) * WIDTH;
 	while (dst <= end_dst)
 	{

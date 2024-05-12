@@ -6,19 +6,22 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 16:20:43 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 19:42:54 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 
 #include "raycasting.h"
+#include "tile_address.h"
+
+# include <stdio.h>
 
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
 	t_ray	ray;
 	t_vline	line;
-	t_tex	texture;
+	t_texdata	*texture;
 	int		tex_x;
 
 	line.x = start;
@@ -27,9 +30,9 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 		ray_calculation(&env->player, &ray, line.x);
 		ft_dda(&env->scene, &ray);
 		texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.texture);
-		tex_x = get_tex_x(&ray, texture.width, env->player);
+		tex_x = get_tex_x(&ray, texture->width, env->player);
 		get_line_y(&line, ray.perp_wall_dist);
-		draw_v_line(&env->img, &line, tex_x, &texture);
+		draw_v_line(&env->img, &line, tex_x, texture);
 		line.x++;
 	}
 }

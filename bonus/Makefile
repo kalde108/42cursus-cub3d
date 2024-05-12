@@ -15,8 +15,8 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	get_keyindex \
 	main \
-	render \
 	update_player \
+	render \
 
 # ********** ENV ********** #
 
@@ -38,12 +38,16 @@ PARSING_DIR = parsing/
 PARSING_SRC = \
 	check_arguments \
 	set_texture \
-	open_cub_file \
+	get_cubscene \
 	get_scene_textures \
 	get_scene_map \
 	convert_map \
 	get_player_spawn \
 	is_player_enclosed \
+	generate_map_charset \
+	get_entities \
+	get_monster_spawn \
+	get_cell_value \
 
 # ********** DRAW ********** #
 
@@ -52,9 +56,9 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 DRAW_DIR = draw/
 DRAW_SRC = \
 	draw_v_line \
-	floor_and_ceiling \
 	get_wall_texture \
 	get_tex_x \
+	floor_and_ceiling \
 	draw_line \
 	draw_line_gradient \
 	put_pixel \
@@ -100,6 +104,14 @@ TIME_SRC = \
 	init_timer \
 	start_timer \
 	timer_is_over \
+
+# ********** DEBUG ********** #
+
+SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
+
+DEBUG_DIR = DEBUG/
+DEBUG_SRC = \
+	DISPLAY_SHORT_MAP
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

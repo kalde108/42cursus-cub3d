@@ -6,18 +6,17 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 16:12:40 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 19:43:34 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d.h"
 
-# include <stdio.h>
-# include <math.h>
 
-void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
-void		DEBUG_print(t_cubscene *ptr);	//REMOVE
+# include <stdio.h>
+
+void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
 int	main(int ac, char **av)
 {
@@ -26,7 +25,7 @@ int	main(int ac, char **av)
 	env = (t_c3_env){0};
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
-	if (load_textures(env.mlx, &env.scene) || open_mlx_window(&env))
+	if (load_textures(env.mlx, env.scene.texture) || open_mlx_window(&env))
 	{
 		destroy_cubenv(&env);
 		return (1);
@@ -37,6 +36,7 @@ int	main(int ac, char **av)
 		destroy_cubenv(&env);
 		return (1);
 	}
+	DISPLAY_SHORT_MAP(&env);
 	mlx_loop(env.mlx);
 	destroy_cubenv(&env);
 	pthread_mutex_destroy(&env.call_mutex);

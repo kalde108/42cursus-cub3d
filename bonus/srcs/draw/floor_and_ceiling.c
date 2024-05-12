@@ -6,16 +6,21 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/09 21:11:39 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/11 20:15:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ************************************************************************** */
 
+#include <pthread.h>
+
 #include "cub3d.h"
 #include "libft.h"
+#include "tile_address.h"
 
-static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
+# include <stdio.h>
+
+static inline void	precompute_steps(t_entity *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
 {
 	t_v2d_d	ray_dir0;
 	t_v2d_d	ray_dir1;
@@ -32,44 +37,31 @@ static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d
 	floor->y = player->pos.y + row_distance * ray_dir0.y;
 }
 
-static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_tex *textures)
+static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_i cell_pos)
 {
-	t_v2d_i	cell;
 	t_v2d_i	tex_coord;
 
-	cell.x = (int)(floor.x);
-	cell.y = (int)(floor.y);
+	tex_coord.x = (int)(texture->width * (floor.x - cell_pos.x));
+	tex_coord.y = (int)(texture->height * (floor.y - cell_pos.y));
 
-	if (cell.x < 0 || cell.x >= env->scene.width || cell.y < 0 || cell.y >= env->scene.height || ft_ischarset(env->scene.map[cell.y * env->scene.width + cell.x], WALL_CHARSET))
-		return ;
-
-	tex_coord.x = (int)(textures[0].width * (floor.x - cell.x)) & (textures[0].width - 1);
-	tex_coord.y = (int)(textures[0].height * (floor.y - cell.y)) & (textures[0].height - 1);
-
-	char tile = env->scene.map[cell.y * env->scene.width + cell.x];
-	int	ground_type;
-
-	if (tile == '0')
-		ground_type = 0;
-	else if (tile == 'F')
-		ground_type = 1;
-	else
-		ground_type = 2;
-
-	// ground_type = 0;
-
-	__uint32_t	color = ((uint32_t *)textures[ground_type].addr)[textures[ground_type].width * tex_coord.y + tex_coord.x];
-	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = color;
-
-	int	is_lamp = ((cell.x & 1) == 0 && (cell.y & 1) == 0) + 3;
-
-	// is_lamp = 4;
-
-	color =  ((uint32_t *)textures[is_lamp].addr)[textures[is_lamp].width * tex_coord.y + tex_coord.x];
-	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = color;
+	return (((uint32_t *)texture->addr)[texture->width * tex_coord.y + tex_coord.x]);
 }
 
-static inline void	background_row(t_c3_env *env, int y, t_tex *textures)
+static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_tex **textures)
+{
+	t_v2d_i	cell_pos;
+	short	cell;
+
+	cell_pos.x = (int)(floor.x);
+	cell_pos.y = (int)(floor.y);
+	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || NOT_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
+		return ;
+	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
+	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].sprite, floor, cell_pos);
+	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].sprite, floor, cell_pos);
+}
+
+static inline void	background_row(t_c3_env *env, int y, t_tex **textures)
 {
 	t_v2d_d floor_step;
 	t_v2d_d	floor;
@@ -89,25 +81,53 @@ static inline void	background_row(t_c3_env *env, int y, t_tex *textures)
 	}
 }
 
-static void	draw_backgound(t_c3_env *env)
+static void	draw_backgound_chunk(t_c3_env *env, int start, int end)
 {
 	int		y;
-	t_tex				textures[5];
 
-	textures[0] = env->scene.texture[FL1];
-	textures[1] = env->scene.texture[FL2];
-	textures[2] = env->scene.texture[CA];
-	textures[3] = env->scene.texture[CE];
-	textures[4] = env->scene.texture[LA];
-	y = HEIGHT >> 1;
-	while (y < HEIGHT)
+	y = start;
+	while (y < end)
 	{
-		background_row(env, y, textures);
+		background_row(env, y, env->scene.texture);
 		y++;
 	}
 }
 
-void	floor_and_ceiling(t_c3_env *env)
+void	*draw_backgound_thread(void *arg)
 {
-	draw_backgound(env);
+	static int	call = 0;
+	t_c3_env	*env;
+	int			start;
+	int			end;
+
+	env = (t_c3_env *)arg;
+	pthread_mutex_lock(&env->call_mutex);
+	call++;
+	call = call % CPUCORES;
+	start = call * ((HEIGHT >> 1) / CPUCORES) + (HEIGHT >> 1);
+	end = (call + 1) * ((HEIGHT >> 1) / CPUCORES) + (HEIGHT >> 1);
+	// dprintf(2, "start: %d, end: %d\n", start, end);
+	pthread_mutex_unlock(&env->call_mutex);
+	draw_backgound_chunk(env, start, end);
+	return (NULL);
+}
+
+int	draw_backgound(t_c3_env *env)
+{
+	pthread_t	threads[CPUCORES];
+	int			i;
+	int			err;
+
+	err = 0;
+	i = 0;
+	while (i < CPUCORES)
+	{
+		err = pthread_create(&threads[i], NULL, draw_backgound_thread, env);
+		if (err)
+			break ;
+		i++;
+	}
+	while (--i >= 0)
+		pthread_join(threads[i], NULL);
+	return (err);
 }
