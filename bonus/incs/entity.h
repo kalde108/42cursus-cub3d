@@ -8,9 +8,9 @@
 # define MONSTER_ROTATION_SPEED 1.5
 # define MONSTER_SIZE 0.1
 
-# define U_DIV 1
-# define V_DIV 2
-# define V_MOVE 238.0
+# define U_DIV 4
+# define V_DIV 4
+# define V_MOVE 500.0
 
 enum e_entity_type
 {
