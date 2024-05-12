@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:12:35 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 18:06:16 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 18:29:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	add_frame(t_vector *frames, char *dirpath, char *name)
 	t_texdata	tmp;
 
 	tmp = (t_texdata){0};
-	tmp.filepath = ft_sprintf("%s%s", dirpath, name);
+	tmp.filepath = ft_sprintf("%s/%s", dirpath, name);
 	if (NULL == tmp.filepath)
 		return (1);
 	if (SUCCESS != ft_vector_add(frames, &tmp))
