@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:28:41 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:55:56 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,22 @@ int	render(t_c3_env *env)
 	// 	usleep(1000);
 	// }
 	start_timer(&env->frame_timer);
-	dprintf(2, "fps: %f\n", 1 / env->frame_time);
+	dprintf(2, "\nfps: %f\n", 1 / env->frame_time);
 	update_player(env);
 	update_entities(env);
 	time = get_time();
 	if (draw_backgound(env))
 		mlx_loop_end(env->mlx);
-	// draw_backgound(env);
-	// dprintf(2, "floor_and_ceiling: %zums\n", get_time() - time);
+	dprintf(2, "\nfloor_and_ceiling: %zums\n", get_time() - time);
 	time = get_time();
 	if (render_map(env))
 		mlx_loop_end(env->mlx);
-	// dprintf(2, "render_map: %zums\n", get_time() - time);
+	dprintf(2, "\nrender_map: %zums\n", get_time() - time);
 	// draw_minimap(env);
+	time = get_time();
+	render_entities(env);
+	dprintf(2, "\nrender_entities: %zums\n", get_time() - time);
+	
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
 	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);

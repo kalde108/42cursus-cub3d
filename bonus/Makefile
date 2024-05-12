@@ -94,6 +94,14 @@ RAYCASTING_SRC = \
 	ray_calculation \
 	render_map \
 
+# ******* RENDERING ******** #
+
+SRC += $(addprefix $(RENDERING_DIR),$(RENDERING_SRC))
+
+RENDERING_DIR = rendering/
+RENDERING_SRC = \
+	render_entities \
+
 # ********** TIME ********** #
 
 SRC += $(addprefix $(TIME_DIR),$(TIME_SRC))
