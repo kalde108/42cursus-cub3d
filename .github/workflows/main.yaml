@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install CC
-      run: sudo apt install clang-12.0.1-19ubuntu3
+      run: cc --version && sudo apt install clang-12.0.1-19ubuntu3
     - name: Install MLX dependencies
       run: sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 
