@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 13:07:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:49:59 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct s_ray
 	double	perp_wall_dist;
 }	t_ray;
 
-void	ray_calculation(t_entity *player, t_ray *ray, int x);
+void	ray_calculation(t_player *player, t_ray *ray, int x);
 void	ft_dda(t_cubscene *scene, t_ray *ray);
-int		get_tex_x(t_ray *ray, int width, t_entity player);
+int		get_tex_x(t_ray *ray, int width, t_player player);
 void	get_line_y(t_vline *line, double perp_wall_dist);
 
 #endif

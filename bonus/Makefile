@@ -16,6 +16,7 @@ SRC = \
 	get_keyindex \
 	main \
 	update_player \
+	update_entities \
 	render \
 
 # ********** ENV ********** #
@@ -93,6 +94,14 @@ RAYCASTING_SRC = \
 	get_line_y \
 	ray_calculation \
 	render_map \
+
+# ******* RENDERING ******** #
+
+SRC += $(addprefix $(RENDERING_DIR),$(RENDERING_SRC))
+
+RENDERING_DIR = rendering/
+RENDERING_SRC = \
+	render_entities \
 
 # ********** TIME ********** #
 

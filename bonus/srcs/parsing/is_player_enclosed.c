@@ -21,7 +21,7 @@
 // static int	is_enclosed(t_cubscene *scene, int x, int y);
 // static int	flood_fill_routine(t_cubscene *scene, t_vector *stack);
 
-// int	is_player_enclosed(t_cubscene *scene, t_entity *player)
+// int	is_player_enclosed(t_cubscene *scene, t_player *player)
 // {
 // 	const size_t	mapsize = sizeof(char) * scene->width * scene->height;
 // 	t_cubscene		dup;

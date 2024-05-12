@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_calculation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 13:07:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:51:02 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	delta_dist_init(t_ray *ray)
 		ray->delta_dist.y = fabs(1 / ray->ray_dir.y);
 }
 
-static void	step_init(t_entity *player, t_ray *ray)
+static void	step_init(t_player *player, t_ray *ray)
 {
 	if (ray->ray_dir.x < 0)
 	{
@@ -54,7 +54,7 @@ static void	step_init(t_entity *player, t_ray *ray)
 	}
 }
 
-void	ray_calculation(t_entity *player, t_ray *ray, int x)
+void	ray_calculation(t_player *player, t_ray *ray, int x)
 {
 	double	camera_x;
 

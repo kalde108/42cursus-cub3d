@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 20:02:10 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 14:32:42 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 
 # include "cubscene.h"
 # include "player.h"
+# include "entity.h"
 # include "ft_time.h"
+# include "key_index.h"
 
 # define WIDTH		2048
 # define HEIGHT		1152
@@ -33,8 +35,11 @@
 #  define CPUCORES	1
 # endif
 
-# define FRAME_TIME	0.016666666666666666
-// # define FRAME_TIME	0.03333333333333333
+# define ENTITY_LIMIT	100
+
+// # define FRAME_TIME	0.008333333333333333	// 120 fps
+# define FRAME_TIME	0.016666666666666666	// 60 fps
+// # define FRAME_TIME	0.03333333333333333		// 30 fps
 
 # define WIDTH_LOG2	11
 // # define WIDTH_LOG2	12
@@ -58,12 +63,15 @@ typedef struct s_c3_env
 	void			*mlx;
 	void			*win;
 	t_img			img;
-	int				key_state[280];	// arbitrary size (number of keys to handle)
-	t_entity		player;
-	t_entity		monster;
+	int				key_state[KEY_LAST];
+	t_player		player;	// group in struct
+	t_entity		monster;	// group in struct
 	t_timer			frame_timer;
 	double			frame_time;
 	pthread_mutex_t	call_mutex;
+	double			z_buffer[WIDTH];	// group in struct
+	t_entity		entities[ENTITY_LIMIT];	// group in struct
+	size_t			entity_count;	// group in struct
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);

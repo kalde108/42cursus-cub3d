@@ -1,17 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   floor_and_ceiling.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 16:03:20 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-
 #include <pthread.h>
 
 #include "cub3d.h"
@@ -20,7 +6,7 @@
 
 # include <stdio.h>
 
-static inline void	precompute_steps(t_entity *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
+static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
 {
 	t_v2d_d	ray_dir0;
 	t_v2d_d	ray_dir1;

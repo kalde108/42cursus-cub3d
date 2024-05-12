@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 17:46:33 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 21:17:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "cubscene.h"
 # include "player.h"
+# include "entity.h"
 # include "cub3d.h"
 
 //FILE EXTENTIONS
@@ -62,8 +63,8 @@ enum e_maplayer
 };
 
 int		get_cubscene(char *path, t_c3_env *env);
-int		get_player_spawn(t_vector *map, t_entity *player);
-int		is_player_enclosed(t_cubscene *scene, t_entity *player);
+int		get_player_spawn(t_vector *map, t_player *player);
+int		is_player_enclosed(t_cubscene *scene, t_player *player);
 int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_c3_env *env);
