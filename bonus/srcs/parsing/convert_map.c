@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 17:39:01 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:27:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int		get_map_width(t_vector *map);
 static int		fill_lines(t_vector *map, int width);
@@ -92,8 +93,6 @@ static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 			return (NULL);
 		}
 		i++;
-
 	}
 	return (s_map);
 }
-

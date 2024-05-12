@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 18:20:19 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 18:23:07 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int	convert_xmp(void *mlx_ptr, t_texdata *data);
 
@@ -25,6 +26,7 @@ int	load_textures(void *mlx_ptr, t_tex **textures)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 0;
 	while (i < BASIC_TEXTURE)
@@ -32,9 +34,13 @@ int	load_textures(void *mlx_ptr, t_tex **textures)
 		j = 0;
 		while (j < MAX_TEXTURE)
 		{
-			if (NULL != textures[i][j].sprite
-				&& convert_xmp(mlx_ptr, textures[i][j].sprite))
-				return (-1);
+			k = 0;
+			while (k < textures[i][j].n)
+			{
+				if (convert_xmp(mlx_ptr, textures[i][j].frames + k))
+					return (-1);
+				k++;
+			}
 			j++;
 		}
 		i++;
@@ -49,7 +55,10 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 			&data->width,
 			&data->height);
 	if (NULL == data->mlx_img)
+	{
+		ft_dprintf(STDERR_FILENO, MLX_ERR, data->filepath, strerror(errno));
 		return (1);
+	}
 	free(data->filepath);
 	data->filepath = NULL;
 	data->addr = mlx_get_data_addr(data->mlx_img,
@@ -57,6 +66,9 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 			&data->line_length,
 			&data->endian);
 	if (NULL == data->addr)
+	{
+		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
+	}
 	return (0);
 }

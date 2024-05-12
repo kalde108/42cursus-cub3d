@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 15:43:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:22:48 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "parsing.h"
 #include "cub3d.h"
 #include "libft.h"
+#include "cubdef.h"
 
 static int	init_texture(t_tex ***texture);
 static int	allocate_wall_floor_ceilling(t_tex **type);

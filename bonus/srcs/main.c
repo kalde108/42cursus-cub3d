@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:43:34 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:06:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		destroy_cubenv(&env);
 		return (1);
 	}
-	dprintf(2, "CPUCORES: %d\n", CPUCORES);
+	dprintf(2, "CPUCORES: %d\n", CPUCORES); //DEBUG
 	if (pthread_mutex_init(&env.call_mutex, NULL))
 	{
 		destroy_cubenv(&env);

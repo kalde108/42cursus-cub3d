@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 03:04:12 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 18:14:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	destroy_scene_textures(t_tex **texture, void *mlx_ptr)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 0;
 	while (i < BASIC_TEXTURE)
@@ -39,13 +40,15 @@ static void	destroy_scene_textures(t_tex **texture, void *mlx_ptr)
 		j = 0;
 		while (j < MAX_TEXTURE)
 		{
-			if (NULL != texture[i][j].sprite)
+			k = 0;
+			while (k < texture[i][j].n)
 			{
-				free(texture[i][j].sprite->filepath);
-				if (texture[i][j].sprite->mlx_img)
-					mlx_destroy_image(mlx_ptr, texture[i][j].sprite->mlx_img);
-				free(texture[i][j].sprite);
+				free(texture[i][j].frames[k].filepath);
+				if (texture[i][j].frames[k].mlx_img)
+					mlx_destroy_image(mlx_ptr, texture[i][j].frames[k].mlx_img);
+				k++;
 			}
+			free(texture[i][j].frames);
 			j++;
 		}
 		free(texture[i++]);

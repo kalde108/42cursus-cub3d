@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_and_ceiling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 20:15:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:03:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || NOT_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
 		return ;
 	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
-	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].sprite, floor, cell_pos);
-	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].sprite, floor, cell_pos);
+	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].frames, floor, cell_pos);
+	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].frames, floor, cell_pos);
 }
 
 static inline void	background_row(t_c3_env *env, int y, t_tex **textures)

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:34:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 20:59:45 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:04 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 char	*get_map_charset(t_tex *textures)
 {
@@ -48,7 +49,7 @@ char	*get_layer_charset(t_tex *textures)
 	charset[j++] = ' ';
 	while (i < MAX_TEXTURE)
 	{
-		if (NULL != textures[i].sprite)
+		if (NULL != textures[i].frames)
 		{
 			charset[j] = 'a' + i;
 			j++;

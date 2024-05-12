@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 13:09:46 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 17:28:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:29:25 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int	search_line(t_vector *line, t_entity *monster, bool *found, int y);
 static void	init_monster(t_entity *monster);

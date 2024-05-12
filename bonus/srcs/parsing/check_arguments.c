@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 23:01:30 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 20:30:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 16:22:59 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "libft.h"
 #include "parsing.h"
+#include "cubdef.h"
 
 static int	check_scene_format(char *arg);
 
