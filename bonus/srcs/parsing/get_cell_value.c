@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cell_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:11:06 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 15:03:05 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
 	{
 		if (floor && ceiling)
 		{
-			*cell = TYPE_FL_CE | floor - 'a' | (ceiling - 'a') << CEILING_SHIFT;
+			*cell = TYPE_FL_CE | (floor - 'a') | ((ceiling - 'a') << CEILING_SHIFT);
 			return (0);
 		}
 		else
-			return (-1); //map invalide
+			return (-1); //INVALID MAP ERROR MESSAGE
 	}
 	if (wall)
 	{
-		*cell = TYPE_WALL | wall - 'a';
+		*cell = TYPE_WALL | (wall - 'a');
 		return (0);
 	}
 	if (floor && ceiling)
 	{
-		*cell = TYPE_FL_CE | floor - 'a' | (ceiling - 'a') << CEILING_SHIFT;
+		*cell = TYPE_FL_CE | (floor - 'a') | ((ceiling - 'a') << CEILING_SHIFT);
 		return (0);
 	}
 	*cell = EMPTY_CELL;
