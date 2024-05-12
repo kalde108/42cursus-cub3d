@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    libft_srcs.mk                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 06:32:49 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/02 02:41:26 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/05/12 14:00:03 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,14 @@ INT_SRC = \
 	itoalen \
 	strtoi \
 	strtol \
+
+# *** MATH ******************************************************************* #
+
+SRC += $(addprefix $(MATH_DIR)ft_, $(addsuffix .c, $(MATH_SRC)))
+
+MATH_DIR = math/
+MATH_SRC = \
+	euclidean_dist \
 
 # *** MEMORY ***************************************************************** #
 

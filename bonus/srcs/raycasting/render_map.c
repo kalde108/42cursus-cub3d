@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 19:42:54 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 14:34:08 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 	{
 		ray_calculation(&env->player, &ray, line.x);
 		ft_dda(&env->scene, &ray);
+		env->z_buffer[line.x] = ray.perp_wall_dist;
 		texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.texture);
 		tex_x = get_tex_x(&ray, texture->width, env->player);
 		get_line_y(&line, ray.perp_wall_dist);

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:03:52 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 14:28:41 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	render(t_c3_env *env)
 	// 	usleep(1000);
 	// }
 	start_timer(&env->frame_timer);
-	// dprintf(2, "fps: %f\n", 1 / env->frame_time);
+	dprintf(2, "fps: %f\n", 1 / env->frame_time);
 	update_player(env);
 	update_entities(env);
 	time = get_time();

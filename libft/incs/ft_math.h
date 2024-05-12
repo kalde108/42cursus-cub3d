@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:46:52 by kchillon          #+#    #+#             */
-/*   Updated: 2024/05/07 13:46:53 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 13:59:52 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ typedef struct s_triangle
 	t_vertex	v2;
 	t_vertex	v3;
 }	t_triangle;
+
+double	ft_euclidean_dist(t_v2d_d a, t_v2d_d b);
 
 #endif

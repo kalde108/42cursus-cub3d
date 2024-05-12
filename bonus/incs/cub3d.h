@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:10:31 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/12 14:32:42 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ typedef struct s_c3_env
 	void			*win;
 	t_img			img;
 	int				key_state[KEY_LAST];
-	t_player		player;
-	t_entity		monster;
+	t_player		player;	// group in struct
+	t_entity		monster;	// group in struct
 	t_timer			frame_timer;
 	double			frame_time;
 	pthread_mutex_t	call_mutex;
-	t_entity		entities[100];	// group in struct
+	double			z_buffer[WIDTH];	// group in struct
+	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
 }	t_c3_env;
 
