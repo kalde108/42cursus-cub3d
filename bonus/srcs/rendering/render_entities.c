@@ -57,7 +57,7 @@ static inline void	render_entitie(t_c3_env *env, t_entity *entity)
 	{
 		t_v2d_i tex_pos;
 		tex_pos.x = (int)(256 * (stripe - (-sprite_size.x / 2 + sprite_screen_x)) *
-			entity->sprites[0].sprite->width / sprite_size.x) / 256;
+			entity->sprites[0].frames->width / sprite_size.x) / 256;
 		if (transform.y > 0 && stripe > 0 && stripe < WIDTH && transform.y < env->z_buffer[stripe])
 		{
 			int y;
@@ -68,9 +68,9 @@ static inline void	render_entitie(t_c3_env *env, t_entity *entity)
 				// d = (y - v_move_screen) * 256 - HEIGHT * 128 + sprite_size.y * 128;
 				d = y - HEIGHT / 2 + sprite_size.y / 2 - v_move_screen;
 				// tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y);
-				tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y);
+				tex_pos.y = ((d * entity->sprites[0].frames->height) / sprite_size.y);
 				int color;
-				color = *(int *)(entity->sprites[0].sprite->addr + (tex_pos.y * entity->sprites[0].sprite->line_length + tex_pos.x * (entity->sprites[0].sprite->bits_per_pixel / 8)));
+				color = *(int *)(entity->sprites[0].frames->addr + (tex_pos.y * entity->sprites[0].frames->line_length + tex_pos.x * (entity->sprites[0].frames->bits_per_pixel / 8)));
 				if ((color & 0x00FFFFFF) != 0)
 					((int *)env->img.addr)[(y << WIDTH_LOG2) + stripe] = color;
 				y++;
