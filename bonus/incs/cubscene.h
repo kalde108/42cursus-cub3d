@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 17:28:33 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/13 23:05:59 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ typedef struct s_texdata
 typedef struct s_tex
 {
 	t_texdata	*frames;
+	t_texdata	*current;
 	int			n;
+	int			next;
+	int			dir;
 }	t_tex;
 
 typedef struct s_cubscene

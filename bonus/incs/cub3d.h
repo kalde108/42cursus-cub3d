@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:32:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/13 23:12:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_c3_env
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
+	size_t			animation_time;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);

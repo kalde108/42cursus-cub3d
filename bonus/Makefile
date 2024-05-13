@@ -17,6 +17,7 @@ SRC = \
 	main \
 	update_player \
 	update_entities \
+	update_frames \
 	render \
 
 # ********** ENV ********** #
