@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:22:48 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/14 17:39:02 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	init_cubenv(t_c3_env *env, char *arg)
 		destroy_scene(&env->scene, env->mlx);
 		return (1);
 	}
-	init_timer(&env->frame_timer, 0, MANUAL_RESET);
+	init_timer(&env->clocks.frame_timer, 0, MANUAL_RESET);
 	return (0);
 }
 

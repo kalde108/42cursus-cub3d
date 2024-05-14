@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/13 23:07:49 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/14 18:28:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	load_textures(void *mlx_ptr, t_tex **textures)
 					return (-1);
 				textures[i][j].current = textures[i][j].frames;
 				textures[i][j].dir = 1;
+				textures[i][j].options = 1;
 				k++;
 			}
 			j++;

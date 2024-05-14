@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 20:01:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/14 17:19:37 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 	dst = (unsigned int *)img->addr;
 	tex = (unsigned int *)(texture->addr + (tex_x << 2));
 	tex_y = 0.0;
-	step = 1.0 * texture->height / (line->end - line->start);
+	step = 1.0 * texture->height / ((line->end - line->start) + 1);
 	if (line->start < 0)
 	{
 		tex_y = -line->start * step;
@@ -33,8 +33,8 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 	}
 	if (line->end >= HEIGHT)
 		line->end = HEIGHT - 1;
-	dst += (line->start << WIDTH_LOG2) + line->x;
-	end_dst = dst + (line->end - line->start) * WIDTH;
+	dst += ((int)line->start << WIDTH_LOG2) + line->x;
+	end_dst = dst + ((int)(line->end - line->start)) * WIDTH;
 	while (dst <= end_dst)
 	{
 		*dst = tex[(int)tex_y * texture->width];

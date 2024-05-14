@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/13 23:12:21 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/14 17:39:28 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,16 @@ typedef struct s_c3_env
 	int				key_state[KEY_LAST];
 	t_player		player;	// group in struct
 	t_entity		monster;	// group in struct
-	t_timer			frame_timer;
 	double			frame_time;
 	pthread_mutex_t	call_mutex;
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
-	size_t			animation_time;
+	struct clocks
+	{
+		t_timer		frame_timer;
+		t_timer		map_tex_timer;
+	}				clocks;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);

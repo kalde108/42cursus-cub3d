@@ -53,11 +53,11 @@ static inline void	render_entitie(t_c3_env *env, t_entity *entity)
 	int stripe;
 
 	stripe = draw_start.x;
-	while (stripe <= draw_end.x)
+	while (stripe < draw_end.x)
 	{
 		t_v2d_i tex_pos;
-		tex_pos.x = (int)(256 * (stripe - (-sprite_size.x / 2 + sprite_screen_x)) *
-			entity->sprites[0].frames->width / sprite_size.x) / 256;
+		tex_pos.x = (stripe - (-sprite_size.x / 2 + sprite_screen_x)) *
+			entity->sprites[0].frames->width / sprite_size.x;
 		if (transform.y > 0 && stripe > 0 && stripe < WIDTH && transform.y < env->z_buffer[stripe])
 		{
 			int y;
