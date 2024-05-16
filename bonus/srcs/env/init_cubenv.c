@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/14 17:39:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 #include "libft.h"
 #include "cubdef.h"
 
-static int	init_texture(t_tex ***texture);
-static int	allocate_wall_floor_ceilling(t_tex **type);
+static int	init_texture(t_elem ***texture);
+static int	allocate_wall_floor_ceilling(t_elem **type);
 
 int	init_cubenv(t_c3_env *env, char *arg)
 {
@@ -32,7 +32,7 @@ int	init_cubenv(t_c3_env *env, char *arg)
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
-	if (0 != init_texture(&env->scene.texture))
+	if (0 != init_texture(&env->scene.elems))
 	{
 		mlx_destroy_display(env->mlx);
 		free(env->mlx);
@@ -49,12 +49,12 @@ int	init_cubenv(t_c3_env *env, char *arg)
 	return (0);
 }
 
-static int	init_texture(t_tex ***texture)
+static int	init_texture(t_elem ***texture)
 {
-	t_tex	**ptr;
+	t_elem	**ptr;
 	int		i;
 
-	ptr = ft_calloc(TEXTURES_TYPES, sizeof(t_tex *));
+	ptr = ft_calloc(TEXTURES_TYPES, sizeof(t_elem *));
 	if (NULL == ptr)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
@@ -76,11 +76,11 @@ static int	init_texture(t_tex ***texture)
 	return (0);
 }
 
-static int	allocate_wall_floor_ceilling(t_tex **type)
+static int	allocate_wall_floor_ceilling(t_elem **type)
 {
-	t_tex	*ptr;
+	t_elem	*ptr;
 
-	ptr = ft_calloc(MAX_TEXTURE, sizeof(t_tex));
+	ptr = ft_calloc(MAX_TEXTURE, sizeof(t_elem));
 	if (NULL == ptr)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:12:35 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 18:29:20 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 static int	read_entries(DIR *dir, t_vector *frames, char *dirpath);
 static int	add_frame(t_vector *frames, char *dirpath, char *name);
-static int	set_frames(t_tex *texture, t_vector *frames);
+static int	set_frames(t_elem *texture, t_vector *frames);
 static void	free_frame(void *ptr);
 
-int	get_directory_textures(char *dirpath, t_tex *texture)
+int	get_directory_textures(char *dirpath, t_elem *texture)
 {
 	DIR			*dir;
 	int			status;
@@ -85,7 +85,7 @@ static int	add_frame(t_vector *frames, char *dirpath, char *name)
 	return (0);
 }
 
-static int	set_frames(t_tex *texture, t_vector *frames)
+static int	set_frames(t_elem *texture, t_vector *frames)
 {
 	if (ft_vector_trim(frames))
 		return (1);

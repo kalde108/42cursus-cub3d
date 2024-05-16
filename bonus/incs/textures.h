@@ -3,8 +3,7 @@
 
 // texture options
 # define LOOP 0b00000001
-# define MIRROR 0b00000010
-# define ANIM 0b00000100
+# define SWAY 0b00000010
 
 
 #endif

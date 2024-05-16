@@ -4,14 +4,14 @@
 
 # include <stdio.h>
 
-t_texdata	*get_current_frame(t_tex *texture, size_t frame_skip);
+t_texdata	*get_current_frame(t_elem *texture, size_t frame_skip);
 
 void	update_frames(t_c3_env *env)
 {
 	int		i;
 	int		j;
 	size_t	passed_frame;
-	t_tex	*texture;
+	t_elem	*texture;
 
 	// if (get_time() - env->animation_time < 100)
 	// 	return ;
@@ -24,7 +24,7 @@ void	update_frames(t_c3_env *env)
 		j = 0;
 		while (j < MAX_TEXTURE)
 		{
-			texture = env->scene.texture[i] + j;
+			texture = env->scene.elems[i] + j;
 			if (texture->n > 1)
 				texture->current = get_current_frame(texture, passed_frame);
 			j++;
@@ -33,7 +33,7 @@ void	update_frames(t_c3_env *env)
 	}
 }
 
-t_texdata	*get_current_frame(t_tex *texture, size_t passed_frame)
+t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 {
 	texture->current_frame += passed_frame * texture->dir;
 	if (texture->options & LOOP)
