@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 15:53:46 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 19:17:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,31 @@ static void	update_mouse(t_c3_env *env)
 	}
 }
 
+static void	render_hud(t_c3_env *env)
+{
+	// t_img	*img;
+	// int		x;
+	// int		y;
+
+	// img = &env->img;
+	// y = 0;
+	// while (y < 30)
+	// {
+	// 	x = 0;
+	// 	while (x < WIDTH)
+	// 	{
+	// 		*(unsigned int *)(img->addr + ((y << img->line_length) + x * (img->bits_per_pixel / 8))) = 0x00000000;
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
+	draw_crosshair(env);
+}
+
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
-	char	fps_str[9];
+	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
 	env->frame_time = get_elapsed_time(&env->clocks.frame_timer) / 1000.0;
@@ -84,10 +105,12 @@ int	render(t_c3_env *env)
 	render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
 
+	render_hud(env);
+
 	// mlx
 	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
-	// mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);					// debug term
+	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
 	return (0);
 }

@@ -62,6 +62,8 @@ DRAW_SRC = \
 	draw_line_gradient \
 	put_pixel \
 	put_pixel_alpha \
+	draw_crosshair \
+	draw_rectangle \
 
 # ********** HOOK ********** #
 

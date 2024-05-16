@@ -1,8 +1,10 @@
-Wa assets/command_block
+Wa assets/deepslate_tiles.xpm
 Wb assets/cracked_deepslate_tiles.xpm
+Wd assets/command_block
 Fa assets/basic_floor_128.xpm
 Fb assets/floor2_128.xpm
 Fc assets/carpet1_128.xpm
+Fd assets/lava
 Ca assets/ceiling1_128.xpm
 Cb assets/lamp1_128.xpm
 Wc assets/torchflower.xpm
@@ -15,12 +17,12 @@ Wc assets/torchflower.xpm
 aaaaabbaa aa     aaa            a
 a         ba     aaa aabaa aaaaaa
 aaaa aaabaaaaa aaa      a   a
-aaaa aabaaaaba aaa a b  a   b
+aaaa aabaaaaba aaa d d  a   b
 aa      aa b a aab      a   a
-a               aa      b   a
-a               aa      a N a
-a    M          aa a a  a   a
-ab     baa a a aaaaa aaab   aaa
+a               aa d d  b   a
+a               ab      a N a
+a    M          aa a b  a   a
+ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a
 aaaaaaaa aaaaaba aaaaaaaaaaaa
 
@@ -31,13 +33,13 @@ aaaaaaaa aaaaaba aaaaaaaaaaaa
          aa aaaaaaaaaaaaaaaaaaaa 
          a  aaaaa   aaaaaaaaaaaa 
  aaaaaaaaa  aaaaa   a     a      
-    a         a   aaaaaa aaa 
-    a         a   a a aa aaa 
-  bbbbbb  b b a   aaaaaa aaa 
- bbcccbbbbbbbbbb  aaaaaa aaa 
- bbccccccccccccc  aaaaaa aaa 
- bbcccbbbbbbbbbb  a a aa aaa 
-  bbbbb   b b b     a    aaa   
+    a         a   dddddd aaa 
+    a         a   d d dd aaa 
+  bbbbbb  b b a   dddddd aaa 
+ bbcccbbbbbbbbbb  dddddd aaa 
+ bbccccccccccccc  dddddd aaa 
+ bbcccbbbbbbbbbb  d d dd aaa 
+  bbbbb   b b b     d    aaa   
     b       b b   a    a aaa 
                              
 

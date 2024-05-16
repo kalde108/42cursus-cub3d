@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 19:19:31 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@
 
 # define WIDTH_LOG2	11
 // # define WIDTH_LOG2	12
-
-// # define GROUND_CHARSET "0FC"
-
-# define WALL_CHARSET "12"
 
 typedef struct s_img
 {
