@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:00:29 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 22:29:49 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "textures.h"
 #include "libft.h"
 #include "parsing.h"
 #include "cubdef.h"
@@ -82,6 +83,7 @@ static int	set_texture_filepath(char *filepath, t_elem *texture)
 	}
 	texture->frames = ptr;
 	texture->n = 1;
+	init_attributes(&texture->attr);
 	return (0);
 }
 

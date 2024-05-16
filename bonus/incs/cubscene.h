@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:58:18 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 21:29:32 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "ft_vector.h"
 # include "identifiers.h"
-# include "stdbool.h"
+# include "textures.h"
 
 # define IDENTIFIER_FLOOR "FL"
 # define IDENTIFIER_CEILING "CE"
@@ -50,20 +50,13 @@ typedef struct s_texdata
 
 typedef struct s_elem
 {
-	t_texdata	*frames;
-	t_texdata	*current;
-	int			n;
-	int			current_frame;
-	int			dir;
-	char		options;
-	struct
-	{
-		size_t	frametime;
-		int		animation;
-		int		dps;
-		int		hinder;
-		bool	walkable;
-	}			attr;
+	t_texdata		*frames;
+	t_texdata		*current;
+	int				n;
+	int				current_frame;
+	int				dir;
+	char			options;
+	t_attributes	attr;
 }	t_elem;
 
 typedef struct s_cubscene

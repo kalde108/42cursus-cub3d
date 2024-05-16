@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:01:35 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 22:31:07 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define INVAL_ID "Invalid identifier"
 # define MULTI_ID "Multiple definition of identifier"
 # define INVAL_PATH "Invalid definition, expected one file in format [*.xmp] or a directory"
+# define MISSING_PATH "Missing definition, expected one file in format [*.xmp] or a directory"
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"
@@ -75,5 +76,7 @@ char	*get_layer_charset(t_elem *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
 int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
 int		get_directory_textures(char *dirpath, t_elem *texture);
+void	init_attributes(t_attributes *ptr);
+int		get_attributes(char *identifier, t_elem *elem);
 
 #endif //PARSING_H
