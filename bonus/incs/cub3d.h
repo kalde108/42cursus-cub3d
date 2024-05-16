@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 02:01:47 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 12:23:05 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_c3_env
 	void			*mlx;
 	void			*win;
 	t_img			img;
-	int				key_state[KEY_LAST];
+	int				key_state[KEY_COUNT];
 	t_player		player;	// group in struct
 	t_entity		monster;	// group in struct
 	double			frame_time;

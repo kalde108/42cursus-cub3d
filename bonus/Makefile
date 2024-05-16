@@ -73,6 +73,7 @@ SRC += $(addprefix $(HOOK_DIR),$(HOOK_SRC))
 
 HOOK_DIR = hook/
 HOOK_SRC = \
+	focusout_hook \
 	keydown_hook \
 	keyup_hook \
 	mouse_hooks \
