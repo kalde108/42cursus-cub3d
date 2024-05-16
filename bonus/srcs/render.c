@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 13:12:08 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 15:53:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,75 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+static void	update_mouse(t_c3_env *env)
+{
+	int	x;
+
+	mlx_mouse_get_pos(env->mlx, env->win, &x, &env->mouse.y);
+	env->mouse.delta = x - env->mouse.x;
+	if (x < 1)
+	{
+		mlx_mouse_move(env->mlx, env->win, WIDTH - 2, env->mouse.y);
+		env->mouse.x = WIDTH - 2;
+	}
+	else if (x >= WIDTH - 1)
+	{
+		mlx_mouse_move(env->mlx, env->win, 1, env->mouse.y);
+		env->mouse.x = 1;
+	}
+	else
+		env->mouse.x = x;
+	if (env->mouse.y < 1)
+	{
+		mlx_mouse_move(env->mlx, env->win, env->mouse.x, HEIGHT - 2);
+		env->mouse.y = HEIGHT - 2;
+	}
+	else if (env->mouse.y >= HEIGHT - 1)
+	{
+		mlx_mouse_move(env->mlx, env->win, env->mouse.x, 1);
+		env->mouse.y = 1;
+	}
+}
+
 int	render(t_c3_env *env)
 {
-	size_t	time;
+	// size_t	time;																		// debug term
 	char	fps_str[9];
-	char	debug_str[1000];
+	// char	debug_str[10000];															// debug term
 
 	env->frame_time = get_elapsed_time(&env->clocks.frame_timer) / 1000.0;
 	start_timer(&env->clocks.frame_timer);
-	// dprintf(2, "\nFPS: %f\n", 1 / env->frame_time);
-	sprintf(debug_str, "FPS: %f\n", 1 / env->frame_time);
+	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
+
+	// updates
+	// time = get_time();																	// debug term
+	if (env->mouse.status)
+		update_mouse(env);
+	// sprintf(debug_str, "%supdate_mouse: %3zums\n", debug_str, get_time() - time);		// debug term
 	update_player(env);
 	update_entities(env);
-	time = get_time();
+	// time = get_time();																	// debug term
 	update_frames(env);
-	// dprintf(2, "frame_updates: %zums\n", get_time() - time);
-	sprintf(debug_str, "%sframe_updates: %zums\n", debug_str, get_time() - time);
-	time = get_time();
+	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
+
+	// rendering
+	// time = get_time();																	// debug term
 	if (render_backgound(env))
 		mlx_loop_end(env->mlx);
-	// dprintf(2, "floor_and_ceiling: %zums\n", get_time() - time);
-	sprintf(debug_str, "%sfloor_and_ceiling: %zums\n", debug_str, get_time() - time);
-	time = get_time();
+	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
+	// time = get_time();																	// debug term
 	if (render_map(env))
 		mlx_loop_end(env->mlx);
-	// dprintf(2, "render_map: %zums\n", get_time() - time);
-	sprintf(debug_str, "%srender_map: %zums\n", debug_str, get_time() - time);
+	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
 	// draw_minimap(env);
-	time = get_time();
+	// time = get_time();																	// debug term
 	render_entities(env);
-	// dprintf(2, "render_entities: %zums\n", get_time() - time);
-	sprintf(debug_str, "%srender_entities: %zums\n", debug_str, get_time() - time);
-	dprintf(2, "%s\n", debug_str);
+	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
+
+	// mlx
+	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
-	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
+	// mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);					// debug term
 	return (0);
 }

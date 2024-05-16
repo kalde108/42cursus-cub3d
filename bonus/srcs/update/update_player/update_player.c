@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 13:09:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 15:54:25 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,11 @@ static void	update_rotation(t_c3_env *env)
 		apply_rotation(env, env->player.rt_speed);
 	if (env->key_state[KEY_LEFT])
 		apply_rotation(env, -env->player.rt_speed);
-	apply_rotation(env, MOUSE_SENSIVITY * env->mouse.delta);
-	env->mouse.delta = 0;
+	if (env->mouse.delta)
+	{
+		apply_rotation(env, MOUSE_SENSIVITY * (double)env->mouse.delta * env->player.rt_speed);
+		env->mouse.delta = 0;
+	}
 }
 
 void	update_player(t_c3_env *env)
