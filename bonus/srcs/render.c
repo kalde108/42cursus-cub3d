@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 19:02:33 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 19:03:35 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	render_hud(t_c3_env *env)
 int	render(t_c3_env *env)
 {
 	size_t	time;																		// debug term
-	char	fps_str[9];
+	char	fps_str[11];
 	char	debug_str[10000];															// debug term
 
 	env->frame_time = get_elapsed_time(&env->clocks.frame_timer) / 1000.0;
