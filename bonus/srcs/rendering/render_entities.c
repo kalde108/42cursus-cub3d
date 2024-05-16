@@ -6,22 +6,31 @@
 
 # include <stdio.h>
 
-static inline void	render_entitie(t_c3_env *env, t_entity *entity)
+static inline t_v2d_d	sprite_transform(t_player *player, t_entity *entity)
 {
 	t_v2d_d	sprite_pos;
 
-	sprite_pos = (t_v2d_d){entity->pos.x - env->player.pos.x,
-		entity->pos.y - env->player.pos.y};
+	sprite_pos = (t_v2d_d){entity->pos.x - player->pos.x,
+		entity->pos.y - player->pos.y};
 	
-	double inv_det = 1.0 / (env->player.plane.x * env->player.dir.y -
-		env->player.dir.x * env->player.plane.y);
+	double inv_det = 1.0 / (player->plane.x * player->dir.y -
+		player->dir.x * player->plane.y);
 
 	t_v2d_d transform;
 
-	transform.x = inv_det * (env->player.dir.y * sprite_pos.x -
-		env->player.dir.x * sprite_pos.y);
-	transform.y = inv_det * (-env->player.plane.y * sprite_pos.x +
-		env->player.plane.x * sprite_pos.y);
+	transform.x = inv_det * (player->dir.y * sprite_pos.x -
+		player->dir.x * sprite_pos.y);
+	transform.y = inv_det * (-player->plane.y * sprite_pos.x +
+		player->plane.x * sprite_pos.y);
+
+	return (transform);
+}
+
+static inline void	render_entitie(t_c3_env *env, t_entity *entity)
+{
+	t_v2d_d transform;
+
+	transform = sprite_transform(&env->player, entity);
 
 	int sprite_screen_x;
 

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:32:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 14:27:53 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@
 
 # define WIDTH_LOG2	11
 // # define WIDTH_LOG2	12
-
-// # define GROUND_CHARSET "0FC"
-
-# define WALL_CHARSET "12"
 
 typedef struct s_img
 {
