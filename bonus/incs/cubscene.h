@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubscene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/14 17:57:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:58:18 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include "ft_vector.h"
 # include "identifiers.h"
+# include "stdbool.h"
 
 # define IDENTIFIER_FLOOR "FL"
 # define IDENTIFIER_CEILING "CE"
@@ -47,7 +48,7 @@ typedef struct s_texdata
 	int		endian;
 }	t_texdata;
 
-typedef struct s_tex
+typedef struct s_elem
 {
 	t_texdata	*frames;
 	t_texdata	*current;
@@ -55,11 +56,19 @@ typedef struct s_tex
 	int			current_frame;
 	int			dir;
 	char		options;
-}	t_tex;
+	struct
+	{
+		size_t	frametime;
+		int		animation;
+		int		dps;
+		int		hinder;
+		bool	walkable;
+	}			attr;
+}	t_elem;
 
 typedef struct s_cubscene
 {
-	t_tex		**texture;
+	t_elem		**elems;
 	short		*map;
 	int			width;
 	int			height;

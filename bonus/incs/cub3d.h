@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 16:02:21 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 19:19:31 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
 void	destroy_cubenv(t_c3_env *env);
 int		open_mlx_window(t_c3_env *env);
-int		load_textures(void *mlx_ptr, t_tex **textures);
+int		load_textures(void *mlx_ptr, t_elem **textures);
 
 int		render(t_c3_env *env);
 

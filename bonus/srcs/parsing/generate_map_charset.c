@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 19:34:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:29:04 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "parsing.h"
 #include "cubdef.h"
 
-char	*get_map_charset(t_tex *textures)
+char	*get_map_charset(t_elem *textures)
 {
 	char	*wall_charset;
 	char	*map_charset;
@@ -32,7 +32,7 @@ char	*get_map_charset(t_tex *textures)
 	return (map_charset);
 }
 
-char	*get_layer_charset(t_tex *textures)
+char	*get_layer_charset(t_elem *textures)
 {
 	char	*charset;
 	int		i;
