@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/14 15:39:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	put_pixel_alpha(t_img *img, int x, int y, int color);
 void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color);
 void	draw_line_gradient(t_img *img, int x1, int y1, int x2, int y2, int color1, int color2);
 
-t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_tex **textures);
+t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_elem **textures);
 
 #endif

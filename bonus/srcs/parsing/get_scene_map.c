@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:29:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "parsing.h"
 #include "cubdef.h"
 
-static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_tex **textures);
+static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures);
 static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset);
 static int	add_map_line(char *str, t_vector map[LAYERS_COUNT]);
 static int	is_line_valid(char *str, const char *charset);
@@ -39,7 +39,7 @@ int	get_scene_map(int fd, t_c3_env *env)
 		i++;
 	}
 	if (0 == status)
-		status = read_map_file(fd, map, env->scene.texture);
+		status = read_map_file(fd, map, env->scene.elems);
 	if (0 == status)
 		status = get_entities(map, env);
 	if (0 == status)
@@ -53,7 +53,7 @@ int	get_scene_map(int fd, t_c3_env *env)
 	return (status);
 }
 
-static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_tex **textures)
+static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures)
 {
 	char	*charset;
 	int		status;

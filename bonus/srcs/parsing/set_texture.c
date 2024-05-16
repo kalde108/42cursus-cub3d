@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 17:52:22 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 19:00:29 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@
 #include "cubdef.h"
 
 static int		get_path_type(char *tok, char *path);
-static int		set_texture_filepath(char *filepath, t_tex *ptr);
-static t_tex	*get_texture_ptr(t_identifier id, t_tex **textures);
+static int		set_texture_filepath(char *filepath, t_elem *ptr);
+static t_elem	*get_texture_ptr(t_identifier id, t_elem **textures);
 
 int	set_texture(char *tok, char *path, t_identifier id, t_cubscene *scene)
 {
 	const int	type = get_path_type(tok, path);
 
 	if (TEXTURE_FILE == type)
-		return (set_texture_filepath(path, get_texture_ptr(id, scene->texture)));
+		return (set_texture_filepath(path, get_texture_ptr(id, scene->elems)));
 	else if (TEXTURE_DIRECTORY == type)
-		return (get_directory_textures(path, get_texture_ptr(id, scene->texture)));
+		return (get_directory_textures(path, get_texture_ptr(id, scene->elems)));
 	else
 		return (1);
 	return (0);
@@ -63,7 +63,7 @@ static int	get_path_type(char *tok, char *path)
 	}
 }
 
-static int	set_texture_filepath(char *filepath, t_tex *texture)
+static int	set_texture_filepath(char *filepath, t_elem *texture)
 {
 	t_texdata	*ptr;
 
@@ -85,7 +85,7 @@ static int	set_texture_filepath(char *filepath, t_tex *texture)
 	return (0);
 }
 
-static t_tex	*get_texture_ptr(t_identifier id, t_tex **textures)
+static t_elem	*get_texture_ptr(t_identifier id, t_elem **textures)
 {
 	if (id <= ID_CZ)
 		return (textures[id / 26] + (id % 26));

@@ -27,7 +27,7 @@ typedef struct s_entity
 	double		mv_speed;
 	double		rt_speed;
 	double		distance_to_player;
-	t_tex		*sprites;
+	t_elem		*sprites;
 }	t_entity;
 
 #endif

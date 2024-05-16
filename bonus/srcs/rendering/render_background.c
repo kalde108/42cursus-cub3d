@@ -33,7 +33,7 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 	return (((uint32_t *)texture->addr)[texture->width * tex_coord.y + tex_coord.x]);
 }
 
-static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_tex **textures)
+static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_elem **textures)
 {
 	t_v2d_i	cell_pos;
 	short	cell;
@@ -47,7 +47,7 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].current, floor, cell_pos);
 }
 
-static inline void	background_row(t_c3_env *env, int y, t_tex **textures)
+static inline void	background_row(t_c3_env *env, int y, t_elem **textures)
 {
 	t_v2d_d floor_step;
 	t_v2d_d	floor;
@@ -74,7 +74,7 @@ static void	draw_backgound_chunk(t_c3_env *env, int start, int end)
 	y = start;
 	while (y < end)
 	{
-		background_row(env, y, env->scene.texture);
+		background_row(env, y, env->scene.elems);
 		y++;
 	}
 }
