@@ -14,7 +14,7 @@ typedef struct s_timer
 	char		autoreset;
 }	t_timer;
 
-char	timer_is_over(t_timer *timer);
+size_t	timer_is_over(t_timer *timer);
 size_t	get_time(void);
 size_t	get_elapsed_time(t_timer *timer);
 void	init_timer(t_timer *timer, size_t delta, char autoreset);

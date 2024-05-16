@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:46:52 by kchillon          #+#    #+#             */
-/*   Updated: 2024/05/12 13:59:52 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 13:06:25 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FT_MATH_H
 
 # define PI 3.14159265358979323846
+# define SQRT2 1.41421356237309504880
+# define SQRT2_2 0.70710678118654752440
 
 typedef struct s_v2d_d
 {

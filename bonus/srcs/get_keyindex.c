@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_keyindex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:52:06 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 12:21:32 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	get_keyindex(int keycode)
 {
-	static const int	code_to_key[KEY_LAST] = {XK_a, XK_b, XK_c, XK_d, XK_e, \
+	static const int	code_to_key[KEY_COUNT] = {XK_a, XK_b, XK_c, XK_d, XK_e, \
 								XK_f, XK_g, XK_h, XK_i, XK_j, XK_k, XK_l, \
 								XK_m, XK_n, XK_o, XK_p, XK_q, XK_r, XK_s, \
 								XK_t, XK_u, XK_v, XK_w, XK_x, XK_y, XK_z, \
@@ -27,7 +27,7 @@ int	get_keyindex(int keycode)
 	size_t				i;
 
 	i = 0;
-	while (i < KEY_LAST)
+	while (i < KEY_COUNT)
 	{
 		if (keycode == code_to_key[i])
 			return (i);

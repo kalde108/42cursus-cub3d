@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/11 20:06:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/14 15:39:42 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 typedef struct s_vline
 {
 	int		x;
-	int		start;
-	int		end;
+	double		start;
+	double		end;
 }	t_vline;
 
 void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture);

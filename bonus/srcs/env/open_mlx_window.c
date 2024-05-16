@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_mlx_window.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:22:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 15:54:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,19 @@ int	open_mlx_window(t_c3_env *env)
 
 static void	setup_mlx_hooks(t_c3_env *env)
 {
-	mlx_hook(env->win,
-		DestroyNotify,
-		StructureNotifyMask,
-		&mlx_loop_end,
-		env->mlx);
-	mlx_hook(env->win, KeyPress, KeyPressMask, &keydown_hook, env);
-	mlx_hook(env->win, KeyRelease, KeyReleaseMask, &keyup_hook, env);
+	mlx_hook(env->win, 
+		DestroyNotify, StructureNotifyMask, &mlx_loop_end, env->mlx);
+	mlx_hook(env->win, 
+		KeyPress, KeyPressMask, &keydown_hook, env);
+	mlx_hook(env->win, 
+		KeyRelease, KeyReleaseMask, &keyup_hook, env);
+	mlx_mouse_move(env->mlx, env->win, WIDTH / 2, HEIGHT / 2);	// move to mouse init
+	env->mouse.x = WIDTH / 2;	// move to mouse init
+	env->mouse.y = HEIGHT / 2;	// move to mouse init
+	env->mouse.delta = 0;	// move to mouse init
+	mlx_hook(env->win, 
+		ButtonPress, ButtonPressMask, &buttonpress_hook, env);
+	mlx_hook(env->win, 
+		FocusOut, FocusChangeMask, &focusout_hook, env);
 	mlx_loop_hook(env->mlx, &render, env);
 }

@@ -17,10 +17,10 @@ int	get_player_spawn(t_vector *map, t_player *player)
 	size_t		i;
 
 	found = false;
-	i = 0;
-	while (i < map->total)
+	i = -1;
+	while (++i < map->total)
 	{
-		line = ft_vector_get(map, i++);
+		line = ft_vector_get(map, i);
 		if (search_line(line, player, &found, i))
 			return (-1);
 	}

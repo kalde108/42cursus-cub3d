@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_index.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:02 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 12:21:28 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ enum e_keycode
 	KEY_DOWN,
 	KEY_PLUS,
 	KEY_MINUS,
-	KEY_LAST
+	KEY_COUNT
 };
 
 int	get_keyindex(int keycode);
