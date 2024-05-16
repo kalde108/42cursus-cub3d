@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 01:59:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 15:06:39 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define PLAYER_ROTATION_SPEED 1.5
 # define PLAYER_SIZE 0.1
 
-# define MOUSE_SENSIVITY 0.0015
+# define MOUSE_SENSIVITY 0.1
 
 typedef struct s_player
 {
