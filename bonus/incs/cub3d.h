@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/14 17:39:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 02:01:47 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "entity.h"
 # include "ft_time.h"
 # include "key_index.h"
+# include "stdbool.h"
 
 # define WIDTH		2048
 # define HEIGHT		1152
@@ -57,6 +58,14 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_mouse
+{
+	bool	status;
+	int		x;
+	int		y;
+	int		delta;
+}	t_mouse;
+
 typedef struct s_c3_env
 {
 	t_cubscene		scene;
@@ -76,6 +85,7 @@ typedef struct s_c3_env
 		t_timer		frame_timer;
 		t_timer		map_tex_timer;
 	}				clocks;
+	t_mouse			mouse;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);

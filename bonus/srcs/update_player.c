@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/11 18:30:45 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 01:55:55 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ static void	update_rotation(t_c3_env *env)
 		apply_rotation(env, env->player.rt_speed);
 	if (env->key_state[KEY_LEFT])
 		apply_rotation(env, -env->player.rt_speed);
+	apply_rotation(env, MOUSE_SENSIVITY * env->mouse.delta);
+	env->mouse.delta = 0;
 }
 
 void	update_player(t_c3_env *env)

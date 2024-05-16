@@ -75,6 +75,7 @@ HOOK_DIR = hook/
 HOOK_SRC = \
 	keydown_hook \
 	keyup_hook \
+	mouse_hooks \
 
 # ******** MINIMAP ********* #
 
