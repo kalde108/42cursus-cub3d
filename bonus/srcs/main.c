@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/14 18:16:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 16:38:07 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	TEST(t_c3_env *env)
 	env->entities[7] = (t_entity){BOXES, (t_v2d_d){24.7, 5.8}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){6.5, 24.5}, env->player.pos), env->scene.texture[WALL] + 2};
 	env->entity_count++;
 	init_timer(&env->clocks.map_tex_timer, 100, AUTO_RESET);
+	env->scene.texture[WALL][3].options = 1;
+	env->scene.texture[FLOOR][3].options = 0;
 }
 
 int	main(int ac, char **av)
