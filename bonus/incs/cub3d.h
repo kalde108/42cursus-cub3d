@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/12 14:32:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 12:23:05 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "entity.h"
 # include "ft_time.h"
 # include "key_index.h"
+# include "stdbool.h"
 
 # define WIDTH		2048
 # define HEIGHT		1152
@@ -57,21 +58,34 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
+typedef struct s_mouse
+{
+	bool	status;
+	int		x;
+	int		y;
+	int		delta;
+}	t_mouse;
+
 typedef struct s_c3_env
 {
 	t_cubscene		scene;
 	void			*mlx;
 	void			*win;
 	t_img			img;
-	int				key_state[KEY_LAST];
+	int				key_state[KEY_COUNT];
 	t_player		player;	// group in struct
 	t_entity		monster;	// group in struct
-	t_timer			frame_timer;
 	double			frame_time;
 	pthread_mutex_t	call_mutex;
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
+	struct clocks
+	{
+		t_timer		frame_timer;
+		t_timer		map_tex_timer;
+	}				clocks;
+	t_mouse			mouse;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);
