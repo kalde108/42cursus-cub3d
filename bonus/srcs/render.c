@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/14 18:18:27 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 13:12:08 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	render(t_c3_env *env)
 	// dprintf(2, "frame_updates: %zums\n", get_time() - time);
 	sprintf(debug_str, "%sframe_updates: %zums\n", debug_str, get_time() - time);
 	time = get_time();
-	if (draw_backgound(env))
+	if (render_backgound(env))
 		mlx_loop_end(env->mlx);
 	// dprintf(2, "floor_and_ceiling: %zums\n", get_time() - time);
 	sprintf(debug_str, "%sfloor_and_ceiling: %zums\n", debug_str, get_time() - time);

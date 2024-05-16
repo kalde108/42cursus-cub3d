@@ -15,9 +15,6 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 SRC = \
 	get_keyindex \
 	main \
-	update_player \
-	update_entities \
-	update_frames \
 	render \
 
 # ********** ENV ********** #
@@ -61,7 +58,6 @@ DRAW_SRC = \
 	draw_v_line \
 	get_wall_texture \
 	get_tex_x \
-	floor_and_ceiling \
 	draw_line \
 	draw_line_gradient \
 	put_pixel \
@@ -96,7 +92,6 @@ RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
 	ray_calculation \
-	render_map \
 
 # ******* RENDERING ******** #
 
@@ -104,7 +99,9 @@ SRC += $(addprefix $(RENDERING_DIR),$(RENDERING_SRC))
 
 RENDERING_DIR = rendering/
 RENDERING_SRC = \
+	render_background \
 	render_entities \
+	render_map \
 
 # ********** TIME ********** #
 
@@ -117,6 +114,23 @@ TIME_SRC = \
 	init_timer \
 	start_timer \
 	timer_is_over \
+
+# ********* UPDATE ********* #
+
+SRC += $(addprefix $(UPDATE_DIR),$(UPDATE_SRC))
+
+UPDATE_DIR = update/
+UPDATE_SRC = \
+	update_entities \
+	update_frames \
+
+#	# *** UPDATE_PLAYER **** #
+
+SRC += $(addprefix $(UPDATE_PLAYER_DIR),$(UPDATE_PLAYER_SRC))       
+
+UPDATE_PLAYER_DIR = $(UPDATE_DIR)update_player/
+UPDATE_PLAYER_SRC = \
+	update_player \
 
 # ********** DEBUG ********** #
 

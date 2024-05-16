@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 01:55:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/16 13:09:48 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 
 #include <math.h>
 
+# include <stdio.h>
+
 static t_v2d_d	get_move_vec(t_c3_env *env)
 {
 	t_v2d_d	move_vec;
-
+	
 	move_vec = (t_v2d_d){0, 0};
 	if (env->key_state[KEY_W])
 	{
@@ -42,6 +44,11 @@ static t_v2d_d	get_move_vec(t_c3_env *env)
 	{
 		move_vec.x -= env->player.dir.y * env->player.mv_speed;
 		move_vec.y += env->player.dir.x * env->player.mv_speed;
+	}
+	if ((env->key_state[KEY_W] || env->key_state[KEY_S]) && (env->key_state[KEY_A] || env->key_state[KEY_D]))
+	{
+		move_vec.x *= SQRT2_2;
+		move_vec.y *= SQRT2_2;
 	}
 	return (move_vec);
 }

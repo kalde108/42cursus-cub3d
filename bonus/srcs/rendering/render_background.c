@@ -98,7 +98,7 @@ void	*draw_backgound_thread(void *arg)
 	return (NULL);
 }
 
-int	draw_backgound(t_c3_env *env)
+int	render_backgound(t_c3_env *env)
 {
 	pthread_t	threads[CPUCORES];
 	int			i;
