@@ -1,3 +1,5 @@
+#include <mlx.h>
+
 #include "cub3d.h"
 #include "key_index.h"
 
@@ -11,5 +13,7 @@ int	focusout_hook(t_c3_env *env)
 		env->key_state[i] = 0;
 		i++;
 	}
+	env->mouse.status = 0;
+	mlx_mouse_show(env->mlx, env->win);
 	return (0);
 }
