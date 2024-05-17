@@ -6,7 +6,7 @@
 # define TYPE_FL_CE 0x1000
 // 0b0001 0000 0000 0000
 # define TYPE_PORTAL 0x2000
-// 0b0010 0000 0000 0000
+// 0b0011 0000 0000 0000
 
 # define EMPTY_CELL -1
 
@@ -31,6 +31,7 @@
 # define IS_PORTAL(x) ((x & TYPE_MASK) == TYPE_PORTAL)
 
 # define GET_TYPE(x) ((x & TYPE_MASK) >> 12)
+# define GET_ID(x) (x & WALL_MASK)
 # define GET_WALL(x) (x & WALL_MASK)
 # define GET_FLOOR(x) (x & FLOOR_MASK)
 # define GET_CEILING(x) ((x & CEILING_MASK) >> CEILING_SHIFT)

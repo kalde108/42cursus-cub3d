@@ -16,6 +16,8 @@ void DISPLAY_SHORT_MAP(t_c3_env *env)
 			printf("WW");
 		else if (IS_FL_CE(s))
 			printf("..");
+		else if (IS_PORTAL(s))
+			printf("PP");
 		else
 			printf("  ");
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:17:58 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 		}
 		i++;
 	}
+	if (convert_xmp(mlx_ptr, textures[PORTAL]->frames))
+		return (-1);
 	return (0);
 }
 

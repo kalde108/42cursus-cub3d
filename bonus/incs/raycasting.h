@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:57:07 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:02:19 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "draw.h"
 
 # define MAX_JUMPS 100
-# define MAX_PORTALS 100
+# define MAX_LAYERS 100
 
 typedef struct s_ray
 {

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:48:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:05:09 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef union s_color
 
 
 void	draw_wall(t_img *img, t_hit_buffer *hit_buff, int x);
+void	draw_portal(t_img *img, t_hit_buffer *hit_buff, int x);
 
 void	put_pixel(t_img *img, int x, int y, int color);
 void	put_pixel_alpha(t_img *img, int x, int y, int color);

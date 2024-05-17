@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:57:08 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:09:09 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			|| IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			hit = 1;
-			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			ray->hit_type = GET_TYPE(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
 		}
 	}
 	if (ray->side == 0)

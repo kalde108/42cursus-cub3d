@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_cell_value.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 15:55:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:16:00 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
 	{
 		//INVALID MAP ERROR MESSAGE
 		return (-1); 
+	}
+	if (PORTAL_CELL == wall)
+	{
+		*cell = TYPE_PORTAL;
+		return (0);
 	}
 	if (MISSING != wall)
 	{
