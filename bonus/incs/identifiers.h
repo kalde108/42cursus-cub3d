@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:59:24 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/10 02:31:26 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:26:09 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@
 # define CY "Cy"
 # define CZ "Cz"
 
+# define PO "PORTAL"
+
 typedef enum e_identifier
 {
 	ID_INVAL = -1,
@@ -176,6 +178,7 @@ typedef enum e_identifier
 	ID_CX,
 	ID_CY,
 	ID_CZ,
+	ID_PORTAL,
 	ID_COUNT
 }	t_identifier;
 
