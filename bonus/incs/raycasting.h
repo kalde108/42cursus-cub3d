@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:26:16 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:30:23 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ typedef struct s_hit_buffer
 void	ray_calculation(t_player *player, t_ray *ray, int x);
 void	ft_dda(t_cubscene *scene, t_ray *ray);
 int		get_tex_x(t_ray *ray, int width, t_player player);
-void	get_line_y(t_vline *line, double perp_wall_dist);
+void	get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist);
 
 #endif
