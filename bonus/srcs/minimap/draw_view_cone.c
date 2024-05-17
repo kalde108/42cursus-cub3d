@@ -2,6 +2,7 @@
 #include "raycasting.h"
 #include "draw.h"
 #include "minimap.h"
+#include "tile_address.h"
 
 #include <math.h>
 
@@ -51,7 +52,7 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img)
 			ray->map_pos.y += ray->step.y;
 			ray->side = 1;
 		}
-		if (ft_ischarset(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x], "12"))
+		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			hit = 1;
 			prev_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];

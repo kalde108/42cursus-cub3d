@@ -1,6 +1,7 @@
 #include "cub3d.h"
 #include "draw.h"
 #include "minimap.h"
+#include "tile_address.h"
 
 static void	draw_map(t_c3_env *env)
 {
@@ -19,14 +20,14 @@ static void	draw_map(t_c3_env *env)
 		while (j < env->scene.width)
 		{
 			alpha = 0;
-			if (env->scene.map[i * env->scene.width + j] == '1')
+			if (IS_WALL(env->scene.map[i * env->scene.width + j]))
 				color = 0x00FF0000;
-			else if (env->scene.map[i * env->scene.width + j] == '0')
+			else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
 				color = 0xbc8128;
-			else if (env->scene.map[i * env->scene.width + j] == '2')
-				color = 0xff9b00;
-			else if(env->scene.map[i * env->scene.width + j] == '3')
-				color = 0x000000FF;
+			// else if (env->scene.map[i * env->scene.width + j] == '2')
+			// 	color = 0xff9b00;
+			// else if(env->scene.map[i * env->scene.width + j] == '3')
+			// 	color = 0x000000FF;
 			else
 			{
 				color = 0x7F000000;

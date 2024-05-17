@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 17:42:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 18:08:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,6 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 	end_dst = dst + ((int)(line->end - line->start)) * WIDTH;
 	while (dst <= end_dst)
 	{
-		// *(uint32_t *)&color = tex[(int)tex_y * texture->width];
-		// if (ray->side == 1)
-		// {
-		// 	// color = (color >> 1) & 8355711;
-		// 	color.r = color.r * 0.75;
-		// 	color.g = color.g * 0.75;
-		// 	color.b = color.b * 0.75;
-		// }
-		// *dst = *(uint32_t *)&color;
 		color.argb = tex[(int)tex_y * texture->width];
 		if (ray->side == 1)
 		{
@@ -59,6 +50,7 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 		*dst = color.argb;
 		// *dst = tex[(int)tex_y * texture->width];
 		dst += WIDTH;
+		// dst += 1;
 		tex_y += step;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 13:49:59 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:26:16 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "cub3d.h"
 # include "draw.h"
+
+# define MAX_JUMPS 100
+# define MAX_PORTALS 100
 
 typedef struct s_ray
 {
@@ -25,7 +28,19 @@ typedef struct s_ray
 	t_v2d_d	side_dist;
 	int		side;
 	double	perp_wall_dist;
+	int		hit_type;
 }	t_ray;
+
+typedef struct s_hit_buffer
+{
+	int		side;
+	int		type;
+	// t_vline	line;
+	int		y1;
+	int		y2;
+	int		tex_x;
+	t_texdata	*texture;
+}	t_hit_buffer;
 
 void	ray_calculation(t_player *player, t_ray *ray, int x);
 void	ft_dda(t_cubscene *scene, t_ray *ray);
