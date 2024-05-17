@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:24:58 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 static int	init_texture(t_elem ***texture);
 static int	allocate_wall_floor_ceilling(t_elem **type);
+static int	allocate_portal(t_elem **portal_ptr);
 
 int	init_cubenv(t_c3_env *env, char *arg)
 {
@@ -72,6 +73,8 @@ static int	init_texture(t_elem ***texture)
 		}
 		i++;
 	}
+	if (0 != allocate_portal(ptr + i))
+		return (1);
 	*texture = ptr;
 	return (0);
 }
@@ -88,4 +91,18 @@ static int	allocate_wall_floor_ceilling(t_elem **type)
 	}
 	*type = ptr;
 	return (0);
+}
+
+static int	allocate_portal(t_elem **portal_ptr)
+{
+	t_elem	*ptr;
+
+	ptr = ft_calloc(1, sizeof(t_elem));
+	if (NULL == ptr)
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
+		return (1);
+	}
+	*portal_ptr = ptr;
+	return (0);	
 }
