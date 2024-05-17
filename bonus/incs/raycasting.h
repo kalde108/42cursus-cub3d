@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:30:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:57:07 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_hit_buffer
 	int		side;
 	int		type;
 	// t_vline	line;
-	int		y1;
-	int		y2;
+	double	y1;
+	double	y2;
 	int		tex_x;
 	t_texdata	*texture;
 }	t_hit_buffer;

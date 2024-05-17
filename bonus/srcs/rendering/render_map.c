@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:31:24 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:57:43 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 			hit_buffer[hit_count].texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
 			hit_buffer[hit_count].tex_x = get_tex_x(&ray, hit_buffer[hit_count].texture->width, env->player);
 			get_line_y(hit_buffer + hit_count, ray.perp_wall_dist);
+			hit_buffer[hit_count].side = ray.side;
 			hit_count++;
 			// draw_v_line(&env->img, &line, tex_x, texture, &ray);
 		}
+		while (hit_count-- > 0)
+		{
+			draw_wall(&env->img, hit_buffer + hit_count, x);
+		}
+		
 		x++;
 	}
 }

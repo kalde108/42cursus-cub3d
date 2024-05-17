@@ -55,7 +55,7 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	draw_v_line \
+	draw_wall \
 	get_wall_texture \
 	get_tex_x \
 	draw_line \

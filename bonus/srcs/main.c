@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:10:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:41:20 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	TEST(t_c3_env *env)
 	init_timer(&env->clocks.map_tex_timer, 100, AUTO_RESET);
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
-	env->scene.map[6 * env->scene.width + 25] = TYPE_PORTAL;
+	// env->scene.map[6 * env->scene.width + 25] = TYPE_PORTAL;
 	// env->scene.elems[TYPE_PORTAL][0] = env->scene.elems[WALL][0];
 }
 
