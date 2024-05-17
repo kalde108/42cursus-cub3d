@@ -13,7 +13,7 @@ int	focusout_hook(t_c3_env *env)
 		env->key_state[i] = 0;
 		i++;
 	}
-	env->mouse.status = 0;
+	env->mouse.status = false;
 	mlx_mouse_show(env->mlx, env->win);
 	return (0);
 }
