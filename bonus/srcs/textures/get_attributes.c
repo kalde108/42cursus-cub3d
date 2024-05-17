@@ -10,10 +10,10 @@ int get_attributes(char *identifier, t_elem *elem)
 {
 	char *token;
 
-
 	token = ft_strtok(NULL, " ");
 	while (token)
 	{
+		ft_dprintf(2, "id=%s tok=%s\n", identifier, token);
 		if (0 != set_attribute(identifier, token, elem))
 			return (-1);
 		token = ft_strtok(NULL, " ");
@@ -25,6 +25,8 @@ static int set_attribute(char *identifier, char *str, t_elem *elem)
 {
 	const char	*option[] = {ATTR_1, ATTR_2, ATTR_3, ATTR_4, ATTR_5, ATTR_6,
 		NULL};
+	const		t_set_attr f[] = {set_animation_attr, set_frametime_attr,
+		NULL, NULL, NULL, NULL};
 	int			i;
 	int			len;
 
@@ -33,9 +35,7 @@ static int set_attribute(char *identifier, char *str, t_elem *elem)
 	{
 		len = ft_strlen(option[i]);
 		if (0 == ft_strncmp(option[i], str, len))
-		{
-			return (0);
-		}
+			return ((f[i](identifier, str + len, elem)));
 		i++;
 	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR3, identifier, str, INVAL_ATTR);
@@ -43,7 +43,3 @@ static int set_attribute(char *identifier, char *str, t_elem *elem)
 	(void)elem;
 }
 
-// int set_frametime(char *identifier, char *str,)
-// {
-
-// }

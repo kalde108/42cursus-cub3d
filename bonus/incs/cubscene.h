@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 21:29:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 16:38:24 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,6 @@ enum e_textype
 	ENTITY,
 	TEXTURES_TYPES
 };
-
-typedef struct s_texdata
-{
-	char	*filepath;
-	void	*mlx_img;
-	int		width;
-	int		height;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_texdata;
-
-typedef struct s_elem
-{
-	t_texdata		*frames;
-	t_texdata		*current;
-	int				n;
-	int				current_frame;
-	int				dir;
-	char			options;
-	t_attributes	attr;
-}	t_elem;
 
 typedef struct s_cubscene
 {

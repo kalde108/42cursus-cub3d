@@ -57,6 +57,8 @@ TEXTURES_DIR = textures/
 TEXTURES_SRC = \
 	init_attributes \
 	get_attributes \
+	set_animation_attr \
+	set_frametime_attr \
 
 # ********** DRAW ********** #
 

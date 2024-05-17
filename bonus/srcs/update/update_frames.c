@@ -36,7 +36,7 @@ void	update_frames(t_c3_env *env)
 t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 {
 	texture->current_frame += passed_frame * texture->dir;
-	if (texture->options & LOOP)
+	if (texture->attr.animation == LOOP)
 	{
 		texture->current_frame %= texture->n;
 		return (texture->frames + texture->current_frame);
