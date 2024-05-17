@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:58:18 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 22:00:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define MAX_TEXTURE 26
 # define BASIC_TEXTURE 3
+# define SPECIAL_TEXTURES 1
 
 enum e_textype
 {

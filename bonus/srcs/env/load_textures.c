@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:17:58 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 21:48:30 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	}
 	if (convert_xmp(mlx_ptr, textures[PORTAL]->frames))
 		return (-1);
+	textures[PORTAL]->current = textures[PORTAL]->frames;
+	textures[PORTAL]->dir = 1;
+	textures[PORTAL]->options = 1;
 	return (0);
 }
+
 
 static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 {
