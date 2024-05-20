@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:07:37 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 19:17:25 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@
 # define MONSTER_NOPATH "Monster has no available path to player"
 # define TOO_MANY_PORTALS "Too many portals"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
-
 # define INVAL_CELL "MAP: (x%d;y%d): Invalid cell \n"
 
 //MAP_CHARSET
