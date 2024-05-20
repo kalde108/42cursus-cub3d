@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:05:09 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:17:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, int color);
 
 void	draw_crosshair(t_c3_env *env); // test
 
-t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_elem **textures);
+t_texdata	*get_wall_texture(t_cubscene *scene, int cell, t_elem **textures);
 
 #endif

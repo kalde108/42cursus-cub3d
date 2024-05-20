@@ -21,7 +21,7 @@ aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
 aa      aa b a aab      a   a
 a               aa d d  b   a
-a              Pab      a N a
+a              P b      a N a
 a    M          aa a b  a   a
 ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a
@@ -38,7 +38,7 @@ a                   aaaaaaaaaaaa
     a         a   d d dd aaa 
   bbbbbb  b b a   dddddd aaa 
  bbcccbbbbbbbbbb  dddddd aaa 
- bbccccccccccccc  dddddd aaa 
+ bbcccccccccccccb dddddd aaa 
  bbcccbbbbbbbbbb  d d dd aaa 
   bbbbb   b b b     d    aaa   
     b       b b   a    a aaa 
@@ -55,7 +55,7 @@ a                   aaaaaaaaaaaa
     a         a   a a aa aaa 
   aaaaaa  a a a   aaaaaa aba 
  abaaabaaaaaaaaa  abaaba aaa 
- aaaaaaaabaaabaa  aaaaaa aaa 
+ aaaaaaaabaaabaaa aaaaaa aaa 
  abaaabaaaaaaaaa  a a aa aba 
   aaaaa   a a a     a    aaa   
     a       a a   a    a aaa 
