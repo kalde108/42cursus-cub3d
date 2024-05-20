@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:19:27 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:21:14 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray)
 			if (ray->ray_dir.x > 0)
 				ray->map_pos.x += 1;
 			else
-				ray->map_pos.x -= 0;
+				ray->map_pos.x -= 1;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				ray->map_pos.y -= 0;
+				ray->map_pos.y += 1;
 			else
-				ray->map_pos.y += 0;
+				ray->map_pos.y -= 1;
 		}
 	}
 }
