@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 17:22:20 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 19:31:02 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_elem **texture
 	else if (IS_PORTAL(cell))
 		texture_block = textures[PORTAL];
 	else
+	{
+		dprintf(2, "Error\n");
+		dprintf(2, "Invalid cell type: %d\n", cell);
 		return (NULL);
+	}
 	return (texture_block->current);
 }
