@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:18:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 13:57:17 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ inline void	draw_portal(t_img *img, t_hit_buffer *hit_buffer, int x)
 	double			step;
 	double			tex_y;
 	t_color			color_new;	// test
-	// t_color			color_old;	// test
+	t_color			color_old;	// test
 
 	// (void)ray;
 	dst = (unsigned int *)img->addr;
@@ -41,7 +41,7 @@ inline void	draw_portal(t_img *img, t_hit_buffer *hit_buffer, int x)
 	end_dst = dst + ((int)(hit_buffer->y2 - hit_buffer->y1)) * WIDTH;
 	while (dst <= end_dst)
 	{
-		// color_old.argb = *dst;
+		color_old.argb = *dst;
 		color_new.argb = tex[(int)tex_y * hit_buffer->texture->width];
 		if (hit_buffer->side == 1)
 		{
@@ -49,7 +49,9 @@ inline void	draw_portal(t_img *img, t_hit_buffer *hit_buffer, int x)
 			color_new.g *= 0.75;
 			color_new.b *= 0.75;
 		}
-		// color_new.r = (color_new.r + color_old.r) / 2;
+		color_new.r = (color_new.r + color_old.r) / 2;
+		color_new.g = (color_new.g + color_old.g) / 2;
+		color_new.b = (color_new.b + color_old.b) / 2;
 		*dst = color_new.argb;
 		// *dst = tex[(int)tex_y * texture->width];
 		dst += WIDTH;

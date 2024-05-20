@@ -14,10 +14,10 @@ void DISPLAY_SHORT_MAP(t_c3_env *env)
 		s = env->scene.map[i];
 		if (IS_WALL(s))
 			printf("WW");
-		else if (IS_FL_CE(s))
-			printf("..");
 		else if (IS_PORTAL(s))
 			printf("PP");
+		else if (IS_FL_CE(s))
+			printf("..");
 		else
 			printf("  ");
 		i++;

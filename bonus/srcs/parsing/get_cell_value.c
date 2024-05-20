@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:16:00 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 15:48:18 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,32 +24,45 @@ int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
 	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
 	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER) - 'a';
 
-	if (WALKABLE == wall && MISSING != floor && MISSING != ceiling)
-	{
-		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
-		return (0);
-	}
-	if (WALKABLE == wall)
-	{
-		//INVALID MAP ERROR MESSAGE
-		return (-1); 
-	}
-	if (PORTAL_CELL == wall)
-	{
-		*cell = TYPE_PORTAL;
-		return (0);
-	}
-	if (MISSING != wall)
-	{
+	if (wall >= 0 && wall < 26)
 		*cell = TYPE_WALL | wall;
-		return (0);
-	}
-	if (MISSING != floor && MISSING != ceiling)
+	else if (MISSING != floor && MISSING != ceiling)
 	{
-		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
-		return (0);
+			if (PORTAL_CELL == wall)
+				*cell = TYPE_PORTAL | TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
+			else
+				*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 	}
-	*cell = EMPTY_CELL;
+	else
+		*cell = EMPTY_CELL;
+	// if (WALKABLE == wall && MISSING != floor && MISSING != ceiling)
+	// {
+	// 	*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
+	// 	return (0);
+	// }
+	// if (WALKABLE == wall)
+	// {
+	// 	//INVALID MAP ERROR MESSAGE
+	// 	return (-1); 
+	// }
+	// if (PORTAL_CELL == wall && MISSING != floor && MISSING != ceiling)
+	// {
+	// 	*cell = TYPE_PORTAL | TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
+	// 	dprintf(2, "portal cell: %X\n", *cell);
+	// 	dprintf(2, "is portal: %d\n", IS_PORTAL(*cell));
+	// 	return (0);
+	// }
+	// if (MISSING != wall)
+	// {
+	// 	*cell = TYPE_WALL | wall;
+	// 	return (0);
+	// }
+	// if (MISSING != floor && MISSING != ceiling)
+	// {
+	// 	*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
+	// 	return (0);
+	// }
+	// *cell = EMPTY_CELL;
 	return (0);
 }
 

@@ -1,36 +1,36 @@
 #ifndef OBJECTS_IDS_H
 # define OBJECTS_IDS_H
 
-# define TYPE_WALL 0x0000
-// 0b0000 0000 0000 0000
-# define TYPE_FL_CE 0x1000
+// 0b0010 0000 0000 0000
+# define TYPE_WALL 0x2000
 // 0b0001 0000 0000 0000
-# define TYPE_PORTAL 0x2000
-// 0b0011 0000 0000 0000
+# define TYPE_FL_CE 0x1000
+// 0b0100 0000 0000 0000
+# define TYPE_PORTAL 0x4000
 
-# define EMPTY_CELL -1
+# define EMPTY_CELL 0
 
-# define TYPE_MASK 0xF000
 // 0b1111 0000 0000 0000
+# define TYPE_MASK 0xF000
 
+// 0b0000 0000 1111 1111
 # define WALL_MASK 0x00FF
-// 0b0000 0000 1111 1111
-# define FLOOR_MASK 0x0001F
 // 0b0000 0000 0001 1111
-# define CEILING_MASK 0x003E0
+# define FLOOR_MASK 0x0001F
 // 0b0000 0011 1110 0000
-# define PORTAL_MASK 0x00FF
+# define CEILING_MASK 0x003E0
 // 0b0000 0000 1111 1111
+# define PORTAL_MASK 0x00FF
 
 # define CEILING_SHIFT 5
 
-# define IS_WALL(x) ((x & TYPE_MASK) == TYPE_WALL)
+# define IS_WALL(x) (x & TYPE_WALL)
 # define NOT_WALL(x) ((x & TYPE_MASK) ^ TYPE_WALL)
-# define IS_FL_CE(x) ((x & TYPE_MASK) == TYPE_FL_CE)
+# define IS_FL_CE(x) (x & TYPE_FL_CE)
 # define NOT_FL_CE(x) ((x & TYPE_MASK) ^ TYPE_FL_CE)
-# define IS_PORTAL(x) ((x & TYPE_MASK) == TYPE_PORTAL)
+# define IS_PORTAL(x) (x & TYPE_PORTAL)
 
-# define GET_TYPE(x) ((x & TYPE_MASK) >> 12)
+# define GET_TYPE(x) ((x & TYPE_MASK))
 # define GET_ID(x) (x & WALL_MASK)
 # define GET_WALL(x) (x & WALL_MASK)
 # define GET_FLOOR(x) (x & FLOOR_MASK)

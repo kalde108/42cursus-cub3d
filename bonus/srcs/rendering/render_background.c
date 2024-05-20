@@ -27,6 +27,8 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 {
 	t_v2d_i	tex_coord;
 
+	// if (!texture)
+	// 	dprintf(2, "no texture\n");
 	tex_coord.x = (int)(texture->width * (floor.x - cell_pos.x));
 	tex_coord.y = (int)(texture->height * (floor.y - cell_pos.y));
 
@@ -40,7 +42,7 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 
 	cell_pos.x = (int)(floor.x);
 	cell_pos.y = (int)(floor.y);
-	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || NOT_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
+	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || !IS_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
 		return ;
 	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
 	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, floor, cell_pos);

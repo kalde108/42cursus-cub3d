@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:33:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 15:03:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 #include "ft_math.h"
 #include "tile_address.h"
 
+# include <stdio.h>
+
 t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_elem **textures)
 {
 	t_elem *texture_block;
+	short	cell;
 
-	// texture_block = &textures[GET_TYPE(scene->map[map_pos.y * scene->width + map_pos.x])][GET_ID(scene->map[map_pos.y * scene->width + map_pos.x])];
-	(void)scene;
-	(void)map_pos;
-	// texture_block = textures[WALL];	// works
-	texture_block = textures[PORTAL];	//segfault
+	cell = scene->map[map_pos.y * scene->width + map_pos.x];
+	if (IS_WALL(cell))
+		texture_block = &textures[WALL][GET_ID(cell)];
+	else if (IS_PORTAL(cell))
+		texture_block = textures[PORTAL];
+	else
+		return (NULL);
 	return (texture_block->current);
 }

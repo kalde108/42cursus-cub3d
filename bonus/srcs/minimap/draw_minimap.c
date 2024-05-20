@@ -22,6 +22,8 @@ static void	draw_map(t_c3_env *env)
 			alpha = 0;
 			if (IS_WALL(env->scene.map[i * env->scene.width + j]))
 				color = 0x00FF0000;
+			else if (IS_PORTAL(env->scene.map[i * env->scene.width + j]))
+				color = 0x000000FF;
 			else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
 				color = 0xbc8128;
 			// else if (env->scene.map[i * env->scene.width + j] == '2')

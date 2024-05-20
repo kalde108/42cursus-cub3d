@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 20:32:50 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 15:21:20 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 		}
 		while (hit_count-- > 0)
 		{
-			// if (buffer[hit_count].type == TYPE_WALL || buffer[hit_count].type == TYPE_PORTAL)
-			draw_wall(&env->img, buffer + hit_count, x);
-			// else if (buffer[hit_count].type == TYPE_PORTAL)
-			// 	draw_portal(&env->img, buffer + hit_count, x);
+			if (IS_WALL(buffer[hit_count].type))
+				draw_wall(&env->img, buffer + hit_count, x);
+			else if (IS_PORTAL(buffer[hit_count].type))
+				draw_portal(&env->img, buffer + hit_count, x);
 		}
 		
 		x++;
