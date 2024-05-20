@@ -6,7 +6,7 @@
 void DISPLAY_SHORT_MAP(t_c3_env *env)
 {
 	int		i;
-	short	s;
+	int	s;
 
 	i = 0;
 	while (i < env->scene.width * env->scene.height)
