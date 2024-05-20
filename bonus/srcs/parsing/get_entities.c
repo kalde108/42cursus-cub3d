@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_entities.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 13:13:57 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 16:05:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 19:06:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	get_entities(t_vector *map, t_c3_env *env)
 		return (-1);
 	if (get_portals(map, &env->scene))
 		return (-1);
-	// if (1 != is_player_enclosed(map, env))
-	// 	return (-1);
+	if (1 != is_player_enclosed(map, env))
+		return (-1);
 	return (0);
 }
