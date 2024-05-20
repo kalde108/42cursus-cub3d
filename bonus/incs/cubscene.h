@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 16:43:24 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 16:53:45 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_portal	// A DEPLACER
 typedef struct s_cubscene
 {
 	t_elem		**elems;
-	short		*map;
+	int			*map;
 	int			width;
 	int			height;
 	struct s_portals

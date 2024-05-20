@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 16:11:22 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 16:55:08 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene);
 char	*get_map_charset(t_elem *textures);
 char	*get_layer_charset(t_elem *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
-int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
+int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell);
 int		get_directory_textures(char *dirpath, t_elem *texture);
 int		get_portals(t_vector *map, t_cubscene *scene);
 

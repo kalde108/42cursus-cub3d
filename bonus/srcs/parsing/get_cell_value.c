@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 15:48:18 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 17:21:10 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 
 # include "stdio.h"
 
-int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
+int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell)
 {
+	static int	portal_count = 0;
 	const char	wall = get_layer_cell(map, y, x, MAP_LAYER) - 'a';
 	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
 	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER) - 'a';
@@ -29,7 +30,7 @@ int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
 	else if (MISSING != floor && MISSING != ceiling)
 	{
 			if (PORTAL_CELL == wall)
-				*cell = TYPE_PORTAL | TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
+				*cell = TYPE_PORTAL | TYPE_FL_CE | (portal_count++ << PORTAL_SHIFT) | floor | (ceiling << CEILING_SHIFT);
 			else
 				*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 16:27:26 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 16:54:50 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 static int		get_map_width(t_vector *map);
 static int		fill_lines(t_vector *map, int width);
-static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene);
+static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene);
 
 int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
@@ -75,13 +75,13 @@ static int	fill_lines(t_vector *map, int width)
 	return (0);
 }
 
-static short	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
+static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
 	const size_t	size = scene->width * scene->height;
-	short			*s_map;
+	int			*s_map;
 	size_t			i;
 
-	s_map = malloc(sizeof(short) * size);
+	s_map = malloc(sizeof(int) * size);
 	if (!s_map)
 		return (NULL);
 	i = 0;

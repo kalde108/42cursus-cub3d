@@ -38,7 +38,7 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_elem **textures)
 {
 	t_v2d_i	cell_pos;
-	short	cell;
+	int		cell;
 
 	cell_pos.x = (int)(floor.x);
 	cell_pos.y = (int)(floor.y);
