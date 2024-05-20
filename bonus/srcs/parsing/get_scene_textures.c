@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 22:31:16 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:22:02 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_identifier	get_identifier(char *str)
 		WK, WL, WM, WN, WO, WP, WQ, WR, WS, WT, WU, WV, WW, WX, WY, WZ, FA, FB,
 		FC, FD, FE, FF, FG, FH, FI, FJ, FK, FL, FM, FN, FO, FP, FQ, FR, FS, FT,
 		FU, FV, FW, FX, FY, FZ, CA, CB, CC, CD, CE, CF, CG, CH, CI, CJ, CK, CL,
-		CM, CN, CO, CP, CQ, CR, CS, CT, CU, CV, CW, CX, CY, CZ, NULL};
+		CM, CN, CO, CP, CQ, CR, CS, CT, CU, CV, CW, CX, CY, CZ, PO, NULL};
 	t_identifier	i;
 
 	i = 0;

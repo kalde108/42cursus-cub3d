@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:19:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 20:05:09 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "cub3d.h"
 
-typedef struct s_ray	t_ray;
+typedef struct s_hit_buffer	t_hit_buffer;
 
 typedef struct s_vline
 {
@@ -38,7 +38,8 @@ typedef union s_color
 
 
 
-void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture, t_ray *ray);
+void	draw_wall(t_img *img, t_hit_buffer *hit_buff, int x);
+void	draw_portal(t_img *img, t_hit_buffer *hit_buff, int x);
 
 void	put_pixel(t_img *img, int x, int y, int color);
 void	put_pixel_alpha(t_img *img, int x, int y, int color);

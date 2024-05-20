@@ -52,7 +52,6 @@ static int	search_line(t_vector *line, t_player *player, bool *found, int y)
 			player->pos.x = i + 0.5;
 			player->pos.y = y + 0.5;
 			get_player_orientation(*cell, player);
-			*cell = '.';
 		}
 	}
 	return (0);

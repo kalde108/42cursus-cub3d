@@ -43,6 +43,7 @@ PARSING_SRC = \
 	get_entities \
 	get_monster_spawn \
 	get_player_spawn \
+	get_portals \
 	get_scene_map \
 	get_scene_textures \
 	is_player_enclosed \
@@ -66,7 +67,8 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	draw_v_line \
+	draw_wall \
+	draw_portal \
 	get_wall_texture \
 	get_tex_x \
 	draw_line \

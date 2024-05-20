@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:02:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 19:18:42 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,42 @@
 #include "cubdef.h"
 #include "parsing.h"
 
-static int	is_enclosed(t_vector *map, int x, int y);
+static int	is_enclosed(t_vector *map, t_v2d_i start);
 static int	flood_fill_routine(t_vector *map, t_vector *stack);
 
 int	is_player_enclosed(t_vector *map, t_c3_env *env)
 {
 	int				enclosed;
 
-	enclosed = is_enclosed(map, env->player.pos.x, env->player.pos.y);
-	if (!enclosed)
+	enclosed = is_enclosed(map,
+		(t_v2d_i){env->player.pos.x, env->player.pos.y});
+	if (0 == enclosed)
+	{
 		ft_dprintf(STDERR_FILENO, MAP_ERR2, NON_ENCLOSED);
-	else if (enclosed == -1)
+		return (0);
+	}
+	else if (-1 == enclosed)
+	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
-	return (enclosed == 1);
+		return (0);
+	}
+	else if ('.' != *(char *)(ft_vector_get(ft_vector_get(map, env->monster.pos.y), env->monster.pos.x)))
+	{
+		ft_dprintf(STDERR_FILENO, MAP_ERR2, MONSTER_NOPATH);
+		return (0);
+	}
+	return (1);
 }
 
-static int	is_enclosed(t_vector *map, int x, int y)
+#include "stdio.h"
+
+static int	is_enclosed(t_vector *map, t_v2d_i start)
 {
 	t_vector	stack;
 	int			enclosed;
 
 	if (ft_vector_init(&stack, sizeof(t_v2d_i), 0, NULL)
-		|| ft_vector_add(&stack, &(t_v2d_i){x, y}))
+		|| ft_vector_add(&stack, &start))
 	{
 		ft_vector_free(&stack);
 		return (-1);
@@ -53,30 +67,23 @@ static int	is_enclosed(t_vector *map, int x, int y)
 }
 
 static int	flood_fill_routine(t_vector *map, t_vector *stack)
-{
-	(void)map;
-	(void)stack;
-	return (1);
-	// char		*ptr;
-	// char		c;
-	// t_v2d_i		pos;
+{	
+	t_v2d_i		current;
+	char		*cell;
 
-	// pos = *(t_v2d_i *)ft_vector_get(stack, stack->total - 1);
-	// ft_vector_delete(stack, stack->total - 1);
-	// if (pos.x < 0 || pos.x >= scene->width
-	// 	|| pos.y < 0 || pos.y >= scene->height)
-	// 	return (0);
-	// ptr = scene->map + (pos.y * scene->width) + pos.x;
-	// c = *ptr;
-	// if (ft_ischarset(c, ENCLOSURE_CHARSET))
-	// 	return (1);
-	// if (ft_ischarset(c, UNCLOSED_CHARSET))
-	// 	return (0);
-	// *ptr = '1';
-	// if (ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y - 1})
-	// 	|| ft_vector_add(stack, &(t_v2d_i){pos.x - 1, pos.y})
-	// 	|| ft_vector_add(stack, &(t_v2d_i){pos.x, pos.y + 1})
-	// 	|| ft_vector_add(stack, &(t_v2d_i){pos.x + 1, pos.y}))
-	// 	return (-1);
-	// return (1);
+	current = *(t_v2d_i *)ft_vector_get(stack, stack->total - 1);
+	ft_vector_delete(stack, stack->total - 1);
+	cell = ft_vector_get(ft_vector_get(map, current.y), current.x);
+	if (NULL == cell)
+		return (0);
+	if (ft_ischarset(*cell, ".abcdefghijklmnopqrstuvwxyz"))
+		return (1);
+	if (0 == ft_ischarset(*cell, "P"))
+		 *cell = '.';
+	if (ft_vector_add(stack, &(t_v2d_i){current.x, current.y - 1})
+		|| ft_vector_add(stack, &(t_v2d_i){current.x - 1, current.y})
+		|| ft_vector_add(stack, &(t_v2d_i){current.x, current.y + 1})
+		|| ft_vector_add(stack, &(t_v2d_i){current.x + 1, current.y}))
+		return (-1);
+	return (1);
 }

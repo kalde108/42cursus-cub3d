@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:20:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 18:03:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,40 @@
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
 	t_ray	ray;
-	t_vline	line;
-	t_texdata	*texture;
-	int		tex_x;
+	// t_vline	line;
+	// t_texdata	*texture;
+	// int		tex_x;
+	int				x;
+	t_hit_buffer	buffer[MAX_LAYERS];
+	int				hit_count;
 
-	line.x = start;
-	while (line.x < end)
+	x = start;
+	while (x < end)
 	{
-		ray_calculation(&env->player, &ray, line.x);
-		ft_dda(&env->scene, &ray);
-		env->z_buffer[line.x] = ray.perp_wall_dist;
-		texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
-		tex_x = get_tex_x(&ray, texture->width, env->player);
-		get_line_y(&line, ray.perp_wall_dist);
-		draw_v_line(&env->img, &line, tex_x, texture, &ray);
-		line.x++;
+		hit_count = 0;
+		ray_calculation(&env->player, &ray, x);
+		while (NOT_WALL(ray.hit_type))
+		{
+			ft_dda(&env->scene, &ray);
+			// if (!hit_count)
+				env->z_buffer[x] = ray.perp_wall_dist;
+			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
+			buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, env->player);
+			get_line_y(buffer + hit_count, ray.perp_wall_dist);
+			buffer[hit_count].side = ray.side;
+			buffer[hit_count].type = ray.hit_type;
+			hit_count++;
+			// draw_v_line(&env->img, &line, tex_x, texture, &ray);
+		}
+		while (hit_count-- > 0)
+		{
+			if (IS_WALL(buffer[hit_count].type))
+				draw_wall(&env->img, buffer + hit_count, x);
+			else if (IS_PORTAL(buffer[hit_count].type))
+				draw_portal(&env->img, buffer + hit_count, x);
+		}
+		
+		x++;
 	}
 }
 

@@ -8,6 +8,7 @@ Fd assets/lava
 Ca assets/ceiling1_128.xpm
 Cb assets/lamp1_128.xpm
 Wc assets/torchflower.xpm
+PORTAL assets/nether_portal
 
                    abbbaaaaaaaaaa
         aaaaaaaaaaab            a
@@ -15,24 +16,24 @@ Wc assets/torchflower.xpm
         a aa     aaa            b
         a  a                    b
 aaaaabbaa aa     aaa            a
-a         ba     aaa aabaa aaaaaa
+a         ba     aaa aabaP aaaaaa
 aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
 aa      aa b a aab      a   a
 a               aa d d  b   a
-a               ab      a N a
+a              Pab      a N a
 a    M          aa a b  a   a
 ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a
 aaaaaaaa aaaaaba aaaaaaaaaaaa
 
-                                 
-                    aaaaaaaaaaaa 
+           aa                    
+a                   aaaaaaaaaaaa 
          aaaaaaaaa  aaaaaaaaaaaa 
          a  aaaaa   aaaaaaaaaaaa 
          aa aaaaaaaaaaaaaaaaaaaa 
          a  aaaaa   aaaaaaaaaaaa 
- aaaaaaaaa  aaaaa   a     a      
+ aaaaaaaaa  aaaaa   a    aa      
     a         a   dddddd aaa 
     a         a   d d dd aaa 
   bbbbbb  b b a   dddddd aaa 
@@ -43,13 +44,13 @@ aaaaaaaa aaaaaba aaaaaaaaaaaa
     b       b b   a    a aaa 
                              
 
-                                 
+           aa                    
                     aaaaaaaaaaaa 
          baaaaaaaa  aaabaabaabaa 
          a  aabaa   aaaaaaaaaaaa 
          aa aaaaaaaaaaabaabaabaa 
          a  aabaa   aaaaaaaaaaaa 
- aaaaaaaab  aaaaa   a     a      
+ aaaaaaaab  aaaaa   a    aa      
     a         a   aaaaaa aaa 
     a         a   a a aa aaa 
   aaaaaa  a a a   aaaaaa aba 

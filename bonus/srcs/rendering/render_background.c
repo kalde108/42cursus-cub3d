@@ -3,8 +3,46 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "tile_address.h"
+#include "raycasting.h"
 
 # include <stdio.h>
+
+// static inline void	portal_buffer(t_c3_env *env)
+// {
+// 	t_ray	ray;
+// 	// t_vline	line;
+// 	// t_texdata	*texture;
+// 	// int		tex_x;
+// 	int				x;
+// 	t_hit_buffer	buffer[MAX_LAYERS];
+// 	int				hit_count;
+
+// 	x = 0;
+// 	while (x < WIDTH)
+// 	{
+// 		hit_count = 0;
+// 		ray_calculation(&env->player, &ray, x);
+// 		while (NOT_WALL(ray.hit_type))
+// 		{
+// 			ft_dda(&env->scene, &ray);
+// 			// if (!hit_count)
+// 				// env->z_buffer[x] = ray.perp_wall_dist;
+// 			get_line_y(buffer + hit_count, ray.perp_wall_dist);
+// 			buffer[hit_count].side = ray.side;
+// 			buffer[hit_count].type = ray.hit_type;
+// 			hit_count++;
+// 		}
+// 		// while (hit_count-- > 0)
+// 		// {
+// 		// 	if (IS_WALL(buffer[hit_count].type))
+// 		// 		draw_wall(&env->img, buffer + hit_count, x);
+// 		// 	else if (IS_PORTAL(buffer[hit_count].type))
+// 		// 		draw_portal(&env->img, buffer + hit_count, x);
+// 		// }
+		
+// 		x++;
+// 	}
+// }
 
 static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
 {
@@ -27,6 +65,8 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 {
 	t_v2d_i	tex_coord;
 
+	// if (!texture)
+	// 	dprintf(2, "no texture\n");
 	tex_coord.x = (int)(texture->width * (floor.x - cell_pos.x));
 	tex_coord.y = (int)(texture->height * (floor.y - cell_pos.y));
 
@@ -36,11 +76,11 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_elem **textures)
 {
 	t_v2d_i	cell_pos;
-	short	cell;
+	int		cell;
 
 	cell_pos.x = (int)(floor.x);
 	cell_pos.y = (int)(floor.y);
-	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || NOT_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
+	if (cell_pos.x < 0 || cell_pos.x >= env->scene.width || cell_pos.y < 0 || cell_pos.y >= env->scene.height || !IS_FL_CE(env->scene.map[cell_pos.y * env->scene.width + cell_pos.x]))
 		return ;
 	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
 	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, floor, cell_pos);

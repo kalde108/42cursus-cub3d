@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 16:38:24 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:21:45 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define CUBSCENE_H
 
 # include <stdint.h>
+# include <stddef.h>
 
-# include "ft_vector.h"
+# include "ft_math.h"
 # include "identifiers.h"
 # include "textures.h"
 
@@ -25,6 +26,7 @@
 
 # define MAX_TEXTURE 26
 # define BASIC_TEXTURE 3
+# define SPECIAL_TEXTURES 1
 
 enum e_textype
 {
@@ -36,12 +38,28 @@ enum e_textype
 	TEXTURES_TYPES
 };
 
+# define MAX_PORTALS 10
+typedef struct s_portal	// A DEPLACER
+{
+	int		id;
+	t_v2d_i	pos;
+	int		is_open;
+	int		linked_portal;
+}	t_portal;
+
 typedef struct s_cubscene
 {
 	t_elem		**elems;
-	short		*map;
+	int			*map;
 	int			width;
 	int			height;
+	struct s_portals
+	{
+		t_portal	tab[MAX_PORTALS];
+		int			total;
+		int			opened[2];
+		int			opened_count;
+	}			portals;
 }	t_cubscene;
 
 void	destroy_scene(t_cubscene *scene, void *mlx_ptr);

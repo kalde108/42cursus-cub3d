@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_v_line.c                                      :+:      :+:    :+:   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 17:42:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 19:58:32 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdio.h>
 
-inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture, t_ray *ray)
+inline void	draw_wall(t_img *img, t_hit_buffer *hit_buffer, int x)
 {
 	unsigned int	*dst;
 	unsigned int	*end_dst;
@@ -24,33 +24,24 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 	double			tex_y;
 	t_color			color;	// test
 
-	(void)ray;
+	// (void)ray;
 	dst = (unsigned int *)img->addr;
-	tex = (unsigned int *)(texture->addr + (tex_x << 2));
+	tex = (unsigned int *)(hit_buffer->texture->addr + (hit_buffer->tex_x << 2));
 	tex_y = 0.0;
-	step = 1.0 * texture->height / ((line->end - line->start) + 1);
-	if (line->start < 0)
+	step = 1.0 * hit_buffer->texture->height / ((hit_buffer->y2 - hit_buffer->y1) + 1);
+	if (hit_buffer->y1 < 0)
 	{
-		tex_y = -line->start * step;
-		line->start = 0;
+		tex_y = -hit_buffer->y1 * step;
+		hit_buffer->y1 = 0;
 	}
-	if (line->end >= HEIGHT)
-		line->end = HEIGHT - 1;
-	dst += ((int)line->start << WIDTH_LOG2) + line->x;
-	end_dst = dst + ((int)(line->end - line->start)) * WIDTH;
+	if (hit_buffer->y2 >= HEIGHT)
+		hit_buffer->y2 = HEIGHT - 1;
+	dst += ((int)hit_buffer->y1 << WIDTH_LOG2) + x;
+	end_dst = dst + ((int)(hit_buffer->y2 - hit_buffer->y1)) * WIDTH;
 	while (dst <= end_dst)
 	{
-		// *(uint32_t *)&color = tex[(int)tex_y * texture->width];
-		// if (ray->side == 1)
-		// {
-		// 	// color = (color >> 1) & 8355711;
-		// 	color.r = color.r * 0.75;
-		// 	color.g = color.g * 0.75;
-		// 	color.b = color.b * 0.75;
-		// }
-		// *dst = *(uint32_t *)&color;
-		color.argb = tex[(int)tex_y * texture->width];
-		if (ray->side == 1)
+		color.argb = tex[(int)tex_y * hit_buffer->texture->width];
+		if (hit_buffer->side == 1)
 		{
 			color.r *= 0.75;
 			color.g *= 0.75;
@@ -59,6 +50,7 @@ inline void	draw_v_line(t_img *img, t_vline *line, int tex_x, t_texdata *texture
 		*dst = color.argb;
 		// *dst = tex[(int)tex_y * texture->width];
 		dst += WIDTH;
+		// dst += 1;
 		tex_y += step;
 	}
 }
