@@ -43,6 +43,7 @@ PARSING_SRC = \
 	get_entities \
 	get_monster_spawn \
 	get_player_spawn \
+	get_portals \
 	get_scene_map \
 	get_scene_textures \
 	is_player_enclosed \
