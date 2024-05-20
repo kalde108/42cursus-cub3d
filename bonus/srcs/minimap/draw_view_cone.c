@@ -9,6 +9,24 @@
 # include "libft.h"
 # include <stdio.h>
 
+static void	portal_hit(t_cubscene *scene, t_ray *ray)
+{
+	int	portal_id;
+	int	dest_portal_id;
+	// t_v2d_i	diff;
+
+	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
+	dest_portal_id = scene->portals.tab[portal_id].linked_portal;
+	if (dest_portal_id != -1)
+	{
+		// diff.x = scene->portals.tab[dest_portal_id].pos.x - scene->portals.tab[portal_id].pos.x;
+		// diff.y = scene->portals.tab[dest_portal_id].pos.y - scene->portals.tab[portal_id].pos.y;
+		ray->map_pos = scene->portals.tab[dest_portal_id].pos;
+		// ray->side_dist.x -= diff.x;
+		// ray->side_dist.y -= diff.y;
+	}
+}
+
 void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img)
 {
 	int	hit;
@@ -57,26 +75,32 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img)
 			hit = 1;
 			prev_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
 		}
-		else if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] == '2')
+		if (IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
-			ray->map_pos = (t_v2d_i){1, 9};
-			// if (test_flag)
-			// {
-				// jump = -27.0;
-				// prev.x -= 27.0;
-			// }
-			prev_type = '2';
+			portal_hit(scene, ray);
+			hit = 1;
+			ray->hit_type = GET_TYPE(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
 		}
-		else if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] == '3')
-		{
-			ray->map_pos = (t_v2d_i){27, 9};
-			// if (test_flag)
-			// {
-				// jump = 27.0;
-				// prev.x += 27.0;
-			// }
-			prev_type = '3';
-		}
+		// else if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] == '2')
+		// {
+		// 	ray->map_pos = (t_v2d_i){1, 9};
+		// 	// if (test_flag)
+		// 	// {
+		// 		// jump = -27.0;
+		// 		// prev.x -= 27.0;
+		// 	// }
+		// 	prev_type = '2';
+		// }
+		// else if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] == '3')
+		// {
+		// 	ray->map_pos = (t_v2d_i){27, 9};
+		// 	// if (test_flag)
+		// 	// {
+		// 		// jump = 27.0;
+		// 		// prev.x += 27.0;
+		// 	// }
+		// 	prev_type = '3';
+		// }
 		if (ray->side == 0)
 			perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 		else

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 15:21:20 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 18:03:46 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 		while (NOT_WALL(ray.hit_type))
 		{
 			ft_dda(&env->scene, &ray);
-			env->z_buffer[x] = ray.perp_wall_dist;
+			// if (!hit_count)
+				env->z_buffer[x] = ray.perp_wall_dist;
 			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
 			buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, env->player);
 			get_line_y(buffer + hit_count, ray.perp_wall_dist);
