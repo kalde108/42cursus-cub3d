@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:14:25 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:15:55 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_ray
 typedef struct s_hit_buffer
 {
 	int		side;
-	int		type;
+	int		cell;
 	// t_vline	line;
 	double	y1;
 	double	y2;

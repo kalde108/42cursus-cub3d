@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 15:54:25 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:04:11 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	update_pos(t_c3_env *env)
 {
 	t_v2d_d	move_vec;
 	t_v2d_d	offset;
-	short	cell;
+	int		cell;
 
 	move_vec = get_move_vec(env);
 	offset.x = ((move_vec.x >= 0) - (move_vec.x < 0)) * PLAYER_SIZE;

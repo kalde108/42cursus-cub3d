@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:34:42 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:18:21 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,26 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 	{
 		hit_count = 0;
 		ray_calculation(&env->player, &ray, x);
-		while (NOT_WALL(ray.hit_type))
+		while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
 		{
 			ft_dda(&env->scene, &ray);
 			// if (!hit_count)
 				env->z_buffer[x] = ray.perp_wall_dist;
 			// if (NOT_WALL(ray.hit_type) && NOT_PORTAL(ray.hit_type))
 			// 	dprintf(2, "No hit?: %d\n", ray.hit_type);
-			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
+			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
 			buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, env->player);
 			get_line_y(buffer + hit_count, ray.perp_wall_dist);
 			buffer[hit_count].side = ray.side;
-			buffer[hit_count].type = ray.hit_type;
+			buffer[hit_count].cell = ray.hit_type;
 			hit_count++;
 			// draw_v_line(&env->img, &line, tex_x, texture, &ray);
 		}
 		while (hit_count-- > 0)
 		{
-			if (IS_WALL(buffer[hit_count].type))
+			if (IS_WALL(buffer[hit_count].cell))
 				draw_wall(&env->img, buffer + hit_count, x);
-			else if (IS_PORTAL(buffer[hit_count].type))
+			else if (IS_PORTAL(buffer[hit_count].cell))
 				draw_portal(&env->img, buffer + hit_count, x);
 		}
 		

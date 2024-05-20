@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:58:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 21:19:27 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray)
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
-				ray->map_pos.x -= 1;
+				ray->map_pos.x += 1;
 			else
 				ray->map_pos.x -= 0;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				ray->map_pos.y += 0;
-			else
 				ray->map_pos.y -= 0;
+			else
+				ray->map_pos.y += 0;
 		}
 	}
 }
@@ -67,13 +67,13 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			hit = 1;
-			ray->hit_type = GET_TYPE(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
+			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
 		}
 		if (IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
-			portal_hit(scene, ray);
 			hit = 1;
-			ray->hit_type = GET_TYPE(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
+			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			portal_hit(scene, ray);
 		}
 	}
 	if (ray->side == 0)
