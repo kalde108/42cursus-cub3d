@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:11:56 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/20 19:18:42 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	is_player_enclosed(t_vector *map, t_c3_env *env)
 	}
 	else if ('.' != *(char *)(ft_vector_get(ft_vector_get(map, env->monster.pos.y), env->monster.pos.x)))
 	{
-		ft_dprintf(2, "TRUUUC=%c\n", *(char *)(ft_vector_get(ft_vector_get(map, env->monster.pos.y), env->monster.pos.x)));
 		ft_dprintf(STDERR_FILENO, MAP_ERR2, MONSTER_NOPATH);
 		return (0);
 	}
