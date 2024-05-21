@@ -60,6 +60,7 @@ TEXTURES_SRC = \
 	get_attributes \
 	set_animation_attr \
 	set_frametime_attr \
+	set_framestart_attr \
 
 # ********** DRAW ********** #
 
