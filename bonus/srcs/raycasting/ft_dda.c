@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:21:14 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 16:26:17 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,6 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (ray->side_dist.x < ray->side_dist.y)
-		{
-			ray->side_dist.x += ray->delta_dist.x;
-			ray->map_pos.x += ray->step.x;
-			ray->side = 0;
-		}
-		else
-		{
-			ray->side_dist.y += ray->delta_dist.y;
-			ray->map_pos.y += ray->step.y;
-			ray->side = 1;
-		}
 		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			hit = 1;
@@ -74,6 +62,21 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			hit = 1;
 			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
 			portal_hit(scene, ray);
+		}
+		if (!hit)
+		{
+			if (ray->side_dist.x < ray->side_dist.y)
+			{
+				ray->side_dist.x += ray->delta_dist.x;
+				ray->map_pos.x += ray->step.x;
+				ray->side = 0;
+			}
+			else
+			{
+				ray->side_dist.y += ray->delta_dist.y;
+				ray->map_pos.y += ray->step.y;
+				ray->side = 1;
+			}
 		}
 	}
 	if (ray->side == 0)

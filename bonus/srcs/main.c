@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:10:59 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 16:19:36 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ static void	TEST(t_c3_env *env)
 	env->scene.portals.opened_count = 2;
 	env->scene.portals.opened[0] = 0;
 	env->scene.portals.opened[1] = 1;
+	// env->scene.portals.tab[2].is_open = 1;
+	// env->scene.portals.tab[3].is_open = 1;
+	// env->scene.portals.tab[2].linked_portal = 3;
+	// env->scene.portals.tab[3].linked_portal = 2;
+	// env->scene.portals.opened_count = 2;
+	// env->scene.portals.opened[2] = 2;
+	// env->scene.portals.opened[3] = 3;
 }
 
 int	main(int ac, char **av)
