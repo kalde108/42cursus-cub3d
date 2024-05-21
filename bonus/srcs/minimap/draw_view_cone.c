@@ -9,19 +9,88 @@
 # include "libft.h"
 # include <stdio.h>
 
+static int	get_relative_position(int f1, int f2)
+{
+	int	diff;
+	int	relative_position;
+
+	diff = (f2 - f1) % 4;
+	relative_position = (diff + 4) % 4;
+	return (relative_position);
+}
+
 static void	portal_hit(t_cubscene *scene, t_ray *ray)
 {
 	int	portal_id;
 	int	dest_portal_id;
-	// t_v2d_i	diff;
+	int	relative_position;
+	t_portal	*portals;
+	int	tmp;
 
 	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
-	dest_portal_id = scene->portals.tab[portal_id].linked_portal;
-	if (dest_portal_id != -1)
+	portals = scene->portals.tab;
+	if (portals[portal_id].is_open == 0)
+		return ;	// portal is closed
+	dest_portal_id = portals[portal_id].linked_portal;
+	ray->map_pos = scene->portals.tab[dest_portal_id].pos;
+	relative_position = get_relative_position(portals[portal_id].face, portals[dest_portal_id].face);
+	if (relative_position == 0)	// same face
 	{
-		// diff.x = scene->portals.tab[dest_portal_id].pos.x - scene->portals.tab[portal_id].pos.x;
-		// diff.y = scene->portals.tab[dest_portal_id].pos.y - scene->portals.tab[portal_id].pos.y;
-		ray->map_pos = scene->portals.tab[dest_portal_id].pos;
+		if (ray->side == 0)
+		{
+			ray->step.x = -ray->step.x;
+			if (ray->ray_dir.x > 0)
+				ray->map_pos.x -= 1;
+			else
+				ray->map_pos.x += 1;
+		}
+		else if (ray->side == 1)
+		{
+			ray->step.y = -ray->step.y;
+			if (ray->ray_dir.y > 0)
+				ray->map_pos.y -= 1;
+			else
+				ray->map_pos.y += 1;
+		}
+	}
+	else if (relative_position == 1)	// left face
+	{
+		tmp = ray->step.x;
+		ray->step.x = ray->step.y;
+		ray->step.y = -tmp;
+		// tmp = ray->ray_dir.x;
+		// ray->ray_dir.x = ray->ray_dir.y;
+		// ray->ray_dir.y = -tmp;
+		// tmp = ray->delta_dist.x;
+		// ray->delta_dist.x = ray->delta_dist.y;
+		// ray->delta_dist.y = tmp;
+		// tmp = ray->side_dist.x;
+		// ray->side_dist.x = ray->side_dist.y;
+		// ray->side_dist.y = -tmp;
+		// ray->map_pos.x -= 1;
+		if (ray->side == 0)
+		{
+			if (ray->ray_dir.y > 0)
+				ray->map_pos.x += 1;
+			else
+				ray->map_pos.x -= 1;
+			// if (ray->ray_dir.x > 0)
+			// 	ray->map_pos.y -= 1;
+			// else
+			// 	ray->map_pos.y += 1;
+		}
+		else if (ray->side == 1)
+		{
+			if (ray->ray_dir.y > 0)
+				ray->map_pos.x += 1;
+			else
+				ray->map_pos.x -= 1;
+		}
+		// ray->turn = 1;
+	}
+	else if (relative_position == 2)	// opposite face
+	{
+		// vector stays the same
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
@@ -36,9 +105,28 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray)
 			else
 				ray->map_pos.y -= 1;
 		}
-		// ray->side_dist.x -= diff.x;
-		// ray->side_dist.y -= diff.y;
 	}
+	else if (relative_position == 3)	// right face
+	{
+		tmp = ray->step.x;
+		ray->step.x = -ray->step.y;
+		ray->step.y = tmp;
+	}
+
+	// if (ray->side == 0)
+	// {
+	// 	if (ray->ray_dir.x > 0)
+	// 		ray->map_pos.x += 1;
+	// 	else
+	// 		ray->map_pos.x -= 1;
+	// }
+	// else if (ray->side == 1)
+	// {
+	// 	if (ray->ray_dir.y > 0)
+	// 		ray->map_pos.y += 1;
+	// 	else
+	// 		ray->map_pos.y -= 1;
+	// }
 }
 
 void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img, int debug)
@@ -62,6 +150,7 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img, 
 	jump = (t_v2d_i){0, 0};
 	while (hit == 0 && count < 100)
 	{
+		// drpintf(2, "count: %d\n", count);
 		// if (prev_type == '2')
 		// {
 		// 	jump = -27.0;
@@ -89,19 +178,38 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img, 
 			pid2 = scene->portals.tab[prev_hit].linked_portal;
 			diff.x = scene->portals.tab[pid2].pos.x - scene->portals.tab[prev_hit].pos.x;
 			diff.y = scene->portals.tab[pid2].pos.y - scene->portals.tab[prev_hit].pos.y;
+			// if (ray->side == 0)
+			// {
+			// 	if (ray->ray_dir.x > 0)
+			// 		diff.x += 1;
+			// 	else
+			// 		diff.x -= 1;
+			// }
+			// else if (ray->side == 1)
+			// {
+			// 	if (ray->ray_dir.y > 0)
+			// 		diff.y += 1;
+			// 	else
+			// 		diff.y -= 1;
+			// }
+			// diff.x -= 1;
 			if (ray->side == 0)
-			{
-				if (ray->ray_dir.x > 0)
-					diff.x += 1;
-				else
-					diff.x -= 1;
-			}
-			else if (ray->side == 1)
 			{
 				if (ray->ray_dir.y > 0)
 					diff.y += 1;
 				else
 					diff.y -= 1;
+				// if (ray->ray_dir.x > 0)
+				// 	ray->map_pos.y -= 1;
+				// else
+				// 	ray->map_pos.y += 1;
+			}
+			else if (ray->side == 1)
+			{
+				if (ray->ray_dir.y > 0)
+					diff.x += 1;
+				else
+					diff.x -= 1;
 			}
 			prev.x += diff.x;
 			prev.y += diff.y;

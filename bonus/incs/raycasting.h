@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:15:55 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 20:51:40 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_ray
 	int		side;
 	double	perp_wall_dist;
 	int		hit_type;
+	int		turn;
 }	t_ray;
 
 typedef struct s_hit_buffer

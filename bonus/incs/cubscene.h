@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 16:19:29 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 18:45:06 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_portal	// A DEPLACER
 {
 	int		id;
 	t_v2d_i	pos;
+	int		face;
 	int		is_open;
 	int		linked_portal;
 }	t_portal;

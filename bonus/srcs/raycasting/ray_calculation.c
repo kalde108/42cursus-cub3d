@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 18:12:38 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 20:51:59 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	ray_calculation(t_player *player, t_ray *ray, int x)
 	ray->map_pos.y = (int)player->pos.y;
 	step_init(player, ray);
 	ray->hit_type = -1;
+	ray->turn = 0;
 }
