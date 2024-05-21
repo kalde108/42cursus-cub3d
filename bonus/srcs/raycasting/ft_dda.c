@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 16:26:17 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 16:53:06 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray)
 	// t_v2d_i	diff;
 
 	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
+	// if (portal_id == 0)
+	// 	dprintf(2, "0");
+	// else if (portal_id == 1)
+	// 	dprintf(2, "1");
 	dest_portal_id = scene->portals.tab[portal_id].linked_portal;
 	if (dest_portal_id != -1)
 	{

@@ -12,7 +12,7 @@ PORTAL assets/nether_portal
 
                    abbbaaaaaaaaaa
         aaaaaaaaaaab            a
-        a         ab            a
+        a         ab      P     a
         a aa     aaa            b
         a  a              P     b
 aaaaabbaa aa     aaa            a
@@ -21,7 +21,7 @@ aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
 aa      aa b a aab      a   a
 a               aa d d  b   a
-a              P b      a N a
+a                b      a N a
 a    M          aa a b  a   a
 ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a

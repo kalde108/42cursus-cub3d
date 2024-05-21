@@ -76,15 +76,16 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img, 
 		// }
 		if (prev_hit != -1)
 		{
-			if (debug)
-			{
-				dprintf(2, "prev_hit: %d\n", prev_hit);
-				dprintf(2, "linked_portal: %d\n", scene->portals.tab[prev_hit].linked_portal);
-			}
-			// else
-			// 	dprintf(2, ".");
-			if (prev_hit != 0)
-				dprintf(2, "AAAAAAAAAAAAAAAAAAAAAA: %d\n", prev_hit);
+			(void)debug;
+			// if (debug)
+			// {
+			// 	dprintf(2, "prev_hit: %d\n", prev_hit);
+			// 	dprintf(2, "linked_portal: %d\n", scene->portals.tab[prev_hit].linked_portal);
+			// }
+			// // else
+			// // 	dprintf(2, ".");
+			// if (prev_hit != 0)
+			// 	dprintf(2, "AAAAAAAAAAAAAAAAAAAAAA: %d\n", prev_hit);
 			pid2 = scene->portals.tab[prev_hit].linked_portal;
 			diff.x = scene->portals.tab[pid2].pos.x - scene->portals.tab[prev_hit].pos.x;
 			diff.y = scene->portals.tab[pid2].pos.y - scene->portals.tab[prev_hit].pos.y;
@@ -129,8 +130,8 @@ void	ft_dda_fake(t_cubscene *scene, t_ray *ray, t_v2d_d player_pos, t_img *img, 
 		{
 			// hit = 1;
 			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			prev_hit = GET_PORTAL(ray->hit_type);
 			portal_hit(scene, ray);
-			prev_hit = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
 
 		}
 		// else if (scene->map[ray->map_pos.y * scene->width + ray->map_pos.x] == '2')
