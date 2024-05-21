@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:22:02 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 22:26:40 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static t_elem	*get_elem_ptr(t_identifier id, t_elem **textures)
 {
 	if (id <= ID_CZ)
 		return (textures[id / 26] + (id % 26));
-	// else
-	// 	;
+	if (id == ID_PORTAL)
+		return (textures[PORTAL]);
 	return (0);
 }

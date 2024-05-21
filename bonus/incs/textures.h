@@ -21,6 +21,7 @@
 //ERROR MESSAGES
 # define INVAL_ATTR "Invalid attribute"
 # define INVAL_ANIMATION "Invalid animation attribute value"
+# define INVAL_FRAMESTART "Invalid framestart attribute value"
 
 typedef enum e_anim
 {
@@ -67,6 +68,7 @@ typedef int (*t_set_attr)(char *, char *, t_elem *elem);
 
 int set_frametime_attr(char *identifier, char *str,  t_elem *elem);
 int set_animation_attr(char *identifier, char *str,  t_elem *elem);
+int set_framestart_attr(char *identifier, char *str,  t_elem *elem);
 
 # define ANIM_NONE "none"
 # define ANIM_LOOP "loop"

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:24:03 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/21 18:15:30 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include "cub3d.h"
 # include "entity.h"
 # include "libft.h"
+# include "tile_address.h"
 
+# include "stdlib.h"
 # include <math.h>
 # include <stdio.h>
-# include "tile_address.h"
 
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
@@ -56,6 +57,7 @@ int	main(int ac, char **av)
 {
 	t_c3_env	env;
 
+	srand(time(NULL));
 	env = (t_c3_env){0};
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
