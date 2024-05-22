@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 20:32:49 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 22:01:30 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,15 +202,12 @@ void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 {
 	int	hit;
 
-	// if (IS_PORTAL(ray->hit_type))
-	// {
-	// 	portal_hit(scene, ray, player);
-	// 	// return ;
-	// }
 	(void)player;
 	hit = 0;
 	while (hit == 0)
 	{
+		if (ray->map_pos.x < 0 || ray->map_pos.y < 0 || ray->map_pos.x >= scene->width || ray->map_pos.y >= scene->height)
+			dprintf(2, "map_pos out of bounds\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
 		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			if (!IS_PORTAL(ray->hit_type))
@@ -228,7 +225,6 @@ void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 				hit = 1;
 				ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
 			}
-			// portal_hit(scene, ray, player);
 		}
 		if (!hit)
 		{
@@ -246,21 +242,10 @@ void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 			}
 		}
 	}
-	// if (!ray->turn)
-	// {
-		if (ray->side == 0)
-			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
-		else
-			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
-	// }
-	// else
-	// {
-	// 	if (ray->ray_dir.x > 0)
-	// 		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
-	// 	else
-	// 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
-	// }
-	// ray->total_perp_wall_dist = ray->perp_wall_dist;	// debug
+	if (ray->side == 0)
+		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
+	else
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
 }
 /*
 
