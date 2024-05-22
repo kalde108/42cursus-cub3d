@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 23:10:15 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 19:58:01 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	int	j;
 	int	k;
 
-	ft_dprintf(STDIN_FILENO, "Loading texture...\n");
+	ft_dprintf(STDIN_FILENO, "LOADING TEXTURES...\n");
 	i = 0;
 	while (i < BASIC_TEXTURE)
 	{
@@ -59,13 +59,14 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	if (NULL == textures[PORTAL]->current)
 		textures[PORTAL]->current = textures[PORTAL]->frames;
 	textures[PORTAL]->dir = 1;
+	ft_dprintf(STDIN_FILENO, "\n");
 	return (0);
 }
 
 
 static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 {
-	ft_dprintf(STDERR_FILENO, "%s: ", data->filepath);
+	ft_dprintf(STDERR_FILENO, "\t%s: ", data->filepath);
 	data->mlx_img = mlx_xpm_file_to_image(mlx_ptr,
 			data->filepath,
 			&data->width,
@@ -86,6 +87,6 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
-	ft_dprintf(STDERR_FILENO, "Ok\n");
+	ft_dprintf(STDERR_FILENO, "OK\n");
 	return (0);
 }

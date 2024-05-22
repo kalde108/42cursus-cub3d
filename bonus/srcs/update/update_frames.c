@@ -16,11 +16,6 @@ void	update_frames(t_c3_env *env)
 	size_t	passed_frame;
 	t_elem	*texture;
 
-	// if (get_time() - env->animation_time < 100)
-	// 	return ;
-	passed_frame = timer_is_over(&env->clocks.map_tex_timer);
-	if (!passed_frame)
-		return ;
 	i = 0;
 	while (i < BASIC_TEXTURE)
 	{
@@ -29,7 +24,11 @@ void	update_frames(t_c3_env *env)
 		{
 			texture = env->scene.elems[i] + j;
 			if (texture->n > 1 && texture->attr.animation != NONE)
-				texture->current = get_current_frame(texture, passed_frame);
+			{
+				passed_frame = timer_is_over(&texture->timer);
+				if (passed_frame > 0)
+					texture->current = get_current_frame(texture, passed_frame);
+			}
 			j++;
 		}
 		i++;

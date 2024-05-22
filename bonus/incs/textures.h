@@ -4,6 +4,8 @@
 # include <stdbool.h>
 # include <stddef.h>
 
+# include "ft_time.h"
+
 //ATTRIBUTES
 # define DEFAULT_FRAMETIME 100
 # define DEFAULT_HINDER 0
@@ -65,6 +67,7 @@ typedef struct s_elem
 	int				dir;
 	char			options;
 	t_attributes	attr;
+	t_timer			timer;
 }	t_elem;
 
 //ATTRIBUTES

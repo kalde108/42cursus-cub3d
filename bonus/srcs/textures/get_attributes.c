@@ -18,6 +18,7 @@ int get_attributes(char *identifier, t_elem *elem)
 			return (-1);
 		token = ft_strtok(NULL, " ");
 	}
+	init_timer(&elem->timer, elem->attr.frametime, AUTO_RESET);
 	return (0);
 }
 

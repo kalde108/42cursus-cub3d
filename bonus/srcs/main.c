@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 18:15:30 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 22:11:25 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->entities[7] = (t_entity){BOXES, (t_v2d_d){24.7, 5.8}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){6.5, 24.5}, env->player.pos), env->scene.elems[WALL] + 2};
 	env->entity_count++;
-	init_timer(&env->clocks.map_tex_timer, 100, AUTO_RESET);
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
 	env->scene.portals.tab[0].is_open = 1;
