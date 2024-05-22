@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 20:51:40 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 20:20:02 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "draw.h"
 
 # define MAX_JUMPS 100
-# define MAX_LAYERS 100
+# define MAX_LAYERS 10
 
 typedef struct s_ray
 {
@@ -30,6 +30,7 @@ typedef struct s_ray
 	double	perp_wall_dist;
 	int		hit_type;
 	int		turn;
+	double	total_perp_wall_dist;
 }	t_ray;
 
 typedef struct s_hit_buffer
@@ -44,7 +45,7 @@ typedef struct s_hit_buffer
 }	t_hit_buffer;
 
 void	ray_calculation(t_player *player, t_ray *ray, int x);
-void	ft_dda(t_cubscene *scene, t_ray *ray);
+void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player);
 int		get_tex_x(t_ray *ray, int width, t_player player);
 void	get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist);
 

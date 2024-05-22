@@ -14,7 +14,8 @@ void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, int color)
 		x = pos.x - half_size.x;
 		while (x < pos.x + half_size.x)
 		{
-			*(unsigned int *)(img->addr + ((y << img->line_length) + x * (img->bits_per_pixel / 8))) = color;
+			if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+				*(unsigned int *)(img->addr + ((y << img->line_length) + x * (img->bits_per_pixel / 8))) = color;
 			x++;
 		}
 		y++;

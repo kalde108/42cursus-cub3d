@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 21:43:45 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 20:32:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,143 +17,218 @@
 # include <math.h>
 # include <stdio.h>
 
-static int	get_relative_position(int f1, int f2)
-{
-	int	diff;
-	int	relative_position;
+// static int	get_relative_position(int f1, int f2)
+// {
+// 	int	diff;
+// 	int	relative_position;
 
-	diff = (f2 - f1) % 4;
-	relative_position = (diff + 4) % 4;
-	return (relative_position);
-}
+// 	diff = (f2 - f1) % 4;
+// 	relative_position = (diff + 4) % 4;
+// 	return (relative_position);
+// }
 
-static void	portal_hit(t_cubscene *scene, t_ray *ray)
-{
-	int	portal_id;
-	int	dest_portal_id;
-	int	relative_position;
-	t_portal	*portals;
-	int	tmp;
+// static void	delta_dist_init(t_ray *ray)
+// {
+// 	if (ray->ray_dir.x == 0)
+// 		ray->delta_dist.x = 1e30;
+// 	else
+// 		ray->delta_dist.x = fabs(1 / ray->ray_dir.x);
+// 	if (ray->ray_dir.y == 0)
+// 		ray->delta_dist.y = 1e30;
+// 	else
+// 		ray->delta_dist.y = fabs(1 / ray->ray_dir.y);
+// }
 
-	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
-	portals = scene->portals.tab;
-	if (portals[portal_id].is_open == 0)
-		return ;	// portal is closed
-	dest_portal_id = portals[portal_id].linked_portal;
-	ray->map_pos = scene->portals.tab[dest_portal_id].pos;
-	relative_position = get_relative_position(portals[portal_id].face, portals[dest_portal_id].face);
-	if (relative_position == 0)	// same face
-	{
-		if (ray->side == 0)
-		{
-			ray->step.x = -ray->step.x;
-			if (ray->ray_dir.x > 0)
-				ray->map_pos.x -= 1;
-			else
-				ray->map_pos.x += 1;
-		}
-		else if (ray->side == 1)
-		{
-			ray->step.y = -ray->step.y;
-			if (ray->ray_dir.y > 0)
-				ray->map_pos.y -= 1;
-			else
-				ray->map_pos.y += 1;
-		}
-	}
-	else if (relative_position == 1)	// left face
-	{
-		tmp = ray->step.x;
-		ray->step.x = ray->step.y;
-		ray->step.y = -tmp;
-		// tmp = ray->ray_dir.x;
-		// ray->ray_dir.x = ray->ray_dir.y;
-		// ray->ray_dir.y = -tmp;
-		tmp = ray->delta_dist.x;
-		ray->delta_dist.x = ray->delta_dist.y;
-		ray->delta_dist.y = -tmp;
-		tmp = ray->side_dist.x;
-		ray->side_dist.x = ray->side_dist.y;
-		ray->side_dist.y = -tmp;
-		// ray->map_pos.x -= 1;
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.y > 0)
-				ray->map_pos.x += 1;
-			else
-				ray->map_pos.x -= 1;
-			// if (ray->ray_dir.x > 0)
-			// 	ray->map_pos.y -= 1;
-			// else
-			// 	ray->map_pos.y += 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				ray->map_pos.x += 1;
-			else
-				ray->map_pos.x -= 1;
-		}
-		// ray->turn = 1;
-	}
-	else if (relative_position == 2)	// opposite face
-	{
-		// vector stays the same
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.x > 0)
-				ray->map_pos.x += 1;
-			else
-				ray->map_pos.x -= 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				ray->map_pos.y += 1;
-			else
-				ray->map_pos.y -= 1;
-		}
-	}
-	else if (relative_position == 3)	// right face
-	{
-		tmp = ray->step.x;
-		ray->step.x = -ray->step.y;
-		ray->step.y = tmp;
-	}
+// static void	step_init(t_v2d_d *pos, t_ray *ray)
+// {
+// 	if (ray->ray_dir.x < 0)
+// 	{
+// 		ray->step.x = -1;
+// 		ray->side_dist.x = (pos->x - ray->map_pos.x) \
+// 							* ray->delta_dist.x;
+// 	}
+// 	else
+// 	{
+// 		ray->step.x = 1;
+// 		ray->side_dist.x = (ray->map_pos.x + 1.0 - pos->x) \
+// 							* ray->delta_dist.x;
+// 	}
+// 	if (ray->ray_dir.y < 0)
+// 	{
+// 		ray->step.y = -1;
+// 		ray->side_dist.y = (pos->y - ray->map_pos.y) \
+// 							* ray->delta_dist.y;
+// 	}
+// 	else
+// 	{
+// 		ray->step.y = 1;
+// 		ray->side_dist.y = (ray->map_pos.y + 1.0 - pos->y) \
+// 							* ray->delta_dist.y;
+// 	}
+// }
 
-	// if (ray->side == 0)
-	// {
-	// 	if (ray->ray_dir.x > 0)
-	// 		ray->map_pos.x += 1;
-	// 	else
-	// 		ray->map_pos.x -= 1;
-	// }
-	// else if (ray->side == 1)
-	// {
-	// 	if (ray->ray_dir.y > 0)
-	// 		ray->map_pos.y += 1;
-	// 	else
-	// 		ray->map_pos.y -= 1;
-	// }
-}
+// static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
+// {
+// 	int	portal_id;
+// 	int	dest_portal_id;
+// 	int	relative_position;
+// 	t_portal	*portals;
+// 	double	tmp1;
+// 	// int	tmp2;
+// 	t_v2d_d	tmp3;
 
-void	ft_dda(t_cubscene *scene, t_ray *ray)
+// 	(void)player;
+// 	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
+// 	portals = scene->portals.tab;
+// 	if (portals[portal_id].is_open == 0)
+// 		return ;	// portal is closed
+// 	dest_portal_id = portals[portal_id].linked_portal;
+// 	ray->map_pos = scene->portals.tab[dest_portal_id].pos;
+// 	relative_position = get_relative_position(portals[portal_id].face, portals[dest_portal_id].face);
+// 	if (relative_position == 0)	// same face
+// 	{
+// 		if (ray->side == 0)
+// 		{
+// 			ray->step.x = -ray->step.x;
+// 			if (ray->ray_dir.x > 0)
+// 				ray->map_pos.x -= 1;
+// 			else
+// 				ray->map_pos.x += 1;
+// 		}
+// 		else if (ray->side == 1)
+// 		{
+// 			ray->step.y = -ray->step.y;
+// 			if (ray->ray_dir.y > 0)
+// 				ray->map_pos.y -= 1;
+// 			else
+// 				ray->map_pos.y += 1;
+// 		}
+// 	}
+// 	else if (relative_position == 1)	// left face
+// 	{
+// 		// tmp1 = ray->step.x;
+// 		// ray->step.x = ray->step.y;
+// 		// ray->step.y = -tmp1;
+// 		// ray->total_perp_wall_dist = ray->perp_wall_dist;	// debug
+// 			// tmp1 = ray->ray_dir.x;
+// 			// ray->ray_dir.x = ray->ray_dir.y;
+// 			// ray->ray_dir.y = -tmp1;
+// 			// delta_dist_init(ray);
+// 		// tmp1 = ray->delta_dist.x;
+// 		// ray->delta_dist.x = ray->delta_dist.y;
+// 		// ray->delta_dist.y = -tmp1;
+// 		// tmp1 = ray->side_dist.x;
+// 		// ray->side_dist.x = ray->side_dist.y;
+// 		// ray->side_dist.y = -tmp1;
+// 		// ray->map_pos.x -= 1;
+// 		if (ray->side == 0)
+// 		{
+// 			if (ray->ray_dir.x > 0)
+// 				ray->map_pos.y -= 1;
+// 			else
+// 				ray->map_pos.y += 1;
+// 		}
+// 		else if (ray->side == 1)
+// 		{
+// 			if (ray->ray_dir.y > 0)
+// 				ray->map_pos.x += 1;
+// 			else
+// 				ray->map_pos.x -= 1;
+// 		}
+// 		// tmp3.x = ray->map_pos.x + ((player->pos.x - floor(player->pos.x)));
+// 		// tmp3.y = ray->map_pos.y + ( (player->pos.y - floor(player->pos.y)));
+// 		// step_init(&tmp3, ray);
+// 		(void)tmp1;
+// 		(void)tmp3;
+// 		(void)player;
+// 		// ray->turn = 1;
+// 	}
+// 	else if (relative_position == 2)	// opposite face
+// 	{
+// 		// vector stays the same
+// 		if (ray->side == 0)
+// 		{
+// 			if (ray->ray_dir.x > 0)
+// 				ray->map_pos.x += 1;
+// 			else
+// 				ray->map_pos.x -= 1;
+// 		}
+// 		else if (ray->side == 1)
+// 		{
+// 			if (ray->ray_dir.y > 0)
+// 				ray->map_pos.y += 1;
+// 			else
+// 				ray->map_pos.y -= 1;
+// 		}
+// 	}
+// 	else if (relative_position == 3)	// right face
+// 	{
+// 		// tmp1 = ray->step.x;
+// 		// ray->step.x = -ray->step.y;
+// 		// ray->step.y = tmp1;
+// 		if (ray->side == 0)
+// 		{
+// 			if (ray->ray_dir.x > 0)
+// 				ray->map_pos.y += 1;
+// 			else
+// 				ray->map_pos.y -= 1;
+// 		}
+// 		else if (ray->side == 1)
+// 		{
+// 			if (ray->ray_dir.y > 0)
+// 				ray->map_pos.x -= 1;
+// 			else
+// 				ray->map_pos.x += 1;
+// 		}
+// 	}
+
+// 	// if (ray->side == 0)
+// 	// {
+// 	// 	if (ray->ray_dir.x > 0)
+// 	// 		ray->map_pos.x += 1;
+// 	// 	else
+// 	// 		ray->map_pos.x -= 1;
+// 	// }
+// 	// else if (ray->side == 1)
+// 	// {
+// 	// 	if (ray->ray_dir.y > 0)
+// 	// 		ray->map_pos.y += 1;
+// 	// 	else
+// 	// 		ray->map_pos.y -= 1;
+// 	// }
+// }
+
+void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 {
 	int	hit;
 
+	// if (IS_PORTAL(ray->hit_type))
+	// {
+	// 	portal_hit(scene, ray, player);
+	// 	// return ;
+	// }
+	(void)player;
 	hit = 0;
 	while (hit == 0)
 	{
 		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
-			hit = 1;
-			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			if (!IS_PORTAL(ray->hit_type))
+			{
+				hit = 1;
+				ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			}
 		}
 		if (IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
-			hit = 1;
-			ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
-			portal_hit(scene, ray);
+			if (IS_PORTAL(ray->hit_type))
+				ray->hit_type = 0;
+			else
+			{
+				hit = 1;
+				ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
+			}
+			// portal_hit(scene, ray, player);
 		}
 		if (!hit)
 		{
@@ -171,20 +246,21 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			}
 		}
 	}
-	if (!ray->turn)
-	{
+	// if (!ray->turn)
+	// {
 		if (ray->side == 0)
-			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
+			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
 		else
-			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
-	}
-	else
-	{
-		if (ray->ray_dir.x > 0)
-			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
-		else
-			ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
-	}
+			ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
+	// }
+	// else
+	// {
+	// 	if (ray->ray_dir.x > 0)
+	// 		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
+	// 	else
+	// 		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
+	// }
+	// ray->total_perp_wall_dist = ray->perp_wall_dist;	// debug
 }
 /*
 

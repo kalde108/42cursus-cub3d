@@ -21,7 +21,7 @@ static void	draw_map(t_c3_env *env)
 		{
 			alpha = 0;
 			if (IS_WALL(env->scene.map[i * env->scene.width + j]))
-				color = 0x00FF0000;
+				color = 0xd72323;
 			else if (IS_PORTAL(env->scene.map[i * env->scene.width + j]))
 				color = 0x000000FF;
 			else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
@@ -105,8 +105,8 @@ static void	draw_plane(t_c3_env *env)
 void	draw_minimap(t_c3_env *env)
 {
 	draw_map(env);
-	draw_view_cone(env);
 	draw_view(env);
 	draw_plane(env);
 	draw_player(env);
+	draw_view_cone(env);
 }

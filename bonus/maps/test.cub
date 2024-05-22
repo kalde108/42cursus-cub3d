@@ -1,13 +1,14 @@
 Wa assets/deepslate_tiles.xpm
 Wb assets/cracked_deepslate_tiles.xpm
+Wc assets/torchflower.xpm
 Wd assets/command_block
+We assets/carpet1_128.xpm
 Fa assets/basic_floor_128.xpm
 Fb assets/floor2_128.xpm
 Fc assets/carpet1_128.xpm
 Fd assets/lava
 Ca assets/ceiling1_128.xpm
 Cb assets/lamp1_128.xpm
-Wc assets/torchflower.xpm
 PORTAL assets/nether_portal
 
                    abbbaaaaaaaaaa
@@ -21,8 +22,8 @@ aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
 aa      ca b a aab      a   a
 a               aa d d  b   a
-a                b      a N a
-a d  M    P     aa a b  a   a
+a         P      b      a N a
+a d  M          ea a b  a   a
 ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a
 aaaaaaaa aaaaaba aaaaaaaaaaaa
