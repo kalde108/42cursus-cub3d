@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:22:15 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 18:15:34 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int		get_monster_spawn(t_vector *map, t_entity *monster);
 int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell);
 int		get_directory_textures(char *dirpath, t_elem *texture);
 int		get_portals(t_vector *map, t_cubscene *scene);
-void	init_attributes(t_attributes *ptr);
 int		get_attributes(char *identifier, t_elem *elem);
 
 #endif //PARSING_H

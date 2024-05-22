@@ -5,7 +5,7 @@
 #include "textures.h"
 #include "libft.h"
 
-int set_frametime_attr(char *identifier, char *str,  t_elem *elem)
+int set_damage_attr(char *identifier, char *str,  t_elem *elem)
 {
 	long value;
 	char *end_ptr;
@@ -14,9 +14,9 @@ int set_frametime_attr(char *identifier, char *str,  t_elem *elem)
 	value = ft_strtol(str, &end_ptr);
 	if (errno == ERANGE || value < 0 || '\0' != *end_ptr)
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR3, identifier, str, INVAL_FRAMETIME);
+		ft_dprintf(STDERR_FILENO, SCENE_ERR3, identifier, str, INVAL_DAMAGE);
 		return (1);
 	}
-	elem->attr.frametime = value;
+	elem->attr.damage = value;
 	return (0);
 }

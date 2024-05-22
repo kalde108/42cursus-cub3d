@@ -91,7 +91,7 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
 	// if (cell_pos.x == 22 && cell_pos.y == 7)
 	// 	dprintf(2, "cell: %d\tTYPE: %d\tFLOOR: %d\tCEIL: %d\n", cell, GET_TYPE(cell), GET_FLOOR(cell), GET_CEILING(cell));
-	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].frames, floor, cell_pos);
+	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, floor, cell_pos);
 	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].current, floor, cell_pos);
 }
 

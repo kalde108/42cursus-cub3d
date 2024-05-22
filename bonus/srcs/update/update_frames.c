@@ -69,7 +69,6 @@ void	update_special_frames(t_elem **elems, size_t passed_frame)
 	i = 0;
 	while (i < SPECIAL_TEXTURES)
 	{
-		printf("n=%d    animation=%d\n", elems[i]->n, elems[i]->attr.animation);
 		if (elems[i]->n > 1 && elems[i]->attr.animation != NONE)
 		{
 			elems[i]->current = get_current_frame(elems[i], passed_frame);

@@ -61,6 +61,9 @@ TEXTURES_SRC = \
 	set_animation_attr \
 	set_frametime_attr \
 	set_framestart_attr \
+	set_hinder_attr \
+	set_damage_attr \
+	set_walkable_attr \
 
 # ********** DRAW ********** #
 

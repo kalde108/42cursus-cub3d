@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:21:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/22 18:14:49 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static int	set_texture_filepath(char *filepath, t_elem *texture)
 	}
 	texture->frames = ptr;
 	texture->n = 1;
-	init_attributes(&texture->attr);
 	return (0);
 }
 
