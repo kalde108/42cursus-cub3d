@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:17:49 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 18:22:02 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define DRAW_H
 
 # include "cub3d.h"
+
+# define SHADOW 0.75
 
 typedef struct s_hit_buffer	t_hit_buffer;
 
