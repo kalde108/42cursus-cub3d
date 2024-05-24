@@ -105,8 +105,8 @@ static void	draw_plane(t_c3_env *env)
 void	draw_minimap(t_c3_env *env)
 {
 	draw_map(env);
+	draw_view_cone(env);
 	draw_view(env);
 	draw_plane(env);
 	draw_player(env);
-	draw_view_cone(env);
 }

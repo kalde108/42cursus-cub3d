@@ -6,6 +6,8 @@
 #include "cubdef.h"
 #include "parsing.h"
 
+# include <stdio.h>
+
 static int	search_line(t_vector *line, t_portal *portals, int *count, int y);
 
 int	get_portals(t_vector *map, t_cubscene *scene)
@@ -42,9 +44,10 @@ static int	search_line(t_vector *line, t_portal *portals, int *count, int y)
 		cell = ft_vector_get(line, i);
 		if (1 == ft_ischarset(*cell, PORTAL_CHARSET))
 		{
-			portals->id = *count;
-			portals->pos.x = i;
-			portals->pos.y = y;
+			(portals + *count)->id = *count;
+			(portals + *count)->pos.x = i;
+			(portals + *count)->pos.y = y;
+			dprintf(2, "portal %d at %zu %d\n", *count, i, y);
 			(*count)++;
 		}
 	}

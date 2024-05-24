@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/24 16:24:19 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 18:02:51 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void	TEST(t_c3_env *env)
 	env->entities[7] = (t_entity){BOXES, (t_v2d_d){24.7, 5.8}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){6.5, 24.5}, env->player.pos), env->scene.elems[WALL] + 2};
 	env->entity_count++;
 	init_timer(&env->clocks.map_tex_timer, 100, AUTO_RESET);
-	env->scene.elems[WALL][3].options = 1;
-	env->scene.elems[FLOOR][3].options = 0;
+	// env->scene.elems[WALL][3].options = 1;
+	// env->scene.elems[FLOOR][3].options = 0;
 	env->scene.portals.tab[0].is_open = 1;
 	env->scene.portals.tab[1].is_open = 1;
 	env->scene.portals.tab[0].linked_portal = 1;
 	env->scene.portals.tab[1].linked_portal = 0;
-	env->scene.portals.tab[0].face = 0;
-	env->scene.portals.tab[1].face = 2;
+	env->scene.portals.tab[0].face = 2;
+	env->scene.portals.tab[1].face = 0;
 	env->scene.portals.opened_count = 2;
 	env->scene.portals.opened[0] = 0;
 	env->scene.portals.opened[1] = 1;
@@ -66,6 +66,7 @@ int	main(int ac, char **av)
 	t_c3_env	env;
 
 	env = (t_c3_env){0};
+	dprintf(2, "CPUCORES: %d\n", CPUCORES); //DEBUG
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
 	if (load_textures(env.mlx, env.scene.elems) || open_mlx_window(&env))
@@ -73,7 +74,6 @@ int	main(int ac, char **av)
 		destroy_cubenv(&env);
 		return (1);
 	}
-	dprintf(2, "CPUCORES: %d\n", CPUCORES); //DEBUG
 	if (pthread_mutex_init(&env.call_mutex, NULL))
 	{
 		destroy_cubenv(&env);
