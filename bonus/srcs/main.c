@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 22:32:15 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 16:24:19 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	TEST(t_c3_env *env)
 	env->scene.portals.tab[0].linked_portal = 1;
 	env->scene.portals.tab[1].linked_portal = 0;
 	env->scene.portals.tab[0].face = 0;
-	env->scene.portals.tab[1].face = 0;
+	env->scene.portals.tab[1].face = 2;
 	env->scene.portals.opened_count = 2;
 	env->scene.portals.opened[0] = 0;
 	env->scene.portals.opened[1] = 1;

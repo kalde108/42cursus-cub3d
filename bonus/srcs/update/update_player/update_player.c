@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/20 21:04:11 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 16:37:14 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static void	update_pos(t_c3_env *env)
 	offset.y = ((move_vec.y >= 0) - (move_vec.y < 0)) * PLAYER_SIZE;
 	cell = env->scene.map[(int)env->player.pos.y * env->scene.width + \
 	 	(int)(env->player.pos.x + move_vec.x + offset.x)];
-	if (NOT_WALL(cell))
+	if (NOT_WALL(cell) && !IS_PORTAL(cell))
 		env->player.pos.x += move_vec.x;
 	cell = env->scene.map[(int)(env->player.pos.y + move_vec.y + offset.y) * \
 		env->scene.width + (int)env->player.pos.x];
-	if (NOT_WALL(cell))
+	if (NOT_WALL(cell) && !IS_PORTAL(cell))
 		env->player.pos.y += move_vec.y;
 }
 

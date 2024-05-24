@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 22:32:45 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 16:52:24 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,24 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 	if (relative_position == 0)	// same face
 	{
 		// rotate vector (diff) 180 degrees relative to the portal
-		diff.y *= 0.999999999999999;	// to avoid floating point precision errors
+		// diff.y *= 0.999999999999999;	// to avoid floating point precision errors
 		apply_rotation(player, PI);
 		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		if (ray->side == 0)
+		{
+			if (ray->ray_dir.x > 0)
+				player->pos.x -= 1;
+			else
+				player->pos.x += 1;
+		}
+		else if (ray->side == 1)
+		{
+			if (ray->ray_dir.y > 0)
+				player->pos.y -= 1;
+			else
+				player->pos.y += 1;
+		}
 	}
 	else if (relative_position == 1)	// left face
 	{
@@ -130,6 +144,20 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		apply_rotation(player, -PI_2);
 		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		if (ray->side == 0)
+		{
+			if (ray->ray_dir.x > 0)
+				player->pos.y -= 1;
+			else
+				player->pos.y += 1;
+		}
+		else if (ray->side == 1)
+		{
+			if (ray->ray_dir.y > 0)
+				player->pos.x += 1;
+			else
+				player->pos.x -= 1;
+		}
 	}
 	else if (relative_position == 2)	// opposite face
 	{
@@ -138,6 +166,20 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		diff.y = -diff.y;
 		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		if (ray->side == 0)
+		{
+			if (ray->ray_dir.x > 0)
+				player->pos.x += 1;
+			else
+				player->pos.x -= 1;
+		}
+		else if (ray->side == 1)
+		{
+			if (ray->ray_dir.y > 0)
+				player->pos.y += 1;
+			else
+				player->pos.y -= 1;
+		}
 	}
 	else if (relative_position == 3)	// right face
 	{
@@ -146,6 +188,20 @@ static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		apply_rotation(player, PI_2);
 		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		if (ray->side == 0)
+		{
+			if (ray->ray_dir.x > 0)
+				player->pos.y += 1;
+			else
+				player->pos.y -= 1;
+		}
+		else if (ray->side == 1)
+		{
+			if (ray->ray_dir.y > 0)
+				player->pos.x -= 1;
+			else
+				player->pos.x += 1;
+		}
 	}
 }
 
@@ -158,14 +214,12 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 	int				x;
 	t_hit_buffer	buffer[MAX_LAYERS];
 	int				hit_count;
-	// double	total_perp_wall_dist;
 	t_player	tmp;
 
 	x = start;
 	while (x < end)
 	{
 		hit_count = 0;
-		// total_perp_wall_dist = 0;
 		ray.total_perp_wall_dist = 0;
 		ray.hit_type = 0;
 		tmp = env->player;
@@ -175,10 +229,7 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 				portal_hit(&env->scene, &ray, &tmp);
 			ray_calculation(&tmp, &ray, x);
 			ft_dda(&env->scene, &ray, &tmp);
-			// if (!hit_count)
-				env->z_buffer[x] = ray.perp_wall_dist;
-			// if (NOT_WALL(ray.hit_type) && NOT_PORTAL(ray.hit_type))
-			// 	dprintf(2, "No hit?: %d\n", ray.hit_type);
+			env->z_buffer[x] = ray.perp_wall_dist;
 			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
 			buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, tmp);
 			get_line_y(buffer + hit_count, ray.perp_wall_dist);
@@ -186,7 +237,6 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 			buffer[hit_count].cell = ray.hit_type;
 			
 			hit_count++;
-			// draw_v_line(&env->img, &line, tex_x, texture, &ray);
 		}
 		while (hit_count-- > 0)
 		{

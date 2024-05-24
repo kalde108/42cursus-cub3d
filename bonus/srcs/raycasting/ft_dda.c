@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 22:01:30 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/24 16:23:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,14 +201,31 @@
 void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 {
 	int	hit;
+	int	hit_enable;
 
 	(void)player;
+	hit_enable = 1;
 	hit = 0;
 	while (hit == 0)
 	{
-		if (ray->map_pos.x < 0 || ray->map_pos.y < 0 || ray->map_pos.x >= scene->width || ray->map_pos.y >= scene->height)
+		if ((ray->map_pos.x < 0 && ray->step.x < 0)
+			|| (ray->map_pos.y < 0 && ray->step.y < 0)
+			|| (ray->map_pos.x >= scene->width && ray->step.x > 0)
+			|| (ray->map_pos.y >= scene->height && ray->step.y > 0))
+		{
 			dprintf(2, "map_pos out of bounds\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
-		if (IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
+		}
+		if ((ray->map_pos.x < 0 && ray->step.x > 0)
+			|| (ray->map_pos.y < 0 && ray->step.y > 0)
+			|| (ray->map_pos.x >= scene->width && ray->step.x < 0)
+			|| (ray->map_pos.y >= scene->height && ray->step.y < 0))
+		{
+			dprintf(2, "controlled EVA\n");
+			hit_enable = 0;
+		}
+		else
+			hit_enable = 1;
+		if (hit_enable && IS_WALL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			if (!IS_PORTAL(ray->hit_type))
 			{
@@ -216,7 +233,7 @@ void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player)
 				ray->hit_type = scene->map[ray->map_pos.y * scene->width + ray->map_pos.x];
 			}
 		}
-		if (IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
+		if (hit_enable && IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			if (IS_PORTAL(ray->hit_type))
 				ray->hit_type = 0;
