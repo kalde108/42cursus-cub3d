@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/29 16:21:19 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 16:29:25 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int	render(t_c3_env *env)
 
 	// rendering
 	// time = get_time();																	// debug term
-	// if (render_backgound(env))
-	// 	mlx_loop_end(env->mlx);
+	if (render_backgound(env))
+		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
 	// time = get_time();																	// debug term
 	if (render_map(env))
