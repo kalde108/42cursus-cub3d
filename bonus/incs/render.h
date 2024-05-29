@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:43 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 17:37:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 15:33:20 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <cub3d.h>
 
+int	raycast(t_c3_env *env);
 int		render_backgound(t_c3_env *env);
 int		render_map(t_c3_env *env);
 void	draw_minimap(t_c3_env *env);

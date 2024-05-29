@@ -392,23 +392,23 @@ static int	get_relative_position(int f1, int f2)
 // 	prev_start->y += diff.y;
 // }
 
-static void	apply_rotation(t_player *player, double angle)
+static void	apply_rotation(t_camera *camera, double angle)
 {
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = player->dir.x;
-	player->dir.x = player->dir.x * cos(angle) \
-						- player->dir.y * sin(angle);
-	player->dir.y = old_dir_x * sin(angle) + player->dir.y * cos(angle);
-	old_plane_x = player->plane.x;
-	player->plane.x = player->plane.x * cos(angle) \
-							- player->plane.y * sin(angle);
-	player->plane.y = old_plane_x * sin(angle) + \
-							player->plane.y * cos(angle);
+	old_dir_x = camera->dir.x;
+	camera->dir.x = camera->dir.x * cos(angle) \
+						- camera->dir.y * sin(angle);
+	camera->dir.y = old_dir_x * sin(angle) + camera->dir.y * cos(angle);
+	old_plane_x = camera->plane.x;
+	camera->plane.x = camera->plane.x * cos(angle) \
+							- camera->plane.y * sin(angle);
+	camera->plane.y = old_plane_x * sin(angle) + \
+							camera->plane.y * cos(angle);
 }
 
-static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
+static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
 {
 	int	portal_id;
 	int	dest_portal_id;
@@ -416,36 +416,36 @@ static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 	t_portal	*portals;
 	t_v2d_d		diff;
 
-	(void)player;
+	(void)camera;
 	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
 	portals = scene->portals.tab;
 	if (portals[portal_id].is_open == 0)
 		return ;	// portal is closed
 	dest_portal_id = portals[portal_id].linked_portal;
-	diff.x = (portals[portal_id].pos.x + 0.5) - player->pos.x;
-	diff.y = (portals[portal_id].pos.y + 0.5) - player->pos.y;
+	diff.x = (portals[portal_id].pos.x + 0.5) - camera->pos.x;
+	diff.y = (portals[portal_id].pos.y + 0.5) - camera->pos.y;
 	relative_position = get_relative_position(portals[portal_id].face, portals[dest_portal_id].face);
 	if (relative_position == 0)	// same face
 	{
 		// rotate vector (diff) 180 degrees relative to the portal
 		diff.y *= 0.9999999999999;	// to avoid floating point precision errors
 		diff.x *= 0.9999999999999;	// to avoid floating point precision errors
-		apply_rotation(player, PI);
-		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
-		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		apply_rotation(camera, PI);
+		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
+		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
-				player->pos.x -= 0.999999999;
+				camera->pos.x -= 0.999999999;
 			else
-				player->pos.x += 0.999999999;
+				camera->pos.x += 0.999999999;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				player->pos.y -= 0.999999999;
+				camera->pos.y -= 0.999999999;
 			else
-				player->pos.y += 0.999999999;
+				camera->pos.y += 0.999999999;
 		}
 	}
 	else if (relative_position == 1)	// left face
@@ -454,22 +454,22 @@ static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		diff.x *= 0.9999999999999;	// to avoid floating point precision errors
 		diff.y *= 0.9999999999999;	// to avoid floating point precision errors
 		diff = (t_v2d_d){-diff.y, diff.x};
-		apply_rotation(player, -PI_2);
-		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
-		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		apply_rotation(camera, -PI_2);
+		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
+		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
-				player->pos.y -= 0.999999999;
+				camera->pos.y -= 0.999999999;
 			else
-				player->pos.y += 0.999999999;
+				camera->pos.y += 0.999999999;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				player->pos.x += 0.999999999;
+				camera->pos.x += 0.999999999;
 			else
-				player->pos.x -= 0.999999999;
+				camera->pos.x -= 0.999999999;
 		}
 	}
 	else if (relative_position == 2)	// opposite face
@@ -479,21 +479,21 @@ static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		diff.y *= 0.9999999999999;	// to avoid floating point precision errors
 		diff.x = -diff.x;
 		diff.y = -diff.y;
-		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
-		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
+		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
-				player->pos.x += 0.999999999;
+				camera->pos.x += 0.999999999;
 			else
-				player->pos.x -= 0.999999999;
+				camera->pos.x -= 0.999999999;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				player->pos.y += 0.999999999;
+				camera->pos.y += 0.999999999;
 			else
-				player->pos.y -= 0.999999999;
+				camera->pos.y -= 0.999999999;
 		}
 	}
 	else if (relative_position == 3)	// right face
@@ -502,22 +502,22 @@ static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 		diff.x *= 0.9999999999999;	// to avoid floating point precision errors
 		diff.y *= 0.9999999999999;	// to avoid floating point precision errors
 		diff = (t_v2d_d){diff.y, -diff.x};
-		apply_rotation(player, PI_2);
-		player->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
-		player->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
+		apply_rotation(camera, PI_2);
+		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
+		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
 		if (ray->side == 0)
 		{
 			if (ray->ray_dir.x > 0)
-				player->pos.y += 0.999999999;
+				camera->pos.y += 0.999999999;
 			else
-				player->pos.y -= 0.999999999;
+				camera->pos.y -= 0.999999999;
 		}
 		else if (ray->side == 1)
 		{
 			if (ray->ray_dir.y > 0)
-				player->pos.x -= 0.999999999;
+				camera->pos.x -= 0.999999999;
 			else
-				player->pos.x += 0.999999999;
+				camera->pos.x += 0.999999999;
 		}
 	}
 }
@@ -531,24 +531,26 @@ void	draw_view_cone(t_c3_env *env)
 		int		hit_count;
 		double	total_perp_wall_dist;
 		t_v2d_i tmp;
-		t_player	tmp_player;
+		t_camera	camera;
 
 		x = 0;
 		while (x < WIDTH)
 		{
-			tmp_player = env->player;
+			camera.pos = env->player.pos;
+			camera.dir = env->player.dir;
+			camera.plane = env->player.plane;
 			hit_count = 0;
 			ray.hit_type = 0;
 			// total_perp_wall_dist = 0;
 
 			ray.total_perp_wall_dist = 0;
-			// ray_calculation(&tmp_player, &ray, x);
+			// ray_calculation(&camera, &ray, x);
 			while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
 			{
 				if (IS_PORTAL(ray.hit_type))
-					fake_portal_hit(&env->scene, &ray, &tmp_player);
-				ray_calculation(&tmp_player, &ray, x);
-				ft_dda(&env->scene, &ray, &tmp_player);
+					fake_portal_hit(&env->scene, &ray, &camera);
+				ray_calculation(&camera, &ray, x);
+				ft_dda(&env->scene, &ray);
 				// if (!hit_count)
 					// env->z_buffer[x] = ray.perp_wall_dist;
 				// if (NOT_WALL(ray.hit_type) && NOT_PORTAL(ray.hit_type))
@@ -558,20 +560,20 @@ void	draw_view_cone(t_c3_env *env)
 				// get_line_y(buffer + hit_count, ray.perp_wall_dist);
 				// buffer[hit_count].side = ray.side;
 				// buffer[hit_count].cell = ray.hit_type;
-				ray_hit.x = tmp_player.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
-				ray_hit.y = tmp_player.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
+				ray_hit.x = camera.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
+				ray_hit.y = camera.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
 				total_perp_wall_dist = ray.perp_wall_dist;
 				draw_line(&env->img,
-					(int)(tmp_player.pos.x * MINIMAP_SCALE),
-					(int)(tmp_player.pos.y * MINIMAP_SCALE),
+					(int)(camera.pos.x * MINIMAP_SCALE),
+					(int)(camera.pos.y * MINIMAP_SCALE),
 					(int)(ray_hit.x * MINIMAP_SCALE),
 					(int)(ray_hit.y * MINIMAP_SCALE),
 					0x007F00);
-				tmp = (t_v2d_i){(int)(tmp_player.pos.x * MINIMAP_SCALE), (int)(tmp_player.pos.y * MINIMAP_SCALE)};
+				tmp = (t_v2d_i){(int)(camera.pos.x * MINIMAP_SCALE), (int)(camera.pos.y * MINIMAP_SCALE)};
 				draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0xff7eeb);
 				tmp = (t_v2d_i){(int)(ray_hit.x * MINIMAP_SCALE), (int)(ray_hit.y * MINIMAP_SCALE)};
 				draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0x11d280);
-				tmp_player.pos = ray_hit;
+				camera.pos = ray_hit;
 				hit_count++;
 			}
 			// ft_dda_fake(&env->scene, &ray, env->player.pos, &env->img);

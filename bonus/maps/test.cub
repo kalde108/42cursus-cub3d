@@ -6,7 +6,7 @@ We assets/carpet1_128.xpm
 Fa assets/basic_floor_128.xpm
 Fb assets/floor2_128.xpm
 Fc assets/carpet1_128.xpm
-Fd assets/lava
+Fd assets/lava animation=sway
 Ca assets/ceiling1_128.xpm
 Cb assets/lamp1_128.xpm
 PORTAL assets/nether_portal frametime=50

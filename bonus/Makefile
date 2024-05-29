@@ -112,6 +112,7 @@ RAYCASTING_SRC = \
 	get_line_y \
 	ray_calculation \
 	portal_hit \
+	raycast \
 
 # ******* RENDERING ******** #
 

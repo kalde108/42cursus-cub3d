@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:00:21 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 15:38:48 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include "raycasting.h"
 #include "tile_address.h"
+#include "cub3d.h"
+#include "draw.h"
 
 # include <stdio.h>
 # include <math.h>
@@ -21,45 +23,25 @@
 
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
-	t_ray	ray;
-	// t_vline	line;
-	// t_texdata	*texture;
-	// int		tex_x;
 	int				x;
-	t_hit_buffer	buffer[MAX_LAYERS];
+	t_hit_buffer	*hit_buf;
 	int				hit_count;
-	t_player	tmp;
 
 	x = start;
 	while (x < end)
 	{
-		hit_count = 0;
-		ray.total_perp_wall_dist = 0;
-		ray.hit_type = 0;
-		tmp = env->player;
-		while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
-		{
-			if (IS_PORTAL(ray.hit_type))
-				portal_hit(&env->scene, &ray, &tmp);
-			ray_calculation(&tmp, &ray, x);
-			ft_dda(&env->scene, &ray, &tmp);
-			env->z_buffer[x] = ray.perp_wall_dist;
-			buffer[hit_count].texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
-			buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, tmp);
-			get_line_y(buffer + hit_count, ray.perp_wall_dist);
-			buffer[hit_count].side = ray.side;
-			buffer[hit_count].cell = ray.hit_type;
-			
-			hit_count++;
-		}
+		// env->buffer[x];
+		hit_count = env->buffer[x]->count;
+		// dprintf(2, "hit_count: %d\n", hit_count);
+		// dprintf(2, "hit cell: %d\n", env->buffer[x][0].cell);
 		while (hit_count-- > 0)
 		{
-			if (IS_WALL(buffer[hit_count].cell))
-				draw_wall(&env->img, buffer + hit_count, x);
-			else if (IS_PORTAL(buffer[hit_count].cell))
-				draw_portal(&env->img, buffer + hit_count, x);
+			hit_buf = env->buffer[x] + hit_count;
+			if (IS_WALL(hit_buf[hit_count].cell))
+				draw_wall(&env->img, hit_buf + hit_count, x);
+			else if (IS_PORTAL(hit_buf[hit_count].cell))
+				draw_portal(&env->img, hit_buf + hit_count, x);
 		}
-		
 		x++;
 	}
 }

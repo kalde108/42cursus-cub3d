@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/29 13:59:09 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 15:50:52 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	render(t_c3_env *env)
 	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
-	env->frame_time = get_elapsed_time(&env->clocks.frame_timer) / 1000.0;
-	start_timer(&env->clocks.frame_timer);
+	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
+	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
 
 	// updates
@@ -91,12 +91,12 @@ int	render(t_c3_env *env)
 	update_frames(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
-	// raycast(env);
+	raycast(env);
 
 	// rendering
 	// time = get_time();																	// debug term
-	if (render_backgound(env))
-		mlx_loop_end(env->mlx);
+	// if (render_backgound(env))
+	// 	mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
 	// time = get_time();																	// debug term
 	if (render_map(env))
@@ -104,7 +104,7 @@ int	render(t_c3_env *env)
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
 	draw_minimap(env);
 	// time = get_time();																	// debug term
-	render_entities(env);
+	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
 
 	render_hud(env);
