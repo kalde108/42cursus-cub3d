@@ -9,7 +9,7 @@ Fc assets/carpet1_128.xpm
 Fd assets/lava
 Ca assets/ceiling1_128.xpm
 Cb assets/lamp1_128.xpm
-PORTAL assets/nether_portal
+PORTAL assets/nether_portal frametime=50
 
                    abbbaaaaaaaaaa
         aaaaaaaaaaab     a a    a
