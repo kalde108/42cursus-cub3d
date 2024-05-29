@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 19:18:42 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 18:44:19 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,23 @@
 #include "cubdef.h"
 #include "parsing.h"
 
-static int	is_enclosed(t_vector *map, t_v2d_i start);
-static int	flood_fill_routine(t_vector *map, t_vector *stack);
+static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start);
+static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack);
 
 int	is_player_enclosed(t_vector *map, t_c3_env *env)
 {
-	int				enclosed;
+	enum e_mapstatus	enclosed;
 
 	enclosed = is_enclosed(map,
 		(t_v2d_i){env->player.pos.x, env->player.pos.y});
-	if (0 == enclosed)
-	{
-		ft_dprintf(STDERR_FILENO, MAP_ERR2, NON_ENCLOSED);
-		return (0);
-	}
-	else if (-1 == enclosed)
+	if (INVAL_FATAL == enclosed)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
 		return (0);
 	}
-	else if ('.' != *(char *)(ft_vector_get(ft_vector_get(map, env->monster.pos.y), env->monster.pos.x)))
+	if (VALID_MAP != enclosed)
+		return (0);
+	if ('.' != *(char *)(ft_vector_get(ft_vector_get(map, env->monster.pos.y), env->monster.pos.x)))
 	{
 		ft_dprintf(STDERR_FILENO, MAP_ERR2, MONSTER_NOPATH);
 		return (0);
@@ -48,10 +45,10 @@ int	is_player_enclosed(t_vector *map, t_c3_env *env)
 
 #include "stdio.h"
 
-static int	is_enclosed(t_vector *map, t_v2d_i start)
+static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start)
 {
-	t_vector	stack;
-	int			enclosed;
+	t_vector			stack;
+	enum e_mapstatus	enclosed;
 
 	if (ft_vector_init(&stack, sizeof(t_v2d_i), 0, NULL)
 		|| ft_vector_add(&stack, &start))
@@ -59,14 +56,14 @@ static int	is_enclosed(t_vector *map, t_v2d_i start)
 		ft_vector_free(&stack);
 		return (-1);
 	}
-	enclosed = 1;
-	while (stack.total > 0 && enclosed == 1)
+	enclosed = VALID_MAP;
+	while (stack.total > 0 && enclosed == VALID_MAP)
 		enclosed = flood_fill_routine(map, &stack);
 	ft_vector_free(&stack);
 	return (enclosed);
 }
 
-static int	flood_fill_routine(t_vector *map, t_vector *stack)
+static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
 {	
 	t_v2d_i		current;
 	char		*cell;
@@ -75,15 +72,28 @@ static int	flood_fill_routine(t_vector *map, t_vector *stack)
 	ft_vector_delete(stack, stack->total - 1);
 	cell = ft_vector_get(ft_vector_get(map, current.y), current.x);
 	if (NULL == cell)
-		return (0);
+	{
+		ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, current.x, current.y);
+		return (INVAL_WALL);
+	}
+	// printf("CELL=%c| x%d y%d\n", *cell, current.x, current.y);
 	if (ft_ischarset(*cell, ".abcdefghijklmnopqrstuvwxyz"))
-		return (1);
-	if (0 == ft_ischarset(*cell, "P"))
-		 *cell = '.';
+		return (VALID_MAP);
+	if (*cell == 'P')
+	{
+		*cell = -*cell;
+		return (VALID_MAP);
+	}
+	else if (*cell == -'P')
+	{
+		ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, current.x, current.y);
+		return (INVAL_PORTAL);
+	}
+	*cell = '.';
 	if (ft_vector_add(stack, &(t_v2d_i){current.x, current.y - 1})
 		|| ft_vector_add(stack, &(t_v2d_i){current.x - 1, current.y})
 		|| ft_vector_add(stack, &(t_v2d_i){current.x, current.y + 1})
 		|| ft_vector_add(stack, &(t_v2d_i){current.x + 1, current.y}))
-		return (-1);
-	return (1);
+		return (INVAL_FATAL);
+	return (VALID_MAP);
 }
