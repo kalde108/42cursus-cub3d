@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 18:44:19 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 19:24:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start);
 static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack);
+static enum e_mapstatus check_portal_validity(char *cell, t_v2d_i position);
 
 int	is_player_enclosed(t_vector *map, t_c3_env *env)
 {
@@ -76,19 +77,10 @@ static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
 		ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, current.x, current.y);
 		return (INVAL_WALL);
 	}
-	// printf("CELL=%c| x%d y%d\n", *cell, current.x, current.y);
 	if (ft_ischarset(*cell, ".abcdefghijklmnopqrstuvwxyz"))
 		return (VALID_MAP);
-	if (*cell == 'P')
-	{
-		*cell = -*cell;
-		return (VALID_MAP);
-	}
-	else if (*cell == -'P')
-	{
-		ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, current.x, current.y);
-		return (INVAL_PORTAL);
-	}
+	if (*cell == 'P' || *cell == -'P')
+		return (check_portal_validity(cell, current));
 	*cell = '.';
 	if (ft_vector_add(stack, &(t_v2d_i){current.x, current.y - 1})
 		|| ft_vector_add(stack, &(t_v2d_i){current.x - 1, current.y})
@@ -96,4 +88,15 @@ static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
 		|| ft_vector_add(stack, &(t_v2d_i){current.x + 1, current.y}))
 		return (INVAL_FATAL);
 	return (VALID_MAP);
+}
+
+static enum e_mapstatus check_portal_validity(char *cell, t_v2d_i position)
+{
+	if ('P' == *cell)
+	{
+		*cell = -'P';
+		return (VALID_MAP);
+	}
+	ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, position.x, position.y);
+	return (INVAL_PORTAL);
 }
