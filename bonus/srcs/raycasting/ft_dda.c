@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 15:52:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 16:23:15 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,14 +212,17 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			|| (ray->map_pos.x >= scene->width && ray->step.x > 0)
 			|| (ray->map_pos.y >= scene->height && ray->step.y > 0))
 		{
-			dprintf(2, "map_pos out of bounds\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
+			// hit = 1;
+			// ray->hit_type = TYPE_WALL + 3;
+			// hit_enable = 0;
+			// dprintf(2, "map_pos out of bounds\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
 		}
 		if ((ray->map_pos.x < 0 && ray->step.x > 0)
 			|| (ray->map_pos.y < 0 && ray->step.y > 0)
 			|| (ray->map_pos.x >= scene->width && ray->step.x < 0)
 			|| (ray->map_pos.y >= scene->height && ray->step.y < 0))
 		{
-			dprintf(2, "controlled EVA\n");
+			// dprintf(2, "controlled EVA\n");
 			hit_enable = 0;
 		}
 		else

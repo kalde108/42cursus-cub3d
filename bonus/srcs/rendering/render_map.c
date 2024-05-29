@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 15:38:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 16:24:52 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 	x = start;
 	while (x < end)
 	{
-		// env->buffer[x];
 		hit_count = env->buffer[x]->count;
-		// dprintf(2, "hit_count: %d\n", hit_count);
-		// dprintf(2, "hit cell: %d\n", env->buffer[x][0].cell);
+		// if (x == 1024)
+		// 	dprintf(2, "hit_count: %d\n", hit_count);
 		while (hit_count-- > 0)
 		{
 			hit_buf = env->buffer[x] + hit_count;
-			if (IS_WALL(hit_buf[hit_count].cell))
-				draw_wall(&env->img, hit_buf + hit_count, x);
-			else if (IS_PORTAL(hit_buf[hit_count].cell))
-				draw_portal(&env->img, hit_buf + hit_count, x);
+			if (IS_WALL(hit_buf->cell))
+				draw_wall(&env->img, hit_buf, x);
+			else if (IS_PORTAL(hit_buf->cell))
+				draw_portal(&env->img, hit_buf, x);
 		}
 		x++;
 	}
