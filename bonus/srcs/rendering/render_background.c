@@ -21,7 +21,7 @@
 // 	while (x < WIDTH)
 // 	{
 // 		hit_count = 0;
-// 		ray_calculation(&env->player, &ray, x);
+// 		screen_ray_calculation(&env->player, &ray, x);
 // 		while (NOT_WALL(ray.hit_type))
 // 		{
 // 			ft_dda(&env->scene, &ray);

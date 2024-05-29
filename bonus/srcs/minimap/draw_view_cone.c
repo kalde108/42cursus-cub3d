@@ -544,12 +544,12 @@ void	draw_view_cone(t_c3_env *env)
 			// total_perp_wall_dist = 0;
 
 			ray.total_perp_wall_dist = 0;
-			// ray_calculation(&camera, &ray, x);
+			// screen_ray_calculation(&camera, &ray, x);
 			while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
 			{
 				if (IS_PORTAL(ray.hit_type))
 					fake_portal_hit(&env->scene, &ray, &camera);
-				ray_calculation(&camera, &ray, x);
+				screen_ray_calculation(&camera, &ray, x);
 				ft_dda(&env->scene, &ray);
 				// if (!hit_count)
 					// env->z_buffer[x] = ray.perp_wall_dist;

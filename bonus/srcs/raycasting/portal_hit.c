@@ -45,7 +45,6 @@ void	portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
 	t_portal	*portals;
 	t_v2d_d		diff;
 
-	(void)camera;
 	portal_id = GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]);
 	portals = scene->portals.tab;
 	if (portals[portal_id].is_open == 0)
