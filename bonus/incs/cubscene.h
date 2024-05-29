@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:26:21 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:30:22 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,6 @@ enum e_textype
 	ENTITY,
 	TEXTURES_TYPES
 };
-
-typedef struct s_texdata
-{
-	char	*filepath;
-	void	*mlx_img;
-	int		width;
-	int		height;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_texdata;
-
-typedef struct s_elem
-{
-	t_texdata		*frames;
-	t_texdata		*current;
-	int				n;
-	int				current_frame;
-	int				dir;
-	char			options;
-	t_attributes	attr;
-}	t_elem;
 
 # define MAX_PORTALS 10
 typedef struct s_portal	// A DEPLACER

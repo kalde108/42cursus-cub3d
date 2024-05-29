@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:27:05 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:31:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static int	set_texture_filepath(char *filepath, t_elem *texture)
 	}
 	texture->frames = ptr;
 	texture->n = 1;
-	init_attributes(&texture->attr);
 	return (0);
 }
 

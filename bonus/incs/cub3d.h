@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/22 21:43:21 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:30:16 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct s_c3_env
 	struct clocks
 	{
 		t_timer		frame_timer;
-		t_timer		map_tex_timer;
 	}				clocks;
 	t_mouse			mouse;
 }	t_c3_env;

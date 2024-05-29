@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:26:55 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:31:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static t_elem	*get_elem_ptr(t_identifier id, t_elem **textures)
 {
 	if (id <= ID_CZ)
 		return (textures[id / 26] + (id % 26));
-	// else
-	// 	;
+	if (id == ID_PORTAL)
+		return (textures[PORTAL]);
 	return (0);
 }

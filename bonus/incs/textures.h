@@ -1,8 +1,10 @@
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-#include "stdbool.h"
-#include "stddef.h"
+# include <stdbool.h>
+# include <stddef.h>
+
+# include "ft_time.h"
 
 //ATTRIBUTES
 # define DEFAULT_FRAMETIME 100
@@ -20,22 +22,73 @@
 
 //ERROR MESSAGES
 # define INVAL_ATTR "Invalid attribute"
+# define INVAL_ANIMATION "Invalid animation attribute value"
+# define INVAL_FRAMESTART "Invalid framestart attribute value"
+# define INVAL_FRAMETIME "Invalid frametime attribute value"
+# define INVAL_HINDER "Invalid hinder attribute value"
+# define INVAL_WALKABLE "Invalid walkable attribute value"
+# define INVAL_DAMAGE "Invalid damage attribute value"
 
-enum e_animation
+typedef enum e_anim
 {
-	STILL,
+	NONE,
 	LOOP,
 	SWAY,
 	RANDOM
-};
+}	t_anim;
 
 typedef struct s_attributes
 {
 	size_t	frametime;
-	int		animation;
+	t_anim	animation;
 	int		damage;
-	int		hinder;
+	double	hinder;
 	bool	walkable;
 }	t_attributes;
+
+typedef struct s_texdata
+{
+	char	*filepath;
+	void	*mlx_img;
+	int		width;
+	int		height;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texdata;
+
+typedef struct s_elem
+{
+	t_texdata		*frames;
+	t_texdata		*current;
+	int				n;
+	int				current_frame;
+	int				dir;
+	char			options;
+	t_attributes	attr;
+	t_timer			timer;
+}	t_elem;
+
+//ATTRIBUTES
+
+void	init_attributes(t_attributes *ptr);
+
+typedef int (*t_set_attr)(char *, char *, t_elem *elem);
+
+int set_animation_attr(char *identifier, char *str,  t_elem *elem);
+int set_damage_attr(char *identifier, char *str,  t_elem *elem);
+int set_framestart_attr(char *identifier, char *str,  t_elem *elem);
+int set_frametime_attr(char *identifier, char *str,  t_elem *elem);
+int set_hinder_attr(char *identifier, char *str,  t_elem *elem);
+int set_walkable_attr(char *identifier, char *str,  t_elem *elem);
+
+# define ANIM_NONE "none"
+# define ANIM_LOOP "loop"
+# define ANIM_SWAY "sway"
+# define ANIM_RANDOM "random"
+
+# define YES "yes"
+# define NO "no"
 
 #endif
