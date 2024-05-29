@@ -408,7 +408,7 @@ static void	apply_rotation(t_player *player, double angle)
 							player->plane.y * cos(angle);
 }
 
-static void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
+static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_player *player)
 {
 	int	portal_id;
 	int	dest_portal_id;
@@ -546,7 +546,7 @@ void	draw_view_cone(t_c3_env *env)
 			while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
 			{
 				if (IS_PORTAL(ray.hit_type))
-					portal_hit(&env->scene, &ray, &tmp_player);
+					fake_portal_hit(&env->scene, &ray, &tmp_player);
 				ray_calculation(&tmp_player, &ray, x);
 				ft_dda(&env->scene, &ray, &tmp_player);
 				// if (!hit_count)

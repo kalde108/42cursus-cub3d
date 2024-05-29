@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 20:20:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 13:57:57 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ typedef struct s_hit_buffer
 	t_texdata	*texture;
 }	t_hit_buffer;
 
-void	ray_calculation(t_player *player, t_ray *ray, int x);
-void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player);
 int		get_tex_x(t_ray *ray, int width, t_player player);
+void	ft_dda(t_cubscene *scene, t_ray *ray, t_player *player);
 void	get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist);
+void	portal_hit(t_cubscene *scene, t_ray *ray, t_player *player);
+void	ray_calculation(t_player *player, t_ray *ray, int x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/24 18:48:52 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 13:45:23 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ inline void	draw_portal(t_img *img, t_hit_buffer *hit_buffer, int x)
 		color_new.r = (color_new.r + dst->r) >> 1;
 		color_new.g = (color_new.g + dst->g) >> 1;
 		color_new.b = (color_new.b + dst->b) >> 1;
+		// color_new.r = (color_new.r + dst->r + dst->r + dst->r) >> 2;
+		// color_new.g = (color_new.g + dst->g + dst->g + dst->g) >> 2;
+		// color_new.b = (color_new.b + dst->b + dst->b + dst->b) >> 2;
 		*dst = color_new;
 		dst += WIDTH;
 		tex_y += step;
