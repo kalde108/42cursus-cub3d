@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 15:43:26 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 16:49:54 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int ac, char **av)
 {
 	t_c3_env	env;
 
+	dprintf(2, "sizeof(t_c3_env): %lu\n", sizeof(t_c3_env)); //DEBUG
 	srand(time(NULL));
 	env = (t_c3_env){0};
 	dprintf(2, "CPUCORES: %d\n", CPUCORES); //DEBUG

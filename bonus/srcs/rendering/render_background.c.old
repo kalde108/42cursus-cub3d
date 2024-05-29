@@ -44,21 +44,21 @@
 // 	}
 // }
 
-static inline void	precompute_steps(t_camera *camera, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
+static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d_d *floor, size_t y)
 {
 	t_v2d_d	ray_dir0;
 	t_v2d_d	ray_dir1;
 	float	row_distance;
 
-	ray_dir0.x = camera->dir.x - camera->plane.x;
-	ray_dir0.y = camera->dir.y - camera->plane.y;
-	ray_dir1.x = camera->dir.x + camera->plane.x;
-	ray_dir1.y = camera->dir.y + camera->plane.y;
+	ray_dir0.x = player->dir.x - player->plane.x;
+	ray_dir0.y = player->dir.y - player->plane.y;
+	ray_dir1.x = player->dir.x + player->plane.x;
+	ray_dir1.y = player->dir.y + player->plane.y;
 	row_distance = (0.5 * HEIGHT) / (y - (HEIGHT >> 1));
 	floor_step->x = row_distance * (ray_dir1.x - ray_dir0.x) / WIDTH;
 	floor_step->y = row_distance * (ray_dir1.y - ray_dir0.y) / WIDTH;
-	floor->x = camera->pos.x + row_distance * ray_dir0.x;
-	floor->y = camera->pos.y + row_distance * ray_dir0.y;
+	floor->x = player->pos.x + row_distance * ray_dir0.x;
+	floor->y = player->pos.y + row_distance * ray_dir0.y;
 }
 
 static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_i cell_pos)
@@ -95,85 +95,18 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].current, floor, cell_pos);
 }
 
-static inline t_camera	get_camera(t_c3_env *env, int x, int y)
-{
-	int				hit_count;
-	int				i;
-
-	hit_count = env->buffer[x]->count;
-	i = 0;
-	while (i < hit_count)
-	{
-		if (y <= env->buffer[x][i].y1 || y >= env->buffer[x][i].y2)
-			return (env->buffer[x][i].camera);
-		i++;
-	}
-	i--;
-	return (env->buffer[x][i].camera);
-}
-
-// static inline t_camera	get_camera(t_c3_env *env, int x, int y)
-// {
-// 	int				hit_count;
-// 	t_camera		*camera;
-
-// 	hit_count = env->buffer[x]->count;
-// 	// hit_buf = env->buffer[x] + (hit_count - 1);
-// 	camera = &env->buffer[x][hit_count - 1].camera;
-// 	while (hit_count-- > 0)
-// 	{
-// 		if (env->buffer[x][hit_count].y1 <= y && env->buffer[x][hit_count].y2 >= y)
-// 			return (*camera);
-// 		else
-// 			camera = &env->buffer[x][hit_count].camera;
-// 		// hit_buf--;
-// 		hit_count--;
-// 	}
-// 	return (*camera);
-// }
-
-// static inline t_camera	get_camera(t_c3_env *env, int x, int y)
-// {
-// 	t_hit_buffer	*hit_buf;
-// 	int				hit_count;
-// 	t_camera		*camera;
-
-// 	hit_count = env->buffer[x]->count;
-// 	hit_buf = env->buffer[x] + hit_count;
-// 	camera = &hit_buf->camera;
-// 	while (hit_count-- > 0)
-// 	{
-// 		if (hit_buf->y1 <= y && hit_buf->y2 >= y)
-// 			return (*camera);
-// 		else
-// 			camera = &hit_buf->camera;
-// 		hit_buf--;
-// 		hit_count--;
-// 	}
-// 	return (*camera);
-// }
-
 static inline void	background_row(t_c3_env *env, int y, t_elem **textures)
 {
-	t_v2d_d 	floor_step;
-	t_v2d_d		floor;
-	t_camera	old_camera;
-	t_camera	camera;
-	int			x;
+	t_v2d_d floor_step;
+	t_v2d_d	floor;
+	
+	precompute_steps(&env->player, &floor_step, &floor, y);
+	
+	int		x;
 
 	x = 0;
-	old_camera = get_camera(env, x, y);
-	precompute_steps(&old_camera, &floor_step, &floor, y);
 	while (x < WIDTH)
 	{
-		camera = get_camera(env, x, y);
-		if (camera.pos.x != old_camera.pos.x || camera.pos.y != old_camera.pos.y)
-		{
-			precompute_steps(&camera, &floor_step, &floor, y);
-			floor.x += floor_step.x * x;
-			floor.y += floor_step.y * x;
-			old_camera = camera;
-		}
 		// if ((int)floor.x >= 0 && (int)floor.x < env->scene.width && (int)floor.y >= 0 && (int)floor.y < env->scene.height && env->scene.map[(int)floor.y * env->scene.width + (int)floor.x] == '0')
 		background_pixel(env, floor, (t_v2d_i){x, y}, textures);
 		floor.x += floor_step.x;
