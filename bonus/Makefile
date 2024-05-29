@@ -50,6 +50,15 @@ PARSING_SRC = \
 	read_texture_directory \
 	set_texture \
 
+# ********** TEXTURES ********** #
+
+SRC += $(addprefix $(TEXTURES_DIR),$(TEXTURES_SRC))
+
+TEXTURES_DIR = textures/
+TEXTURES_SRC = \
+	init_attributes \
+	get_attributes \
+
 # ********** DRAW ********** #
 
 SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))

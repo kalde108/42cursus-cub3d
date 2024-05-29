@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/21 18:45:06 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:26:21 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "ft_math.h"
 # include "identifiers.h"
-# include "stdbool.h"
+# include "textures.h"
 
 # define IDENTIFIER_FLOOR "FL"
 # define IDENTIFIER_CEILING "CE"
@@ -52,20 +52,13 @@ typedef struct s_texdata
 
 typedef struct s_elem
 {
-	t_texdata	*frames;
-	t_texdata	*current;
-	int			n;
-	int			current_frame;
-	int			dir;
-	char		options;
-	struct
-	{
-		size_t	frametime;
-		int		animation;
-		int		dps;
-		int		hinder;
-		bool	walkable;
-	}			attr;
+	t_texdata		*frames;
+	t_texdata		*current;
+	int				n;
+	int				current_frame;
+	int				dir;
+	char			options;
+	t_attributes	attr;
 }	t_elem;
 
 # define MAX_PORTALS 10
