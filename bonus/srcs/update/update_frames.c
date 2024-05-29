@@ -1,15 +1,18 @@
 #include <stdlib.h>
 
-#include "cubscene.h"
 #include "cub3d.h"
-#include "textures.h"
+#include "update.h"
 
-# include <stdio.h>
-
-t_texdata	*get_current_frame(t_elem *texture, size_t frame_skip);
-void	update_special_frames(t_elem **elems, size_t passed_frame);
+static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame);
+static void	update_basic_frames(t_c3_env *env);
 
 void	update_frames(t_c3_env *env)
+{
+	update_basic_frames(env);
+	update_portal_frames(env->scene.elems[BASIC_TEXTURE]);
+}
+
+static void	update_basic_frames(t_c3_env *env)
 {
 	int		i;
 	int		j;
@@ -33,10 +36,9 @@ void	update_frames(t_c3_env *env)
 		}
 		i++;
 	}
-	update_special_frames(env->scene.elems + BASIC_TEXTURE, passed_frame);
 }
 
-t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
+static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 {
 	texture->current_frame += passed_frame * texture->dir;
 	if (texture->attr.animation == LOOP)
@@ -59,19 +61,4 @@ t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 		return (texture->frames + texture->current_frame);
 	}
 	return (texture->frames + (rand() % texture->n));	
-}
-
-void	update_special_frames(t_elem **elems, size_t passed_frame)
-{
-	int i;
-
-	i = 0;
-	while (i < SPECIAL_TEXTURES)
-	{
-		if (elems[i]->n > 1 && elems[i]->attr.animation != NONE)
-		{
-			elems[i]->current = get_current_frame(elems[i], passed_frame);
-		}
-		i++;
-	}
 }

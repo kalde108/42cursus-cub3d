@@ -79,6 +79,7 @@ void	ft_vprint_vchar(void *ptr, size_t index);
 void	ft_vprint_int(void *ptr, size_t index);
 void	ft_vprint_str(void *ptr, size_t index);
 int		ft_vsort_intascend(void *ptr1, void*ptr2);
+int		vsort_str_ascending(void *ptr1, void*ptr2);
 
 //PRINT
 int		ft_vector_printi(t_vector *v, void (*print)(void *, size_t), char *msg);

@@ -143,6 +143,7 @@ UPDATE_DIR = update/
 UPDATE_SRC = \
 	update_entities \
 	update_frames \
+	update_portal_frames \
 
 #	# *** UPDATE_PLAYER **** #
 
