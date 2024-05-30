@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_player_enclosed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 15:13:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 18:35:57 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static enum e_mapstatus init_portal(char *cell, t_v2d_i current, t_cubscene *sce
 		}
 		scene->portals.tab[scene->portals.total].id = scene->portals.total;
 		scene->portals.tab[scene->portals.total].pos = current;
+		scene->portals.tab[scene->portals.total].linked_portal = -1;
 		scene->portals.total++;
 		return (VALID_MAP);
 	}
