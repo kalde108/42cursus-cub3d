@@ -111,6 +111,7 @@ RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
 	ray_calculation \
+	portal_hit_move \
 	portal_hit \
 	raycast \
 

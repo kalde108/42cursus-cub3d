@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/29 19:42:07 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 14:35:56 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define PLAYER_MOVEMENT_SPEED 2.5
 # define PLAYER_ROTATION_SPEED 1.5
-# define PLAYER_SIZE 2
+# define PLAYER_SIZE 0.1
 
 # define MOUSE_SENSIVITY 0.1
 
