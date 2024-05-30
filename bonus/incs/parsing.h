@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:30:44 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 18:26:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,11 @@
 # define MULTIPLE_MONSTER "Multiple monster spawn characters"
 # define MONSTER_NOPATH "Monster has no available path to player"
 # define TOO_MANY_PORTALS "Too many portals"
+# define INVALID_PORTAL "Exposed portal"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
-# define INVAL_CELL "MAP: (x%d;y%d): Invalid cell \n"
+# define INVAL_CELL "MAP: (x%d;y%d): Invalid cell\n"
+# define INVAL_PORTAL_CELL "MAP: (x%d;y%d): Portal has multiple access\n"
+# define INVAL_WALL_CELL "MAP: (x%d;y%d): Missing wall\n"
 
 //MAP_CHARSET
 # define MAP_SPECIALS_CHARSET "NSEWPM"
@@ -59,6 +62,14 @@
 # define WALKABLE -51
 # define MISSING -97
 # define PORTAL_CELL -17
+
+enum e_mapstatus
+{
+	INVAL_FATAL = -1,
+	VALID_MAP,
+	INVAL_WALL,
+	INVAL_PORTAL
+};
 
 enum e_maplayer
 {
