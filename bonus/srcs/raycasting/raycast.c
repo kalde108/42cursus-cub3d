@@ -7,7 +7,7 @@
 
 void	raycast_chunk(t_c3_env *env, int start, int end)
 {
-	t_ray	ray;
+	t_ray			ray;
 	int				x;
 	int				hit_count;
 	t_camera		tmp_camera;
@@ -26,7 +26,7 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 		{
 			if (IS_PORTAL(ray.hit_type))
 				portal_hit(&env->scene, &ray, &tmp_camera);
-			ray_calculation(&tmp_camera, &ray, x);
+			screen_ray_calculation(&tmp_camera, &ray, x);
 			ft_dda(&env->scene, &ray);
 			hit_buf = env->buffer[x] + hit_count;
 			hit_buf->side = ray.side;

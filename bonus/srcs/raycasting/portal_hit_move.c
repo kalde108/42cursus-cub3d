@@ -23,21 +23,20 @@ static int	get_relative_position(int f1, int f2)
 
 static void	apply_rotation(t_camera *camera, double angle)
 {
-	double	old_dir_x;
-	double	old_plane_x;
+	double	old_x;
 
-	old_dir_x = camera->dir.x;
+	old_x = camera->dir.x;
 	camera->dir.x = camera->dir.x * cos(angle) \
 						- camera->dir.y * sin(angle);
-	camera->dir.y = old_dir_x * sin(angle) + camera->dir.y * cos(angle);
-	old_plane_x = camera->plane.x;
+	camera->dir.y = old_x * sin(angle) + camera->dir.y * cos(angle);
+	old_x = camera->plane.x;
 	camera->plane.x = camera->plane.x * cos(angle) \
 							- camera->plane.y * sin(angle);
-	camera->plane.y = old_plane_x * sin(angle) + \
+	camera->plane.y = old_x * sin(angle) + \
 							camera->plane.y * cos(angle);
 }
 
-void	portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
+void	portal_hit_move(t_cubscene *scene, t_ray *ray, t_camera *camera, double *rot)
 {
 	int	portal_id;
 	int	dest_portal_id;
@@ -57,87 +56,40 @@ void	portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
 	{
 		// rotate vector (diff) 180 degrees relative to the portal
 		apply_rotation(camera, PI);
+		*rot = PI;
+		if (ray->side == 0)
+			diff = (t_v2d_d){-diff.x, diff.y};
+		else if (ray->side == 1)
+			diff = (t_v2d_d){diff.x, -diff.y};
 		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.x > 0)
-				camera->pos.x -= 1;
-			else
-				camera->pos.x += 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				camera->pos.y -= 1;
-			else
-				camera->pos.y += 1;
-		}
 	}
 	else if (relative_position == 1)	// left face
 	{
 		// rotate vector (diff) 90 degrees relative to the portal
-		diff = (t_v2d_d){-diff.y, diff.x};
 		apply_rotation(camera, -PI_2);
+		*rot = -PI_2;
+		if (ray->side == 0)
+			diff = (t_v2d_d){-diff.y, -diff.x};
+		else if (ray->side == 1)
+			diff = (t_v2d_d){diff.y, diff.x};
 		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.x > 0)
-				camera->pos.y -= 1;
-			else
-				camera->pos.y += 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				camera->pos.x += 1;
-			else
-				camera->pos.x -= 1;
-		}
 	}
 	else if (relative_position == 2)	// opposite face
 	{
 		// rotate vector (diff) 0 degrees relative to the portal
-		diff.x = -diff.x;
-		diff.y = -diff.y;
-		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
-		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.x > 0)
-				camera->pos.x += 1;
-			else
-				camera->pos.x -= 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				camera->pos.y += 1;
-			else
-				camera->pos.y -= 1;
-		}
 	}
 	else if (relative_position == 3)	// right face
 	{
 		// rotate vector (diff) 90 degrees relative to the portal
-		diff = (t_v2d_d){diff.y, -diff.x};
 		apply_rotation(camera, PI_2);
+		*rot = PI_2;
+		if (ray->side == 0)
+			diff = (t_v2d_d){diff.y, diff.x};
+		else if (ray->side == 1)
+			diff = (t_v2d_d){-diff.y, -diff.x};
 		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
 		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
-		if (ray->side == 0)
-		{
-			if (ray->ray_dir.x > 0)
-				camera->pos.y += 1;
-			else
-				camera->pos.y -= 1;
-		}
-		else if (ray->side == 1)
-		{
-			if (ray->ray_dir.y > 0)
-				camera->pos.x -= 1;
-			else
-				camera->pos.x += 1;
-		}
 	}
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    libft_srcs.mk                                      :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 06:32:49 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/29 17:06:38 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/05/30 18:04:57 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,8 @@ SRC += $(addprefix $(MATH_DIR)ft_, $(addsuffix .c, $(MATH_SRC)))
 MATH_DIR = math/
 MATH_SRC = \
 	euclidean_dist \
+	rotate_v1 \
+	rotate_v2 \
 
 # *** MEMORY ***************************************************************** #
 

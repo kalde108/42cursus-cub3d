@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/29 17:30:55 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 16:50:13 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,53 @@ static void	render_hud(t_c3_env *env)
 	draw_crosshair(env);
 }
 
+// # include "raycasting.h"
+// # include "tile_address.h"
+// static void	print_wall_dist(t_c3_env *env)
+// {
+// 	t_ray			ray;
+// 	int				x;
+// 	int				hit_count;
+// 	t_camera		tmp_camera;
+// 	t_hit_buffer	hit_buf;
+
+// 	x = 1024;
+// 	hit_count = 0;
+// 	ray.total_perp_wall_dist = 0;
+// 	ray.hit_type = 0;
+// 	tmp_camera.pos = env->player.pos;
+// 	tmp_camera.dir = env->player.dir;
+// 	tmp_camera.plane = env->player.plane;
+// 	while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
+// 	{
+// 		if (IS_PORTAL(ray.hit_type))
+// 			portal_hit(&env->scene, &ray, &tmp_camera);
+// 		screen_ray_calculation(&tmp_camera, &ray, x);
+// 		ft_dda(&env->scene, &ray);
+// 		hit_buf.side = ray.side;
+// 		hit_buf.cell = ray.hit_type;
+// 		hit_buf.z = ray.perp_wall_dist;
+// 		dprintf(2, "%d. ray.perp_wall_dist: %f\n", hit_count, ray.perp_wall_dist);
+// 		hit_buf.texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
+// 		hit_buf.tex_x = get_tex_x(&ray, hit_buf.texture->width, &tmp_camera);
+// 		get_line_y(&hit_buf, ray.perp_wall_dist);
+// 		hit_buf.camera = tmp_camera;
+// 		hit_count++;
+// 	}
+// }
+
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
 	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
+	// usleep(100000);	// fake load
 	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
 	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
+
+	// print_wall_dist(env);																// debug term
 
 	// updates
 	// time = get_time();																	// debug term

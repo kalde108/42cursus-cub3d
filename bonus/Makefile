@@ -111,6 +111,7 @@ RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
 	ray_calculation \
+	portal_hit_move \
 	portal_hit \
 	raycast \
 
@@ -152,7 +153,9 @@ SRC += $(addprefix $(UPDATE_PLAYER_DIR),$(UPDATE_PLAYER_SRC))
 
 UPDATE_PLAYER_DIR = $(UPDATE_DIR)update_player/
 UPDATE_PLAYER_SRC = \
+	rotate_player \
 	update_player \
+	update_pos \
 
 # ********** DEBUG ********** #
 

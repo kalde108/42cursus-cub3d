@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 13:46:52 by kchillon          #+#    #+#             */
-/*   Updated: 2024/05/22 19:49:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 15:45:32 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ typedef struct s_triangle
 }	t_triangle;
 
 double	ft_euclidean_dist(t_v2d_d a, t_v2d_d b);
+void	ft_rotate_v1(double *x, double angle);
+void	ft_rotate_v2(t_v2d_d *v, double angle);
 
 #endif

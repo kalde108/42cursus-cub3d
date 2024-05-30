@@ -21,7 +21,7 @@ int	get_portals(t_vector *map, t_cubscene *scene)
 	while (++i < map->total)
 	{
 		line = ft_vector_get(map, i);
-		if (search_line(line, scene->portals.tab + count, &count, i))
+		if (search_line(line, scene->portals.tab, &count, i))
 			return (-1);
 	}
 	scene->portals.total = count;
