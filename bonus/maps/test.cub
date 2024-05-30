@@ -12,9 +12,9 @@ Cb assets/lamp1_128.xpm
 PORTAL assets/nether_portal frametime=50
 
                    abbbaaaaaaaaaa
-        aaaaaaaaaaab     a a    a
+        aaaaaaaaaaab     aPa    a
         a         ab            a
-        a aa     aaa      P     b
+        a aa     aaa            b
         a  a                    b
 aaaaabbaa aa     aaa            a
 a         ba     aaa aabaa aaaaaa
@@ -22,7 +22,7 @@ aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
 aa      ca b a aab      a   a
 a               aa d d  b   a
-a         P      b      a N a
+a               Pb      a N a
 a d  M          ea a b  a   a
 ab     baa a a aaaaa baab   aaa
 aaba aaa aaa a a a aaaa a   a
