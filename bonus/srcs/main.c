@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 16:11:36 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 17:49:46 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
 static void	TEST(t_c3_env *env)
 {
+	srand(time(NULL));
 	env->entity_count = 0;
 	env->entities[0] = (t_entity){MONSTER, (t_v2d_d){26.5, 12.5}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){12.5, 26.5}, env->player.pos), env->scene.elems[WALL] + 2};
 	env->entity_count++;
@@ -43,17 +44,22 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
-	
-	// env->scene.portals.tab[0].face = 2;
-	// env->scene.portals.tab[1].face = 0;
 
-	env->scene.portals.tab[0].is_open = 1;
-	env->scene.portals.tab[1].is_open = 1;
-	env->scene.portals.tab[0].linked_portal = 1;
-	env->scene.portals.tab[1].linked_portal = 0;
+	int p1 = 0;
+	int p2 = 0;
+	while (p1 == p2)
+	{
+		p1 = rand() % env->scene.portals.total;
+		p2 = rand() % env->scene.portals.total;
+	}
+
+	env->scene.portals.tab[p1].is_open = 1;
+	env->scene.portals.tab[p2].is_open = 1;
+	env->scene.portals.tab[p1].linked_portal = p2;
+	env->scene.portals.tab[p2].linked_portal = p1;
 	env->scene.portals.opened_count = 2;
-	env->scene.portals.opened[0] = 0;
-	env->scene.portals.opened[1] = 1;
+	env->scene.portals.opened[0] = p1;
+	env->scene.portals.opened[1] = p2;
 	// env->scene.portals.tab[2].is_open = 1;
 	// env->scene.portals.tab[3].is_open = 1;
 	// env->scene.portals.tab[2].linked_portal = 3;

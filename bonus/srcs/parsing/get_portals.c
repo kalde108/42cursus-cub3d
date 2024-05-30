@@ -5,6 +5,7 @@
 #include "libft.h"
 #include "cubdef.h"
 #include "parsing.h"
+#include "tile_address.h"
 
 static int get_portal_opening(t_vector *map, t_v2d_i portal);
 

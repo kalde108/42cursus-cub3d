@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 18:56:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 17:42:04 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,14 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 
 int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell)
 {
-	static int	portal_count = 0;
 	const char	wall = get_layer_cell(map, y, x, MAP_LAYER) - 'a';
 	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
 	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER) - 'a';
 
-	if (MISSING == wall)
+	if (MISSING == wall || PORTAL_CELL == wall)
 		*cell = EMPTY_CELL;
 	else if (wall >= 0 && wall < 26)
 		*cell = TYPE_WALL | wall;
-	else if (PORTAL_CELL == wall)
-		*cell = TYPE_PORTAL | (portal_count++ << PORTAL_SHIFT);
 	else if (MISSING != floor && MISSING != ceiling)
 		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 	else
@@ -41,8 +38,6 @@ int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell)
 	return (0);
 }
 
-#include <stdlib.h>
-
 static char	get_layer_cell(t_vector *map, int y, int x, int layer)
 {
 	t_vector	*line;
@@ -52,9 +47,7 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer)
 	if (NULL != line)
 	{
 		cell = ft_vector_get(line, x);
-		if (cell && -'P' == *cell)
-			return ('P');
-		if (cell && ' ' != *cell)
+		if (cell && ' ' != *cell && -'P' != *cell)
 			return (*cell);
 		return ('\0');
 	}
