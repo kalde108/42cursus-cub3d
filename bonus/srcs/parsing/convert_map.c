@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 16:54:50 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 17:41:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 #include "libft.h"
 #include "parsing.h"
 #include "cubdef.h"
+#include "tile_address.h"
 
-static int		get_map_width(t_vector *map);
-static int		fill_lines(t_vector *map, int width);
+static int	get_map_width(t_vector *map);
+static int	fill_lines(t_vector *map, int width);
 static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene);
+static void add_portals(t_cubscene *scene);
 
 int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 {
@@ -32,6 +34,7 @@ int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 	scene->map = map_vector_to_array(map, scene);
 	if (!scene->map)
 		return (1);
+	add_portals(scene);
 	return (0);
 }
 
@@ -95,4 +98,20 @@ static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 		i++;
 	}
 	return (s_map);
+}
+
+static void add_portals(t_cubscene *scene)
+{
+	int			i;
+	t_portal	curr;
+	int			curr_index;
+
+	i = 0;
+	while (i < scene->portals.total)
+	{
+		curr = scene->portals.tab[i];
+		curr_index = curr.pos.y * scene->width + curr.pos.x;
+		scene->map[curr_index] = TYPE_PORTAL | curr.id << PORTAL_SHIFT;
+		i++;
+	}
 }

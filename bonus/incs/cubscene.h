@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubscene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:30:22 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 13:50:02 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ enum e_textype
 };
 
 # define MAX_PORTALS 10
+
 typedef struct s_portal	// A DEPLACER
 {
 	int		id;
 	t_v2d_i	pos;
-	int		face;
+	int		face; // South-West-North-East
 	int		is_open;
 	int		linked_portal;
 }	t_portal;
