@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 16:49:54 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 16:11:36 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
+	
+	// env->scene.portals.tab[0].face = 2;
+	// env->scene.portals.tab[1].face = 0;
+
 	env->scene.portals.tab[0].is_open = 1;
 	env->scene.portals.tab[1].is_open = 1;
 	env->scene.portals.tab[0].linked_portal = 1;
 	env->scene.portals.tab[1].linked_portal = 0;
-	env->scene.portals.tab[0].face = 2;
-	env->scene.portals.tab[1].face = 0;
 	env->scene.portals.opened_count = 2;
 	env->scene.portals.opened[0] = 0;
 	env->scene.portals.opened[1] = 1;

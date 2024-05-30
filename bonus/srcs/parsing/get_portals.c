@@ -6,50 +6,40 @@
 #include "cubdef.h"
 #include "parsing.h"
 
-# include <stdio.h>
+static int get_portal_opening(t_vector *map, t_v2d_i portal);
 
-static int	search_line(t_vector *line, t_portal *portals, int *count, int y);
-
-int	get_portals(t_vector *map, t_cubscene *scene)
+int config_portals(t_vector *map, t_cubscene *scene)
 {
-	int			count;
-	t_vector	*line;
-	size_t		i;
+	int		i;
 
-	count = 0;
-	i = -1;
-	while (++i < map->total)
+	i = 0;
+	while (i < scene->portals.total)
 	{
-		line = ft_vector_get(map, i);
-		if (search_line(line, scene->portals.tab + count, &count, i))
-			return (-1);
-	}
-	scene->portals.total = count;
-	if (count > MAX_PORTALS)
-	{
-		ft_dprintf(STDERR_FILENO, MAP_ERR2, TOO_MANY_PORTALS);
-		return (-1);
+		scene->portals.tab[i].face = get_portal_opening(map, scene->portals.tab[i].pos);
+		ft_dprintf(2, "portal %d at x%d y%d | face %d\n", i, scene->portals.tab[i].pos.x, scene->portals.tab[i].pos.y, scene->portals.tab[i].face);
+		i++;
 	}
 	return (0);
 }
 
-static int	search_line(t_vector *line, t_portal *portals, int *count, int y)
+static int get_portal_opening(t_vector *map, t_v2d_i portal)
 {
-	char	*cell;
-	size_t	i;
+	const t_v2d_i	adjacent[] = {
+		(t_v2d_i){0, 1},
+		(t_v2d_i){-1, 0},
+		(t_v2d_i){0, -1},
+		(t_v2d_i){1, 0}
+	};
+	int				i;
+	char			*cell;
 
-	i = -1;
-	while (++i < line->total)
+	i = 0;
+	while (i < 4)
 	{
-		cell = ft_vector_get(line, i);
-		if (1 == ft_ischarset(*cell, PORTAL_CHARSET))
-		{
-			(portals + *count)->id = *count;
-			(portals + *count)->pos.x = i;
-			(portals + *count)->pos.y = y;
-			dprintf(2, "portal %d at %zu %d\n", *count, i, y);
-			(*count)++;
-		}
+		cell = ft_vector_get(ft_vector_get(map, portal.y + adjacent[i].y), portal.x + adjacent[i].x);
+		if (cell && '.' == *cell)
+			return (i);
+		i++;
 	}
-	return (0);
+	return (-1);
 }

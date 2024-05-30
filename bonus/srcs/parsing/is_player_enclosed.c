@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 19:24:27 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 15:13:58 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 #include "cubdef.h"
 #include "parsing.h"
 
-static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start);
-static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack);
-static enum e_mapstatus check_portal_validity(char *cell, t_v2d_i position);
+static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start, t_cubscene *scene);
+static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack, t_cubscene *scene);
+static enum e_mapstatus init_portal(char *cell, t_v2d_i position, t_cubscene *scene);
 
 int	is_player_enclosed(t_vector *map, t_c3_env *env)
 {
 	enum e_mapstatus	enclosed;
 
 	enclosed = is_enclosed(map,
-		(t_v2d_i){env->player.pos.x, env->player.pos.y});
+		(t_v2d_i){env->player.pos.x, env->player.pos.y}, &env->scene);
 	if (INVAL_FATAL == enclosed)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
@@ -44,9 +44,7 @@ int	is_player_enclosed(t_vector *map, t_c3_env *env)
 	return (1);
 }
 
-#include "stdio.h"
-
-static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start)
+static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start, t_cubscene *scene)
 {
 	t_vector			stack;
 	enum e_mapstatus	enclosed;
@@ -59,12 +57,12 @@ static enum e_mapstatus	is_enclosed(t_vector *map, t_v2d_i start)
 	}
 	enclosed = VALID_MAP;
 	while (stack.total > 0 && enclosed == VALID_MAP)
-		enclosed = flood_fill_routine(map, &stack);
+		enclosed = flood_fill_routine(map, &stack, scene);
 	ft_vector_free(&stack);
 	return (enclosed);
 }
 
-static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
+static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack, t_cubscene *scene)
 {	
 	t_v2d_i		current;
 	char		*cell;
@@ -80,7 +78,7 @@ static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
 	if (ft_ischarset(*cell, ".abcdefghijklmnopqrstuvwxyz"))
 		return (VALID_MAP);
 	if (*cell == 'P' || *cell == -'P')
-		return (check_portal_validity(cell, current));
+		return (init_portal(cell, current, scene));
 	*cell = '.';
 	if (ft_vector_add(stack, &(t_v2d_i){current.x, current.y - 1})
 		|| ft_vector_add(stack, &(t_v2d_i){current.x - 1, current.y})
@@ -90,13 +88,21 @@ static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack)
 	return (VALID_MAP);
 }
 
-static enum e_mapstatus check_portal_validity(char *cell, t_v2d_i position)
+static enum e_mapstatus init_portal(char *cell, t_v2d_i current, t_cubscene *scene)
 {
 	if ('P' == *cell)
 	{
 		*cell = -'P';
+		if (scene->portals.total == MAX_PORTALS)
+		{
+			ft_dprintf(STDERR_FILENO, MAP_ERR2, TOO_MANY_PORTALS);
+			return (INVAL_PORTAL);
+		}
+		scene->portals.tab[scene->portals.total].id = scene->portals.total;
+		scene->portals.tab[scene->portals.total].pos = current;
+		scene->portals.total++;
 		return (VALID_MAP);
 	}
-	ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, position.x, position.y);
+	ft_dprintf(STDERR_FILENO, INVAL_PORTAL_CELL, current.x, current.y);
 	return (INVAL_PORTAL);
 }
