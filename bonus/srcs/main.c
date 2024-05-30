@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 17:49:46 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 18:16:13 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,24 @@ static void	TEST(t_c3_env *env)
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
 
-	int p1 = 0;
-	int p2 = 0;
-	while (p1 == p2)
+	if (env->scene.portals.total >= 2)
 	{
-		p1 = rand() % env->scene.portals.total;
-		p2 = rand() % env->scene.portals.total;
-	}
+		int p1 = 0;
+		int p2 = 0;
+		while (p1 == p2)
+		{
+			p1 = rand() % env->scene.portals.total;
+			p2 = rand() % env->scene.portals.total;
+		}
 
-	env->scene.portals.tab[p1].is_open = 1;
-	env->scene.portals.tab[p2].is_open = 1;
-	env->scene.portals.tab[p1].linked_portal = p2;
-	env->scene.portals.tab[p2].linked_portal = p1;
-	env->scene.portals.opened_count = 2;
-	env->scene.portals.opened[0] = p1;
-	env->scene.portals.opened[1] = p2;
+		env->scene.portals.tab[p1].is_open = 1;
+		env->scene.portals.tab[p2].is_open = 1;
+		env->scene.portals.tab[p1].linked_portal = p2;
+		env->scene.portals.tab[p2].linked_portal = p1;
+		env->scene.portals.opened_count = 2;
+		env->scene.portals.opened[0] = p1;
+		env->scene.portals.opened[1] = p2;
+	}
 	// env->scene.portals.tab[2].is_open = 1;
 	// env->scene.portals.tab[3].is_open = 1;
 	// env->scene.portals.tab[2].linked_portal = 3;
