@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/20 21:18:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 18:33:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ t_texdata	*get_wall_texture(t_cubscene *scene, int cell, t_elem **textures)
 	(void)scene;
 	if (IS_WALL(cell))
 		texture_block = &textures[WALL][GET_WALL(cell)];
-	else if (IS_PORTAL(cell))
+	else if (IS_PORTAL(cell) && scene->portals.tab[GET_PORTAL(cell)].is_open)
 		texture_block = textures[PORTAL];
+	else if (IS_PORTAL(cell))
+		return (textures[PORTAL]->frames);
 	else
 	{
 		dprintf(2, "Error\n");
