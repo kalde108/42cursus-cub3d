@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 15:23:34 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 16:50:13 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	render(t_c3_env *env)
 	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
+	// usleep(100000);	// fake load
 	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
 	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term

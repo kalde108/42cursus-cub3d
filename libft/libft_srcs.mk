@@ -6,7 +6,7 @@
 #    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 06:32:49 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/12 14:00:03 by kchillon         ###   ########lyon.fr    #
+#    Updated: 2024/05/30 15:46:04 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,8 @@ SRC += $(addprefix $(MATH_DIR)ft_, $(addsuffix .c, $(MATH_SRC)))
 MATH_DIR = math/
 MATH_SRC = \
 	euclidean_dist \
+	rotate_v1 \
+	rotate_v2 \
 
 # *** MEMORY ***************************************************************** #
 
