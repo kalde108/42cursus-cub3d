@@ -22,7 +22,7 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 		tmp_camera.pos = env->player.pos;
 		tmp_camera.dir = env->player.dir;
 		tmp_camera.plane = env->player.plane;
-		while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
+		while ((NOT_WALL(ray.hit_type) || (IS_PORTAL(ray.hit_type) && -1 != env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 		{
 			if (IS_PORTAL(ray.hit_type))
 				portal_hit(&env->scene, &ray, &tmp_camera);
