@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 16:50:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 17:00:33 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,8 @@ int	render(t_c3_env *env)
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
 	// time = get_time();																	// debug term
-	if (render_map(env))
-		mlx_loop_end(env->mlx);
+	// if (render_map(env))
+	// 	mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
 	draw_minimap(env);
 	// time = get_time();																	// debug term

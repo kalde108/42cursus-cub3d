@@ -2,9 +2,12 @@
 
 #include "cub3d.h"
 #include "update.h"
+#include "libft.h"
+
+# include <stdio.h>
 
 static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame);
-static void	update_basic_frames(t_c3_env *env);
+static void			update_basic_frames(t_c3_env *env);
 
 void	update_frames(t_c3_env *env)
 {
@@ -40,25 +43,28 @@ static void	update_basic_frames(t_c3_env *env)
 
 static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 {
+	if (texture->attr.animation == RANDOM)
+		return (texture->frames + (rand() % texture->n));
 	texture->current_frame += passed_frame * texture->dir;
 	if (texture->attr.animation == LOOP)
-	{
 		texture->current_frame %= texture->n;
-		return (texture->frames + texture->current_frame);
-	}
-	if (texture->attr.animation == SWAY)
+	if (texture->attr.animation == SWAY
+		&& (texture->current_frame >= texture->n || texture->current_frame < 0))
 	{
-		if (texture->current_frame >= texture->n)
+		if (ft_abs(texture->current_frame) / texture->n & 1)
 		{
-			texture->current_frame = texture->n - (texture->n - texture->current_frame + 1);
-			texture->dir = -1;
+			texture->current_frame = texture->n \
+				- (ft_abs(texture->current_frame) % texture->n + 1);
+			texture->dir = (texture->current_frame < 0) \
+				- (texture->current_frame >= 0);
 		}
-		else if (texture->current_frame < 0)
+		else
 		{
-			texture->current_frame = -texture->current_frame;
-			texture->dir = 1;
+			texture->current_frame = ft_abs(texture->current_frame) \
+				% texture->n;
+			texture->dir = (texture->current_frame >= 0) \
+				- (texture->current_frame < 0);
 		}
-		return (texture->frames + texture->current_frame);
 	}
-	return (texture->frames + (rand() % texture->n));	
+	return (texture->frames + texture->current_frame);
 }

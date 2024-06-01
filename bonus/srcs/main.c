@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:39:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 16:00:30 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
+void MEMORY_MAP(t_c3_env *env); //REMOVE
 
 static void	TEST(t_c3_env *env)
 {
@@ -42,8 +43,6 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->entities[7] = (t_entity){BOXES, (t_v2d_d){24.7, 5.8}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){6.5, 24.5}, env->player.pos), env->scene.elems[WALL] + 2};
 	env->entity_count++;
-	env->scene.elems[WALL][3].options = 1;
-	env->scene.elems[FLOOR][3].options = 0;
 
 	if (env->scene.portals.total >= 2)
 	{
@@ -100,6 +99,7 @@ int	main(int ac, char **av)
 	}
 	TEST(&env);
 	DISPLAY_SHORT_MAP(&env);
+	MEMORY_MAP(&env);
 	mlx_loop(env.mlx);
 	destroy_cubenv(&env);
 	pthread_mutex_destroy(&env.call_mutex);
