@@ -15,6 +15,19 @@ char	*elem_type_str(int type)
 	return ("UNKNOWN");
 }
 
+char	*portal_face_str(int face)
+{
+	if (face == 0)
+		return ("SOUTH");
+	if (face == 1)
+		return ("WEST");
+	if (face == 2)
+		return ("NORTH");
+	if (face == 3)
+		return ("EAST");
+	return ("UNKNOWN");
+}
+
 void	MEMORY_MAP(t_c3_env *env)
 {
 	size_t	i;
@@ -140,13 +153,15 @@ void	MEMORY_MAP(t_c3_env *env)
 					dprintf(2, "\t\t\t\t[%zu]: %p\n", i, env->scene.portals.tab + i);
 						dprintf(2, "\t\t\t\t\t.id: %d\n", env->scene.portals.tab[i].id);
 						dprintf(2, "\t\t\t\t\t.pos: x%d y%d\n", env->scene.portals.tab[i].pos.x, env->scene.portals.tab[i].pos.y);
-						dprintf(2, "\t\t\t\t\t.face: %d\n", env->scene.portals.tab[i].face);
+						dprintf(2, "\t\t\t\t\t.face: %d (%s)\n", env->scene.portals.tab[i].face, portal_face_str(env->scene.portals.tab[i].face));
 						dprintf(2, "\t\t\t\t\t.is_open: %d\n", env->scene.portals.tab[i].is_open);
 						dprintf(2, "\t\t\t\t\t.linked_portal: %d\n", env->scene.portals.tab[i].linked_portal);
 					i++;
 				}
 				dprintf(2, "\t\t\t.total: %d\n", env->scene.portals.total);
 				dprintf(2, "\t\t\t.opened: %p\n", env->scene.portals.opened);
+					dprintf(2, "\t\t\t\t[0]: %d\n", env->scene.portals.opened[0]);
+					dprintf(2, "\t\t\t\t[1]: %d\n", env->scene.portals.opened[1]);
 				dprintf(2, "\t\t\t.opened_count: %d\n", env->scene.portals.opened_count);
 
 		dprintf(2, "\t->mlx: %p\n", env->mlx);
