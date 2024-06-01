@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 16:50:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 19:33:20 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	render(t_c3_env *env)
 	update_frames(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
-	if (raycast(env))
+	if (screen_raycast(env))
 		mlx_loop_end(env->mlx);
 
 	// rendering

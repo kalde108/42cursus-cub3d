@@ -61,7 +61,7 @@ void	*raycast_thread(void *arg)
 	return (NULL);
 }
 
-int	raycast(t_c3_env *env)
+int	screen_raycast(t_c3_env *env)
 {
 	pthread_t	threads[CPUCORES];
 	int			i;

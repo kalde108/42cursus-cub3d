@@ -113,7 +113,7 @@ RAYCASTING_SRC = \
 	ray_calculation \
 	portal_hit_move \
 	portal_hit \
-	raycast \
+	screen_raycast \
 
 # ******* RENDERING ******** #
 
