@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_player_enclosed.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:35:57 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 18:35:24 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static enum e_mapstatus	flood_fill_routine(t_vector *map, t_vector *stack, t_cub
 
 static enum e_mapstatus init_portal(char *cell, t_v2d_i current, t_cubscene *scene)
 {
+	t_portal portal;
+
 	if ('P' == *cell)
 	{
 		*cell = -'P';
@@ -98,9 +100,12 @@ static enum e_mapstatus init_portal(char *cell, t_v2d_i current, t_cubscene *sce
 			ft_dprintf(STDERR_FILENO, MAP_ERR2, TOO_MANY_PORTALS);
 			return (INVAL_PORTAL);
 		}
-		scene->portals.tab[scene->portals.total].id = scene->portals.total;
-		scene->portals.tab[scene->portals.total].pos = current;
-		scene->portals.tab[scene->portals.total].linked_portal = -1;
+		portal.id = scene->portals.total;
+		portal.pos = current;
+		portal.face = -1;
+		portal.is_open = false;
+		portal.linked_portal = NO_LINK;
+		*(scene->portals.tab + scene->portals.total) = portal;
 		scene->portals.total++;
 		return (VALID_MAP);
 	}

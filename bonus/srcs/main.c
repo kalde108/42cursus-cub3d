@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:39:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 19:41:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include "libft.h"
 # include "tile_address.h"
 
-# include "stdlib.h"
+# include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
 
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
+void MEMORY_MAP(t_c3_env *env); //REMOVE
 
 static void	TEST(t_c3_env *env)
 {
@@ -44,32 +45,6 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->scene.elems[WALL][3].options = 1;
 	env->scene.elems[FLOOR][3].options = 0;
-
-	if (env->scene.portals.total >= 2)
-	{
-		int p1 = 0;
-		int p2 = 0;
-		while (p1 == p2)
-		{
-			p1 = rand() % env->scene.portals.total;
-			p2 = rand() % env->scene.portals.total;
-		}
-
-		env->scene.portals.tab[p1].is_open = 1;
-		env->scene.portals.tab[p2].is_open = 1;
-		env->scene.portals.tab[p1].linked_portal = p2;
-		env->scene.portals.tab[p2].linked_portal = p1;
-		env->scene.portals.opened_count = 1;
-		env->scene.portals.opened[0] = p1;
-		env->scene.portals.opened[1] = p2;
-	}
-	// env->scene.portals.tab[2].is_open = 1;
-	// env->scene.portals.tab[3].is_open = 1;
-	// env->scene.portals.tab[2].linked_portal = 3;
-	// env->scene.portals.tab[3].linked_portal = 2;
-	// env->scene.portals.opened_count = 2;
-	// env->scene.portals.opened[2] = 2;
-	// env->scene.portals.opened[3] = 3;
 }
 
 // 137422175504

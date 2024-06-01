@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 18:03:56 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 19:44:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,15 @@
 # define PLAYER_H
 
 # include "ft_math.h"
+# include "ft_time.h"
 
 # define PLAYER_MOVEMENT_SPEED 2.5
 # define PLAYER_ROTATION_SPEED 1.5
 # define PLAYER_SIZE 0.1
 
 # define MOUSE_SENSIVITY 0.1
+
+# define INTERACTION_COOLDOWN 1000
 
 typedef struct s_player
 {
@@ -29,6 +32,7 @@ typedef struct s_player
 	t_v2d_d	plane;	// camera plane
 	double	mv_speed;
 	double	rt_speed;
+	t_timer	interact;
 }	t_player;
 
 #endif //PLAYER_H

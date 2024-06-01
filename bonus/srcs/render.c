@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 16:50:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 20:17:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 #include "mlx.h"
 #include "render.h"
 #include "draw.h"
+#include "update.h"
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
+void MEMORY_MAP(t_c3_env *env); //REMOVE
+
+void player_interaction(t_c3_env *env);
 
 static void	update_mouse(t_c3_env *env)
 {
@@ -127,6 +133,7 @@ int	render(t_c3_env *env)
 	update_entities(env);
 	// time = get_time();																	// debug term
 	update_frames(env);
+	player_interaction(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
 	if (raycast(env))
@@ -154,4 +161,13 @@ int	render(t_c3_env *env)
 	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
 	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
 	return (0);
+}
+
+void player_interaction(t_c3_env *env)
+{
+	if (env->key_state[KEY_E] && timer_is_over(&env->player.interact))
+	{
+		update_portal_status(&env->scene.portals, rand() % env->scene.portals.total);
+		DISPLAY_SHORT_MAP(env);
+	}
 }
