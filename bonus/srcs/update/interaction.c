@@ -18,7 +18,7 @@ void player_interaction(t_c3_env *env)
 			if (EMPTY_CELL != cell)
 			{
 				update_portal_status(&env->scene.portals, GET_PORTAL(cell));
-				DISPLAY_SHORT_MAP(env);
+				// DISPLAY_SHORT_MAP(env);
 			}
 		}
 		key_release = false;

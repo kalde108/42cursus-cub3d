@@ -42,6 +42,7 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	t_ray		ray;
 	t_camera	camera;
 	double		rot;
+	double		offset;
 
 	g_debug = 1;	// REMOVE
 	rot = 0;
@@ -58,18 +59,22 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 		}
 		ray_calculation(&camera, &ray);
 		ft_dda(scene, &ray);
-		if (ray.perp_wall_dist > fabs(move_vec.x) + PLAYER_SIZE)
+		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
+			offset = PORTAL_OFFSET;
+		else
+			offset = PLAYER_SIZE;
+		if (ray.perp_wall_dist > fabs(move_vec.x) + offset)
 		{
 			camera.pos.x += move_vec.x;
 			camera.pos.y += move_vec.y;
 			break ;
 		}
-		else if (ray.perp_wall_dist > PLAYER_SIZE)
+		else if (ray.perp_wall_dist > offset)
 		{
-			camera.pos.x += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
-			camera.pos.y += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
-			move_vec.x -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
-			move_vec.y -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
+			camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
+			camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
+			move_vec.x -= (ray.perp_wall_dist - offset) * camera.dir.x;
+			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
 			dprintf(2, "ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
@@ -84,13 +89,14 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	t_ray		ray;
 	t_camera	camera;
 	double		rot;
+	double		offset;
 
 	g_debug = 2;	// REMOVE
 	rot = 0;
 	camera.pos = env->player.camera.pos;
 	camera.dir = (t_v2d_d){0, (move_vec.y >= 0) - (move_vec.y < 0)};
 	ray = (t_ray){0};
-	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
+	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && NO_LINK == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
 	{
 		if (IS_PORTAL(ray.hit_type))
 		{
@@ -100,19 +106,25 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 		}
 		ray_calculation(&camera, &ray);
 		ft_dda(scene, &ray);
-		if (ray.perp_wall_dist > fabs(move_vec.y) + PLAYER_SIZE)
+		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
+			offset = PORTAL_OFFSET;
+		else
+			offset = PLAYER_SIZE;
+		if (ray.perp_wall_dist > fabs(move_vec.y) + offset)
 		{
 			camera.pos.x += move_vec.x;
 			camera.pos.y += move_vec.y;
 			break ;
 		}
-		else if (ray.perp_wall_dist > PLAYER_SIZE)	// TODO: check if this is correct
+		else if (ray.perp_wall_dist > offset)	// TODO: check if this is correct
 		{
-			camera.pos.x += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
-			camera.pos.y += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
-			move_vec.x -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
-			move_vec.y -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
+			camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
+			camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
+			move_vec.x -= (ray.perp_wall_dist - offset) * camera.dir.x;
+			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
+		else
+			dprintf(2, "ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 	}
 	env->player.camera.pos.y = camera.pos.y;
 	env->player.camera.pos.x = camera.pos.x;
