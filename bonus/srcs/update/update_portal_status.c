@@ -6,15 +6,11 @@ static void open_portal(t_portals *portals, t_portal *target);
 # include <stdio.h>
 void	update_portal_status(t_portals *portals, int id)
 {
-	t_portal *target;
-
-	dprintf(2, "Interacting with portal %d\n", id);
-	target = portals->tab + id;
+	dprintf(2, "Interacting with portal %d\n", id); //REmove
 	if (true == portals->tab[id].is_open)
 		close_portal(portals, portals->tab + id);
 	else if (2 != portals->opened_count)
 		open_portal(portals, portals->tab + id);
-	
 }
 
 static void close_portal(t_portals *portals, t_portal *target)
