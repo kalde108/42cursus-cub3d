@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:22:09 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:31:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static int			tokenize_line(char *line, t_cubscene *ptr, bool *defined);
 static t_identifier	get_identifier(char *str);
 static int			is_defined(char *tok, bool *control);
+static t_elem		*get_elem_ptr(t_identifier id, t_elem **textures);
 
 int	get_scene_textures(int fd, t_cubscene *ptr)
 {
@@ -55,8 +56,15 @@ static int	tokenize_line(char *line, t_cubscene *ptr, bool *defined)
 		id = get_identifier(identifier);
 	if (!identifier || id == ID_INVAL || is_defined(identifier, defined + id))
 		return (1);
-	value = ft_strtok(NULL, "");
+	value = ft_strtok(NULL, " ");
 	if (value && set_texture(identifier, value, id, ptr))
+		return (1);
+	else if (NULL == value)
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, line, MISSING_PATH);
+		return (1);
+	}
+	if (get_attributes(identifier, get_elem_ptr(id, ptr->elems)))
 		return (1);
 	return (0);
 }
@@ -90,4 +98,13 @@ static int	is_defined(char *tok, bool *control)
 	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, tok, MULTI_ID);
 	return (1);
+}
+
+static t_elem	*get_elem_ptr(t_identifier id, t_elem **textures)
+{
+	if (id <= ID_CZ)
+		return (textures[id / 26] + (id % 26));
+	if (id == ID_PORTAL)
+		return (textures[PORTAL]);
+	return (0);
 }

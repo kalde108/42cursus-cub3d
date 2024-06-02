@@ -1,23 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 19:17:33 by kchillon         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "mlx.h"
 #include "render.h"
 #include "draw.h"
+#include "update.h"
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+void MEMORY_MAP(t_c3_env *env); //REMOVE
+
+void player_interaction(t_c3_env *env);
 
 static void	update_mouse(t_c3_env *env)
 {
@@ -70,15 +62,74 @@ static void	render_hud(t_c3_env *env)
 	draw_crosshair(env);
 }
 
+// # include "raycasting.h"
+// # include "tile_address.h"
+// static void	print_wall_dist(t_c3_env *env)
+// {
+// 	t_ray			ray;
+// 	int				x;
+// 	int				hit_count;
+// 	t_camera		tmp_camera;
+// 	t_hit_buffer	hit_buf;
+
+// 	x = 1024;
+// 	hit_count = 0;
+// 	ray.total_perp_wall_dist = 0;
+// 	ray.hit_type = 0;
+// 	tmp_camera.pos = env->player.camera.pos;
+// 	tmp_camera.dir = env->player.camera.dir;
+// 	tmp_camera.plane = env->player.camera.plane;
+// 	while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
+// 	{
+// 		if (IS_PORTAL(ray.hit_type))
+// 			portal_hit(&env->scene, &ray, &tmp_camera);
+// 		screen_ray_calculation(&tmp_camera, &ray, x);
+// 		ft_dda(&env->scene, &ray);
+// 		hit_buf.side = ray.side;
+// 		hit_buf.cell = ray.hit_type;
+// 		hit_buf.z = ray.perp_wall_dist;
+// 		dprintf(2, "%d. ray.perp_wall_dist: %f\n", hit_count, ray.perp_wall_dist);
+// 		hit_buf.texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
+// 		hit_buf.tex_x = get_tex_x(&ray, hit_buf.texture->width, &tmp_camera);
+// 		get_line_y(&hit_buf, ray.perp_wall_dist);
+// 		hit_buf.camera = tmp_camera;
+// 		hit_count++;
+// 	}
+// }
+
+# include "raycasting.h"
+# include "tile_address.h"
+void	test_single_raycast(t_c3_env *env)
+{
+	t_hit_buffer	hit_buf[MAX_LAYERS];
+
+	single_raycast(&env->scene, env->player.camera, hit_buf);
+	dprintf(2, "\nFirst hit: %d\n", hit_buf[0].cell);
+		dprintf(2, "\tray.perp_wall_dist: %f\n", hit_buf[0].z);
+	if (IS_PORTAL(hit_buf[0].cell))
+		dprintf(2, "\tportal hit\n");
+	else
+		dprintf(2, "\twall hit\n");
+	dprintf(2, "Last hit: %d\n", hit_buf[hit_buf->count - 1].cell);
+		dprintf(2, "\tray.perp_wall_dist: %f\n", hit_buf[hit_buf->count - 1].z);
+	if (IS_PORTAL(hit_buf[hit_buf->count - 1].cell))
+		dprintf(2, "\tportal hit\n");
+	else
+		dprintf(2, "\twall hit\n");
+}
+
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
 	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
-	env->frame_time = get_elapsed_time(&env->clocks.frame_timer) / 1000.0;
-	start_timer(&env->clocks.frame_timer);
+	// usleep(100000);	// fake load
+	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
+	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
+
+	// print_wall_dist(env);																// debug term
 
 	// updates
 	// time = get_time();																	// debug term
@@ -89,7 +140,13 @@ int	render(t_c3_env *env)
 	update_entities(env);
 	// time = get_time();																	// debug term
 	update_frames(env);
+	player_interaction(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
+
+	test_single_raycast(env);
+
+	if (screen_raycast(env))
+		mlx_loop_end(env->mlx);
 
 	// rendering
 	// time = get_time();																	// debug term
@@ -102,7 +159,7 @@ int	render(t_c3_env *env)
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
 	// draw_minimap(env);
 	// time = get_time();																	// debug term
-	render_entities(env);
+	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
 
 	render_hud(env);
@@ -114,3 +171,5 @@ int	render(t_c3_env *env)
 	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
 	return (0);
 }
+
+

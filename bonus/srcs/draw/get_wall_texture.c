@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_wall_texture.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 03:31:09 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 18:33:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,24 @@
 #include "ft_math.h"
 #include "tile_address.h"
 
-t_texdata	*get_wall_texture(t_cubscene *scene, t_v2d_i map_pos, t_elem **textures)
-{
-	t_elem *texture_block;
+# include <stdio.h>
 
-	texture_block = &textures[WALL][GET_WALL(scene->map[map_pos.y * scene->width + map_pos.x])];
+t_texdata	*get_wall_texture(t_cubscene *scene, int cell, t_elem **textures)
+{
+	t_elem	*texture_block;
+
+	(void)scene;
+	if (IS_WALL(cell))
+		texture_block = &textures[WALL][GET_WALL(cell)];
+	else if (IS_PORTAL(cell) && scene->portals.tab[GET_PORTAL(cell)].is_open)
+		texture_block = textures[PORTAL];
+	else if (IS_PORTAL(cell))
+		return (textures[PORTAL]->frames);
+	else
+	{
+		dprintf(2, "Error\n");
+		// dprintf(2, "Invalid cell type: %d\tat x = %d, y = %d\n", cell, map_pos.x, map_pos.y);
+		return (NULL);
+	}
 	return (texture_block->current);
 }

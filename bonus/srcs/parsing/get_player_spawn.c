@@ -49,10 +49,10 @@ static int	search_line(t_vector *line, t_player *player, bool *found, int y)
 				return (-1);
 			}
 			*found = true;
-			player->pos.x = i + 0.5;
-			player->pos.y = y + 0.5;
+			player->camera.pos.x = i + 0.5;
+			player->camera.pos.y = y + 0.5;
 			get_player_orientation(*cell, player);
-			*cell = '.';
+			init_timer(&player->interact, INTERACTION_COOLDOWN, AUTO_RESET);
 		}
 	}
 	return (0);
@@ -68,10 +68,10 @@ static void	get_player_orientation(char c, t_player *player)
 	i = 0;
 	while (charset[i] != c)
 		i++;
-	player->dir.x = x[i];
-	player->dir.y = y[i];
-	player->plane.x = -y[i] * tan(FOV / 2.0 * PI / 180.0);
-	player->plane.y = x[i] * tan(FOV / 2.0 * PI / 180.0);
+	player->camera.dir.x = x[i];
+	player->camera.dir.y = y[i];
+	player->camera.plane.x = -y[i] * tan(FOV / 2.0 * PI / 180.0);
+	player->camera.plane.y = x[i] * tan(FOV / 2.0 * PI / 180.0);
 	player->mv_speed = PLAYER_MOVEMENT_SPEED;
 	player->rt_speed = PLAYER_ROTATION_SPEED;
 }

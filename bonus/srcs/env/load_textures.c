@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 16:55:48 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	int	j;
 	int	k;
 
+	ft_dprintf(STDERR_FILENO, "LOADING TEXTURES...\n");
 	i = 0;
 	while (i < BASIC_TEXTURE)
 	{
@@ -39,20 +40,33 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 			{
 				if (convert_xmp(mlx_ptr, textures[i][j].frames + k))
 					return (-1);
-				textures[i][j].current = textures[i][j].frames;
+				if (NULL == textures[i][j].current)
+					textures[i][j].current = textures[i][j].frames;
 				textures[i][j].dir = 1;
-				textures[i][j].options = 1;
 				k++;
 			}
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+	while (i < textures[PORTAL]->n)
+	{
+		if (convert_xmp(mlx_ptr, textures[PORTAL]->frames + i))
+			return (-1);
+		i++;
+	}
+	if (NULL == textures[PORTAL]->current)
+		textures[PORTAL]->current = textures[PORTAL]->frames;
+	textures[PORTAL]->dir = 1;
+	ft_dprintf(STDERR_FILENO, "\n");
 	return (0);
 }
 
+
 static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 {
+	ft_dprintf(STDERR_FILENO, "\t%s: ", data->filepath);
 	data->mlx_img = mlx_xpm_file_to_image(mlx_ptr,
 			data->filepath,
 			&data->width,
@@ -73,5 +87,6 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
+	ft_dprintf(STDERR_FILENO, "OK\n");
 	return (0);
 }

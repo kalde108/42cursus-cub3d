@@ -43,11 +43,27 @@ PARSING_SRC = \
 	get_entities \
 	get_monster_spawn \
 	get_player_spawn \
+	get_portals \
 	get_scene_map \
 	get_scene_textures \
 	is_player_enclosed \
 	read_texture_directory \
 	set_texture \
+
+# ********** TEXTURES ********** #
+
+SRC += $(addprefix $(TEXTURES_DIR),$(TEXTURES_SRC))
+
+TEXTURES_DIR = textures/
+TEXTURES_SRC = \
+	init_attributes \
+	get_attributes \
+	set_animation_attr \
+	set_frametime_attr \
+	set_framestart_attr \
+	set_hinder_attr \
+	set_damage_attr \
+	set_walkable_attr \
 
 # ********** DRAW ********** #
 
@@ -55,7 +71,8 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	draw_v_line \
+	draw_wall \
+	draw_portal \
 	get_wall_texture \
 	get_tex_x \
 	draw_line \
@@ -94,6 +111,10 @@ RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
 	ray_calculation \
+	portal_hit_move \
+	portal_hit \
+	screen_raycast \
+	single_raycast \
 
 # ******* RENDERING ******** #
 
@@ -125,6 +146,9 @@ UPDATE_DIR = update/
 UPDATE_SRC = \
 	update_entities \
 	update_frames \
+	update_portal_frames \
+	update_portal_status \
+	interaction
 
 #	# *** UPDATE_PLAYER **** #
 
@@ -132,7 +156,9 @@ SRC += $(addprefix $(UPDATE_PLAYER_DIR),$(UPDATE_PLAYER_SRC))
 
 UPDATE_PLAYER_DIR = $(UPDATE_DIR)update_player/
 UPDATE_PLAYER_SRC = \
+	rotate_player \
 	update_player \
+	update_pos \
 
 # ********** DEBUG ********** #
 
@@ -140,7 +166,8 @@ SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
 
 DEBUG_DIR = DEBUG/
 DEBUG_SRC = \
-	DISPLAY_SHORT_MAP
+	DISPLAY_SHORT_MAP \
+	MEMORY_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

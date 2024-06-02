@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:38:56 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 14:31:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include "textures.h"
 #include "libft.h"
 #include "parsing.h"
 #include "cubdef.h"

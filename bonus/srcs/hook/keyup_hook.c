@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyup_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:53:13 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/17 18:38:18 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

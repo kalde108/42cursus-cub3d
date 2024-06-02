@@ -6,9 +6,11 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/12 15:55:55 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 17:42:04 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 #include "libft.h"
 #include "parsing.h"
@@ -16,35 +18,23 @@
 
 static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 
-# include "stdio.h"
-
-int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell)
+int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell)
 {
 	const char	wall = get_layer_cell(map, y, x, MAP_LAYER) - 'a';
 	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
 	const char	ceiling = get_layer_cell(map, y, x, CEILING_LAYER) - 'a';
 
-	if (WALKABLE == wall && MISSING != floor && MISSING != ceiling)
-	{
-		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
-		return (0);
-	}
-	if (WALKABLE == wall)
-	{
-		//INVALID MAP ERROR MESSAGE
-		return (-1); 
-	}
-	if (MISSING != wall)
-	{
+	if (MISSING == wall || PORTAL_CELL == wall)
+		*cell = EMPTY_CELL;
+	else if (wall >= 0 && wall < 26)
 		*cell = TYPE_WALL | wall;
-		return (0);
-	}
-	if (MISSING != floor && MISSING != ceiling)
-	{
+	else if (MISSING != floor && MISSING != ceiling)
 		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
-		return (0);
+	else
+	{
+		ft_dprintf(STDERR_FILENO, INVAL_CELL, x, y);
+		return (-1);
 	}
-	*cell = EMPTY_CELL;
 	return (0);
 }
 
@@ -57,7 +47,7 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer)
 	if (NULL != line)
 	{
 		cell = ft_vector_get(line, x);
-		if (cell && ' ' != *cell)
+		if (cell && ' ' != *cell && -'P' != *cell)
 			return (*cell);
 		return ('\0');
 	}

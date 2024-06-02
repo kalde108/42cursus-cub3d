@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:58:18 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 17:19:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define CUBSCENE_H
 
 # include <stdint.h>
+# include <stddef.h>
 
-# include "ft_vector.h"
+# include "ft_math.h"
 # include "identifiers.h"
-# include "stdbool.h"
+# include "textures.h"
 
 # define IDENTIFIER_FLOOR "FL"
 # define IDENTIFIER_CEILING "CE"
@@ -25,6 +26,9 @@
 
 # define MAX_TEXTURE 26
 # define BASIC_TEXTURE 3
+# define SPECIAL_TEXTURES 1
+
+# define NO_LINK -1
 
 enum e_textype
 {
@@ -36,42 +40,32 @@ enum e_textype
 	TEXTURES_TYPES
 };
 
-typedef struct s_texdata
-{
-	char	*filepath;
-	void	*mlx_img;
-	int		width;
-	int		height;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_texdata;
+# define MAX_PORTALS 10
 
-typedef struct s_elem
+typedef struct s_portal	// A DEPLACER
 {
-	t_texdata	*frames;
-	t_texdata	*current;
-	int			n;
-	int			current_frame;
-	int			dir;
-	char		options;
-	struct
-	{
-		size_t	frametime;
-		int		animation;
-		int		dps;
-		int		hinder;
-		bool	walkable;
-	}			attr;
-}	t_elem;
+	int		id;
+	t_v2d_i	pos;
+	int		face; // South-West-North-East
+	bool	is_open;
+	int		linked_portal;
+}	t_portal;
+
+typedef struct s_portals
+{
+	t_portal	tab[MAX_PORTALS];
+	int			total;
+	int			opened[2];
+	int			opened_count;
+}	t_portals;
 
 typedef struct s_cubscene
 {
 	t_elem		**elems;
-	short		*map;
+	int			*map;
 	int			width;
 	int			height;
+	t_portals	portals;
 }	t_cubscene;
 
 void	destroy_scene(t_cubscene *scene, void *mlx_ptr);

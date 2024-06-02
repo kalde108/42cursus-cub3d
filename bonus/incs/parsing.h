@@ -6,13 +6,14 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:01:35 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 15:16:58 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
+# include "ft_vector.h"
 # include "cubscene.h"
 # include "player.h"
 # include "entity.h"
@@ -33,6 +34,7 @@
 # define INVAL_ID "Invalid identifier"
 # define MULTI_ID "Multiple definition of identifier"
 # define INVAL_PATH "Invalid definition, expected one file in format [*.xmp] or a directory"
+# define MISSING_PATH "Missing definition, expected one file in format [*.xmp] or a directory"
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"
@@ -40,19 +42,34 @@
 # define MULTIPLE_PLAYER "Multiple player spawn characters"
 # define NO_MONSTER "Missing monster spawn character, expected [M]"
 # define MULTIPLE_MONSTER "Multiple monster spawn characters"
+# define MONSTER_NOPATH "Monster has no available path to player"
+# define TOO_MANY_PORTALS "Too many portals"
+# define INVALID_PORTAL "Exposed portal"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
+# define INVAL_CELL "MAP: (x%d;y%d): Invalid cell\n"
+# define INVAL_PORTAL_CELL "MAP: (x%d;y%d): Portal has multiple access\n"
+# define INVAL_WALL_CELL "MAP: (x%d;y%d): Missing wall\n"
 
 //MAP_CHARSET
 # define MAP_SPECIALS_CHARSET "NSEWPM"
 
 # define SPAWN_CHARSET "NSEW"
-# define ENCLOSURE_CHARSET "12"
-# define UNCLOSED_CHARSET " "
+# define PORTAL_CHARSET "P"
+// # define UNCLOSED_CHARSET " "
 
 # define MONSTER_CHAR 'M'
 
 # define WALKABLE -51
 # define MISSING -97
+# define PORTAL_CELL -17
+
+enum e_mapstatus
+{
+	INVAL_FATAL = -1,
+	VALID_MAP,
+	INVAL_WALL,
+	INVAL_PORTAL
+};
 
 enum e_maplayer
 {
@@ -73,7 +90,9 @@ int		convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene);
 char	*get_map_charset(t_elem *textures);
 char	*get_layer_charset(t_elem *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
-int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, short *cell);
+int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell);
 int		get_directory_textures(char *dirpath, t_elem *texture);
+int		config_portals(t_vector *map, t_cubscene *scene);
+int		get_attributes(char *identifier, t_elem *elem);
 
 #endif //PARSING_H

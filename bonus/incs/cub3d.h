@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/16 19:19:31 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 17:07:13 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,17 @@
 // # include <time.h>
 # include <pthread.h>
 
+# include "cubdef.h"
 # include "cubscene.h"
 # include "player.h"
 # include "entity.h"
 # include "ft_time.h"
 # include "key_index.h"
 # include "stdbool.h"
+# include "raycasting.h"	
 
-# define WIDTH		2048
-# define HEIGHT		1152
-// # define WIDTH		4096
-// # define HEIGHT		2304
-# define WIN_NAME	"Cub3D - @kchillon @ibertran"
+extern int	g_debug;
 
-# define FOV		90.0
-
-# ifndef CPUCORES
-#  define CPUCORES	1
-# endif
-
-# define ENTITY_LIMIT	100
-
-// # define FRAME_TIME	0.008333333333333333	// 120 fps
-# define FRAME_TIME	0.016666666666666666	// 60 fps
-// # define FRAME_TIME	0.03333333333333333		// 30 fps
-
-# define WIDTH_LOG2	11
-// # define WIDTH_LOG2	12
 
 typedef struct s_img
 {
@@ -69,19 +53,16 @@ typedef struct s_c3_env
 	void			*win;
 	t_img			img;
 	int				key_state[KEY_COUNT];
+	t_mouse			mouse;
 	t_player		player;	// group in struct
 	t_entity		monster;	// group in struct
-	double			frame_time;
 	pthread_mutex_t	call_mutex;
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
-	struct clocks
-	{
-		t_timer		frame_timer;
-		t_timer		map_tex_timer;
-	}				clocks;
-	t_mouse			mouse;
+	double			frame_time;
+	t_timer			frame_timer;
+	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);

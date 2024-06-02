@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:12:35 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/05/29 17:07:30 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static int	set_frames(t_elem *texture, t_vector *frames)
 {
 	if (ft_vector_trim(frames))
 		return (1);
+	ft_vector_sort(frames, vsort_str_ascending);
 	texture->frames = frames->ptr;
 	texture->n = frames->total;
 	return (0);

@@ -10,18 +10,18 @@ static inline t_v2d_d	sprite_transform(t_player *player, t_entity *entity)
 {
 	t_v2d_d	sprite_pos;
 
-	sprite_pos = (t_v2d_d){entity->pos.x - player->pos.x,
-		entity->pos.y - player->pos.y};
+	sprite_pos = (t_v2d_d){entity->pos.x - player->camera.pos.x,
+		entity->pos.y - player->camera.pos.y};
 	
-	double inv_det = 1.0 / (player->plane.x * player->dir.y -
-		player->dir.x * player->plane.y);
+	double inv_det = 1.0 / (player->camera.plane.x * player->camera.dir.y -
+		player->camera.dir.x * player->camera.plane.y);
 
 	t_v2d_d transform;
 
-	transform.x = inv_det * (player->dir.y * sprite_pos.x -
-		player->dir.x * sprite_pos.y);
-	transform.y = inv_det * (-player->plane.y * sprite_pos.x +
-		player->plane.x * sprite_pos.y);
+	transform.x = inv_det * (player->camera.dir.y * sprite_pos.x -
+		player->camera.dir.x * sprite_pos.y);
+	transform.y = inv_det * (-player->camera.plane.y * sprite_pos.x +
+		player->camera.plane.x * sprite_pos.y);
 
 	return (transform);
 }

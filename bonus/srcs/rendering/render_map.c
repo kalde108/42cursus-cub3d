@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 19:20:04 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/05/30 18:34:57 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,34 @@
 
 #include "raycasting.h"
 #include "tile_address.h"
+#include "cub3d.h"
+#include "draw.h"
 
 # include <stdio.h>
+# include <math.h>
+# include "ft_math.h"
 
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
-	t_ray	ray;
-	t_vline	line;
-	t_texdata	*texture;
-	int		tex_x;
+	int				x;
+	t_hit_buffer	*hit_buf;
+	int				hit_count;
 
-	line.x = start;
-	while (line.x < end)
+	x = start;
+	while (x < end)
 	{
-		ray_calculation(&env->player, &ray, line.x);
-		ft_dda(&env->scene, &ray);
-		env->z_buffer[line.x] = ray.perp_wall_dist;
-		texture = get_wall_texture(&env->scene, ray.map_pos, env->scene.elems);
-		tex_x = get_tex_x(&ray, texture->width, env->player);
-		get_line_y(&line, ray.perp_wall_dist);
-		draw_v_line(&env->img, &line, tex_x, texture, &ray);
-		line.x++;
+		hit_count = env->buffer[x]->count;
+		// if (x == 1024)
+		// 	dprintf(2, "hit_count: %d\n", hit_count);
+		while (hit_count-- > 0)
+		{
+			hit_buf = env->buffer[x] + hit_count;
+			if (IS_WALL(hit_buf->cell) || (IS_PORTAL(hit_buf->cell) && -1 == env->scene.portals.tab[GET_PORTAL(hit_buf->cell)].linked_portal))
+				draw_wall(&env->img, hit_buf, x);
+			else if (IS_PORTAL(hit_buf->cell))
+				draw_portal(&env->img, hit_buf, x);
+		}
+		x++;
 	}
 }
 

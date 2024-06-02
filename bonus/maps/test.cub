@@ -1,60 +1,62 @@
-Wa assets/deepslate_tiles.xpm
-Wb assets/cracked_deepslate_tiles.xpm
-Wd assets/command_block
-Fa assets/basic_floor_128.xpm
-Fb assets/floor2_128.xpm
-Fc assets/carpet1_128.xpm
-Fd assets/lava
-Ca assets/ceiling1_128.xpm
-Cb assets/lamp1_128.xpm
-Wc assets/torchflower.xpm
+Wa assets/deepslate_tiles.xpm animation=none
+Wb assets/cracked_deepslate_tiles.xpm animation=none
+Wc assets/torchflower.xpm animation=none
+Wd assets/command_block animation=none
+We assets/carpet1_128.xpm animation=none
+Fa assets/basic_floor_128.xpm animation=none
+Fb assets/floor2_128.xpm animation=none
+Fc assets/carpet1_128.xpm animation=none
+Fd assets/lava animation=sway
+Ca assets/ceiling1_128.xpm animation=none
+Cb assets/lamp1_128.xpm animation=none
+PORTAL assets/nether_portal frametime=50
 
                    abbbaaaaaaaaaa
-        aaaaaaaaaaab            a
+        aaaaaaaaaaab     aPa    a
         a         ab            a
         a aa     aaa            b
-        a  a                    b
+        a Pa                    b
 aaaaabbaa aa     aaa            a
 a         ba     aaa aabaa aaaaaa
 aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
-aa      aa b a aab      a   a
+aa      ca b a aab      a   a
 a               aa d d  b   a
-a               ab      a N a
-a    M          aa a b  a   a
-ab     baa a a aaaaa baab   aaa
-aaba aaa aaa a a a aaaa a   a
+a               Pb      a N a
+a d  M          ea a b  a   a
+ab     baa a a aaaaaPbaab   aaa
+aaba aaa aaaPa a a aaaa a   a
 aaaaaaaa aaaaaba aaaaaaaaaaaa
 
-                                 
-                    aaaaaaaaaaaa 
+           aa                    
+a                   aaaaaaaaaaaa 
          aaaaaaaaa  aaaaaaaaaaaa 
          a  aaaaa   aaaaaaaaaaaa 
          aa aaaaaaaaaaaaaaaaaaaa 
          a  aaaaa   aaaaaaaaaaaa 
- aaaaaaaaa  aaaaa   a     a      
+ aaaaaaaaa  aaaaa   a    aa      
     a         a   dddddd aaa 
     a         a   d d dd aaa 
   bbbbbb  b b a   dddddd aaa 
  bbcccbbbbbbbbbb  dddddd aaa 
- bbccccccccccccc  dddddd aaa 
+ bbcccccccccccccb dddddd aaa 
  bbcccbbbbbbbbbb  d d dd aaa 
   bbbbb   b b b     d    aaa   
     b       b b   a    a aaa 
                              
 
-                                 
+           aa                    
                     aaaaaaaaaaaa 
          baaaaaaaa  aaabaabaabaa 
          a  aabaa   aaaaaaaaaaaa 
          aa aaaaaaaaaaabaabaabaa 
          a  aabaa   aaaaaaaaaaaa 
- aaaaaaaab  aaaaa   a     a      
+ aaaaaaaab  aaaaa   a    aa      
     a         a   aaaaaa aaa 
     a         a   a a aa aaa 
   aaaaaa  a a a   aaaaaa aba 
  abaaabaaaaaaaaa  abaaba aaa 
- aaaaaaaabaaabaa  aaaaaa aaa 
+ aaaaaaaabaaabaaa aaaaaa aaa 
  abaaabaaaaaaaaa  a a aa aba 
   aaaaa   a a a     a    aaa   
     a       a a   a    a aaa 
