@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   generate_map_charset.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 19:34:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/02 19:37:08 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
@@ -46,7 +34,7 @@ char	*get_layer_charset(t_elem *textures)
 	int		i;
 	int		j;
 
-	charset = malloc((MAX_TEXTURE + 3) * sizeof(char));
+	charset = malloc((MAX_TEXTURE + 2) * sizeof(char));
 	if (NULL == charset)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));

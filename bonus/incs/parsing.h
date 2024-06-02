@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/02 19:40:06 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 19:40:48 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@
 
 //MAP_CHARSET
 # define MAP_MANDATORY_CHARSET "NSEWM"
-
 # define SPAWN_CHARSET "NSEW"
-# define MONSTER_CHAR 'M'
 # define PORTAL_CHARSET "P"
 # define EMPTY_STRING ""
-// # define UNCLOSED_CHARSET " "
 
+# define MONSTER_CHAR 'M'
 
 # define WALKABLE -51
 # define MISSING -97
