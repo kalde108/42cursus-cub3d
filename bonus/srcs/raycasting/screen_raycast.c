@@ -19,9 +19,9 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 		hit_count = 0;
 		ray.total_perp_wall_dist = 0;
 		ray.hit_type = 0;
-		tmp_camera.pos = env->player.pos;
-		tmp_camera.dir = env->player.dir;
-		tmp_camera.plane = env->player.plane;
+		tmp_camera.pos = env->player.camera.pos;
+		tmp_camera.dir = env->player.camera.dir;
+		tmp_camera.plane = env->player.camera.plane;
 		while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 		{
 			if (IS_PORTAL(ray.hit_type))
@@ -61,7 +61,7 @@ void	*raycast_thread(void *arg)
 	return (NULL);
 }
 
-int	raycast(t_c3_env *env)
+int	screen_raycast(t_c3_env *env)
 {
 	pthread_t	threads[CPUCORES];
 	int			i;

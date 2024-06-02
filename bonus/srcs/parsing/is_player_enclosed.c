@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   is_player_enclosed.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/01 18:35:24 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
@@ -28,7 +16,7 @@ int	is_player_enclosed(t_vector *map, t_c3_env *env)
 	enum e_mapstatus	enclosed;
 
 	enclosed = is_enclosed(map,
-		(t_v2d_i){env->player.pos.x, env->player.pos.y}, &env->scene);
+		(t_v2d_i){env->player.camera.pos.x, env->player.camera.pos.y}, &env->scene);
 	if (INVAL_FATAL == enclosed)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));

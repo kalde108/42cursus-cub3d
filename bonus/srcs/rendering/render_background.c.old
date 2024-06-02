@@ -50,15 +50,15 @@ static inline void	precompute_steps(t_player *player, t_v2d_d *floor_step, t_v2d
 	t_v2d_d	ray_dir1;
 	float	row_distance;
 
-	ray_dir0.x = player->dir.x - player->plane.x;
-	ray_dir0.y = player->dir.y - player->plane.y;
-	ray_dir1.x = player->dir.x + player->plane.x;
-	ray_dir1.y = player->dir.y + player->plane.y;
+	ray_dir0.x = player->camera.dir.x - player->camera.plane.x;
+	ray_dir0.y = player->camera.dir.y - player->camera.plane.y;
+	ray_dir1.x = player->camera.dir.x + player->camera.plane.x;
+	ray_dir1.y = player->camera.dir.y + player->camera.plane.y;
 	row_distance = (0.5 * HEIGHT) / (y - (HEIGHT >> 1));
 	floor_step->x = row_distance * (ray_dir1.x - ray_dir0.x) / WIDTH;
 	floor_step->y = row_distance * (ray_dir1.y - ray_dir0.y) / WIDTH;
-	floor->x = player->pos.x + row_distance * ray_dir0.x;
-	floor->y = player->pos.y + row_distance * ray_dir0.y;
+	floor->x = player->camera.pos.x + row_distance * ray_dir0.x;
+	floor->y = player->camera.pos.y + row_distance * ray_dir0.y;
 }
 
 static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_i cell_pos)

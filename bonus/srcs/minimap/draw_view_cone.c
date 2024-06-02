@@ -367,8 +367,8 @@ static int	get_relative_position(int f1, int f2)
 // 			else
 // 				diff.y -= 1;
 // 		}
-// 		tmp3.x = ray->map_pos.x + (player->pos.x - floor(player->pos.x));
-// 		tmp3.y = ray->map_pos.y + (player->pos.y - floor(player->pos.y));
+// 		tmp3.x = ray->map_pos.x + (player->camera.pos.x - floor(player->camera.pos.x));
+// 		tmp3.y = ray->map_pos.y + (player->camera.pos.y - floor(player->camera.pos.y));
 // 		step_init(&tmp3, ray);
 // 	}
 // 	else if (relative_position == 3)	// right face
@@ -536,12 +536,11 @@ void	draw_view_cone(t_c3_env *env)
 		x = 0;
 		while (x < WIDTH)
 		{
-			camera.pos = env->player.pos;
-			camera.dir = env->player.dir;
-			camera.plane = env->player.plane;
+			camera.pos = env->player.camera.pos;
+			camera.dir = env->player.camera.dir;
+			camera.plane = env->player.camera.plane;
 			hit_count = 0;
 			ray.hit_type = 0;
-
 			ray.total_perp_wall_dist = 0;
 			while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 			{
