@@ -147,6 +147,8 @@ UPDATE_SRC = \
 	update_entities \
 	update_frames \
 	update_portal_frames \
+	update_portal_status \
+	interaction
 
 #	# *** UPDATE_PLAYER **** #
 

@@ -1,23 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/02 16:45:39 by kchillon         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "mlx.h"
 #include "render.h"
 #include "draw.h"
+#include "update.h"
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+void MEMORY_MAP(t_c3_env *env); //REMOVE
+
+void player_interaction(t_c3_env *env);
 
 static void	update_mouse(t_c3_env *env)
 {
@@ -148,6 +140,7 @@ int	render(t_c3_env *env)
 	update_entities(env);
 	// time = get_time();																	// debug term
 	update_frames(env);
+	player_interaction(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
 	test_single_raycast(env);
@@ -178,3 +171,5 @@ int	render(t_c3_env *env)
 	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
 	return (0);
 }
+
+

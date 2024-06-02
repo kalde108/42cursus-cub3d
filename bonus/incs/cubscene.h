@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 13:50:02 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 17:19:33 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define BASIC_TEXTURE 3
 # define SPECIAL_TEXTURES 1
 
+# define NO_LINK -1
+
 enum e_textype
 {
 	WALL,
@@ -45,9 +47,17 @@ typedef struct s_portal	// A DEPLACER
 	int		id;
 	t_v2d_i	pos;
 	int		face; // South-West-North-East
-	int		is_open;
+	bool	is_open;
 	int		linked_portal;
 }	t_portal;
+
+typedef struct s_portals
+{
+	t_portal	tab[MAX_PORTALS];
+	int			total;
+	int			opened[2];
+	int			opened_count;
+}	t_portals;
 
 typedef struct s_cubscene
 {
@@ -55,13 +65,7 @@ typedef struct s_cubscene
 	int			*map;
 	int			width;
 	int			height;
-	struct s_portals
-	{
-		t_portal	tab[MAX_PORTALS];
-		int			total;
-		int			opened[2];
-		int			opened_count;
-	}			portals;
+	t_portals	portals;
 }	t_cubscene;
 
 void	destroy_scene(t_cubscene *scene, void *mlx_ptr);

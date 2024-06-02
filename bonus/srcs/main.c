@@ -4,7 +4,7 @@
 # include "libft.h"
 # include "tile_address.h"
 
-# include "stdlib.h"
+# include <stdlib.h>
 # include <math.h>
 # include <stdio.h>
 
@@ -33,34 +33,6 @@ static void	TEST(t_c3_env *env)
 	env->entity_count++;
 	env->entities[7] = (t_entity){BOXES, (t_v2d_d){24.7, 5.8}, (t_v2d_d){-1, 0}, (t_v2d_d){0, 0}, MONSTER_MOVEMENT_SPEED, MONSTER_ROTATION_SPEED, ft_euclidean_dist((t_v2d_d){6.5, 24.5}, env->player.camera.pos), env->scene.elems[WALL] + 2};
 	env->entity_count++;
-
-	if (env->scene.portals.total >= 2)
-	{
-		int p1 = 0;
-		int p2 = 0;
-		while (p1 == p2)
-		{
-			// p1 = rand() % env->scene.portals.total;
-			// p2 = rand() % env->scene.portals.total;
-			p1 = 1;
-			p2 = 3;
-		}
-
-		env->scene.portals.tab[p1].is_open = 1;
-		env->scene.portals.tab[p2].is_open = 1;
-		env->scene.portals.tab[p1].linked_portal = p2;
-		env->scene.portals.tab[p2].linked_portal = p1;
-		env->scene.portals.opened_count = 2;
-		env->scene.portals.opened[0] = p1;
-		env->scene.portals.opened[1] = p2;
-	}
-	// env->scene.portals.tab[2].is_open = 1;
-	// env->scene.portals.tab[3].is_open = 1;
-	// env->scene.portals.tab[2].linked_portal = 3;
-	// env->scene.portals.tab[3].linked_portal = 2;
-	// env->scene.portals.opened_count = 2;
-	// env->scene.portals.opened[2] = 2;
-	// env->scene.portals.opened[3] = 3;
 }
 
 // 137422175504
