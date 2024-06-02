@@ -61,7 +61,7 @@ static inline void	precompute_steps(t_camera *camera, t_v2d_d *floor_step, t_v2d
 	floor->y = camera->pos.y + row_distance * ray_dir0.y;
 }
 
-static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_i cell_pos)
+static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_i cell_pos, int cell) // cell for debug
 {
 	t_v2d_i	tex_coord;
 
@@ -73,7 +73,7 @@ static inline int	get_background_color(t_texdata *texture, t_v2d_d floor, t_v2d_
 	tex_coord.y = (int)(texture->height * (floor.y - cell_pos.y));
 
 	if (!texture->addr)
-		dprintf(2, "no addr\ttexture: %p\tfx = %f\tfy = %f\tcx = %d\tcy = %d\n", texture, floor.x, floor.y, cell_pos.x, cell_pos.y);
+		dprintf(2, "no addr\ttexture: %p\tfx = %f\tfy = %f\tcx = %d\tcy = %d\tcell: %X\n", texture, floor.x, floor.y, cell_pos.x, cell_pos.y, cell);
 	else if ((void *)texture->addr < (void *)100)
 		dprintf(2, "addr: %p\ttexture: %p\tx = %d\ty = %d\n", texture->addr, texture, cell_pos.x, cell_pos.y);
 	return (((uint32_t *)texture->addr)[texture->width * tex_coord.y + tex_coord.x]);
@@ -91,8 +91,8 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	cell = env->scene.map[cell_pos.y * env->scene.width + cell_pos.x];
 	// if (cell_pos.x == 22 && cell_pos.y == 7)
 	// 	dprintf(2, "cell: %d\tTYPE: %d\tFLOOR: %d\tCEIL: %d\n", cell, GET_TYPE(cell), GET_FLOOR(cell), GET_CEILING(cell));
-	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, floor, cell_pos);
-	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].current, floor, cell_pos);
+	((__uint32_t *)env->img.addr)[pixel.y * WIDTH + pixel.x] = get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, floor, cell_pos, cell);
+	((__uint32_t *)env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x] = get_background_color(textures[CEILING][GET_CEILING(cell)].current, floor, cell_pos, cell);
 }
 
 static inline t_camera	get_camera(t_c3_env *env, int x, int y)

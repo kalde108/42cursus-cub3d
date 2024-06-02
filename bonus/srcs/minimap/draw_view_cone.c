@@ -541,25 +541,14 @@ void	draw_view_cone(t_c3_env *env)
 			camera.plane = env->player.plane;
 			hit_count = 0;
 			ray.hit_type = 0;
-			// total_perp_wall_dist = 0;
 
 			ray.total_perp_wall_dist = 0;
-			// screen_ray_calculation(&camera, &ray, x);
-			while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
+			while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 			{
 				if (IS_PORTAL(ray.hit_type))
 					fake_portal_hit(&env->scene, &ray, &camera);
 				screen_ray_calculation(&camera, &ray, x);
 				ft_dda(&env->scene, &ray);
-				// if (!hit_count)
-					// env->z_buffer[x] = ray.perp_wall_dist;
-				// if (NOT_WALL(ray.hit_type) && NOT_PORTAL(ray.hit_type))
-				// 	dprintf(2, "No hit?: %d\n", ray.hit_type);
-				// buffer[hit_count].texture = get_wall_texture(&env->scene, ray.hit_type, env->scene.elems);
-				// buffer[hit_count].tex_x = get_tex_x(&ray, buffer[hit_count].texture->width, env->player);
-				// get_line_y(buffer + hit_count, ray.perp_wall_dist);
-				// buffer[hit_count].side = ray.side;
-				// buffer[hit_count].cell = ray.hit_type;
 				ray_hit.x = camera.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
 				ray_hit.y = camera.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
 				total_perp_wall_dist = ray.perp_wall_dist;
@@ -576,7 +565,6 @@ void	draw_view_cone(t_c3_env *env)
 				camera.pos = ray_hit;
 				hit_count++;
 			}
-			// ft_dda_fake(&env->scene, &ray, env->player.pos, &env->img);
 			x++;
 		}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/22 19:58:01 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/01 16:55:48 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	int	j;
 	int	k;
 
-	ft_dprintf(STDIN_FILENO, "LOADING TEXTURES...\n");
+	ft_dprintf(STDERR_FILENO, "LOADING TEXTURES...\n");
 	i = 0;
 	while (i < BASIC_TEXTURE)
 	{
@@ -59,7 +59,7 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	if (NULL == textures[PORTAL]->current)
 		textures[PORTAL]->current = textures[PORTAL]->frames;
 	textures[PORTAL]->dir = 1;
-	ft_dprintf(STDIN_FILENO, "\n");
+	ft_dprintf(STDERR_FILENO, "\n");
 	return (0);
 }
 

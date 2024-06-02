@@ -65,7 +65,6 @@ typedef struct s_elem
 	int				n;
 	int				current_frame;
 	int				dir;
-	char			options;
 	t_attributes	attr;
 	t_timer			timer;
 }	t_elem;

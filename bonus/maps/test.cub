@@ -1,14 +1,14 @@
-Wa assets/deepslate_tiles.xpm
-Wb assets/cracked_deepslate_tiles.xpm
-Wc assets/torchflower.xpm
-Wd assets/command_block
-We assets/carpet1_128.xpm
-Fa assets/basic_floor_128.xpm
-Fb assets/floor2_128.xpm
-Fc assets/carpet1_128.xpm
+Wa assets/deepslate_tiles.xpm animation=none
+Wb assets/cracked_deepslate_tiles.xpm animation=none
+Wc assets/torchflower.xpm animation=none
+Wd assets/command_block animation=none
+We assets/carpet1_128.xpm animation=none
+Fa assets/basic_floor_128.xpm animation=none
+Fb assets/floor2_128.xpm animation=none
+Fc assets/carpet1_128.xpm animation=none
 Fd assets/lava animation=sway
-Ca assets/ceiling1_128.xpm
-Cb assets/lamp1_128.xpm
+Ca assets/ceiling1_128.xpm animation=none
+Cb assets/lamp1_128.xpm animation=none
 PORTAL assets/nether_portal frametime=50
 
                    abbbaaaaaaaaaa
