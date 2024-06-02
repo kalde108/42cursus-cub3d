@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:01 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 15:47:30 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 16:43:50 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 
 # define MAX_JUMPS 100
 # define MAX_LAYERS 10
-
-typedef struct s_camera
-{
-	t_v2d_d	pos;
-	t_v2d_d	dir;
-	t_v2d_d	plane;
-}	t_camera;
 
 typedef struct s_ray
 {
@@ -60,5 +53,7 @@ void	portal_hit_move(t_cubscene *scene, t_ray *ray, t_camera *camera, double *mo
 void	portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera);
 void	screen_ray_calculation(t_camera *camera, t_ray *ray, int x);
 void	ray_calculation(t_camera *camera, t_ray *ray);
+
+void	single_raycast(t_cubscene *scene, t_camera camera, t_hit_buffer hit_buf[MAX_LAYERS]);
 
 #endif

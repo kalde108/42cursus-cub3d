@@ -22,7 +22,7 @@ static void	update_monster(t_c3_env *env, t_entity *entity)
 {
 	double	dist;
 
-	dist = ft_euclidean_dist(entity->pos, env->player.pos);
+	dist = ft_euclidean_dist(entity->pos, env->player.camera.pos);
 	entity->distance_to_player = dist;
 }
 
@@ -30,7 +30,7 @@ static void	update_boxes(t_c3_env *env, t_entity *entity)
 {
 	double	dist;
 
-	dist = ft_euclidean_dist(entity->pos, env->player.pos);
+	dist = ft_euclidean_dist(entity->pos, env->player.camera.pos);
 	entity->distance_to_player = dist;
 }
 

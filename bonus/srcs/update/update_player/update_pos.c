@@ -13,10 +13,10 @@ static t_v2d_d	get_move_dir(t_c3_env *env)
 	t_v2d_d	move_dir;
 	
 	move_dir = (t_v2d_d){0, 0};
-	move_dir.x = (env->key_state[KEY_W] - env->key_state[KEY_S]) * env->player.dir.x + \
-		(env->key_state[KEY_A] - env->key_state[KEY_D]) * env->player.dir.y;
-	move_dir.y = (env->key_state[KEY_W] - env->key_state[KEY_S]) * env->player.dir.y - \
-		(env->key_state[KEY_A] - env->key_state[KEY_D]) * env->player.dir.x;
+	move_dir.x = (env->key_state[KEY_W] - env->key_state[KEY_S]) * env->player.camera.dir.x + \
+		(env->key_state[KEY_A] - env->key_state[KEY_D]) * env->player.camera.dir.y;
+	move_dir.y = (env->key_state[KEY_W] - env->key_state[KEY_S]) * env->player.camera.dir.y - \
+		(env->key_state[KEY_A] - env->key_state[KEY_D]) * env->player.camera.dir.x;
 	if ((env->key_state[KEY_W] || env->key_state[KEY_S]) && (env->key_state[KEY_A] || env->key_state[KEY_D]))
 	{
 		move_dir.x *= SQRT2_2;
@@ -44,7 +44,7 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	double		rot;
 
 	rot = 0;
-	camera.pos = env->player.pos;
+	camera.pos = env->player.camera.pos;
 	camera.dir = (t_v2d_d){(move_vec.x >= 0) - (move_vec.x < 0), 0};
 	ray.total_perp_wall_dist = 0;
 	ray.hit_type = 0;
@@ -72,8 +72,8 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.y -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
 		}
 	}
-	env->player.pos.x = camera.pos.x;
-	env->player.pos.y = camera.pos.y;
+	env->player.camera.pos.x = camera.pos.x;
+	env->player.camera.pos.y = camera.pos.y;
 }
 
 static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
@@ -82,7 +82,7 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	t_camera	camera;
 	double		rot;
 
-	camera.pos = env->player.pos;
+	camera.pos = env->player.camera.pos;
 	camera.dir = (t_v2d_d){0, (move_vec.y >= 0) - (move_vec.y < 0)};
 	ray.total_perp_wall_dist = 0;
 	ray.hit_type = 0;
@@ -110,8 +110,8 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.y -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
 		}
 	}
-	env->player.pos.y = camera.pos.y;
-	env->player.pos.x = camera.pos.x;
+	env->player.camera.pos.y = camera.pos.y;
+	env->player.camera.pos.x = camera.pos.x;
 }
 
 void	update_pos(t_c3_env *env)

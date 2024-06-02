@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 04:04:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:35:57 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 16:38:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_player_enclosed(t_vector *map, t_c3_env *env)
 	enum e_mapstatus	enclosed;
 
 	enclosed = is_enclosed(map,
-		(t_v2d_i){env->player.pos.x, env->player.pos.y}, &env->scene);
+		(t_v2d_i){env->player.camera.pos.x, env->player.camera.pos.y}, &env->scene);
 	if (INVAL_FATAL == enclosed)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));

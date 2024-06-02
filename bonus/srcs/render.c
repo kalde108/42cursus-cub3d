@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/02 16:24:18 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 16:45:39 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ static void	render_hud(t_c3_env *env)
 // 	hit_count = 0;
 // 	ray.total_perp_wall_dist = 0;
 // 	ray.hit_type = 0;
-// 	tmp_camera.pos = env->player.pos;
-// 	tmp_camera.dir = env->player.dir;
-// 	tmp_camera.plane = env->player.plane;
+// 	tmp_camera.pos = env->player.camera.pos;
+// 	tmp_camera.dir = env->player.camera.dir;
+// 	tmp_camera.plane = env->player.camera.plane;
 // 	while (NOT_WALL(ray.hit_type) && hit_count < MAX_LAYERS)
 // 	{
 // 		if (IS_PORTAL(ray.hit_type))
@@ -104,6 +104,27 @@ static void	render_hud(t_c3_env *env)
 // 		hit_count++;
 // 	}
 // }
+
+# include "raycasting.h"
+# include "tile_address.h"
+void	test_single_raycast(t_c3_env *env)
+{
+	t_hit_buffer	hit_buf[MAX_LAYERS];
+
+	single_raycast(&env->scene, env->player.camera, hit_buf);
+	dprintf(2, "\nFirst hit: %d\n", hit_buf[0].cell);
+		dprintf(2, "\tray.perp_wall_dist: %f\n", hit_buf[0].z);
+	if (IS_PORTAL(hit_buf[0].cell))
+		dprintf(2, "\tportal hit\n");
+	else
+		dprintf(2, "\twall hit\n");
+	dprintf(2, "Last hit: %d\n", hit_buf[hit_buf->count - 1].cell);
+		dprintf(2, "\tray.perp_wall_dist: %f\n", hit_buf[hit_buf->count - 1].z);
+	if (IS_PORTAL(hit_buf[hit_buf->count - 1].cell))
+		dprintf(2, "\tportal hit\n");
+	else
+		dprintf(2, "\twall hit\n");
+}
 
 int	render(t_c3_env *env)
 {
@@ -129,6 +150,8 @@ int	render(t_c3_env *env)
 	update_frames(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
+	test_single_raycast(env);
+
 	if (screen_raycast(env))
 		mlx_loop_end(env->mlx);
 
@@ -141,7 +164,7 @@ int	render(t_c3_env *env)
 	if (render_map(env))
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
-	draw_minimap(env);
+	// draw_minimap(env);
 	// time = get_time();																	// debug term
 	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
