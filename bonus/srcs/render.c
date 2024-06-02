@@ -7,7 +7,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 void MEMORY_MAP(t_c3_env *env); //REMOVE
 
 void player_interaction(t_c3_env *env);
@@ -173,19 +172,4 @@ int	render(t_c3_env *env)
 	return (0);
 }
 
-void player_interaction(t_c3_env *env)
-{
-	static bool key_release = true;
 
-	if (env->key_state[KEY_E])
-	{
-		if (true == key_release && 0 != timer_is_over(&env->player.interact))
-		{
-			update_portal_status(&env->scene.portals, rand() % env->scene.portals.total);
-			DISPLAY_SHORT_MAP(env);
-			key_release = false;
-		}
-	}
-	else
-		key_release = true;
-}

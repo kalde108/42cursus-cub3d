@@ -11,6 +11,7 @@
 # define MOUSE_SENSIVITY 0.1
 
 # define INTERACTION_COOLDOWN 1500
+# define INTERACTION_DISTANCE 1.0
 
 typedef struct s_player
 {
