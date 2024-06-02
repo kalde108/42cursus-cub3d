@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   generate_map_charset.c                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 19:34:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:32:42 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
@@ -19,15 +7,23 @@
 #include "parsing.h"
 #include "cubdef.h"
 
-char	*get_map_charset(t_elem *textures)
+char	*get_map_charset(t_elem **textures)
 {
 	char	*wall_charset;
+	char	*portal_charset;
 	char	*map_charset;
 
-	wall_charset = get_layer_charset(textures);
+	wall_charset = get_layer_charset(*textures);
 	if (NULL == wall_charset)
 		return (NULL);
-	map_charset = ft_sprintf("%s%s", wall_charset, MAP_SPECIALS_CHARSET);
+	if (NULL != textures[PORTAL]->frames)
+		portal_charset = PORTAL_CHARSET;
+	else
+		portal_charset = EMPTY_STRING;
+	map_charset = ft_sprintf("%s%s%s",
+		wall_charset,
+		portal_charset,
+		MAP_MANDATORY_CHARSET);
 	free(wall_charset);
 	return (map_charset);
 }
@@ -59,4 +55,3 @@ char	*get_layer_charset(t_elem *textures)
 	charset[j] = '\0';
 	return (charset);
 }
-

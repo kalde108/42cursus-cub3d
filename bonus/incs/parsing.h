@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 15:16:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 19:40:48 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@
 # define INVAL_WALL_CELL "MAP: (x%d;y%d): Missing wall\n"
 
 //MAP_CHARSET
-# define MAP_SPECIALS_CHARSET "NSEWPM"
-
+# define MAP_MANDATORY_CHARSET "NSEWM"
 # define SPAWN_CHARSET "NSEW"
 # define PORTAL_CHARSET "P"
-// # define UNCLOSED_CHARSET " "
+# define EMPTY_STRING ""
 
 # define MONSTER_CHAR 'M'
 
@@ -87,7 +86,7 @@ int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_c3_env *env);
 int		get_entities(t_vector *map, t_c3_env *env);
 int		convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene);
-char	*get_map_charset(t_elem *textures);
+char	*get_map_charset(t_elem **textures);
 char	*get_layer_charset(t_elem *textures);
 int		get_monster_spawn(t_vector *map, t_entity *monster);
 int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell);
