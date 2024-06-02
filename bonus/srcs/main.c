@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/01 20:21:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 17:14:53 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "stdlib.h"
 # include <math.h>
 # include <stdio.h>
+
+int	g_debug = 0;
 
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 void MEMORY_MAP(t_c3_env *env); //REMOVE
@@ -53,7 +55,7 @@ static void	TEST(t_c3_env *env)
 			// p1 = rand() % env->scene.portals.total;
 			// p2 = rand() % env->scene.portals.total;
 			p1 = 1;
-			p2 = 2;
+			p2 = 3;
 		}
 
 		env->scene.portals.tab[p1].is_open = 1;

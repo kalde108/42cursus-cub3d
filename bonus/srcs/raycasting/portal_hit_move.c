@@ -79,6 +79,13 @@ void	portal_hit_move(t_cubscene *scene, t_ray *ray, t_camera *camera, double *ro
 	else if (relative_position == 2)	// opposite face
 	{
 		// rotate vector (diff) 0 degrees relative to the portal
+		*rot = 0;
+		if (ray->side == 0)
+			diff = (t_v2d_d){diff.x, -diff.y};
+		else if (ray->side == 1)
+			diff = (t_v2d_d){-diff.x, diff.y};
+		camera->pos.x = portals[dest_portal_id].pos.x + 0.5 + diff.x;
+		camera->pos.y = portals[dest_portal_id].pos.y + 0.5 + diff.y;
 	}
 	else if (relative_position == 3)	// right face
 	{

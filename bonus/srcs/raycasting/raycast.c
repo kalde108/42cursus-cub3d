@@ -5,7 +5,7 @@
 
 # include "draw.h"
 
-void	raycast_chunk(t_c3_env *env, int start, int end)
+static void	raycast_chunk(t_c3_env *env, int start, int end)
 {
 	t_ray			ray;
 	int				x;
@@ -17,8 +17,7 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 	while (x < end)
 	{
 		hit_count = 0;
-		ray.total_perp_wall_dist = 0;
-		ray.hit_type = 0;
+		ray = (t_ray){0};
 		tmp_camera.pos = env->player.pos;
 		tmp_camera.dir = env->player.dir;
 		tmp_camera.plane = env->player.plane;
@@ -27,7 +26,7 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 			if (IS_PORTAL(ray.hit_type))
 				portal_hit(&env->scene, &ray, &tmp_camera);
 			screen_ray_calculation(&tmp_camera, &ray, x);
-			ft_dda(&env->scene, &ray);
+			ft_dda(&env->scene, &ray, &tmp_camera);
 			hit_buf = env->buffer[x] + hit_count;
 			hit_buf->side = ray.side;
 			hit_buf->cell = ray.hit_type;
@@ -43,7 +42,7 @@ void	raycast_chunk(t_c3_env *env, int start, int end)
 	}
 }
 
-void	*raycast_thread(void *arg)
+static void	*raycast_thread(void *arg)
 {
 	static int	call = 0;
 	t_c3_env	*env;
@@ -67,6 +66,7 @@ int	raycast(t_c3_env *env)
 	int			i;
 	int			err;
 
+	g_debug = 3;	// REMOVE
 	err = 0;
 	i = 0;
 	while (i < CPUCORES)
@@ -78,6 +78,7 @@ int	raycast(t_c3_env *env)
 	}
 	while (--i >= 0)
 		pthread_join(threads[i], NULL);
+	g_debug = 0;	// REMOVE
 	return (err);
 }
 
