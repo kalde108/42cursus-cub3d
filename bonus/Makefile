@@ -163,7 +163,8 @@ SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
 
 DEBUG_DIR = DEBUG/
 DEBUG_SRC = \
-	DISPLAY_SHORT_MAP
+	DISPLAY_SHORT_MAP \
+	MEMORY_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
