@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 13:38:58 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 17:07:13 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include "key_index.h"
 # include "stdbool.h"
 # include "raycasting.h"	
+
+extern int	g_debug;
+
 
 typedef struct s_img
 {

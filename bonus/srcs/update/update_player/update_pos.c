@@ -43,11 +43,11 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	t_camera	camera;
 	double		rot;
 
+	g_debug = 1;	// REMOVE
 	rot = 0;
 	camera.pos = env->player.camera.pos;
 	camera.dir = (t_v2d_d){(move_vec.x >= 0) - (move_vec.x < 0), 0};
-	ray.total_perp_wall_dist = 0;
-	ray.hit_type = 0;
+	ray = (t_ray){0};
 	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
 	{
 		if (IS_PORTAL(ray.hit_type))
@@ -71,9 +71,12 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.x -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
 			move_vec.y -= (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
 		}
+		else
+			dprintf(2, "ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 	}
 	env->player.camera.pos.x = camera.pos.x;
 	env->player.camera.pos.y = camera.pos.y;
+	g_debug = 0;	// REMOVE
 }
 
 static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
@@ -82,10 +85,11 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	t_camera	camera;
 	double		rot;
 
+	g_debug = 2;	// REMOVE
+	rot = 0;
 	camera.pos = env->player.camera.pos;
 	camera.dir = (t_v2d_d){0, (move_vec.y >= 0) - (move_vec.y < 0)};
-	ray.total_perp_wall_dist = 0;
-	ray.hit_type = 0;
+	ray = (t_ray){0};
 	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
 	{
 		if (IS_PORTAL(ray.hit_type))
@@ -102,7 +106,7 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			camera.pos.y += move_vec.y;
 			break ;
 		}
-		else if (ray.perp_wall_dist > PLAYER_SIZE)
+		else if (ray.perp_wall_dist > PLAYER_SIZE)	// TODO: check if this is correct
 		{
 			camera.pos.x += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.x;
 			camera.pos.y += (ray.perp_wall_dist - PLAYER_SIZE) * camera.dir.y;
@@ -112,6 +116,7 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	}
 	env->player.camera.pos.y = camera.pos.y;
 	env->player.camera.pos.x = camera.pos.x;
+	g_debug = 0;	// REMOVE
 }
 
 void	update_pos(t_c3_env *env)

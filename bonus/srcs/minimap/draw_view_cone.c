@@ -525,45 +525,46 @@ static void	fake_portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
 void	draw_view_cone(t_c3_env *env)
 {
 	(void)env;
-		t_ray	ray;
-		t_v2d_d	ray_hit;
-		int		x;
-		int		hit_count;
-		double	total_perp_wall_dist;
-		t_v2d_i tmp;
-		t_camera	camera;
+	t_ray	ray;
+	t_v2d_d	ray_hit;
+	int		x;
+	int		hit_count;
+	double	total_perp_wall_dist;
+	t_v2d_i tmp;
+	t_camera	camera;
 
-		x = 0;
-		while (x < WIDTH)
+	g_debug = 4;
+	x = 0;
+	while (x < WIDTH)
+	{
+		camera.pos = env->player.camera.pos;
+		camera.dir = env->player.camera.dir;
+		camera.plane = env->player.camera.plane;
+		hit_count = 0;
+		ray = (t_ray){0};
+		while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 		{
-			camera.pos = env->player.camera.pos;
-			camera.dir = env->player.camera.dir;
-			camera.plane = env->player.camera.plane;
-			hit_count = 0;
-			ray.hit_type = 0;
-			ray.total_perp_wall_dist = 0;
-			while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == env->scene.portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
-			{
-				if (IS_PORTAL(ray.hit_type))
-					fake_portal_hit(&env->scene, &ray, &camera);
-				screen_ray_calculation(&camera, &ray, x);
-				ft_dda(&env->scene, &ray);
-				ray_hit.x = camera.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
-				ray_hit.y = camera.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
-				total_perp_wall_dist = ray.perp_wall_dist;
-				draw_line(&env->img,
-					(int)(camera.pos.x * MINIMAP_SCALE),
-					(int)(camera.pos.y * MINIMAP_SCALE),
-					(int)(ray_hit.x * MINIMAP_SCALE),
-					(int)(ray_hit.y * MINIMAP_SCALE),
-					0x007F00);
-				tmp = (t_v2d_i){(int)(camera.pos.x * MINIMAP_SCALE), (int)(camera.pos.y * MINIMAP_SCALE)};
-				draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0xff7eeb);
-				tmp = (t_v2d_i){(int)(ray_hit.x * MINIMAP_SCALE), (int)(ray_hit.y * MINIMAP_SCALE)};
-				draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0x11d280);
-				camera.pos = ray_hit;
-				hit_count++;
-			}
-			x++;
+			if (IS_PORTAL(ray.hit_type))
+				fake_portal_hit(&env->scene, &ray, &camera);
+			screen_ray_calculation(&camera, &ray, x);
+			ft_dda(&env->scene, &ray);
+			ray_hit.x = camera.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
+			ray_hit.y = camera.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
+			total_perp_wall_dist = ray.perp_wall_dist;
+			draw_line(&env->img,
+				(int)(camera.pos.x * MINIMAP_SCALE),
+				(int)(camera.pos.y * MINIMAP_SCALE),
+				(int)(ray_hit.x * MINIMAP_SCALE),
+				(int)(ray_hit.y * MINIMAP_SCALE),
+				0x007F00);
+			tmp = (t_v2d_i){(int)(camera.pos.x * MINIMAP_SCALE), (int)(camera.pos.y * MINIMAP_SCALE)};
+			draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0xff7eeb);
+			tmp = (t_v2d_i){(int)(ray_hit.x * MINIMAP_SCALE), (int)(ray_hit.y * MINIMAP_SCALE)};
+			draw_rectangle(&env->img, tmp, (t_v2d_i){2, 2}, 0x11d280);
+			camera.pos = ray_hit;
+			hit_count++;
 		}
+		x++;
+	}
+	g_debug = 0;
 }
