@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dda.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/02 18:57:25 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 20:21:11 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			|| (ray->map_pos.x >= scene->width && ray->step.x >= 0)
 			|| (ray->map_pos.y >= scene->height && ray->step.y >= 0))
 		{
-			// dprintf(2, "%d ALED\n", g_debug);
+			dprintf(2, "%d ALED\n", g_debug);
 			// dprintf(2, "%d map_pos out of bounds\tx: %d\ty: %d\n", g_debug, ray->map_pos.x, ray->map_pos.y);
 			// dprintf(2, "camera pos\tx: %f\ty: %f\n", camera->pos.x, camera->pos.y);
 			// dprintf(2, "camera dir\tx: %f\ty: %f\n", camera->dir.x, camera->dir.y);

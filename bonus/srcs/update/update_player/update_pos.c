@@ -59,6 +59,7 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 		}
 		ray_calculation(&camera, &ray);
 		ft_dda(scene, &ray);
+		dprintf(2, "x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
 			offset = PORTAL_OFFSET;
 		else
@@ -77,7 +78,7 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
-			dprintf(2, "ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+			dprintf(2, "else x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 	}
 	env->player.camera.pos.x = camera.pos.x;
 	env->player.camera.pos.y = camera.pos.y;
@@ -104,8 +105,10 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			rotate_player(&env->player, rot);
 			ft_rotate_v2(&move_vec, rot);
 		}
+		dprintf(2, "camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
 		ray_calculation(&camera, &ray);
 		ft_dda(scene, &ray);
+		dprintf(2, "y ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
 			offset = PORTAL_OFFSET;
 		else
@@ -124,7 +127,7 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
-			dprintf(2, "ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+			dprintf(2, "else y ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 	}
 	env->player.camera.pos.y = camera.pos.y;
 	env->player.camera.pos.x = camera.pos.x;
@@ -140,6 +143,7 @@ void	update_pos(t_c3_env *env)
 	move_goal = sqrt(move_vec.x * move_vec.x + move_vec.y * move_vec.y);
 	if (move_goal == 0)
 		return ;
+	dprintf(2, "\nupdate_pos\n");
 	if (move_vec.x != 0)
 		update_x(&env->scene, env, (t_v2d_d){move_vec.x, 0});
 	if (move_vec.y != 0)
