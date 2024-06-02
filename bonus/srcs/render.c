@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/02 16:10:30 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #include "mlx.h"
 #include "render.h"
 #include "draw.h"
@@ -165,9 +152,17 @@ int	render(t_c3_env *env)
 
 void player_interaction(t_c3_env *env)
 {
-	if (env->key_state[KEY_E] && timer_is_over(&env->player.interact))
+	static bool key_release = true;
+
+	if (env->key_state[KEY_E])
 	{
-		update_portal_status(&env->scene.portals, rand() % env->scene.portals.total);
-		DISPLAY_SHORT_MAP(env);
+		if (true == key_release && 0 != timer_is_over(&env->player.interact))
+		{
+			update_portal_status(&env->scene.portals, rand() % env->scene.portals.total);
+			DISPLAY_SHORT_MAP(env);
+			key_release = false;
+		}
 	}
+	else
+		key_release = true;
 }

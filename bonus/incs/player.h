@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/01 19:44:44 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/02 16:49:47 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define MOUSE_SENSIVITY 0.1
 
-# define INTERACTION_COOLDOWN 1000
+# define INTERACTION_COOLDOWN 1500
 
 typedef struct s_player
 {
