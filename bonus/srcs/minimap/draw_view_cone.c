@@ -529,7 +529,6 @@ void	draw_view_cone(t_c3_env *env)
 	t_v2d_d	ray_hit;
 	int		x;
 	int		hit_count;
-	double	total_perp_wall_dist;
 	t_v2d_i tmp;
 	t_camera	camera;
 
@@ -550,7 +549,6 @@ void	draw_view_cone(t_c3_env *env)
 			ft_dda(&env->scene, &ray);
 			ray_hit.x = camera.pos.x + ray.ray_dir.x * (ray.perp_wall_dist);
 			ray_hit.y = camera.pos.y + ray.ray_dir.y * (ray.perp_wall_dist);
-			total_perp_wall_dist = ray.perp_wall_dist;
 			draw_line(&env->img,
 				(int)(camera.pos.x * MINIMAP_SCALE),
 				(int)(camera.pos.y * MINIMAP_SCALE),
