@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/04 20:26:18 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/04 20:32:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 {
 	int	hit;
 	int	hit_enable;
-	// int	phantom_portal;
 
-	// phantom_portal = IS_PORTAL(ray->hit_type);
 	hit_enable = 1;
 	hit = 0;
 	while (hit == 0)
@@ -65,7 +63,6 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		}
 		if (hit_enable && IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
-			//  && scene->portals.tab[GET_PORTAL(ray->hit_type)].linked_portal == GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x])
 			if (IS_PORTAL(ray->hit_type))
 			{
 				if (scene->portals.tab[GET_PORTAL(ray->hit_type)].linked_portal == GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
