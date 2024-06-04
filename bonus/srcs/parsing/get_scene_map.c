@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_scene_map.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 01:25:11 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/16 18:59:39 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <unistd.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -61,7 +49,7 @@ static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures)
 
 	status = 0;
 	i = 0;
-	charset = get_map_charset(textures[i]);
+	charset = get_map_charset(textures);
 	if (NULL == charset)
 		return (-1);
 	while (0 == status && i < LAYERS_COUNT)
