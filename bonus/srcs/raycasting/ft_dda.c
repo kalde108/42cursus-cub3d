@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/02 20:21:11 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/04 17:36:51 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 			|| (ray->map_pos.y >= scene->height && ray->step.y >= 0))
 		{
 			dprintf(2, "%d ALED\n", g_debug);
-			// dprintf(2, "%d map_pos out of bounds\tx: %d\ty: %d\n", g_debug, ray->map_pos.x, ray->map_pos.y);
-			// dprintf(2, "camera pos\tx: %f\ty: %f\n", camera->pos.x, camera->pos.y);
-			// dprintf(2, "camera dir\tx: %f\ty: %f\n", camera->dir.x, camera->dir.y);
+			// dprintf(2, "hit_enable = %d\n", hit_enable);
+			// dprintf(2, "\t%d map_pos out of bounds\tx: %d\ty: %d\n", g_debug, ray->map_pos.x, ray->map_pos.y);
+			// dprintf(2, "\t%d map_pos out of bounds", g_debug);
+			// dprintf(2, "\tcamera pos\tx: %f\ty: %f\n", camera->pos.x, camera->pos.y);
+			// dprintf(2, "\tcamera dir\tx: %f\ty: %f\n", camera->dir.x, camera->dir.y);
 			// dprintf(2, "camera plane\tx: %f\ty: %f\n", camera->plane.x, camera->plane.y);
-			// dprintf(2, "ray dir\tx: %f\ty: %f\n", ray->ray_dir.x, ray->ray_dir.y);
-			// dprintf(2, "ray map_pos\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
+			// dprintf(2, "\tray dir\tx: %f\ty: %f\n", ray->ray_dir.x, ray->ray_dir.y);
+			// dprintf(2, "\tray map_pos\tx: %d\ty: %d\n", ray->map_pos.x, ray->map_pos.y);
 		}
 		if ((ray->map_pos.x < 0 && ray->step.x > 0)
 			|| (ray->map_pos.y < 0 && ray->step.y > 0)

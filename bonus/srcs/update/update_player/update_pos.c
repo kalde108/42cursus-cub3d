@@ -37,7 +37,7 @@ static t_v2d_d	get_move_vec(t_c3_env *env)
 	return (move_vec);
 }
 
-static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
+static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d x_move, t_v2d_d *move_vec)
 {
 	t_ray		ray;
 	t_camera	camera;
@@ -47,35 +47,41 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	g_debug = 1;	// REMOVE
 	rot = 0;
 	camera.pos = env->player.camera.pos;
-	camera.dir = (t_v2d_d){(move_vec.x >= 0) - (move_vec.x < 0), 0};
+	camera.dir = (t_v2d_d){(x_move.x > 0) - (x_move.x < 0), 0};
 	ray = (t_ray){0};
 	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
 	{
+		// dprintf(2, "x av camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
 		if (IS_PORTAL(ray.hit_type))
 		{
 			portal_hit_move(&env->scene, &ray, &camera, &rot);
 			rotate_player(&env->player, rot);
-			ft_rotate_v2(&move_vec, rot);
+			ft_rotate_v2(&x_move, rot);
+			ft_rotate_v2(move_vec, rot);
 		}
+		// dprintf(2, "x ap camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
+		// dprintf(2, "x move_vec.x = %f\tmove_vec.y = %f\n", x_move.x, x_move.y);
+		// dprintf(2, "x ray.dir.x = %f\tray.dir.y = %f\n", camera.dir.x, camera.dir.y);
 		ray_calculation(&camera, &ray);
+		ray.hit_type = 0;
 		ft_dda(scene, &ray);
-		dprintf(2, "x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+		// dprintf(2, "x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
 			offset = PORTAL_OFFSET;
 		else
 			offset = PLAYER_SIZE;
-		if (ray.perp_wall_dist > fabs(move_vec.x) + offset)
+		if (ray.perp_wall_dist > fabs(x_move.x) + offset)
 		{
-			camera.pos.x += move_vec.x;
-			camera.pos.y += move_vec.y;
+			camera.pos.x += x_move.x;
+			camera.pos.y += x_move.y;
 			break ;
 		}
 		else if (ray.perp_wall_dist > offset)
 		{
 			camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
 			camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
-			move_vec.x -= (ray.perp_wall_dist - offset) * camera.dir.x;
-			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
+			x_move.x -= (ray.perp_wall_dist - offset) * camera.dir.x;
+			x_move.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
 			dprintf(2, "else x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
@@ -95,20 +101,23 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 	g_debug = 2;	// REMOVE
 	rot = 0;
 	camera.pos = env->player.camera.pos;
-	camera.dir = (t_v2d_d){0, (move_vec.y >= 0) - (move_vec.y < 0)};
+	camera.dir = (t_v2d_d){0, (move_vec.y > 0) - (move_vec.y < 0)};
 	ray = (t_ray){0};
 	while (NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && NO_LINK == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal))
 	{
+		// dprintf(2, "y av camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
 		if (IS_PORTAL(ray.hit_type))
 		{
 			portal_hit_move(&env->scene, &ray, &camera, &rot);
 			rotate_player(&env->player, rot);
 			ft_rotate_v2(&move_vec, rot);
 		}
-		dprintf(2, "camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
+		// dprintf(2, "y move_vec.x = %f\tmove_vec.y = %f\n", move_vec.x, move_vec.y);
 		ray_calculation(&camera, &ray);
+		ray.hit_type = 0;
 		ft_dda(scene, &ray);
-		dprintf(2, "y ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+		// dprintf(2, "y ap camera.pos.x = %f\tcamera.pos.y = %f\n", camera.pos.x, camera.pos.y);
+		// dprintf(2, "y ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
 		if (IS_PORTAL(ray.hit_type) && NO_LINK != scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)
 			offset = PORTAL_OFFSET;
 		else
@@ -143,9 +152,9 @@ void	update_pos(t_c3_env *env)
 	move_goal = sqrt(move_vec.x * move_vec.x + move_vec.y * move_vec.y);
 	if (move_goal == 0)
 		return ;
-	dprintf(2, "\nupdate_pos\n");
+	// dprintf(2, "\nupdate_pos\n");
 	if (move_vec.x != 0)
-		update_x(&env->scene, env, (t_v2d_d){move_vec.x, 0});
+		update_x(&env->scene, env, (t_v2d_d){move_vec.x, 0}, &move_vec);
 	if (move_vec.y != 0)
 		update_y(&env->scene, env, (t_v2d_d){0, move_vec.y});
 }
