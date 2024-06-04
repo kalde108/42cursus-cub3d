@@ -10,8 +10,9 @@ void	single_raycast(t_cubscene *scene, t_camera camera, t_hit_buffer hit_buf[MAX
 	t_hit_buffer	*buf_ptr;
 
 	hit_count = 0;
-	ray.total_perp_wall_dist = 0;
-	ray.hit_type = 0;
+	ray = (t_ray){0};
+	// ray.total_perp_wall_dist = 0;
+	// ray.hit_type = 0;
 	while ((NOT_WALL(ray.hit_type) && !(IS_PORTAL(ray.hit_type) && -1 == scene->portals.tab[GET_PORTAL(ray.hit_type)].linked_portal)) && hit_count < MAX_LAYERS)
 	{
 		if (IS_PORTAL(ray.hit_type))

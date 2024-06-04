@@ -3,6 +3,22 @@ Wb assets/cracked_deepslate_tiles.xpm animation=none
 Wc assets/torchflower.xpm animation=none
 Wd assets/command_block animation=none
 We assets/carpet1_128.xpm animation=none
+Wf assets/white_wool.xpm
+Wg assets/light_gray_wool.xpm
+Wh assets/gray_wool.xpm
+Wi assets/black_wool.xpm
+Wj assets/brown_wool.xpm
+Wk assets/red_wool.xpm
+Wl assets/orange_wool.xpm
+Wm assets/yellow_wool.xpm
+Wn assets/lime_wool.xpm
+Wo assets/green_wool.xpm
+Wp assets/cyan_wool.xpm
+Wq assets/light_blue_wool.xpm
+Wr assets/blue_wool.xpm
+Ws assets/purple_wool.xpm
+Wt assets/magenta_wool.xpm
+Wu assets/pink_wool.xpm
 Fa assets/basic_floor_128.xpm animation=none
 Fb assets/floor2_128.xpm animation=none
 Fc assets/carpet1_128.xpm animation=none
@@ -12,13 +28,13 @@ Cb assets/lamp1_128.xpm animation=none
 PORTAL assets/nether_portal frametime=50
 
                    abbbaaaaaaaaaa
-        aaaaaaaaaaab     aPa    a
+        aaaaaaaaaaab     aPfPa  a
         a         ab            a
         a aa     aaa            P
-        a Pa                    b
-aaaaabbaa aa     aaa            a
-a         ba     aaa aabaa aaaaaa
-aaaa aaabaaaaa aaa      a   a
+        a Pa                    l
+aaaaabbaa aa     aaa            P
+a         ba     aaa aabaa ghiPjk
+aaaa aaabaaaaa aaa      a   m
 aaaa aabaaaaba aaa d d  a   b
 aa      ca b a aab      a   a
 a               aa d d  b   a

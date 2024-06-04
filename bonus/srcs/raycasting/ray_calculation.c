@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:34 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 19:27:23 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/04 18:37:45 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,6 @@ void	screen_ray_calculation(t_camera *camera, t_ray *ray, int x)
 	ray->map_pos.x = (int)camera->pos.x;
 	ray->map_pos.y = (int)camera->pos.y;
 	step_init(camera, ray);
-	// ray->hit_type = 0;
-	ray->turn = 0;
-	// ray->total_perp_wall_dist = 0;
 }
 
 void	ray_calculation(t_camera *camera, t_ray *ray)
@@ -79,7 +76,4 @@ void	ray_calculation(t_camera *camera, t_ray *ray)
 	ray->map_pos.x = (int)camera->pos.x;
 	ray->map_pos.y = (int)camera->pos.y;
 	step_init(camera, ray);
-	// ray->hit_type = 0;
-	ray->turn = 0;
-	// ray->total_perp_wall_dist = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/04 17:36:51 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/04 18:30:00 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,11 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		}
 	}
 	if (ray->side == 0)
-		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
+		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
-		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
+
+	// dprintf(2, "ray->total_perp_wall_dist: %f\n", ray->total_perp_wall_dist);
 }
 /*
 
