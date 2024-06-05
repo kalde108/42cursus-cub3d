@@ -106,8 +106,10 @@ SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
 RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
+	camera_rotation \
 	ft_dda \
 	get_line_y \
+	get_relative_position \
 	get_tex_x \
 	get_wall_texture \
 	ray_calculation \

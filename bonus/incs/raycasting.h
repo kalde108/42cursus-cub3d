@@ -45,4 +45,7 @@ void		get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist);
 void		screen_ray_calculation(t_camera *camera, t_ray *ray, int x);
 void		single_raycast(t_cubscene *scene, t_camera camera, t_hit_buffer hit_buf[MAX_LAYERS]);
 
+int			get_relative_position(int f1, int f2);
+void		camera_rotation(t_camera *camera, double angle);
+
 #endif
