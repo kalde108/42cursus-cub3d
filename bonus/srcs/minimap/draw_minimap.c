@@ -26,10 +26,6 @@ static void	draw_map(t_c3_env *env)
 				color.argb = 0x000000FF;
 			else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
 				color.argb = 0xbc8128;
-			// else if (env->scene.map[i * env->scene.width + j] == '2')
-			// 	color = 0xff9b00;
-			// else if(env->scene.map[i * env->scene.width + j] == '3')
-			// 	color = 0x000000FF;
 			else
 			{
 				color.argb = 0x7F000000;
