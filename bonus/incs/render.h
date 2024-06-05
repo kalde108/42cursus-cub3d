@@ -6,14 +6,14 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:43 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/01 19:33:11 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 13:38:21 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# include <cub3d.h>
+# include "cub3d.h"
 
 int		screen_raycast(t_c3_env *env);
 int		render_backgound(t_c3_env *env);

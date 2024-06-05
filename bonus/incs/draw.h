@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/24 18:22:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 13:38:50 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,5 @@ void	draw_line_gradient(t_img *img, int x1, int y1, int x2, int y2, int color1, 
 void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, int color);
 
 void	draw_crosshair(t_c3_env *env); // test
-
-t_texdata	*get_wall_texture(t_cubscene *scene, int cell, t_elem **textures);
 
 #endif
