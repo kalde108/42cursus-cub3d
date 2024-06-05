@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/05 17:02:35 by kchillon         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -56,7 +43,6 @@ typedef struct s_c3_env
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;
 	t_player		player;	// group in struct
-	t_entity		monster;	// group in struct
 	pthread_mutex_t	call_mutex;
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct

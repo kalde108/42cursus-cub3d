@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 17:41:26 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 
 static int	get_map_width(t_vector *map);
 static int	fill_lines(t_vector *map, int width);
-static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene);
-static void add_portals(t_cubscene *scene);
+static int	*map_vector_to_array(t_vector map[LAYER_COUNT], t_cubscene *scene);
+static void	add_portals(t_cubscene *scene);
 
-int	convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene)
+int	convert_map(t_vector map[LAYER_COUNT], t_cubscene *scene)
 {
 	scene->height = map->total;
 	scene->width = get_map_width(map);
@@ -78,7 +78,7 @@ static int	fill_lines(t_vector *map, int width)
 	return (0);
 }
 
-static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
+static int	*map_vector_to_array(t_vector map[LAYER_COUNT], t_cubscene *scene)
 {
 	const size_t	size = scene->width * scene->height;
 	int			*s_map;
@@ -100,7 +100,7 @@ static int	*map_vector_to_array(t_vector map[LAYERS_COUNT], t_cubscene *scene)
 	return (s_map);
 }
 
-static void add_portals(t_cubscene *scene)
+static void	add_portals(t_cubscene *scene)
 {
 	int			i;
 	t_portal	curr;

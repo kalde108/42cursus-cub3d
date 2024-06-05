@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:31:49 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:02:35 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 
-#include "textures.h"
 #include "libft.h"
 #include "parsing.h"
-#include "cubdef.h"
 
 static int		get_path_type(char *tok, char *path);
 static int		set_texture_filepath(char *filepath, t_elem *ptr);
@@ -33,7 +30,9 @@ int	set_texture(char *tok, char *path, t_identifier id, t_cubscene *scene)
 	if (TEXTURE_FILE == type)
 		return (set_texture_filepath(path, get_texture_ptr(id, scene->elems)));
 	else if (TEXTURE_DIRECTORY == type)
-		return (get_directory_textures(path, get_texture_ptr(id, scene->elems)));
+		return (get_directory_textures(
+				path,
+				get_texture_ptr(id, scene->elems)));
 	else
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 13:13:57 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 15:16:07 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 14:23:24 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 int	get_entities(t_vector *map, t_c3_env *env)
 {
 	if (get_player_spawn(map, &env->player))
-		return (-1);
-	if (get_monster_spawn(map, &env->monster))
 		return (-1);
 	if (1 != is_player_enclosed(map, env))
 		return (-1);

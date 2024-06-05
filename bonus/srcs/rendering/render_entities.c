@@ -1,10 +1,5 @@
-#include <math.h>
-
-#include "cub3d.h"
 #include "draw.h"
 #include "libft.h"
-
-# include <stdio.h>
 
 static inline t_v2d_d	sprite_transform(t_player *player, t_entity *entity)
 {

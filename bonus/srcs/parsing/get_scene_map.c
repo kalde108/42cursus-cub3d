@@ -3,25 +3,23 @@
 #include <stdlib.h>
 
 #include "libft.h"
-#include "cub3d.h"
 #include "parsing.h"
-#include "cubdef.h"
 
-static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures);
-static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset);
-static int	add_map_line(char *str, t_vector map[LAYERS_COUNT]);
+static int	read_map_file(int fd, t_vector map[LAYER_COUNT], t_elem **textures);
+static int	read_map_layer(int fd, t_vector map[LAYER_COUNT], char *charset);
+static int	add_map_line(char *str, t_vector map[LAYER_COUNT]);
 static int	is_line_valid(char *str, const char *charset);
 
 int	get_scene_map(int fd, t_c3_env *env)
 {
-	t_vector	map[LAYERS_COUNT];
+	t_vector	map[LAYER_COUNT];
 	int			status;
 	int			i;
 
-	ft_memset(map, '\0', sizeof(t_vector) * LAYERS_COUNT);
+	ft_memset(map, '\0', sizeof(t_vector) * LAYER_COUNT);
 	status = 0;
 	i = 0;
-	while (0 == status && i < LAYERS_COUNT)
+	while (0 == status && i < LAYER_COUNT)
 	{
 		status = ft_vector_init(map + i, sizeof(t_vector), 0, ft_vvector_free);
 		i++;
@@ -33,7 +31,7 @@ int	get_scene_map(int fd, t_c3_env *env)
 	if (0 == status)
 		status = convert_map(map, &env->scene);
 	i = 0;
-	while (i < LAYERS_COUNT)
+	while (i < LAYER_COUNT)
 	{
 		ft_vector_free(map + i);
 		i++;
@@ -41,7 +39,7 @@ int	get_scene_map(int fd, t_c3_env *env)
 	return (status);
 }
 
-static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures)
+static int	read_map_file(int fd, t_vector map[LAYER_COUNT], t_elem **textures)
 {
 	char	*charset;
 	int		status;
@@ -52,11 +50,11 @@ static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures)
 	charset = get_map_charset(textures);
 	if (NULL == charset)
 		return (-1);
-	while (0 == status && i < LAYERS_COUNT)
+	while (0 == status && i < LAYER_COUNT)
 	{
 		status = read_map_layer(fd, map + i, charset);
 		free(charset);
-		if (0 == status && ++i < LAYERS_COUNT)
+		if (0 == status && ++i < LAYER_COUNT)
 		{
 			charset = get_layer_charset(textures[i]);
 			if (NULL == charset)
@@ -66,7 +64,7 @@ static int	read_map_file(int fd, t_vector map[LAYERS_COUNT], t_elem **textures)
 	return (status);
 }
 
-static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset)
+static int	read_map_layer(int fd, t_vector map[LAYER_COUNT], char *charset)
 {
 	char		*gnl;
 	int			status;
@@ -90,7 +88,7 @@ static int	read_map_layer(int fd, t_vector map[LAYERS_COUNT], char *charset)
 	return (status);
 }
 
-static int	add_map_line(char *str, t_vector map[LAYERS_COUNT])
+static int	add_map_line(char *str, t_vector map[LAYER_COUNT])
 {
 	t_vector	line;
 

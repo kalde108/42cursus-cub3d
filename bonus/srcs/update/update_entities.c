@@ -47,7 +47,6 @@ void	DEBUG_PRINT_ENTITY(t_c3_env *env)
 		printf("Distance to player: %f\n", env->entities[i].distance_to_player);
 		i++;
 	}
-	
 }
 
 void	update_entities(t_c3_env *env)

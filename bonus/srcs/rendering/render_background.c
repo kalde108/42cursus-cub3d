@@ -1,4 +1,3 @@
-#include <pthread.h>
 
 #include "cub3d.h"
 #include "raycasting.h"

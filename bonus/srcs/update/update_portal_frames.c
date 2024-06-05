@@ -27,7 +27,8 @@ static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 	{
 		if (texture->current_frame >= texture->n)
 		{
-			texture->current_frame = texture->n - (texture->n - texture->current_frame + 1);
+			texture->current_frame = texture->n
+				- (texture->n - texture->current_frame + 1);
 			texture->dir = -1;
 		}
 		else if (texture->current_frame < 1)
@@ -37,5 +38,5 @@ static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame)
 		}
 		return (texture->frames + texture->current_frame);
 	}
-	return (texture->frames + 1 + (rand() % (texture->n - 1)));	
+	return (texture->frames + 1 + (rand() % (texture->n - 1)));
 }

@@ -1,10 +1,7 @@
 #include <unistd.h>
 #include <math.h>
-#include <stdbool.h>
 
-#include "cub3d.h"
 #include "libft.h"
-#include "cubdef.h"
 #include "parsing.h"
 
 static int	search_line(t_vector *line, t_player *player, bool *found, int y);

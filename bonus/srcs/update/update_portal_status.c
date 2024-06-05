@@ -1,21 +1,23 @@
 #include "cubscene.h"
 
-static void close_portal(t_portals *portals, t_portal *target);
-static void open_portal(t_portals *portals, t_portal *target);
+static void	close_portal(t_portals *portals, t_portal *target);
+static void	open_portal(t_portals *portals, t_portal *target);
 
-# include <stdio.h>
 void	update_portal_status(t_portals *portals, int id)
 {
-	dprintf(2, "Interacting with portal %d\n", id); //REmove
 	if (true == portals->tab[id].is_open)
+	{
 		close_portal(portals, portals->tab + id);
+	}
 	else if (2 != portals->opened_count)
+	{
 		open_portal(portals, portals->tab + id);
+	}
 }
 
-static void close_portal(t_portals *portals, t_portal *target)
+static void	close_portal(t_portals *portals, t_portal *target)
 {
-	t_portal *link;
+	t_portal	*link;
 
 	target->is_open = false;
 	portals->opened_count--;
@@ -33,9 +35,9 @@ static void close_portal(t_portals *portals, t_portal *target)
 	portals->opened[1] = NO_LINK;
 }
 
-static void open_portal(t_portals *portals, t_portal *target)
+static void	open_portal(t_portals *portals, t_portal *target)
 {
-	t_portal *link;
+	t_portal	*link;
 
 	target->is_open = true;
 	portals->opened_count++;
@@ -44,7 +46,7 @@ static void open_portal(t_portals *portals, t_portal *target)
 		portals->opened[1] = NO_LINK;
 	}
 	else
-	{	
+	{
 		link = portals->tab + *portals->opened;
 		portals->opened[1] = link->id;
 		target->linked_portal = link->id;

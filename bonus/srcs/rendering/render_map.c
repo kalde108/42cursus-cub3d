@@ -1,18 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 15:33:31 by kchillon         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include <pthread.h>
 
-#include "cub3d.h"
 #include "raycasting.h"
 #include "tile_address.h"
 #include "draw.h"
