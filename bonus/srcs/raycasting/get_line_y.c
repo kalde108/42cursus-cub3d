@@ -6,11 +6,11 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:26 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:31:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 15:11:19 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#include "cubdef.h"
 #include "raycasting.h"
 
 void	get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist)

@@ -70,7 +70,6 @@ int	screen_raycast(t_c3_env *env)
 	int			i;
 	int			err;
 
-	g_debug = 3;	// REMOVE
 	err = 0;
 	i = 0;
 	while (i < CPUCORES)
@@ -82,6 +81,5 @@ int	screen_raycast(t_c3_env *env)
 	}
 	while (--i >= 0)
 		pthread_join(threads[i], NULL);
-	g_debug = 0;	// REMOVE
 	return (err);
 }
