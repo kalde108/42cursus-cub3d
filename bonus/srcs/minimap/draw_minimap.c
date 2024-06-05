@@ -9,7 +9,7 @@ static void	draw_map(t_c3_env *env)
 	int		j;
 	int		x;
 	int		y;
-	int		color;
+	t_color	color;
 	char	alpha;
 
 	alpha = 0;
@@ -21,18 +21,18 @@ static void	draw_map(t_c3_env *env)
 		{
 			alpha = 0;
 			if (IS_WALL(env->scene.map[i * env->scene.width + j]))
-				color = 0xd72323;
+				color.argb = 0xd72323;
 			else if (IS_PORTAL(env->scene.map[i * env->scene.width + j]))
-				color = 0x000000FF;
+				color.argb = 0x000000FF;
 			else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
-				color = 0xbc8128;
+				color.argb = 0xbc8128;
 			// else if (env->scene.map[i * env->scene.width + j] == '2')
 			// 	color = 0xff9b00;
 			// else if(env->scene.map[i * env->scene.width + j] == '3')
 			// 	color = 0x000000FF;
 			else
 			{
-				color = 0x7F000000;
+				color.argb = 0x7F000000;
 				alpha = 1;
 			}
 			x = j * MINIMAP_SCALE;
@@ -70,7 +70,7 @@ static void	draw_player(t_c3_env *env)
 		{
 			x = (int)(env->player.camera.pos.x * MINIMAP_SCALE) + j - MINIMAP_SCALE / 2;
 			y = (int)(env->player.camera.pos.y * MINIMAP_SCALE) + i - MINIMAP_SCALE / 2;
-			put_pixel(&env->img, x, y, 0x0000FF00);
+			put_pixel(&env->img, x, y, (t_color){0x0000FF00});
 			j++;
 		}
 		i++;
@@ -87,7 +87,7 @@ static void	draw_view(t_c3_env *env)
 	view_end.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5;
 	x = (int)(view_end.x * MINIMAP_SCALE);
 	y = (int)(view_end.y * MINIMAP_SCALE);
-	draw_line_gradient(&env->img, (int)(env->player.camera.pos.x * MINIMAP_SCALE), (int)(env->player.camera.pos.y * MINIMAP_SCALE), x, y, 0x0000FF00, 0x00FFFFFF);
+	draw_line_gradient(&env->img, (int)(env->player.camera.pos.x * MINIMAP_SCALE), (int)(env->player.camera.pos.y * MINIMAP_SCALE), x, y, (t_color){0x0000FF00}, (t_color){0x00FFFFFF});
 }
 
 static void	draw_plane(t_c3_env *env)
@@ -99,7 +99,7 @@ static void	draw_plane(t_c3_env *env)
 	plane_start.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5 - env->player.camera.plane.y * 5 / 2;
 	plane_end.x = env->player.camera.pos.x + env->player.camera.dir.x * 2.5 + env->player.camera.plane.x * 5 / 2;
 	plane_end.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5 + env->player.camera.plane.y * 5 / 2;
-	draw_line_gradient(&env->img, (int)(plane_start.x * MINIMAP_SCALE), (int)(plane_start.y * MINIMAP_SCALE), (int)(plane_end.x * MINIMAP_SCALE), (int)(plane_end.y * MINIMAP_SCALE), 0x000000FF, 0x00FFFFFF);
+	draw_line_gradient(&env->img, (int)(plane_start.x * MINIMAP_SCALE), (int)(plane_start.y * MINIMAP_SCALE), (int)(plane_end.x * MINIMAP_SCALE), (int)(plane_end.y * MINIMAP_SCALE), (t_color){0x000000FF}, (t_color){0x00FFFFFF});
 }
 
 void	draw_minimap(t_c3_env *env)

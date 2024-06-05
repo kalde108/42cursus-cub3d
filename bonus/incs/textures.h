@@ -5,6 +5,7 @@
 # include <stddef.h>
 
 # include "ft_time.h"
+# include "color.h"
 
 //ATTRIBUTES
 # define DEFAULT_FRAMETIME 100
@@ -40,7 +41,7 @@ typedef struct s_texdata
 	void	*mlx_img;
 	int		width;
 	int		height;
-	char	*addr;
+	t_color	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;

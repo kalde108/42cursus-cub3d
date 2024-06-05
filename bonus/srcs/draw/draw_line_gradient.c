@@ -4,11 +4,9 @@
 #include "cub3d.h"
 #include "draw.h"
 
-void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, int color1, int color2)
+void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
 {
-	int	dr;
-	int	dg;
-	int	db;
+	t_color	diff;
 	int	dx;
 	int	dy;
 	int	yi;
@@ -16,9 +14,9 @@ void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, int colo
 	int	y;
 	int	x;
 
-	dr = (color2 >> 16 & 0xFF) - (color1 >> 16 & 0xFF);
-	dg = (color2 >> 8 & 0xFF) - (color1 >> 8 & 0xFF);
-	db = (color2 & 0xFF) - (color1 & 0xFF);
+	diff.r = color2.r - color1.r;
+	diff.g = color2.g - color1.g;
+	diff.b = color2.b - color1.b;
 	dx = x2 - x1;
 	dy = y2 - y1;
 	yi = 1;
@@ -32,7 +30,11 @@ void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, int colo
 	x = x1;
 	while (x <= x2)
 	{
-		put_pixel(img, x, y, color1 + (dr * (x - x1) / dx << 16) + (dg * (x - x1) / dx << 8) + db * (x - x1) / dx);
+		// put_pixel(img, x, y, color1.argb + (dr * (x - x1) / dx << 16) + (dg * (x - x1) / dx << 8) + db * (x - x1) / dx);
+		color1.r += diff.r * (x - x1) / dx;
+		color1.g += diff.g * (x - x1) / dx;
+		color1.b += diff.b * (x - x1) / dx;
+		put_pixel(img, x, y, color1);
 		if (d > 0)
 		{
 			y += yi;
@@ -43,11 +45,9 @@ void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, int colo
 	}
 }
 
-void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, int color1, int color2)
+void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
 {
-	int	dr;
-	int	dg;
-	int	db;
+	t_color	diff;
 	int	dx;
 	int	dy;
 	int	xi;
@@ -55,9 +55,9 @@ void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, int col
 	int	y;
 	int	x;
 
-	dr = (color2 >> 16 & 0xFF) - (color1 >> 16 & 0xFF);
-	dg = (color2 >> 8 & 0xFF) - (color1 >> 8 & 0xFF);
-	db = (color2 & 0xFF) - (color1 & 0xFF);
+	diff.r = color2.r - color1.r;
+	diff.g = color2.g - color1.g;
+	diff.b = color2.b - color1.b;
 	dx = x2 - x1;
 	dy = y2 - y1;
 	xi = 1;
@@ -71,7 +71,11 @@ void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, int col
 	x = x1;
 	while (y <= y2)
 	{
-		put_pixel(img, x, y, color1 + (dr * (y - y1) / dy << 16) + (dg * (y - y1) / dy << 8) + db * (y - y1) / dy);
+		// put_pixel(img, x, y, color1 + (dr * (y - y1) / dy << 16) + (dg * (y - y1) / dy << 8) + db * (y - y1) / dy);
+		color1.r += diff.r * (y - y1) / dy;
+		color1.g += diff.g * (y - y1) / dy;
+		color1.b += diff.b * (y - y1) / dy;
+		put_pixel(img, x, y, color1);
 		if (d > 0)
 		{
 			x += xi;
@@ -82,7 +86,7 @@ void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, int col
 	}
 }
 
-void	draw_line_gradient(t_img *img, int x1, int y1, int x2, int y2, int color1, int color2)
+void	draw_line_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
 {
 	int	dx;
 	int	dy;

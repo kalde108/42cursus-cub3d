@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "draw.h"
 
-void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, int color)
+void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color color)
 {
 	int	dx;
 	int	dy;
@@ -34,7 +34,7 @@ void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, int color)
 	}
 }
 
-void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, int color)
+void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color color)
 {
 	int	dx;
 	int	dy;
@@ -67,7 +67,7 @@ void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, int color)
 	}
 }
 
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, int color)
+void	draw_line(t_img *img, int x1, int y1, int x2, int y2, t_color color)
 {
 	int	dx;
 	int	dy;

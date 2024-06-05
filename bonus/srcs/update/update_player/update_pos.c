@@ -86,6 +86,8 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d x_move, t_v2d_d *
 		else
 		{
 			dprintf(2, "else x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+			// x_move.x = 0;
+			// x_move.y = 0;
 			// camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
 			// camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
 		}

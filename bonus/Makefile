@@ -120,6 +120,7 @@ SRC += $(addprefix $(RENDERING_DIR),$(RENDERING_SRC))
 
 RENDERING_DIR = rendering/
 RENDERING_SRC = \
+	background_row \
 	render_background \
 	render_entities \
 	render_map \

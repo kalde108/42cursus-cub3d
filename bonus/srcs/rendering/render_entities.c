@@ -74,9 +74,9 @@ static inline void	render_entitie(t_c3_env *env, t_entity *entity)
 				// tex_pos.y = ((d * entity->sprites[0].sprite->height) / sprite_size.y);
 				tex_pos.y = ((d * entity->sprites[0].frames->height) / sprite_size.y);
 				int color;
-				color = *(int *)(entity->sprites[0].frames->addr + (tex_pos.y * entity->sprites[0].frames->line_length + tex_pos.x * (entity->sprites[0].frames->bits_per_pixel / 8)));
+				color = entity->sprites[0].frames->addr[tex_pos.y * entity->sprites[0].frames->width + tex_pos.x].argb;
 				if ((color & 0x00FFFFFF) != 0)
-					((int *)env->img.addr)[(y << WIDTH_LOG2) + stripe] = color;
+					env->img.addr[(y << WIDTH_LOG2) + stripe].argb = color;
 				y++;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/01 16:55:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:06:09 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 	}
 	free(data->filepath);
 	data->filepath = NULL;
-	data->addr = mlx_get_data_addr(data->mlx_img,
+	data->addr = (t_color *)mlx_get_data_addr(data->mlx_img,
 			&data->bits_per_pixel,
 			&data->line_length,
 			&data->endian);

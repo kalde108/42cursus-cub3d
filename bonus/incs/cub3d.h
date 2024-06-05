@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/05 16:20:48 by ibertran         ###   ########lyon.fr   */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -18,6 +5,8 @@
 # include <pthread.h>
 
 # include "cubdef.h"
+# include "color.h"
+// # include "cub3d_types.h"
 # include "cubscene.h"
 # include "player.h"
 # include "entity.h"
@@ -28,11 +17,10 @@
 
 extern int	g_debug;
 
-
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	t_color	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
