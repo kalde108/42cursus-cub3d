@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, int color)
+void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, t_color color)
 {
 	int	x;
 	int	y;
@@ -15,7 +15,7 @@ void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, int color)
 		while (x < pos.x + half_size.x)
 		{
 			if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-				img->addr[(y << WIDTH_LOG2) + x].argb = color;
+				img->addr[(y << WIDTH_LOG2) + x] = color;
 			x++;
 		}
 		y++;

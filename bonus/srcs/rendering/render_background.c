@@ -5,9 +5,9 @@
 #include "tile_address.h"
 #include "raycasting.h"
 
-static inline void	precompute_steps(t_camera *camera,\
-										t_v2d_d *floor_step,\
-										t_v2d_d *floor,\
+static inline void	precompute_steps(t_camera *camera,
+										t_v2d_d *floor_step,
+										t_v2d_d *floor,
 										size_t y)
 {
 	t_v2d_d	ray_dir0;
@@ -25,18 +25,21 @@ static inline void	precompute_steps(t_camera *camera,\
 	floor->y = camera->pos.y + row_distance * ray_dir0.y;
 }
 
-static inline int	get_background_color(t_texdata *texture,\
-											t_v2d_d floor,\
+static inline int	get_background_color(t_texdata *texture,
+											t_v2d_d floor,
 											t_v2d_i cell_pos)
 {
 	t_v2d_i	tex_coord;
 
 	tex_coord.x = (int)(texture->width * (floor.x - cell_pos.x));
 	tex_coord.y = (int)(texture->height * (floor.y - cell_pos.y));
-	return (((uint32_t *)texture->addr)[texture->width * tex_coord.y + tex_coord.x]);
+	return (texture->addr[tex_coord.y * texture->width + tex_coord.x].argb);
 }
 
-static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel, t_elem **textures)
+static inline void	background_pixel(t_c3_env *env,
+										t_v2d_d floor,
+										t_v2d_i pixel,
+										t_elem **textures)
 {
 	t_v2d_i	cell_pos;
 	int		cell;
@@ -45,21 +48,21 @@ static inline void	background_pixel(t_c3_env *env, t_v2d_d floor, t_v2d_i pixel,
 	cell_pos.x = (int)(floor.x);
 	cell_pos.y = (int)(floor.y);
 	pos = cell_pos.y * env->scene.width + cell_pos.x;
-	if (cell_pos.x < 0 
-		|| cell_pos.x >= env->scene.width 
-		|| cell_pos.y < 0 
-		|| cell_pos.y >= env->scene.height 
+	if (cell_pos.x < 0
+		|| cell_pos.x >= env->scene.width
+		|| cell_pos.y < 0
+		|| cell_pos.y >= env->scene.height
 		|| !IS_FL_CE(env->scene.map[pos]))
 		return ;
 	cell = env->scene.map[pos];
 	(env->img.addr)[pixel.y * WIDTH + pixel.x].argb = \
-	get_background_color(textures[FLOOR][GET_FLOOR(cell)].current, 
-							floor, 
-							cell_pos);
+	get_background_color(textures[FLOOR][GET_FLOOR(cell)].current,
+			floor,
+			cell_pos);
 	(env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x].argb = \
-	get_background_color(textures[CEILING][GET_CEILING(cell)].current, 
-							floor, 
-							cell_pos);
+	get_background_color(textures[CEILING][GET_CEILING(cell)].current,
+			floor,
+			cell_pos);
 }
 
 static inline int	get_camera(t_hit_buffer *buffer, t_camera *camera, int y)
@@ -86,7 +89,7 @@ static inline int	get_camera(t_hit_buffer *buffer, t_camera *camera, int y)
 
 static inline void	background_row(t_c3_env *env, int y, t_elem **textures)
 {
-	t_v2d_d 	floor_step;
+	t_v2d_d		floor_step;
 	t_v2d_d		floor;
 	t_camera	old_cam;
 	t_camera	camera;

@@ -53,7 +53,7 @@ typedef struct s_texdata
 	void	*mlx_img;
 	int		width;
 	int		height;
-	char	*addr;
+	t_color	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;

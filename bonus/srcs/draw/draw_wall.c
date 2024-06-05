@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 16:36:44 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:07:17 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ inline void	draw_wall(t_img *img, t_hit_buffer *hit_buffer, int x)
 	double			tex_y;
 
 	dst = img->addr;
-	tex = (t_color *)(hit_buffer->texture->addr + (hit_buffer->tex_x << 2));
+	tex = hit_buffer->texture->addr + (hit_buffer->tex_x);
 	tex_y = 0.0;
 	step = 1.0 * hit_buffer->texture->height / ((hit_buffer->y2 - hit_buffer->y1) + 1);
 	if (hit_buffer->y1 < 0)
