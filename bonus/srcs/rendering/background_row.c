@@ -2,6 +2,28 @@
 #include "tile_address.h"
 #include "raycasting.h"
 
+static inline int	get_camera(t_hit_buffer *buffer, t_camera *camera, int y)
+{
+	t_hit_buffer	*ptr_buf;
+	int				hit_count;
+	int				i;
+
+	hit_count = buffer->count;
+	i = 0;
+	while (i < hit_count)
+	{
+		ptr_buf = buffer + i;
+		if (y <= ptr_buf->y1 || y >= ptr_buf->y2)
+		{
+			*camera = ptr_buf->camera;
+			return (1);
+		}
+		i++;
+	}
+	*camera = ptr_buf->camera;
+	return (0);
+}
+
 static inline void	precompute_steps(t_camera *camera,
 										t_v2d_d *floor_step,
 										t_v2d_d *floor,
@@ -62,28 +84,6 @@ static inline void	background_pixel(t_c3_env *env,
 			cell_pos);
 }
 
-static inline int	get_camera(t_hit_buffer *buffer, t_camera *camera, int y)
-{
-	t_hit_buffer	*ptr_buf;
-	int				hit_count;
-	int				i;
-
-	hit_count = buffer->count;
-	i = 0;
-	while (i < hit_count)
-	{
-		ptr_buf = buffer + i;
-		if (y <= ptr_buf->y1 || y >= ptr_buf->y2)
-		{
-			*camera = ptr_buf->camera;
-			return (1);
-		}
-		i++;
-	}
-	*camera = ptr_buf->camera;
-	return (0);
-}
-
 void	background_row(t_c3_env *env, int y, t_elem **textures)
 {
 	t_v2d_d		floor_step;
@@ -92,6 +92,8 @@ void	background_row(t_c3_env *env, int y, t_elem **textures)
 	t_camera	camera;
 	int			x;
 
+	floor = (t_v2d_d){0};		// github action
+	floor_step = (t_v2d_d){0};	// github action
 	x = 0;
 	old_cam = (t_camera){.pos = (t_v2d_d){-1, -1}};
 	while (x < WIDTH)
