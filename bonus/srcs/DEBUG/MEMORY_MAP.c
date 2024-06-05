@@ -170,7 +170,6 @@ void	MEMORY_MAP(t_c3_env *env)
 		dprintf(2, "\t->key_state: %p\n", &env->key_state);
 		dprintf(2, "\t->mouse: %p\n", &env->mouse);
 		dprintf(2, "\t->player: %p\n", &env->player);
-		dprintf(2, "\t->monster: %p\n", &env->monster);
 		dprintf(2, "\t->call_mutex: %p\n", &env->call_mutex);
 		dprintf(2, "\t->z_buffer: %p\n", env->z_buffer);
 		dprintf(2, "\t->entities: %p\n", env->entities);

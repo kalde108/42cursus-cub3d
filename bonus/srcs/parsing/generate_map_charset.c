@@ -23,7 +23,7 @@ char	*get_map_charset(t_elem **textures)
 	map_charset = ft_sprintf("%s%s%s",
 		wall_charset,
 		portal_charset,
-		MAP_MANDATORY_CHARSET);
+		SPAWN_CHARSET);
 	free(wall_charset);
 	return (map_charset);
 }

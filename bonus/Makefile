@@ -41,7 +41,6 @@ PARSING_SRC = \
 	get_cell_value \
 	get_cubscene \
 	get_entities \
-	get_monster_spawn \
 	get_player_spawn \
 	get_portals \
 	get_scene_map \
