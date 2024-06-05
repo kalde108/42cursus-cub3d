@@ -4,11 +4,11 @@
 #include "libft.h"
 #include "cubscene.h"
 
-static int set_attribute(char *identifier, char *str, t_elem *elem);
+static int	set_attribute(char *identifier, char *str, t_elem *elem);
 
-int get_attributes(char *identifier, t_elem *elem)
+int	get_attributes(char *identifier, t_elem *elem)
 {
-	char *token;
+	char	*token;
 
 	init_attributes(&elem->attr);
 	token = ft_strtok(NULL, " ");
@@ -22,15 +22,11 @@ int get_attributes(char *identifier, t_elem *elem)
 	return (0);
 }
 
-# include <stdio.h>
-
-static int set_attribute(char *identifier, char *str, t_elem *elem)
+static int	set_attribute(char *identifier, char *str, t_elem *elem)
 {
-	const char			*option[] = {ATTR_1, ATTR_2, ATTR_3, ATTR_4, ATTR_5,
-		ATTR_6, NULL};
+	const char			*option[] = {ATTR_1, ATTR_2, ATTR_3, NULL};
 	const t_set_attr	f[] = {set_animation_attr, set_frametime_attr,
-		set_framestart_attr, set_walkable_attr, set_hinder_attr,
-		set_damage_attr};
+		set_framestart_attr};
 	int					i;
 	int					len;
 
@@ -47,4 +43,3 @@ static int set_attribute(char *identifier, char *str, t_elem *elem)
 	ft_dprintf(STDERR_FILENO, SCENE_ERR3, identifier, str, INVAL_ATTR);
 	return (-1);
 }
-

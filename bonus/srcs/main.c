@@ -1,11 +1,7 @@
 #include "mlx.h"
 #include "cub3d.h"
-# include "entity.h"
-# include "libft.h"
-# include "tile_address.h"
 
 # include <stdlib.h>
-# include <math.h>
 # include <stdio.h>
 
 int	g_debug = 0;
@@ -45,10 +41,8 @@ int	main(int ac, char **av)
 {
 	t_c3_env	env;
 
-	dprintf(2, "sizeof(t_c3_env): %lu\n", sizeof(t_c3_env)); //DEBUG
 	srand(time(NULL));
 	env = (t_c3_env){0};
-	dprintf(2, "CPUCORES: %d\n", CPUCORES); //DEBUG
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
 	if (load_textures(env.mlx, env.scene.elems) || open_mlx_window(&env))

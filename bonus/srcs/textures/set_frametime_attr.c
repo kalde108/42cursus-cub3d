@@ -5,10 +5,10 @@
 #include "textures.h"
 #include "libft.h"
 
-int set_frametime_attr(char *identifier, char *str,  t_elem *elem)
+int	set_frametime_attr(char *identifier, char *str, t_elem *elem)
 {
-	long value;
-	char *end_ptr;
+	long	value;
+	char	*end_ptr;
 
 	errno = 0;
 	value = ft_strtol(str, &end_ptr);

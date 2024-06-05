@@ -1,9 +1,6 @@
-#include <pthread.h>
 
 #include "cub3d.h"
-#include "libft.h"
 #include "tile_address.h"
-#include "raycasting.h"
 
 # include <stdio.h>
 

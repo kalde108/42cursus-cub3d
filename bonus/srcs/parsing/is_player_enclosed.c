@@ -1,10 +1,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include <stdlib.h>
 
 #include "libft.h"
-#include "cubdef.h"
 #include "parsing.h"
 
 static int	is_enclosed(t_vector *map, t_v2d_i start, t_cubscene *scene);

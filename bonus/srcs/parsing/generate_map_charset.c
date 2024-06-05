@@ -5,7 +5,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-#include "cubdef.h"
 
 char	*get_map_charset(t_elem **textures)
 {
@@ -21,9 +20,9 @@ char	*get_map_charset(t_elem **textures)
 	else
 		portal_charset = EMPTY_STRING;
 	map_charset = ft_sprintf("%s%s%s",
-		wall_charset,
-		portal_charset,
-		SPAWN_CHARSET);
+			wall_charset,
+			portal_charset,
+			SPAWN_CHARSET);
 	free(wall_charset);
 	return (map_charset);
 }

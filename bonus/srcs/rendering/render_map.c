@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:34:57 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:13:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-
-#include "raycasting.h"
 #include "tile_address.h"
-#include "cub3d.h"
 #include "draw.h"
-
-# include <stdio.h>
-# include <math.h>
-# include "ft_math.h"
 
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
