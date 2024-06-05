@@ -81,7 +81,7 @@ void	portal_hit_move(t_cubscene *scene,
 	diff.x = (portals[portal_id].pos.x + 0.5) - camera->pos.x;
 	diff.y = (portals[portal_id].pos.y + 0.5) - camera->pos.y;
 	relative_position = get_relative_position(portals[portal_id].face,
-			portals[portal_id].face);
+			portals[dest_portal_id].face);
 	if (relative_position == 0)
 		*rot = same_face(portals + dest_portal_id, camera, diff, ray->side);
 	else if (relative_position == 1)

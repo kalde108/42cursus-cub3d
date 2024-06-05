@@ -5,6 +5,8 @@ cub3D_bonus
 .vscode
 callgrind.out.*
 minecraft_texture_pack
+*.old
+*.back
 
 # Prerequisites
 *.d
