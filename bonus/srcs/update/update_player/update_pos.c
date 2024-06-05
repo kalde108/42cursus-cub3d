@@ -84,7 +84,11 @@ static void	update_x(t_cubscene *scene, t_c3_env *env, t_v2d_d x_move, t_v2d_d *
 			x_move.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
+		{
 			dprintf(2, "else x ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+			// camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
+			// camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
+		}
 	}
 	env->player.camera.pos.x = camera.pos.x;
 	env->player.camera.pos.y = camera.pos.y;
@@ -136,7 +140,11 @@ static void	update_y(t_cubscene *scene, t_c3_env *env, t_v2d_d move_vec)
 			move_vec.y -= (ray.perp_wall_dist - offset) * camera.dir.y;
 		}
 		else
+		{
 			dprintf(2, "else y ray.perp_wall_dist = %f\n", ray.perp_wall_dist);
+			// camera.pos.x += (ray.perp_wall_dist - offset) * camera.dir.x;
+			// camera.pos.y += (ray.perp_wall_dist - offset) * camera.dir.y;
+		}
 	}
 	env->player.camera.pos.y = camera.pos.y;
 	env->player.camera.pos.x = camera.pos.x;

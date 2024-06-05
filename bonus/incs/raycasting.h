@@ -17,8 +17,6 @@ typedef struct s_ray
 	int		side;
 	double	perp_wall_dist;
 	int		hit_type;
-	int		turn;
-	double	total_perp_wall_dist;
 }	t_ray;
 
 typedef struct s_hit_buffer

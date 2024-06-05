@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/04 17:36:51 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/04 20:32:38 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		if (hit_enable && IS_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
 		{
 			if (IS_PORTAL(ray->hit_type))
-				ray->hit_type = 0;
+			{
+				if (scene->portals.tab[GET_PORTAL(ray->hit_type)].linked_portal == GET_PORTAL(scene->map[ray->map_pos.y * scene->width + ray->map_pos.x]))
+					ray->hit_type = 0;
+			}
 			else
 			{
 				hit = 1;
@@ -88,9 +91,11 @@ void	ft_dda(t_cubscene *scene, t_ray *ray)
 		}
 	}
 	if (ray->side == 0)
-		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x + ray->total_perp_wall_dist;
+		ray->perp_wall_dist = ray->side_dist.x - ray->delta_dist.x;
 	else
-		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y + ray->total_perp_wall_dist;
+		ray->perp_wall_dist = ray->side_dist.y - ray->delta_dist.y;
+
+	// dprintf(2, "ray->total_perp_wall_dist: %f\n", ray->total_perp_wall_dist);
 }
 /*
 
