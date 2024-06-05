@@ -73,8 +73,6 @@ DRAW_DIR = draw/
 DRAW_SRC = \
 	draw_wall \
 	draw_portal \
-	get_wall_texture \
-	get_tex_x \
 	draw_line \
 	draw_line_gradient \
 	put_pixel \
@@ -110,6 +108,8 @@ RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
 	ft_dda \
 	get_line_y \
+	get_tex_x \
+	get_wall_texture \
 	ray_calculation \
 	portal_hit_move \
 	portal_hit \
