@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/02 17:07:13 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:02:35 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <pthread.h>
 
 # include "cubdef.h"
+# include "color.h"
+// # include "cub3d_types.h"
 # include "cubscene.h"
 # include "player.h"
 # include "entity.h"
@@ -28,11 +30,10 @@
 
 extern int	g_debug;
 
-
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	t_color	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;

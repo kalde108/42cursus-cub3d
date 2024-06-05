@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 18:34:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 16:34:58 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	open_mlx_window(t_c3_env *env)
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
 		return (1);
 	}
-	env->img.addr = mlx_get_data_addr(env->img.img,
+	env->img.addr = (t_color *)mlx_get_data_addr(env->img.img,
 			&env->img.bits_per_pixel,
 			&env->img.line_length,
 			&env->img.endian);

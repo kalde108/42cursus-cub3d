@@ -5,6 +5,7 @@
 # include <stddef.h>
 
 # include "ft_time.h"
+# include "color.h"
 
 //ATTRIBUTES
 # define DEFAULT_FRAMETIME 100
