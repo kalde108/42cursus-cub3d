@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 17:42:04 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static char	get_layer_cell(t_vector *map, int y, int x, int layer);
 
-int	get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell)
+int	get_cell_value(t_vector map[LAYER_COUNT], int y, int x, int *cell)
 {
 	const char	wall = get_layer_cell(map, y, x, MAP_LAYER) - 'a';
 	const char	floor = get_layer_cell(map, y, x, FLOOR_LAYER) - 'a';
@@ -47,7 +47,7 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer)
 	if (NULL != line)
 	{
 		cell = ft_vector_get(line, x);
-		if (cell && ' ' != *cell && -'P' != *cell)
+		if (cell && ' ' != *cell && - 'P' != *cell)
 			return (*cell);
 		return ('\0');
 	}

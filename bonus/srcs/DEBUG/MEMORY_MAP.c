@@ -68,9 +68,6 @@ void	MEMORY_MAP(t_c3_env *env)
 						dprintf(2, "\t\t\t\t.attr:\n");
 							dprintf(2, "\t\t\t\t\t.frametime: %zu\n", ptr1->attr.frametime);
 							dprintf(2, "\t\t\t\t\t.animation: %s\n", elem_type_str(ptr1->attr.animation));
-							dprintf(2, "\t\t\t\t\t.damage: %d\n", ptr1->attr.damage);
-							dprintf(2, "\t\t\t\t\t.hinder: %f\n", ptr1->attr.hinder);
-							dprintf(2, "\t\t\t\t\t.walkable: %d\n", ptr1->attr.walkable);
 					}
 					ptr1++;
 					i++;
@@ -103,9 +100,6 @@ void	MEMORY_MAP(t_c3_env *env)
 						dprintf(2, "\t\t\t\t.attr:\n");
 							dprintf(2, "\t\t\t\t\t.frametime: %zu\n", ptr1->attr.frametime);
 							dprintf(2, "\t\t\t\t\t.animation: %s\n", elem_type_str(ptr1->attr.animation));
-							dprintf(2, "\t\t\t\t\t.damage: %d\n", ptr1->attr.damage);
-							dprintf(2, "\t\t\t\t\t.hinder: %f\n", ptr1->attr.hinder);
-							dprintf(2, "\t\t\t\t\t.walkable: %d\n", ptr1->attr.walkable);
 					}
 					ptr1++;
 					i++;
@@ -138,9 +132,6 @@ void	MEMORY_MAP(t_c3_env *env)
 					dprintf(2, "\t\t\t\t.attr:\n");
 						dprintf(2, "\t\t\t\t\t.attr.frametime: %zu\n", ptr1->attr.frametime);
 						dprintf(2, "\t\t\t\t\t.attr.animation: %s\n", elem_type_str(ptr1->attr.animation));
-						dprintf(2, "\t\t\t\t\t.attr.damage: %d\n", ptr1->attr.damage);
-						dprintf(2, "\t\t\t\t\t.attr.hinder: %f\n", ptr1->attr.hinder);
-						dprintf(2, "\t\t\t\t\t.attr.walkable: %d\n", ptr1->attr.walkable);
 				}
 			dprintf(2, "\t\t.map: %p\n", env->scene.map);
 			dprintf(2, "\t\t.width: %d\n", env->scene.width);
@@ -170,7 +161,6 @@ void	MEMORY_MAP(t_c3_env *env)
 		dprintf(2, "\t->key_state: %p\n", &env->key_state);
 		dprintf(2, "\t->mouse: %p\n", &env->mouse);
 		dprintf(2, "\t->player: %p\n", &env->player);
-		dprintf(2, "\t->monster: %p\n", &env->monster);
 		dprintf(2, "\t->call_mutex: %p\n", &env->call_mutex);
 		dprintf(2, "\t->z_buffer: %p\n", env->z_buffer);
 		dprintf(2, "\t->entities: %p\n", env->entities);

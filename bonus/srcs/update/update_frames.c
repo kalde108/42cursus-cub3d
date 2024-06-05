@@ -1,10 +1,7 @@
 #include <stdlib.h>
 
-#include "cub3d.h"
 #include "update.h"
 #include "libft.h"
-
-# include <stdio.h>
 
 static t_texdata	*get_current_frame(t_elem *texture, size_t passed_frame);
 static void			update_basic_frames(t_c3_env *env);

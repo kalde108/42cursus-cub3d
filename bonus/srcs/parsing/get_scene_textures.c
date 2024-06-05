@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:31:38 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:01:21 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #include "libft.h"
 #include "parsing.h"
-#include "cubdef.h"
 
 static int			tokenize_line(char *line, t_cubscene *ptr, bool *defined);
 static t_identifier	get_identifier(char *str);

@@ -12,7 +12,6 @@
 
 #include "mlx.h"
 #include "cub3d.h"
-#include "key_index.h"
 
 #include <X11/Xutil.h>
 

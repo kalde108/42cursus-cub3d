@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/02 19:40:48 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@
 # define INVAL_CHAR "Invalid character"
 # define NO_PLAYER "Missing player spawn character, expected [N] [S] [E] or [W]"
 # define MULTIPLE_PLAYER "Multiple player spawn characters"
-# define NO_MONSTER "Missing monster spawn character, expected [M]"
-# define MULTIPLE_MONSTER "Multiple monster spawn characters"
-# define MONSTER_NOPATH "Monster has no available path to player"
 # define TOO_MANY_PORTALS "Too many portals"
 # define INVALID_PORTAL "Exposed portal"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
@@ -51,12 +48,9 @@
 # define INVAL_WALL_CELL "MAP: (x%d;y%d): Missing wall\n"
 
 //MAP_CHARSET
-# define MAP_MANDATORY_CHARSET "NSEWM"
 # define SPAWN_CHARSET "NSEW"
 # define PORTAL_CHARSET "P"
 # define EMPTY_STRING ""
-
-# define MONSTER_CHAR 'M'
 
 # define WALKABLE -51
 # define MISSING -97
@@ -75,7 +69,7 @@ enum e_maplayer
 	MAP_LAYER,
 	FLOOR_LAYER,
 	CEILING_LAYER,
-	LAYERS_COUNT
+	LAYER_COUNT
 };
 
 int		get_cubscene(char *path, t_c3_env *env);
@@ -85,11 +79,10 @@ int		get_scene_textures(int fd, t_cubscene *ptr);
 int		set_texture(char *tok, char *str, t_identifier id, t_cubscene *ptr);
 int		get_scene_map(int fd, t_c3_env *env);
 int		get_entities(t_vector *map, t_c3_env *env);
-int		convert_map(t_vector map[LAYERS_COUNT], t_cubscene *scene);
+int		convert_map(t_vector map[LAYER_COUNT], t_cubscene *scene);
 char	*get_map_charset(t_elem **textures);
 char	*get_layer_charset(t_elem *textures);
-int		get_monster_spawn(t_vector *map, t_entity *monster);
-int		get_cell_value(t_vector map[LAYERS_COUNT], int y, int x, int *cell);
+int		get_cell_value(t_vector map[LAYER_COUNT], int y, int x, int *cell);
 int		get_directory_textures(char *dirpath, t_elem *texture);
 int		config_portals(t_vector *map, t_cubscene *scene);
 int		get_attributes(char *identifier, t_elem *elem);

@@ -16,9 +16,7 @@
 #include <string.h>
 
 #include "libft.h"
-#include "cub3d.h"
 #include "parsing.h"
-#include "cubdef.h"
 
 int	get_cubscene(char *path, t_c3_env *env)
 {

@@ -41,7 +41,6 @@ PARSING_SRC = \
 	get_cell_value \
 	get_cubscene \
 	get_entities \
-	get_monster_spawn \
 	get_player_spawn \
 	get_portals \
 	get_scene_map \
@@ -61,9 +60,6 @@ TEXTURES_SRC = \
 	set_animation_attr \
 	set_frametime_attr \
 	set_framestart_attr \
-	set_hinder_attr \
-	set_damage_attr \
-	set_walkable_attr \
 
 # ********** DRAW ********** #
 

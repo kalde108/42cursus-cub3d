@@ -1,7 +1,6 @@
 #include <mlx.h>
 
 #include "cub3d.h"
-#include "key_index.h"
 
 int	focusout_hook(t_c3_env *env)
 {
