@@ -6,37 +6,34 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:23 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/30 18:34:57 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/05 15:33:31 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 
+#include "cub3d.h"
 #include "raycasting.h"
 #include "tile_address.h"
-#include "cub3d.h"
 #include "draw.h"
-
-# include <stdio.h>
-# include <math.h>
-# include "ft_math.h"
 
 void	render_map_chunk(t_c3_env *env, int start, int end)
 {
 	int				x;
-	t_hit_buffer	*hit_buf;
 	int				hit_count;
+	t_hit_buffer	*hit_buf;
+	t_portals		*portals;
 
+	portals = &env->scene.portals;
 	x = start;
 	while (x < end)
 	{
 		hit_count = env->buffer[x]->count;
-		// if (x == 1024)
-		// 	dprintf(2, "hit_count: %d\n", hit_count);
 		while (hit_count-- > 0)
 		{
 			hit_buf = env->buffer[x] + hit_count;
-			if (IS_WALL(hit_buf->cell) || (IS_PORTAL(hit_buf->cell) && -1 == env->scene.portals.tab[GET_PORTAL(hit_buf->cell)].linked_portal))
+			if (IS_WALL(hit_buf->cell) || (IS_PORTAL(hit_buf->cell) && -1 \
+					== portals->tab[GET_PORTAL(hit_buf->cell)].linked_portal))
 				draw_wall(&env->img, hit_buf, x);
 			else if (IS_PORTAL(hit_buf->cell))
 				draw_portal(&env->img, hit_buf, x);
