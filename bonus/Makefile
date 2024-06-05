@@ -69,8 +69,6 @@ DRAW_DIR = draw/
 DRAW_SRC = \
 	draw_wall \
 	draw_portal \
-	get_wall_texture \
-	get_tex_x \
 	draw_line \
 	draw_line_gradient \
 	put_pixel \
@@ -104,8 +102,12 @@ SRC += $(addprefix $(RAYCASTING_DIR),$(RAYCASTING_SRC))
 
 RAYCASTING_DIR = raycasting/
 RAYCASTING_SRC = \
+	camera_rotation \
 	ft_dda \
 	get_line_y \
+	get_relative_position \
+	get_tex_x \
+	get_wall_texture \
 	ray_calculation \
 	portal_hit_move \
 	portal_hit \

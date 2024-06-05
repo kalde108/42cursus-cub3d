@@ -19,14 +19,14 @@
 // 	{
 // 		hit_count = 0;
 // 		screen_ray_calculation(&env->player, &ray, x);
-// 		while (NOT_WALL(ray.hit_type))
+// 		while (NOT_WALL(ray.cell))
 // 		{
 // 			ft_dda(&env->scene, &ray);
 // 			// if (!hit_count)
 // 				// env->z_buffer[x] = ray.perp_wall_dist;
 // 			get_line_y(buffer + hit_count, ray.perp_wall_dist);
 // 			buffer[hit_count].side = ray.side;
-// 			buffer[hit_count].type = ray.hit_type;
+// 			buffer[hit_count].type = ray.cell;
 // 			hit_count++;
 // 		}
 // 		// while (hit_count-- > 0)
