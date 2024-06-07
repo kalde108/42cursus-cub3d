@@ -3,6 +3,7 @@
 
 # include "camera.h"
 # include "ft_time.h"
+# include "stdbool.h"
 
 # define PLAYER_MOVEMENT_SPEED 2.5
 # define PLAYER_ROTATION_SPEED 1.5
@@ -21,6 +22,7 @@ typedef struct s_player
 	double	mv_speed;
 	double	rt_speed;
 	t_timer	interact;
+	bool	succesful_interact;
 }	t_player;
 
 #endif //PLAYER_H
