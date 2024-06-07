@@ -21,7 +21,6 @@ bool	update_portal_status(t_portals *portals, int id)
 static void	close_portal(t_portals *portals, t_portal *target)
 {
 	t_portal	*link;
-	bool		status;
 
 	target->is_open = false;
 	portals->opened_count--;
