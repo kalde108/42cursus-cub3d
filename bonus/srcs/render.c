@@ -131,7 +131,7 @@ int	render(t_c3_env *env)
 	if (render_map(env))
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
-	if (env->options.minimap)
+	if (env->options.minimap.enable)
 		draw_minimap(env);
 	// time = get_time();																	// debug term
 	// render_entities(env);

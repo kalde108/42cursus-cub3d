@@ -42,8 +42,15 @@ typedef struct s_c3_env
 	t_img			img;
 	struct s_option
 	{
-		bool		minimap;
-		bool		minimap_lock;
+		struct s_minimap
+		{
+			bool		enable;
+			bool		lock;
+			// int			x;
+			// int			y;
+			// int			size;
+			double		zoom;
+		}	minimap;
 		bool		debug;
 	}	options;
 	int				key_state[KEY_COUNT];

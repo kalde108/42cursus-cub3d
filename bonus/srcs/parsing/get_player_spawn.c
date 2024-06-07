@@ -49,7 +49,7 @@ static int	search_line(t_vector *line, t_player *player, bool *found, int y)
 			player->camera.pos.x = i + 0.5;
 			player->camera.pos.y = y + 0.5;
 			get_player_orientation(*cell, player);
-			init_timer(&player->interact, INTERACTION_COOLDOWN, AUTO_RESET);
+			init_timer(&player->interact, INTERACTION_COOLDOWN, MANUAL_RESET);
 		}
 	}
 	return (0);

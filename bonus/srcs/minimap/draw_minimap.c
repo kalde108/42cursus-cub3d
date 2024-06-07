@@ -107,7 +107,7 @@ static void	draw_map(t_c3_env *env, double angle)
 		while (j < MINIMAP_SIZE / 2)
 		{
 			pos = (t_v2d_d){env->player.camera.pos.x + ((double)j / MINIMAP_ZOOM), env->player.camera.pos.y + ((double)i / MINIMAP_ZOOM)};
-			if (!env->options.minimap_lock)
+			if (!env->options.minimap.lock)
 				ft_rotate_v2_around(&pos, angle, env->player.camera.pos);
 			if (pos.x >= 0 && pos.x < env->scene.width && pos.y >= 0 && pos.y < env->scene.height)
 			{
@@ -279,7 +279,7 @@ void	draw_player(t_c3_env *env, double angle)
 	b = (t_v2d_d){MINIMAP_X - MINIMAP_ZOOM / 2, MINIMAP_Y + MINIMAP_ZOOM / 2};
 	c = (t_v2d_d){MINIMAP_X, MINIMAP_Y + MINIMAP_ZOOM / 3};
 	d = (t_v2d_d){MINIMAP_X + MINIMAP_ZOOM / 2, MINIMAP_Y + MINIMAP_ZOOM / 2};
-	if (env->options.minimap_lock)
+	if (env->options.minimap.lock)
 	{
 		ft_rotate_v2_around(&a, angle, (t_v2d_d){MINIMAP_X, MINIMAP_Y});
 		ft_rotate_v2_around(&b, angle, (t_v2d_d){MINIMAP_X, MINIMAP_Y});

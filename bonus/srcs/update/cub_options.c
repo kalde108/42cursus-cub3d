@@ -7,7 +7,7 @@ static void	op_minimap(t_c3_env *env)
 	if (env->key_state[KEY_M])
 	{
 		if (true == key_release)
-			env->options.minimap = !env->options.minimap;
+			env->options.minimap.enable = !env->options.minimap.enable;
 		key_release = false;
 	}
 	else
@@ -21,7 +21,7 @@ static void	op_minimap_lock(t_c3_env *env)
 	if (env->key_state[KEY_L])
 	{
 		if (true == key_release)
-			env->options.minimap_lock = !env->options.minimap_lock;
+			env->options.minimap.lock = !env->options.minimap.lock;
 		key_release = false;
 	}
 	else
