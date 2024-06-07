@@ -6,18 +6,11 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/07 17:55:26 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 18:34:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "update.h"
-#include "key_index.h"
-#include "libft.h"
-#include "tile_address.h"
-
-#include <math.h>
-
-# include <stdio.h>
 
 static void	update_rotation(t_c3_env *env)
 {
@@ -27,7 +20,8 @@ static void	update_rotation(t_c3_env *env)
 		rotate_player(&env->player, -env->player.rt_speed);
 	if (env->mouse.delta)
 	{
-		rotate_player(&env->player, MOUSE_SENSIVITY * (double)env->mouse.delta * env->player.rt_speed);
+		rotate_player(&env->player,
+			MOUSE_SENSIVITY * (double)env->mouse.delta * env->player.rt_speed);
 		env->mouse.delta = 0;
 	}
 }
