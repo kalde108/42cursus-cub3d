@@ -10,11 +10,11 @@ void	draw_border(t_c3_env *env)
 {
 	int	half_size;
 
-	half_size = MINIMAP_SIZE >> 1;
-	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x, env->options.minimap.pos.y - half_size - 2}, (t_v2d_i){MINIMAP_SIZE + 4, 2}, MINIMAP_BORDER_COLOR);
-	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x, env->options.minimap.pos.y + half_size + 1}, (t_v2d_i){MINIMAP_SIZE + 4, 2}, MINIMAP_BORDER_COLOR);
-	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x - half_size - 2, env->options.minimap.pos.y}, (t_v2d_i){2, MINIMAP_SIZE + 4}, MINIMAP_BORDER_COLOR);
-	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x + half_size + 1, env->options.minimap.pos.y}, (t_v2d_i){2, MINIMAP_SIZE + 4}, MINIMAP_BORDER_COLOR);
+	half_size = env->options.minimap.size >> 1;
+	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x, env->options.minimap.pos.y - half_size - 2}, (t_v2d_i){env->options.minimap.size + 4, 2}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x, env->options.minimap.pos.y + half_size + 1}, (t_v2d_i){env->options.minimap.size + 4, 2}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x - half_size - 2, env->options.minimap.pos.y}, (t_v2d_i){2, env->options.minimap.size + 4}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x + half_size + 1, env->options.minimap.pos.y}, (t_v2d_i){2, env->options.minimap.size + 4}, MINIMAP_BORDER_COLOR);
 }
 
 void	ft_rotate_v2_around(t_v2d_d *v, double angle, t_v2d_d center)
@@ -100,11 +100,11 @@ static void	draw_map(t_c3_env *env, double angle)
 	int		cell;
 	t_color	color;
 
-	i = -(MINIMAP_SIZE / 2);
-	while (i < MINIMAP_SIZE / 2)
+	i = -(env->options.minimap.size / 2);
+	while (i < env->options.minimap.size / 2)
 	{
-		j = -(MINIMAP_SIZE / 2);
-		while (j < MINIMAP_SIZE / 2)
+		j = -(env->options.minimap.size / 2);
+		while (j < env->options.minimap.size / 2)
 		{
 			pos = (t_v2d_d){env->player.camera.pos.x + ((double)j / env->options.minimap.zoom), env->player.camera.pos.y + ((double)i / env->options.minimap.zoom)};
 			if (!env->options.minimap.lock)
