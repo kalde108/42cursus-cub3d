@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	}
 	TEST(&env);
 	DISPLAY_SHORT_MAP(&env);
-	MEMORY_MAP(&env);
+	// MEMORY_MAP(&env);
 	mlx_loop(env.mlx);
 	destroy_cubenv(&env);
 	pthread_mutex_destroy(&env.call_mutex);
