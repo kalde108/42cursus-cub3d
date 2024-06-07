@@ -19,68 +19,57 @@ void	ft_rotate_v2_around(t_v2d_d *v, double angle, t_v2d_d center)
 	v->y = (old_x - center.x) * sin_angle + (v->y - center.y) * cos_angle + center.y;
 }
 
-double	player_angle(t_v2d_d *player, t_v2d_d dir)
+double	player_angle(t_v2d_d player)
 {
-	double	arc;
+	double	magnitude;
+	double	cos_angle;
+	double	angle;
 
-	arc = -player->x * -player->x + -player->y * -player->y
-			* dir.x * dir.x + dir.y * dir.y;
-	arc = sqrt(arc);
-	if (arc > 0)
-	{
-		arc = acos((-player->x * dir.x + -player->y * dir.y) / arc);
-		if (-player->x * dir.y - -player->y * dir.x < 0)
-			arc = -arc;
-	}
-	return (arc);
-}
-
-// Function to calculate the angle between two 2D vectors
-double calculate_angle(t_v2d_d player, t_v2d_d origin) {
-    // Calculate the dot product
-    double dot_product = -player.x * origin.x + -player.y * origin.y;
-
-    // Calculate the magnitudes of the vectors
-    double magnitude_v1 = sqrt(-player.x * -player.x + -player.y * -player.y);
-    double magnitude_v2 = sqrt(origin.x * origin.x + origin.y * origin.y);
-
-    // Calculate the cosine of the angle
-    double cos_angle = dot_product / (magnitude_v1 * magnitude_v2);
-
-    // Handle potential floating point precision issues
-    if (cos_angle > 1.0)
-	{
-		dprintf(2, "> 1.0\n");
+	magnitude = sqrt(-player.x * -player.x + -player.y * -player.y);
+	cos_angle = -player.y / magnitude;
+	if (cos_angle > 1.0)
 		cos_angle = 1.0;
-	}
-    if (cos_angle < -1.0)
-	{
-		dprintf(2, "< -1.0\n");
+	if (cos_angle < -1.0)
 		cos_angle = -1.0;
-	}
-
-    // Calculate the angle in radians
-    double angle = acos(cos_angle);
-
-	dprintf(2, "angle = %f\n", angle);
-
+	angle = acos(cos_angle);
 	if (player.x < 0)
 		angle = -angle;
+	return angle;
+}
 
-    return angle; // The angle is in radians
+double calculate_angle(t_v2d_d player, t_v2d_d origin)
+{
+	double	dot_product;
+	double	magnitude_v1;
+	double	magnitude_v2;
+	double	cos_angle;
+	double	angle;
+
+	dot_product = -player.x * origin.x + -player.y * origin.y;
+	magnitude_v1 = sqrt(-player.x * -player.x + -player.y * -player.y);
+	magnitude_v2 = sqrt(origin.x * origin.x + origin.y * origin.y);
+	cos_angle = dot_product / (magnitude_v1 * magnitude_v2);
+	if (cos_angle > 1.0)
+		cos_angle = 1.0;
+	if (cos_angle < -1.0)
+		cos_angle = -1.0;
+	angle = acos(cos_angle);
+	if (player.x < 0)
+		angle = -angle;
+	return angle;
 }
 
 static void	draw_map(t_c3_env *env)
 {
+	double	angle;
 	int		i;
 	int		j;
-	double	angle;
 
 	t_v2d_d	pos;
 
 	int		cell;
 
-	angle = calculate_angle(env->player.camera.dir, (t_v2d_d){0.0, 1.0});
+	angle = player_angle(env->player.camera.dir);
 	i = -(MINIMAP_SIZE / 2);
 	while (i < MINIMAP_SIZE / 2)
 	{
