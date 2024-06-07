@@ -3,22 +3,7 @@
 
 #include "cub3d.h"
 #include "mlx.h"
-
 #include "minimap.h"
-int	is_on_minimap(t_c3_env *env, int x, int y)
-{
-	t_v2d_i	top_left;
-	t_v2d_i	bottom_right;
-
-	if (!env->options.minimap.enable)
-		return (0);
-	top_left = (t_v2d_i){env->options.minimap.pos.x - (MINIMAP_SIZE >> 1),
-						env->options.minimap.pos.y - (MINIMAP_SIZE >> 1)};
-	bottom_right = (t_v2d_i){env->options.minimap.pos.x + (MINIMAP_SIZE >> 1),
-							env->options.minimap.pos.y + (MINIMAP_SIZE >> 1)};
-	return (x >= top_left.x && x <= bottom_right.x
-			&& y >= top_left.y && y <= bottom_right.y);
-}
 
 int	buttonpress_hook(int button, int x, int y, t_c3_env *env)
 {

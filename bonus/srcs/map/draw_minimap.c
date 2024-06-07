@@ -17,80 +17,7 @@ void	draw_border(t_c3_env *env)
 	draw_rectangle(&env->img, (t_v2d_i){env->options.minimap.pos.x + half_size + 1, env->options.minimap.pos.y}, (t_v2d_i){2, env->options.minimap.size + 4}, MINIMAP_BORDER_COLOR);
 }
 
-void	ft_rotate_v2_around(t_v2d_d *v, double angle, t_v2d_d center)
-{
-	double	sin_angle;
-	double	cos_angle;
-	double	old_x;
-
-	sin_angle = sin(angle);
-	cos_angle = cos(angle);
-	old_x = v->x;
-	v->x = (v->x - center.x) * cos_angle - (v->y - center.y) * sin_angle + center.x;
-	v->y = (old_x - center.x) * sin_angle + (v->y - center.y) * cos_angle + center.y;
-}
-
-double	player_angle(t_v2d_d player)
-{
-	double	magnitude;
-	double	cos_angle;
-	double	angle;
-
-	magnitude = sqrt(-player.x * -player.x + -player.y * -player.y);
-	cos_angle = -player.y / magnitude;
-	if (cos_angle > 1.0)
-		cos_angle = 1.0;
-	if (cos_angle < -1.0)
-		cos_angle = -1.0;
-	angle = acos(cos_angle);
-	if (player.x < 0)
-		angle = -angle;
-	return angle;
-}
-
-double calculate_angle(t_v2d_d player, t_v2d_d origin)
-{
-	double	dot_product;
-	double	magnitude_v1;
-	double	magnitude_v2;
-	double	cos_angle;
-	double	angle;
-
-	dot_product = -player.x * origin.x + -player.y * origin.y;
-	magnitude_v1 = sqrt(-player.x * -player.x + -player.y * -player.y);
-	magnitude_v2 = sqrt(origin.x * origin.x + origin.y * origin.y);
-	cos_angle = dot_product / (magnitude_v1 * magnitude_v2);
-	if (cos_angle > 1.0)
-		cos_angle = 1.0;
-	if (cos_angle < -1.0)
-		cos_angle = -1.0;
-	angle = acos(cos_angle);
-	if (player.x < 0)
-		angle = -angle;
-	return angle;
-}
-
-t_color	get_tile_color(t_c3_env *env, int cell)
-{
-	t_color	color;
-
-	if (IS_WALL(cell))
-		color = env->scene.elems[WALL][GET_WALL(cell)].current->average_color;
-	else if (IS_PORTAL(cell))
-	{
-		if (env->scene.portals.tab[GET_PORTAL(cell)].is_open)
-			color = env->scene.elems[PORTAL]->current->average_color;
-		else
-			color = env->scene.elems[PORTAL]->frames->average_color;
-	}
-	else if (IS_FL_CE(cell))
-		color = env->scene.elems[FLOOR][GET_FLOOR(cell)].current->average_color;
-	else
-		color.argb = 0x7F000000;
-	return color;
-}
-
-static void	draw_map(t_c3_env *env, double angle)
+static void	draw_scene(t_c3_env *env, double angle)
 {
 	int		i;
 	int		j;
@@ -125,53 +52,6 @@ static void	draw_map(t_c3_env *env, double angle)
 		i++;
 	}
 }
-
-// static void	draw_player(t_c3_env *env)
-// {
-// 	int		x;
-// 	int		y;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	while (i < env->options.minimap.zoom)
-// 	{
-// 		j = 0;
-// 		while (j < env->options.minimap.zoom)
-// 		{
-// 			x = (int)(env->player.camera.pos.x * env->options.minimap.zoom) + j - env->options.minimap.zoom / 2;
-// 			y = (int)(env->player.camera.pos.y * env->options.minimap.zoom) + i - env->options.minimap.zoom / 2;
-// 			put_pixel(&env->img, x, y, (t_color){0x0000FF00});
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// static void	draw_view(t_c3_env *env)
-// {
-// 	t_v2d_d	view_end;
-// 	int		x;
-// 	int		y;
-
-// 	view_end.x = env->player.camera.pos.x + env->player.camera.dir.x * 2.5;
-// 	view_end.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5;
-// 	x = (int)(view_end.x * env->options.minimap.zoom);
-// 	y = (int)(view_end.y * env->options.minimap.zoom);
-// 	draw_line_gradient(&env->img, (int)(env->player.camera.pos.x * env->options.minimap.zoom), (int)(env->player.camera.pos.y * env->options.minimap.zoom), x, y, (t_color){0x0000FF00}, (t_color){0x00FFFFFF});
-// }
-
-// static void	draw_plane(t_c3_env *env)
-// {
-// 	t_v2d_d	plane_start;
-// 	t_v2d_d	plane_end;
-
-// 	plane_start.x = env->player.camera.pos.x + env->player.camera.dir.x * 2.5 - env->player.camera.plane.x * 5 / 2;
-// 	plane_start.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5 - env->player.camera.plane.y * 5 / 2;
-// 	plane_end.x = env->player.camera.pos.x + env->player.camera.dir.x * 2.5 + env->player.camera.plane.x * 5 / 2;
-// 	plane_end.y = env->player.camera.pos.y + env->player.camera.dir.y * 2.5 + env->player.camera.plane.y * 5 / 2;
-// 	draw_line_gradient(&env->img, (int)(plane_start.x * env->options.minimap.zoom), (int)(plane_start.y * env->options.minimap.zoom), (int)(plane_end.x * env->options.minimap.zoom), (int)(plane_end.y * env->options.minimap.zoom), (t_color){0x000000FF}, (t_color){0x00FFFFFF});
-// }
 
 void	draw_triangle_flat_bottom(t_img *img, t_v2d_i a, t_v2d_i b, t_v2d_i c, t_color color)
 {
@@ -295,6 +175,8 @@ void	draw_minimap(t_c3_env *env)
 	double	angle;
 
 	angle = player_angle(env->player.camera.dir);
-	draw_map(env, angle);
+	draw_scene(env, angle);
+	if (env->options.minimap.view)
+		draw_view_cone(env, -angle);
 	draw_player(env, angle);
 }

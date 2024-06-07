@@ -4,7 +4,7 @@
 #include "cub3d.h"
 #include "draw.h"
 
-void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
+static void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
 {
 	t_color	diff;
 	int	dx;
@@ -45,7 +45,7 @@ void	draw_line_low_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color 
 	}
 }
 
-void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
+static void	draw_line_high_gradient(t_img *img, int x1, int y1, int x2, int y2, t_color color1, t_color color2)
 {
 	t_color	diff;
 	int	dx;

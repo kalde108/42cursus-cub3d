@@ -3,6 +3,8 @@
 #include "draw.h"
 #include "update.h"
 
+# include "minimap.h"
+
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -63,6 +65,8 @@ void	render_hud(t_c3_env *env)
 {
 	draw_crosshair(env);
 	draw_interaction_cooldown(env);
+	if (env->options.minimap.enable)
+		draw_minimap(env);
 }
 
 // # include "raycasting.h"
@@ -126,11 +130,9 @@ int	render(t_c3_env *env)
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
 	// time = get_time();																	// debug term
-	if (render_map(env))
+	if (render_wall(env))
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
-	if (env->options.minimap.enable)
-		draw_minimap(env);
 	// time = get_time();																	// debug term
 	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
@@ -140,7 +142,7 @@ int	render(t_c3_env *env)
 	// mlx
 	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	if (env->options.debug)
+	if (env->options.fps)
 	{
 		sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
 		mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);

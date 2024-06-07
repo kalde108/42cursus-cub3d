@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 18:23:08 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 19:28:37 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	init_cubenv(t_c3_env *env, char *arg)
 		return (1);
 	}
 	init_timer(&env->frame_timer, 0, MANUAL_RESET);
-	env->options.minimap.lock = true;
+	env->options.minimap.lock = MINIMAP_LOCK;
 	env->options.minimap.pos = (t_v2d_i){MINIMAP_X, MINIMAP_Y};
 	env->options.minimap.size = MINIMAP_SIZE;
 	env->options.minimap.zoom = MINIMAP_ZOOM;

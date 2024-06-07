@@ -68,10 +68,12 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
+	clean_screen \
 	draw_wall \
 	draw_portal \
 	draw_line \
 	draw_line_gradient \
+	draw_line_minimap \
 	put_pixel \
 	put_pixel_alpha \
 	draw_crosshair \
@@ -88,14 +90,17 @@ HOOK_SRC = \
 	keyup_hook \
 	mouse_hooks \
 
-# ******** MINIMAP ********* #
+# ********** MAP *********** #
 
-SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
+SRC += $(addprefix $(MAP_DIR),$(MAP_SRC))
 
-MINIMAP_DIR = minimap/
-MINIMAP_SRC = \
+MAP_DIR = map/
+MAP_SRC = \
 	draw_minimap \
 	draw_view_cone \
+	get_tile_color \
+	is_on_minimap \
+	player_angle \
 
 # ******* RAYCASTING ******* #
 
@@ -124,7 +129,7 @@ RENDERING_SRC = \
 	background_row \
 	render_background \
 	render_entities \
-	render_map \
+	render_wall \
 
 # ********** TIME ********** #
 
