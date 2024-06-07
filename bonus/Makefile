@@ -57,6 +57,7 @@ TEXTURES_DIR = textures/
 TEXTURES_SRC = \
 	init_attributes \
 	get_attributes \
+	get_average_color \
 	set_animation_attr \
 	set_frametime_attr \
 	set_framestart_attr \

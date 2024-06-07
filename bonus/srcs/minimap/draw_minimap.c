@@ -6,6 +6,17 @@
 # include <math.h>
 # include <stdio.h>
 
+void	draw_border(t_c3_env *env)
+{
+	int	half_size;
+
+	half_size = MINIMAP_SIZE >> 1;
+	draw_rectangle(&env->img, (t_v2d_i){MINIMAP_X, MINIMAP_Y - half_size - 2}, (t_v2d_i){MINIMAP_SIZE + 4, 2}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){MINIMAP_X, MINIMAP_Y + half_size + 1}, (t_v2d_i){MINIMAP_SIZE + 4, 2}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){MINIMAP_X - half_size - 2, MINIMAP_Y}, (t_v2d_i){2, MINIMAP_SIZE + 4}, MINIMAP_BORDER_COLOR);
+	draw_rectangle(&env->img, (t_v2d_i){MINIMAP_X + half_size + 1, MINIMAP_Y}, (t_v2d_i){2, MINIMAP_SIZE + 4}, MINIMAP_BORDER_COLOR);
+}
+
 void	ft_rotate_v2_around(t_v2d_d *v, double angle, t_v2d_d center)
 {
 	double	sin_angle;
@@ -59,6 +70,26 @@ double calculate_angle(t_v2d_d player, t_v2d_d origin)
 	return angle;
 }
 
+t_color	get_tile_color(t_c3_env *env, int cell)
+{
+	t_color	color;
+
+	if (IS_WALL(cell))
+		color = env->scene.elems[WALL][GET_WALL(cell)].current->average_color;
+	else if (IS_PORTAL(cell))
+	{
+		if (env->scene.portals.tab[GET_PORTAL(cell)].is_open)
+			color = env->scene.elems[PORTAL]->current->average_color;
+		else
+			color = env->scene.elems[PORTAL]->frames->average_color;
+	}
+	else if (IS_FL_CE(cell))
+		color = env->scene.elems[FLOOR][GET_FLOOR(cell)].current->average_color;
+	else
+		color.argb = 0x7F000000;
+	return color;
+}
+
 static void	draw_map(t_c3_env *env)
 {
 	double	angle;
@@ -68,6 +99,7 @@ static void	draw_map(t_c3_env *env)
 	t_v2d_d	pos;
 
 	int		cell;
+	t_color	color;
 
 	angle = player_angle(env->player.camera.dir);
 	i = -(MINIMAP_SIZE / 2);
@@ -81,54 +113,18 @@ static void	draw_map(t_c3_env *env)
 			if (pos.x >= 0 && pos.x < env->scene.width && pos.y >= 0 && pos.y < env->scene.height)
 			{
 				cell = env->scene.map[(int)pos.y * env->scene.width + (int)pos.x];
-				if (IS_WALL(cell))
-					put_pixel(&env->img, j + MINIMAP_X, i + MINIMAP_Y, (t_color){0xd72323});
-				else if (IS_PORTAL(cell))
-					put_pixel(&env->img, j + MINIMAP_X, i + MINIMAP_Y, (t_color){0x000000FF});
-				else if (IS_FL_CE(cell))
-					put_pixel(&env->img, j + MINIMAP_X, i + MINIMAP_Y, (t_color){0xbc8128});
+				color = get_tile_color(env, cell);
+				if (cell == EMPTY_CELL)
+					put_pixel_alpha(&env->img, j + MINIMAP_X, i + MINIMAP_Y, color);
 				else
-					put_pixel_alpha(&env->img, j + MINIMAP_X, i + MINIMAP_Y, (t_color){0x7F000000});
+					put_pixel(&env->img, j + MINIMAP_X, i + MINIMAP_Y, color);
 			}
+			else
+				put_pixel_alpha(&env->img, j + MINIMAP_X, i + MINIMAP_Y, (t_color){0x7F000000});
 			j++;
 		}
 		i++;
 	}
-	// while (i < env->scene.height)
-	// {
-	// 	j = 0;
-	// 	while (j < env->scene.width)
-	// 	{
-	// 		alpha = 0;
-	// 		if (IS_WALL(env->scene.map[i * env->scene.width + j]))
-	// 			color.argb = 0xd72323;
-	// 		else if (IS_PORTAL(env->scene.map[i * env->scene.width + j]))
-	// 			color.argb = 0x000000FF;
-	// 		else if (IS_FL_CE(env->scene.map[i * env->scene.width + j]))
-	// 			color.argb = 0xbc8128;
-	// 		else
-	// 		{
-	// 			color.argb = 0x7F000000;
-	// 			alpha = 1;
-	// 		}
-	// 		x = j * MINIMAP_ZOOM + MINIMAP_X;
-	// 		while (x < (j + 1) * MINIMAP_ZOOM + MINIMAP_X)
-	// 		{
-	// 			y = i * MINIMAP_ZOOM + MINIMAP_Y;
-	// 			while (y < (i + 1) * MINIMAP_ZOOM + MINIMAP_Y)
-	// 			{
-	// 				if (alpha)
-	// 					put_pixel_alpha(&env->img, x, y, color);
-	// 				else
-	// 					put_pixel(&env->img, x, y, color);
-	// 				y++;
-	// 			}
-	// 			x++;
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 }
 
 // static void	draw_player(t_c3_env *env)
@@ -180,6 +176,7 @@ static void	draw_map(t_c3_env *env)
 
 void	draw_minimap(t_c3_env *env)
 {
+	// draw_border(env);
 	draw_map(env);
 	// draw_view_cone(env);
 	// draw_view(env);

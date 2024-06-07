@@ -7,6 +7,7 @@
 # define MINIMAP_Y 100
 # define MINIMAP_SIZE 100
 # define MINIMAP_ZOOM 10.0
+# define MINIMAP_BORDER_COLOR (t_color){0x00000000}
 
 # define TEST_ANGLE PI / 4
 

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 17:06:09 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 13:57:16 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "mlx.h"
 #include "parsing.h"
 #include "cubdef.h"
+#include "color.h"
 
 static int	convert_xmp(void *mlx_ptr, t_texdata *data);
 
@@ -82,6 +83,7 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 			&data->bits_per_pixel,
 			&data->line_length,
 			&data->endian);
+	data->average_color = get_average_color(data->addr, data->width * data->height);
 	if (NULL == data->addr)
 	{
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
