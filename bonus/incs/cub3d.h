@@ -28,10 +28,10 @@ typedef struct s_img
 
 typedef struct s_mouse
 {
-	bool	status;
+	int		status;
 	int		x;
 	int		y;
-	int		delta;
+	t_v2d_i	delta;
 }	t_mouse;
 
 typedef struct s_c3_env

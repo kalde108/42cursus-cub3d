@@ -16,7 +16,7 @@ static void	update_mouse(t_c3_env *env)
 	int	x;
 
 	mlx_mouse_get_pos(env->mlx, env->win, &x, &env->mouse.y);
-	env->mouse.delta = x - env->mouse.x;
+	env->mouse.delta.x = x - env->mouse.x;
 	if (x < 1)
 	{
 		mlx_mouse_move(env->mlx, env->win, WIDTH - 2, env->mouse.y);
@@ -106,7 +106,7 @@ int	render(t_c3_env *env)
 
 	// updates
 	// time = get_time();																	// debug term
-	if (env->mouse.status)
+	if (env->mouse.status == MOUSE_BUTTON_LEFT)
 		update_mouse(env);
 	// sprintf(debug_str, "%supdate_mouse: %3zums\n", debug_str, get_time() - time);		// debug term
 	update_player(env);

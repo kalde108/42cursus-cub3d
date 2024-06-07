@@ -46,24 +46,45 @@ static void	op_minimap_zoom(t_c3_env *env)
 {
 	// static bool	key_release = true;
 
-	if (env->key_state[KEY_KP_ADD])
+	if (!env->key_state[KEY_CTRL_L])
 	{
-		if (env->options.minimap.zoom < 50.0)
-			env->options.minimap.zoom *= 1.01;
-	}
-	if (env->key_state[KEY_KP_SUB])
-	{
-		if (env->options.minimap.zoom > 1.0)
-			env->options.minimap.zoom *= 0.99;
+		if (env->key_state[KEY_KP_ADD])
+		{
+			if (env->options.minimap.zoom < 50.0)
+				env->options.minimap.zoom *= 1.01;
+		}
+		if (env->key_state[KEY_KP_SUB])
+		{
+			if (env->options.minimap.zoom > 1.0)
+				env->options.minimap.zoom *= 0.99;
+		}
 	}
 }
 
+#include "mlx.h"
+#include "minimap.h"
+# include <stdio.h>
 static void	op_minimap_pos(t_c3_env *env)
 {
-	if (env->mouse.status)
+	t_v2d_i	pos;
+
+	if (!(env->mouse.status & MOUSE_BUTTON_RIGHT)
+		|| !env->options.minimap.enable)
 		return ;
-	// mlx_mouse_get_pos(env->mlx, env->win, &x, &env->mouse.y);
-	// if ()
+	mlx_mouse_get_pos(env->mlx, env->win, &pos.x, &pos.y);
+	if (env->mouse.x == pos.x && env->mouse.y == pos.y)
+		return ;
+	env->mouse.x = pos.x;
+	env->mouse.y = pos.y;
+	if (pos.x < MINIMAP_SIZE >> 1)
+		pos.x = MINIMAP_SIZE >> 1;
+	if (pos.x >= WIDTH - (MINIMAP_SIZE >> 1))
+		pos.x = WIDTH - 1 - (MINIMAP_SIZE >> 1);
+	if (pos.y < MINIMAP_SIZE >> 1)
+		pos.y = MINIMAP_SIZE >> 1;
+	if (pos.y >= HEIGHT - (MINIMAP_SIZE >> 1))
+		pos.y = HEIGHT - 1 - (MINIMAP_SIZE >> 1);
+	env->options.minimap.pos = pos;
 }
 
 void	cub_options(t_c3_env *env)

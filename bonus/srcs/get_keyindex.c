@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 17:05:29 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 18:20:48 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	get_keyindex(int keycode)
 								XK_z, XK_0, XK_1, XK_2, XK_3, XK_4, XK_5, \
 								XK_6, XK_7, XK_8, XK_9, XK_Escape, XK_space, \
 								XK_Left, XK_Up, XK_Right, XK_Down, XK_plus, \
-								XK_minus, XK_KP_Add, XK_KP_Subtract};
+								XK_minus, XK_KP_Add, XK_KP_Subtract, \
+								XK_Control_L};
 	size_t				i;
 
 	i = 0;

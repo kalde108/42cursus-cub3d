@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 16:34:58 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 17:27:27 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static void	setup_mlx_hooks(t_c3_env *env)
 		KeyRelease, KeyReleaseMask, &keyup_hook, env);
 	mlx_hook(env->win, 
 		ButtonPress, ButtonPressMask, &buttonpress_hook, env);
+	mlx_hook(env->win,
+		ButtonRelease, ButtonReleaseMask, &buttonrelease_hook, env);
 	mlx_hook(env->win, 
 		FocusOut, FocusChangeMask, &focusout_hook, env);
 	mlx_loop_hook(env->mlx, &render, env);

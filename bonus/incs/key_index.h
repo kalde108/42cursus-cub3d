@@ -6,12 +6,15 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:56 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 17:04:01 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 18:20:45 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEY_INDEX_H
 # define KEY_INDEX_H
+
+# define MOUSE_BUTTON_LEFT 1
+# define MOUSE_BUTTON_RIGHT 2
 
 enum e_keycode
 {
@@ -61,6 +64,7 @@ enum e_keycode
 	KEY_MINUS,
 	KEY_KP_ADD,
 	KEY_KP_SUB,
+	KEY_CTRL_L,
 	KEY_COUNT
 };
 
