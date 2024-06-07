@@ -41,25 +41,30 @@ static void	update_mouse(t_c3_env *env)
 	}
 }
 
-static void	render_hud(t_c3_env *env)
+void	draw_interaction_cooldown(t_c3_env *env)
 {
-	// t_img	*img;
-	// int		x;
-	// int		y;
+	size_t	cooldown;
 
-	// img = &env->img;
-	// y = 0;
-	// while (y < 30)
-	// {
-	// 	x = 0;
-	// 	while (x < WIDTH)
-	// 	{
-	// 		*(unsigned int *)(img->addr + ((y << img->line_length) + x * (img->bits_per_pixel / 8))) = 0x00000000;
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	cooldown = get_elapsed_time(&env->player.interact);
+	// dprintf(2, "cooldown: %zums\n", cooldown);
+	if (cooldown > INTERACTION_COOLDOWN)
+		return ;
+	// dprintf(2, "draw\n");
+	// draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 + 30, HEIGHT / 2}, (t_v2d_i){3, 20}, (t_color){0x00AAAAAA});
+	draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 + 20, HEIGHT / 2 + 10 - (20 * cooldown / INTERACTION_COOLDOWN / 2)}, (t_v2d_i){4, 20 * cooldown / INTERACTION_COOLDOWN}, (t_color){0x00AAAAAA});
+	// draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 - 50, HEIGHT - 50}, (t_v2d_i){100, 10}, (t_color){0x00FF0000});
+	// draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 - 50, HEIGHT - 50}, (t_v2d_i){100 * (INTERACTION_COOLDOWN - cooldown) / INTERACTION_COOLDOWN, 10}, (t_color){0x0000FF00});
+}
+
+// void	display_debug(t_c3_env *env)
+// {
+
+// }
+
+void	render_hud(t_c3_env *env)
+{
 	draw_crosshair(env);
+	draw_interaction_cooldown(env);
 }
 
 // # include "raycasting.h"
@@ -91,7 +96,7 @@ static void	render_hud(t_c3_env *env)
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
-	char	fps_str[11];
+	char	fps_str[17];
 	// char	debug_str[10000];															// debug term
 
 	// usleep(100000);	// fake load
@@ -137,8 +142,11 @@ int	render(t_c3_env *env)
 	// mlx
 	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
-	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
+	if (env->options.debug)
+	{
+		sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
+		mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
+	}
 	return (0);
 }
 

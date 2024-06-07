@@ -44,6 +44,7 @@ typedef struct s_c3_env
 	{
 		bool		minimap;
 		bool		minimap_lock;
+		bool		debug;
 	}	options;
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;

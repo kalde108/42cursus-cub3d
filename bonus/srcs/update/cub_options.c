@@ -28,8 +28,23 @@ static void	op_minimap_lock(t_c3_env *env)
 		key_release = true;
 }
 
+static void	op_debug(t_c3_env *env)
+{
+	static bool	key_release = true;
+
+	if (env->key_state[KEY_P])
+	{
+		if (true == key_release)
+			env->options.debug = !env->options.debug;
+		key_release = false;
+	}
+	else
+		key_release = true;
+}
+
 void	cub_options(t_c3_env *env)
 {
 	op_minimap(env);
 	op_minimap_lock(env);
+	op_debug(env);
 }

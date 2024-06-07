@@ -14,6 +14,7 @@ void	player_interaction(t_c3_env *env)
 	{
 		if (true == key_release && 0 != timer_is_over(&env->player.interact))
 		{
+			start_timer(&env->player.interact);
 			cell = get_interaction_cell(env);
 			if (EMPTY_CELL != cell)
 			{
