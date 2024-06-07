@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:43 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 15:26:10 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 18:15:41 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RENDER_H
 
 # include "cub3d.h"
+
+# define FPS_BUFFER 10
 
 int		screen_raycast(t_c3_env *env);
 int		render_backgound(t_c3_env *env);

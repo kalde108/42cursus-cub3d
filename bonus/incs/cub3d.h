@@ -61,7 +61,7 @@ typedef struct s_c3_env
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
-	double			frame_time;
+	size_t			frame_time;
 	t_timer			frame_timer;
 	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];
 }	t_c3_env;

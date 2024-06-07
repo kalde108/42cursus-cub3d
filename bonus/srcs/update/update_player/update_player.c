@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/05/30 15:54:32 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/07 17:55:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static void	update_rotation(t_c3_env *env)
 
 void	update_player(t_c3_env *env)
 {
-	env->player.mv_speed = PLAYER_MOVEMENT_SPEED * env->frame_time;
-	env->player.rt_speed = PLAYER_ROTATION_SPEED * env->frame_time;
+	env->player.mv_speed = PLAYER_MOVEMENT_SPEED * env->frame_time / 1000.0;
+	env->player.rt_speed = PLAYER_ROTATION_SPEED * env->frame_time / 1000.0;
 	update_pos(env);
 	update_rotation(env);
 }

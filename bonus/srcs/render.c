@@ -7,9 +7,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-void MEMORY_MAP(t_c3_env *env); //REMOVE
-
-void player_interaction(t_c3_env *env);
+static int	get_average_fps(size_t frame_time);
 
 static void	update_mouse(t_c3_env *env)
 {
@@ -54,11 +52,6 @@ void	draw_interaction_cooldown(t_c3_env *env)
 		draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 + 20, HEIGHT / 2 + 10 - (20 * cooldown / INTERACTION_COOLDOWN / 2)}, (t_v2d_i){4, 20 * cooldown / INTERACTION_COOLDOWN}, (t_color){0x00FF0000});
 }
 
-// void	display_debug(t_c3_env *env)
-// {
-
-// }
-
 void	render_hud(t_c3_env *env)
 {
 	draw_crosshair(env);
@@ -98,7 +91,7 @@ int	render(t_c3_env *env)
 	// char	debug_str[10000];															// debug term
 
 	// usleep(100000);	// fake load
-	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
+	env->frame_time = get_elapsed_time(&env->frame_timer);
 	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
 
@@ -142,10 +135,32 @@ int	render(t_c3_env *env)
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	if (env->options.debug)
 	{
-		sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
+		sprintf(fps_str, "FPS: %3d", get_average_fps(env->frame_time));
 		mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
 	}
 	return (0);
 }
 
+static int	get_average_fps(size_t frame_time)
+{
+	static size_t	fps[FPS_BUFFER] = {0};
+	static int		i = 0;
+	size_t			average;
+	int				j;
 
+	fps[i++] = frame_time;
+	if (i == FPS_BUFFER)
+	{
+		i = 0;
+	}
+	j = 0;
+	average = 0;
+	while (j < FPS_BUFFER)
+	{
+		average += fps[j++];
+	}
+	average /= FPS_BUFFER;
+	if (0 == average)
+		return (0);
+	return (1000 / average);
+}
