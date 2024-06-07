@@ -3,7 +3,7 @@
 static void	close_portal(t_portals *portals, t_portal *target);
 static void	open_portal(t_portals *portals, t_portal *target);
 
-void	update_portal_status(t_portals *portals, int id)
+bool	update_portal_status(t_portals *portals, int id)
 {
 	if (true == portals->tab[id].is_open)
 	{
@@ -13,11 +13,15 @@ void	update_portal_status(t_portals *portals, int id)
 	{
 		open_portal(portals, portals->tab + id);
 	}
+	else
+		return (false);
+	return (true);
 }
 
 static void	close_portal(t_portals *portals, t_portal *target)
 {
 	t_portal	*link;
+	bool		status;
 
 	target->is_open = false;
 	portals->opened_count--;
