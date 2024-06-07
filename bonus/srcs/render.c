@@ -111,6 +111,7 @@ int	render(t_c3_env *env)
 	// time = get_time();																	// debug term
 	update_frames(env);
 	player_interaction(env);
+	cub_options(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
 	if (screen_raycast(env))
@@ -125,7 +126,8 @@ int	render(t_c3_env *env)
 	if (render_map(env))
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
-	draw_minimap(env);
+	if (env->options.minimap)
+		draw_minimap(env);
 	// time = get_time();																	// debug term
 	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term

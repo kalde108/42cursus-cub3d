@@ -144,11 +144,12 @@ SRC += $(addprefix $(UPDATE_DIR),$(UPDATE_SRC))
 
 UPDATE_DIR = update/
 UPDATE_SRC = \
+	cub_options \
+	interaction	\
 	update_entities \
 	update_frames \
 	update_portal_frames \
 	update_portal_status \
-	interaction
 
 #	# *** UPDATE_PLAYER **** #
 

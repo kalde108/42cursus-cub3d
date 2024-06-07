@@ -40,6 +40,11 @@ typedef struct s_c3_env
 	void			*mlx;
 	void			*win;
 	t_img			img;
+	struct s_option
+	{
+		bool		minimap;
+		bool		minimap_lock;
+	}	options;
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;
 	t_player		player;	// group in struct

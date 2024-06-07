@@ -107,7 +107,7 @@ static void	draw_map(t_c3_env *env, double angle)
 		while (j < MINIMAP_SIZE / 2)
 		{
 			pos = (t_v2d_d){env->player.camera.pos.x + ((double)j / MINIMAP_ZOOM), env->player.camera.pos.y + ((double)i / MINIMAP_ZOOM)};
-			if (MINIMAP_LOCK)
+			if (!env->options.minimap_lock)
 				ft_rotate_v2_around(&pos, angle, env->player.camera.pos);
 			if (pos.x >= 0 && pos.x < env->scene.width && pos.y >= 0 && pos.y < env->scene.height)
 			{
@@ -262,9 +262,6 @@ void	draw_triangle(t_img *img, t_v2d_i a, t_v2d_i b, t_v2d_i c, t_color color)
 		draw_triangle_flat_bottom(img, a, b, d, color);
 		draw_triangle_flat_top(img, b, d, c, color);
 	}
-	dprintf(2, "a: x%d y%d\n", a.x, a.y);
-	dprintf(2, "b: x%d y%d\n", b.x, b.y);
-	dprintf(2, "c: x%d y%d\n", c.x, c.y);
 	draw_line(img, a.x, a.y, b.x , b.y, color);
 	draw_line(img, b.x, b.y, c.x , c.y, color);
 	draw_line(img, c.x, c.y, a.x , a.y, color);
@@ -282,7 +279,7 @@ void	draw_player(t_c3_env *env, double angle)
 	b = (t_v2d_d){MINIMAP_X - MINIMAP_ZOOM / 2, MINIMAP_Y + MINIMAP_ZOOM / 2};
 	c = (t_v2d_d){MINIMAP_X, MINIMAP_Y + MINIMAP_ZOOM / 3};
 	d = (t_v2d_d){MINIMAP_X + MINIMAP_ZOOM / 2, MINIMAP_Y + MINIMAP_ZOOM / 2};
-	if (!MINIMAP_LOCK)
+	if (env->options.minimap_lock)
 	{
 		ft_rotate_v2_around(&a, angle, (t_v2d_d){MINIMAP_X, MINIMAP_Y});
 		ft_rotate_v2_around(&b, angle, (t_v2d_d){MINIMAP_X, MINIMAP_Y});
@@ -298,10 +295,6 @@ void	draw_minimap(t_c3_env *env)
 	double	angle;
 
 	angle = player_angle(env->player.camera.dir);
-	// draw_border(env);
 	draw_map(env, angle);
 	draw_player(env, angle);
-	// draw_view_cone(env);
-	// draw_view(env);
-	// draw_plane(env);
 }
