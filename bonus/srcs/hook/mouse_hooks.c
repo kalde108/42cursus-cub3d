@@ -4,6 +4,8 @@
 #include "cub3d.h"
 #include "mlx.h"
 
+# include <stdio.h>
+
 int	buttonpress_hook(int button, int x, int y, t_c3_env *env)
 {
 	if (Button1 == button)
@@ -18,6 +20,10 @@ int	buttonpress_hook(int button, int x, int y, t_c3_env *env)
 		else
 			mlx_mouse_show(env->mlx, env->win);
 	}
+	// if (Button3 == button)
+	// {
+
+	// }
 	return (0);
 	(void)x;
 	(void)y;

@@ -46,6 +46,7 @@ typedef struct s_c3_env
 		{
 			bool		enable;
 			bool		lock;
+			t_v2d_i		pos;
 			// int			x;
 			// int			y;
 			// int			size;
