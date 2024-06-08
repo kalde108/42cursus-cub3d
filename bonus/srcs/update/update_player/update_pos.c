@@ -30,7 +30,7 @@ static t_v2d_d	get_move_vec(t_c3_env *env)
 {
 	t_v2d_d	move_dir;
 	t_v2d_d	move_vec;
-	
+
 	move_dir = get_move_dir(env);
 	move_vec.x = move_dir.x * env->player.mv_speed;
 	move_vec.y = move_dir.y * env->player.mv_speed;

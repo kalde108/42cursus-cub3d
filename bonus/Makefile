@@ -90,17 +90,32 @@ HOOK_SRC = \
 	keyup_hook \
 	mouse_hooks \
 
-# ********** MAP *********** #
+# ********** MINIMAP *********** #
 
-SRC += $(addprefix $(MAP_DIR),$(MAP_SRC))
+SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
 
-MAP_DIR = map/
-MAP_SRC = \
+MINIMAP_DIR = minimap/
+MINIMAP_SRC = \
 	draw_minimap \
 	draw_view_cone \
 	get_tile_color \
 	is_on_minimap \
 	player_angle \
+
+# ******** OPTIONS ********* #
+
+SRC += $(addprefix $(OPTIONS_DIR),$(OPTIONS_SRC))
+
+OPTIONS_DIR = options/
+OPTIONS_SRC = \
+	cub_options \
+	op_fps \
+	op_minimap_enable \
+	op_minimap_lock \
+	op_minimap_pos \
+	op_minimap_size \
+	op_minimap_view \
+	op_minimap_zoom \
 
 # ******* RAYCASTING ******* #
 
@@ -149,7 +164,6 @@ SRC += $(addprefix $(UPDATE_DIR),$(UPDATE_SRC))
 
 UPDATE_DIR = update/
 UPDATE_SRC = \
-	cub_options \
 	interaction	\
 	update_entities \
 	update_frames \
