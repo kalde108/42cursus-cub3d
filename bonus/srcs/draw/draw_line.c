@@ -1,4 +1,3 @@
-#include "cub3d.h"
 #include "draw.h"
 
 static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color color)

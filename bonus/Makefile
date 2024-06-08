@@ -74,6 +74,7 @@ DRAW_SRC = \
 	draw_line \
 	draw_line_gradient \
 	draw_line_minimap \
+	draw_triangle \
 	put_pixel \
 	put_pixel_alpha \
 	draw_crosshair \
@@ -90,16 +91,25 @@ HOOK_SRC = \
 	keyup_hook \
 	mouse_hooks \
 
-# ********** MINIMAP *********** #
+# ********** HUD ********** #
+
+SRC += $(addprefix $(HUD_DIR),$(HUD_SRC))
+
+HUD_DIR = hud/
+HUD_SRC = \
+	display_fps \
+
+#	# ****** MINIMAP ******* #
 
 SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
 
-MINIMAP_DIR = minimap/
+MINIMAP_DIR = $(HUD_DIR)minimap/
 MINIMAP_SRC = \
 	draw_minimap \
 	draw_view_cone \
 	get_tile_color \
 	is_on_minimap \
+	mini_scene \
 	player_angle \
 
 # ******** OPTIONS ********* #
@@ -240,6 +250,8 @@ ifeq ($(MODE),debug)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3
 else ifeq ($(MODE),fsanitize)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3 -fsanitize=address
+else ifeq ($(MODE),4K)
+DEFINES += RES_4K=1
 else ifneq ($(MODE),)
 ERROR = MODE
 endif
@@ -289,9 +301,9 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 $(LIBS_PATH): FORCE | PREMAKE
 	@$(MAKE) -C $(@D)
 
-.PHONY : bonus
-bonus :
-	$(MAKE) MODE=bonus
+.PHONY : 4K
+4K :
+	$(MAKE) MODE=4K
 
 .PHONY : debug
 debug :
@@ -300,10 +312,6 @@ debug :
 .PHONY : fsanitize
 fsanitize :
 	$(MAKE) MODE=fsanitize
-
-.PHONY : print
-print :
-	$(MAKE) MODE=debug DEFINES=PRINT
 
 .PHONY : clean
 clean :
@@ -334,10 +342,10 @@ norminette :
 			&& < $(NORM_LOG) grep Error; fi
 	$(RM) $(NORM_LOG)
 
-.PHONY : print%
-print% :
-	@echo $(patsubst print%,%,$@)=
-	@echo $($(patsubst print%,%,$@))
+.PHONY : print-%
+print-% :
+	@echo $(patsubst print-%,%,$@)=
+	@echo $($(patsubst print-%,%,$@))
 
 .PHONY : count
 count :
@@ -352,7 +360,6 @@ run : $(NAME)
 
 VALGRIND = \
 	valgrind \
-	--suppressions=.valgrindignore.txt \
 	--leak-check=full \
 	--trace-children=yes \
 	--track-fds=yes \
@@ -378,7 +385,7 @@ callgrind : debug
 
 .DEFAULT_GOAL := all
 
-.SILENT : bonus clean fclean re debug %debug fsanitize norminette
+.SILENT : clean fclean re debug %debug fsanitize norminette
 
 .PHONY : FORCE
 FORCE :

@@ -9,8 +9,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-static int	get_average_fps(size_t frame_time);
-
 static void	update_mouse(t_c3_env *env)
 {
 	int	x;
@@ -91,7 +89,6 @@ void	render_hud(t_c3_env *env)
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
-	char	fps_str[17];
 	// char	debug_str[10000];															// debug term
 
 	// usleep(100000);	// fake load
@@ -136,33 +133,6 @@ int	render(t_c3_env *env)
 	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	if (env->options.fps)
-	{
-		sprintf(fps_str, "FPS: %3d", get_average_fps(env->frame_time));
-		mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
-	}
+		display_fps(env);
 	return (0);
-}
-
-static int	get_average_fps(size_t frame_time)
-{
-	static size_t	fps[FPS_BUFFER] = {0};
-	static int		i = 0;
-	size_t			average;
-	int				j;
-
-	fps[i++] = frame_time;
-	if (i == FPS_BUFFER)
-	{
-		i = 0;
-	}
-	j = 0;
-	average = 0;
-	while (j < FPS_BUFFER)
-	{
-		average += fps[j++];
-	}
-	average /= FPS_BUFFER;
-	if (0 == average)
-		return (0);
-	return (1000 / average);
 }
