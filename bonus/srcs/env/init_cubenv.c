@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 19:28:37 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 18:22:03 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ static int	allocate_portal(t_elem **portal_ptr)
 		return (1);
 	}
 	*portal_ptr = ptr;
-	return (0);	
+	return (0);
 }

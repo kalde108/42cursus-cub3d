@@ -72,7 +72,6 @@ DRAW_SRC = \
 	draw_wall \
 	draw_portal \
 	draw_line \
-	draw_line_gradient \
 	draw_line_minimap \
 	draw_triangle \
 	put_pixel \
