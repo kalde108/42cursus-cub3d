@@ -76,7 +76,6 @@ DRAW_SRC = \
 	draw_triangle \
 	put_pixel \
 	put_pixel_alpha \
-	draw_crosshair \
 	draw_rectangle \
 
 # ********** HOOK ********** #
@@ -97,6 +96,9 @@ SRC += $(addprefix $(HUD_DIR),$(HUD_SRC))
 HUD_DIR = hud/
 HUD_SRC = \
 	display_fps \
+	crosshair \
+	interaction_cooldown \
+	hud \
 
 #	# ****** MINIMAP ******* #
 
@@ -154,7 +156,6 @@ RENDERING_DIR = rendering/
 RENDERING_SRC = \
 	background_row \
 	render_background \
-	render_entities \
 	render_wall \
 
 # ********** TIME ********** #
@@ -176,10 +177,11 @@ SRC += $(addprefix $(UPDATE_DIR),$(UPDATE_SRC))
 UPDATE_DIR = update/
 UPDATE_SRC = \
 	interaction	\
-	update_entities \
 	update_frames \
+	update_mouse \
 	update_portal_frames \
 	update_portal_status \
+	updates \
 
 #	# *** UPDATE_PLAYER **** #
 

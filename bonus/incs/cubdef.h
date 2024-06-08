@@ -6,14 +6,12 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:21:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 17:05:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 19:55:19 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBDEF_H
 # define CUBDEF_H
-
-#         define ENTITY_LIMIT 1 //REMOVE
 
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
 
@@ -40,7 +38,7 @@
 // # define FRAME_TIME	0.03333333333333333		// 30 fps
 
 # define FOV		90.0
-# define FPS_BUFFER 10
+# define FPS_BUFFER 20
 
 //ERROR MESSAGES
 # define SCENE_ERR 	"Error\n%s\n"

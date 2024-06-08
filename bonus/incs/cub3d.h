@@ -60,8 +60,6 @@ typedef struct s_c3_env
 	t_player		player;	// group in struct
 	pthread_mutex_t	call_mutex;
 	double			z_buffer[WIDTH];	// group in struct
-	t_entity		entities[ENTITY_LIMIT];	// group in struct
-	size_t			entity_count;	// group in struct
 	size_t			frame_time;
 	t_timer			frame_timer;
 	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];

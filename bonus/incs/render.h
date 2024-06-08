@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:43 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 19:00:51 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 19:59:04 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@
 int		screen_raycast(t_c3_env *env);
 int		render_backgound(t_c3_env *env);
 int		render_wall(t_c3_env *env);
-void	cub_options(t_c3_env *env);
-void	minimap(t_c3_env *env);
-void	render_entities(t_c3_env *env);
-void	update_entities(t_c3_env *env);
-void	update_frames(t_c3_env *env);
-void	update_player(t_c3_env *env);
+void	hud(t_c3_env *env);
+void	updates(t_c3_env *env);
 void	display_fps(t_c3_env *env);
 
 #endif

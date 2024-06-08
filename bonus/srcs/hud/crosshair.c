@@ -53,7 +53,7 @@ static inline void	hbar(t_color *dst, t_v2d_i center, t_v2d_i size)
 	}
 }
 
-void	draw_crosshair(t_c3_env *env)
+void	crosshair(t_c3_env *env)
 {
 	t_v2d_i			center;
 	t_v2d_i			size;
