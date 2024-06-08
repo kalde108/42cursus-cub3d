@@ -57,7 +57,7 @@ void	render_hud(t_c3_env *env)
 	draw_crosshair(env);
 	draw_interaction_cooldown(env);
 	if (env->options.minimap.enable)
-		draw_minimap(env);
+		minimap(env);
 }
 
 // # include "raycasting.h"

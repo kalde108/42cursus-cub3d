@@ -1,12 +1,7 @@
 #include "cub3d.h"
-#include "draw.h"
 #include "minimap.h"
-#include "tile_address.h"
 
-# include <math.h>
-# include <stdio.h>
-
-void	draw_minimap(t_c3_env *env)
+void	minimap(t_c3_env *env)
 {
 	double	angle;
 

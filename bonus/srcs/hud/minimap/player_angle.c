@@ -17,5 +17,5 @@ double	player_angle(t_v2d_d player)
 	angle = acos(cos_angle);
 	if (player.x < 0)
 		angle = -angle;
-	return angle;
+	return (angle);
 }

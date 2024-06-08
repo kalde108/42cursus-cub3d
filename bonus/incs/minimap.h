@@ -18,4 +18,6 @@ void	mini_scene(t_c3_env *env, double angle);
 void	mini_player(t_img *img, double angle, t_minimap *minimap);
 void	mini_view_cone(t_c3_env *env);
 
+void	view_cone_x(t_c3_env *env, int x, int hit_count, t_hit_buffer *hit_buf);
+
 #endif

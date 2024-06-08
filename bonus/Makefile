@@ -105,13 +105,14 @@ SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
 
 MINIMAP_DIR = $(HUD_DIR)minimap/
 MINIMAP_SRC = \
-	draw_minimap \
-	get_tile_color \
+	minimap \
 	is_on_minimap \
+	player_angle \
+	get_tile_color \
 	mini_scene \
 	mini_player \
 	mini_view_cone \
-	player_angle \
+	view_cone_x \
 
 # ******** OPTIONS ********* #
 

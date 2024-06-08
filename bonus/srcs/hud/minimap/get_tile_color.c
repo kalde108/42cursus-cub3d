@@ -18,5 +18,5 @@ t_color	get_tile_color(t_c3_env *env, int cell)
 		color = env->scene.elems[FLOOR][GET_FLOOR(cell)].current->average_color;
 	else
 		color.argb = 0x7F000000;
-	return color;
+	return (color);
 }
