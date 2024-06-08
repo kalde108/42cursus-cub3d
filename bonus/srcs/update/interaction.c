@@ -1,8 +1,6 @@
 #include "update.h"
 #include "tile_address.h"
 
-void	DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
-
 static int	get_interaction_cell(t_c3_env *env);
 
 void	player_interaction(t_c3_env *env)

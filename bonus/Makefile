@@ -181,6 +181,7 @@ UPDATE_SRC = \
 	update_mouse \
 	update_portal_frames \
 	update_portal_status \
+	updates \
 
 #	# *** UPDATE_PLAYER **** #
 
