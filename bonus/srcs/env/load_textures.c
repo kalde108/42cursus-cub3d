@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 13:57:16 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 18:36:29 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,30 @@
 #include "cubdef.h"
 #include "color.h"
 
-static int	convert_xmp(void *mlx_ptr, t_texdata *data);
+static int	load_basic_textures(void *mlx_ptr, t_elem **textures);
+static int	load_portal_textures(void *mlx_ptr, t_elem *textures);
+static int	convert_xpm(void *mlx_ptr, t_texdata *data);
 
 int	load_textures(void *mlx_ptr, t_elem **textures)
+{
+	int	status;
+
+	ft_dprintf(STDERR_FILENO, "LOADING TEXTURES...\n");
+	status = 0;
+	status = load_basic_textures(mlx_ptr, textures);
+	if (0 == status)
+		status = load_portal_textures(mlx_ptr, textures[PORTAL]);
+	ft_dprintf(STDERR_FILENO, "\n");
+	return (status);
+}
+
+
+static int	load_basic_textures(void *mlx_ptr, t_elem **textures)
 {
 	int	i;
 	int	j;
 	int	k;
 
-	ft_dprintf(STDERR_FILENO, "LOADING TEXTURES...\n");
 	i = 0;
 	while (i < BASIC_TEXTURE)
 	{
@@ -39,7 +54,7 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 			k = 0;
 			while (k < textures[i][j].n)
 			{
-				if (convert_xmp(mlx_ptr, textures[i][j].frames + k))
+				if (convert_xpm(mlx_ptr, textures[i][j].frames + k))
 					return (-1);
 				if (NULL == textures[i][j].current)
 					textures[i][j].current = textures[i][j].frames;
@@ -50,22 +65,29 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < textures[PORTAL]->n)
-	{
-		if (convert_xmp(mlx_ptr, textures[PORTAL]->frames + i))
-			return (-1);
-		i++;
-	}
-	if (NULL == textures[PORTAL]->current)
-		textures[PORTAL]->current = textures[PORTAL]->frames;
-	textures[PORTAL]->dir = 1;
-	ft_dprintf(STDERR_FILENO, "\n");
 	return (0);
 }
 
+static int	load_portal_textures(void *mlx_ptr, t_elem *textures)
+{
+	int	i;
 
-static int	convert_xmp(void *mlx_ptr, t_texdata *data)
+	if (0 == textures->n)
+		return (0);
+	i = 0;
+	while (i < textures->n)
+	{
+		if (convert_xpm(mlx_ptr, textures->frames + i))
+			return (-1);
+		i++;
+	}
+	if (NULL == textures->current)
+		textures->current = textures->frames;
+	textures->dir = 1;
+	return (0);
+}
+
+static int	convert_xpm(void *mlx_ptr, t_texdata *data)
 {
 	ft_dprintf(STDERR_FILENO, "\t%s: ", data->filepath);
 	data->mlx_img = mlx_xpm_file_to_image(mlx_ptr,
@@ -83,7 +105,8 @@ static int	convert_xmp(void *mlx_ptr, t_texdata *data)
 			&data->bits_per_pixel,
 			&data->line_length,
 			&data->endian);
-	data->average_color = get_average_color(data->addr, data->width * data->height);
+	data->average_color = get_average_color(data->addr,
+			data->width * data->height);
 	if (NULL == data->addr)
 	{
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
