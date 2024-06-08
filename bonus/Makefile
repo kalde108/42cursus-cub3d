@@ -110,6 +110,7 @@ MINIMAP_SRC = \
 	get_tile_color \
 	is_on_minimap \
 	mini_scene \
+	mini_player \
 	player_angle \
 
 # ******** OPTIONS ********* #

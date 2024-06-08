@@ -26,7 +26,7 @@ int	buttonpress_hook(int button, int x, int y, t_c3_env *env)
 	}
 	if (Button3 == button && !(env->mouse.status & MOUSE_BUTTON_LEFT))
 	{
-		if (!is_on_minimap(env, x, y))
+		if (!is_on_minimap(&env->options.minimap, x, y))
 			return (0);
 		if (env->mouse.status & MOUSE_BUTTON_RIGHT)
 			env->mouse.status &= ~MOUSE_BUTTON_RIGHT;

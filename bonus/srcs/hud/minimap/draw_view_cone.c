@@ -55,11 +55,11 @@ void	draw_view_cone(t_c3_env *env, double angle)
 			int	dot_size;
 			dot_size = 0.1 * env->options.minimap.zoom + 1.0;
 			// dprintf(2, "dot_size: %d\n", dot_size);
-			if (is_on_minimap(env, (int)(hit_buf->camera.pos.x), (int)(hit_buf->camera.pos.y)))
+			if (is_on_minimap(&env->options.minimap, (int)(hit_buf->camera.pos.x), (int)(hit_buf->camera.pos.y)))
 				draw_rectangle(&env->img, (t_v2d_i){(int)(hit_buf->camera.pos.x), (int)(hit_buf->camera.pos.y)}, (t_v2d_i){dot_size, dot_size}, (t_color){0xffffff});
-			if (is_on_minimap(env, (int)(line_start.x), (int)(line_start.y)))
+			if (is_on_minimap(&env->options.minimap, (int)(line_start.x), (int)(line_start.y)))
 				draw_rectangle(&env->img, (t_v2d_i){(int)(line_start.x), (int)(line_start.y)}, (t_v2d_i){dot_size, dot_size}, (t_color){0xff7eeb});
-			if (is_on_minimap(env, (int)(ray_hit.x), (int)(ray_hit.y)))
+			if (is_on_minimap(&env->options.minimap, (int)(ray_hit.x), (int)(ray_hit.y)))
 				draw_rectangle(&env->img, (t_v2d_i){(int)(ray_hit.x), (int)(ray_hit.y)}, (t_v2d_i){dot_size, dot_size}, (t_color){0x11d280});
 
 			prev_z = hit_buf->z;

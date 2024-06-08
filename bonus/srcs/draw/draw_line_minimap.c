@@ -24,7 +24,7 @@ static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color co
 	x = x1;
 	while (x <= x2)
 	{
-		if (is_on_minimap(env, x, y))
+		if (is_on_minimap(&env->options.minimap, x, y))
 			put_pixel(img, x, y, color);
 		if (d > 0)
 		{
@@ -58,7 +58,7 @@ static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color c
 	x = x1;
 	while (y <= y2)
 	{
-		if (is_on_minimap(env, x, y))
+		if (is_on_minimap(&env->options.minimap, x, y))
 			put_pixel(img, x, y, color);
 		if (d > 0)
 		{

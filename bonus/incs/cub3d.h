@@ -34,6 +34,16 @@ typedef struct s_mouse
 	t_v2d_i	delta;
 }	t_mouse;
 
+typedef struct s_minimap
+{
+	bool		enable;
+	bool		lock;
+	bool		view;
+	t_v2d_i		pos;
+	int			size;
+	double		zoom;
+}	t_minimap;
+
 typedef struct s_c3_env
 {
 	t_cubscene		scene;
@@ -42,15 +52,7 @@ typedef struct s_c3_env
 	t_img			img;
 	struct s_option
 	{
-		struct s_minimap
-		{
-			bool		enable;
-			bool		lock;
-			bool		view;
-			t_v2d_i		pos;
-			int			size;
-			double		zoom;
-		}	minimap;
+		t_minimap	minimap;
 		bool		fps;
 	}	options;
 	int				key_state[KEY_COUNT];
