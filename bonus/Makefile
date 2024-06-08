@@ -57,6 +57,7 @@ TEXTURES_DIR = textures/
 TEXTURES_SRC = \
 	init_attributes \
 	get_attributes \
+	get_average_color \
 	set_animation_attr \
 	set_frametime_attr \
 	set_framestart_attr \
@@ -67,10 +68,12 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
+	clean_screen \
 	draw_wall \
 	draw_portal \
 	draw_line \
-	draw_line_gradient \
+	draw_line_minimap \
+	draw_triangle \
 	put_pixel \
 	put_pixel_alpha \
 	draw_crosshair \
@@ -87,14 +90,43 @@ HOOK_SRC = \
 	keyup_hook \
 	mouse_hooks \
 
-# ******** MINIMAP ********* #
+# ********** HUD ********** #
+
+SRC += $(addprefix $(HUD_DIR),$(HUD_SRC))
+
+HUD_DIR = hud/
+HUD_SRC = \
+	display_fps \
+
+#	# ****** MINIMAP ******* #
 
 SRC += $(addprefix $(MINIMAP_DIR),$(MINIMAP_SRC))
 
-MINIMAP_DIR = minimap/
+MINIMAP_DIR = $(HUD_DIR)minimap/
 MINIMAP_SRC = \
-	draw_minimap \
-	draw_view_cone \
+	minimap \
+	is_on_minimap \
+	player_angle \
+	get_tile_color \
+	mini_scene \
+	mini_player \
+	mini_view_cone \
+	view_cone_x \
+
+# ******** OPTIONS ********* #
+
+SRC += $(addprefix $(OPTIONS_DIR),$(OPTIONS_SRC))
+
+OPTIONS_DIR = options/
+OPTIONS_SRC = \
+	cub_options \
+	op_fps \
+	op_minimap_enable \
+	op_minimap_lock \
+	op_minimap_pos \
+	op_minimap_size \
+	op_minimap_view \
+	op_minimap_zoom \
 
 # ******* RAYCASTING ******* #
 
@@ -123,7 +155,7 @@ RENDERING_SRC = \
 	background_row \
 	render_background \
 	render_entities \
-	render_map \
+	render_wall \
 
 # ********** TIME ********** #
 
@@ -143,11 +175,11 @@ SRC += $(addprefix $(UPDATE_DIR),$(UPDATE_SRC))
 
 UPDATE_DIR = update/
 UPDATE_SRC = \
+	interaction	\
 	update_entities \
 	update_frames \
 	update_portal_frames \
 	update_portal_status \
-	interaction
 
 #	# *** UPDATE_PLAYER **** #
 
@@ -219,6 +251,8 @@ ifeq ($(MODE),debug)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3
 else ifeq ($(MODE),fsanitize)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3 -fsanitize=address
+else ifeq ($(MODE),4K)
+DEFINES += RES_4K=1
 else ifneq ($(MODE),)
 ERROR = MODE
 endif
@@ -268,9 +302,9 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 $(LIBS_PATH): FORCE | PREMAKE
 	@$(MAKE) -C $(@D)
 
-.PHONY : bonus
-bonus :
-	$(MAKE) MODE=bonus
+.PHONY : 4K
+4K :
+	$(MAKE) MODE=4K
 
 .PHONY : debug
 debug :
@@ -279,10 +313,6 @@ debug :
 .PHONY : fsanitize
 fsanitize :
 	$(MAKE) MODE=fsanitize
-
-.PHONY : print
-print :
-	$(MAKE) MODE=debug DEFINES=PRINT
 
 .PHONY : clean
 clean :
@@ -313,10 +343,10 @@ norminette :
 			&& < $(NORM_LOG) grep Error; fi
 	$(RM) $(NORM_LOG)
 
-.PHONY : print%
-print% :
-	@echo $(patsubst print%,%,$@)=
-	@echo $($(patsubst print%,%,$@))
+.PHONY : print-%
+print-% :
+	@echo $(patsubst print-%,%,$@)=
+	@echo $($(patsubst print-%,%,$@))
 
 .PHONY : count
 count :
@@ -331,7 +361,6 @@ run : $(NAME)
 
 VALGRIND = \
 	valgrind \
-	--suppressions=.valgrindignore.txt \
 	--leak-check=full \
 	--trace-children=yes \
 	--track-fds=yes \
@@ -357,7 +386,7 @@ callgrind : debug
 
 .DEFAULT_GOAL := all
 
-.SILENT : bonus clean fclean re debug %debug fsanitize norminette
+.SILENT : clean fclean re debug %debug fsanitize norminette
 
 .PHONY : FORCE
 FORCE :

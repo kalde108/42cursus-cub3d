@@ -3,43 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 17:07:17 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 18:19:08 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "raycasting.h"
 
-# include <stdio.h>
+static double	get_starting_y(t_hit_buffer *buffer, double step);
 
-inline void	draw_wall(t_img *img, t_hit_buffer *hit_buffer, int x)
+inline void	draw_wall(t_img *img, t_hit_buffer *buffer, int x)
 {
 	t_color	*dst;
 	t_color	*end_dst;
 	t_color	*tex;
-	double			step;
-	double			tex_y;
+	double	step;
+	double	tex_y;
 
 	dst = img->addr;
-	tex = hit_buffer->texture->addr + (hit_buffer->tex_x);
-	tex_y = 0.0;
-	step = 1.0 * hit_buffer->texture->height / ((hit_buffer->y2 - hit_buffer->y1) + 1);
-	if (hit_buffer->y1 < 0)
-	{
-		tex_y = -hit_buffer->y1 * step;
-		hit_buffer->y1 = 0;
-	}
-	if (hit_buffer->y2 >= HEIGHT)
-		hit_buffer->y2 = HEIGHT - 1;
-	dst += ((int)hit_buffer->y1 << WIDTH_LOG2) + x;
-	end_dst = dst + ((int)(hit_buffer->y2 - hit_buffer->y1)) * WIDTH;
+	tex = buffer->texture->addr + (buffer->tex_x);
+	step = 1.0 * buffer->texture->height / ((buffer->y2 - buffer->y1) + 1);
+	tex_y = get_starting_y(buffer, step);
+	dst += ((int)buffer->y1 << WIDTH_LOG2) + x;
+	end_dst = dst + ((int)(buffer->y2 - buffer->y1)) * WIDTH;
 	while (dst <= end_dst)
 	{
-		*dst = tex[(int)tex_y * hit_buffer->texture->width];
-		if (hit_buffer->side == 1)
+		*dst = tex[(int)tex_y * buffer->texture->width];
+		if (buffer->side == 1)
 		{
 			dst->r *= SHADOW;
 			dst->g *= SHADOW;
@@ -48,4 +40,19 @@ inline void	draw_wall(t_img *img, t_hit_buffer *hit_buffer, int x)
 		dst += WIDTH;
 		tex_y += step;
 	}
+}
+
+static double	get_starting_y(t_hit_buffer *buffer, double step)
+{
+	double	tex_y;
+
+	tex_y = 0.0;
+	if (buffer->y1 < 0)
+	{
+		tex_y = -buffer->y1 * step;
+		buffer->y1 = 0;
+	}
+	if (buffer->y2 >= HEIGHT)
+		buffer->y2 = HEIGHT - 1;
+	return (tex_y);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cubenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 22:07:37 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 14:42:46 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 18:22:03 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "cub3d.h"
 #include "libft.h"
 #include "cubdef.h"
+#include "minimap.h"
 
 static int	init_texture(t_elem ***texture);
 static int	allocate_wall_floor_ceilling(t_elem **type);
@@ -47,6 +48,10 @@ int	init_cubenv(t_c3_env *env, char *arg)
 		return (1);
 	}
 	init_timer(&env->frame_timer, 0, MANUAL_RESET);
+	env->options.minimap.lock = MINIMAP_LOCK;
+	env->options.minimap.pos = (t_v2d_i){MINIMAP_X, MINIMAP_Y};
+	env->options.minimap.size = MINIMAP_SIZE;
+	env->options.minimap.zoom = MINIMAP_ZOOM;
 	return (0);
 }
 
@@ -104,5 +109,5 @@ static int	allocate_portal(t_elem **portal_ptr)
 		return (1);
 	}
 	*portal_ptr = ptr;
-	return (0);	
+	return (0);
 }

@@ -3,7 +3,7 @@
 void	put_pixel_alpha(t_img *img, int x, int y, t_color color)
 {
 	t_color	*dst;
-	t_color tmp;
+	t_color	tmp;
 	float	alpha;
 
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)

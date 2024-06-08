@@ -28,11 +28,21 @@ typedef struct s_img
 
 typedef struct s_mouse
 {
-	bool	status;
+	int		status;
 	int		x;
 	int		y;
-	int		delta;
+	t_v2d_i	delta;
 }	t_mouse;
+
+typedef struct s_minimap
+{
+	bool		enable;
+	bool		lock;
+	bool		view;
+	t_v2d_i		pos;
+	int			size;
+	double		zoom;
+}	t_minimap;
 
 typedef struct s_c3_env
 {
@@ -40,6 +50,11 @@ typedef struct s_c3_env
 	void			*mlx;
 	void			*win;
 	t_img			img;
+	struct s_option
+	{
+		t_minimap	minimap;
+		bool		fps;
+	}	options;
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;
 	t_player		player;	// group in struct
@@ -47,7 +62,7 @@ typedef struct s_c3_env
 	double			z_buffer[WIDTH];	// group in struct
 	t_entity		entities[ENTITY_LIMIT];	// group in struct
 	size_t			entity_count;	// group in struct
-	double			frame_time;
+	size_t			frame_time;
 	t_timer			frame_timer;
 	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];
 }	t_c3_env;

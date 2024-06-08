@@ -47,7 +47,7 @@ void	*render_map_thread(void *arg)
 	return (NULL);
 }
 
-int	render_map(t_c3_env *env)
+int	render_wall(t_c3_env *env)
 {
 	pthread_t	threads[CPUCORES];
 	int			i;

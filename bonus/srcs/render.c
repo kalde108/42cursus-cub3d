@@ -3,20 +3,18 @@
 #include "draw.h"
 #include "update.h"
 
+# include "minimap.h"
+
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-
-void MEMORY_MAP(t_c3_env *env); //REMOVE
-
-void player_interaction(t_c3_env *env);
 
 static void	update_mouse(t_c3_env *env)
 {
 	int	x;
 
 	mlx_mouse_get_pos(env->mlx, env->win, &x, &env->mouse.y);
-	env->mouse.delta = x - env->mouse.x;
+	env->mouse.delta.x = x - env->mouse.x;
 	if (x < 1)
 	{
 		mlx_mouse_move(env->mlx, env->win, WIDTH - 2, env->mouse.y);
@@ -41,25 +39,25 @@ static void	update_mouse(t_c3_env *env)
 	}
 }
 
-static void	render_hud(t_c3_env *env)
+void	draw_interaction_cooldown(t_c3_env *env)
 {
-	// t_img	*img;
-	// int		x;
-	// int		y;
+	size_t	cooldown;
 
-	// img = &env->img;
-	// y = 0;
-	// while (y < 30)
-	// {
-	// 	x = 0;
-	// 	while (x < WIDTH)
-	// 	{
-	// 		*(unsigned int *)(img->addr + ((y << img->line_length) + x * (img->bits_per_pixel / 8))) = 0x00000000;
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	cooldown = get_elapsed_time(&env->player.interact);
+	if (cooldown > INTERACTION_COOLDOWN)
+		return ;
+	if (env->player.succesful_interact)
+		draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 + 20, HEIGHT / 2 + 10 - (20 * cooldown / INTERACTION_COOLDOWN / 2)}, (t_v2d_i){4, 20 * cooldown / INTERACTION_COOLDOWN}, (t_color){0x00AAAAAA});
+	else
+		draw_rectangle(&env->img, (t_v2d_i){WIDTH / 2 + 20, HEIGHT / 2 + 10 - (20 * cooldown / INTERACTION_COOLDOWN / 2)}, (t_v2d_i){4, 20 * cooldown / INTERACTION_COOLDOWN}, (t_color){0x00FF0000});
+}
+
+void	render_hud(t_c3_env *env)
+{
 	draw_crosshair(env);
+	draw_interaction_cooldown(env);
+	if (env->options.minimap.enable)
+		minimap(env);
 }
 
 // # include "raycasting.h"
@@ -91,11 +89,10 @@ static void	render_hud(t_c3_env *env)
 int	render(t_c3_env *env)
 {
 	// size_t	time;																		// debug term
-	char	fps_str[11];
 	// char	debug_str[10000];															// debug term
 
 	// usleep(100000);	// fake load
-	env->frame_time = get_elapsed_time(&env->frame_timer) / 1000.0;
+	env->frame_time = get_elapsed_time(&env->frame_timer);
 	start_timer(&env->frame_timer);
 	// sprintf(debug_str, "FPS: %4.2f\n", 1 / env->frame_time);							// debug term
 
@@ -103,7 +100,7 @@ int	render(t_c3_env *env)
 
 	// updates
 	// time = get_time();																	// debug term
-	if (env->mouse.status)
+	if (env->mouse.status == MOUSE_BUTTON_LEFT)
 		update_mouse(env);
 	// sprintf(debug_str, "%supdate_mouse: %3zums\n", debug_str, get_time() - time);		// debug term
 	update_player(env);
@@ -111,6 +108,7 @@ int	render(t_c3_env *env)
 	// time = get_time();																	// debug term
 	update_frames(env);
 	player_interaction(env);
+	cub_options(env);
 	// sprintf(debug_str, "%sframe_updates: %3zums\n", debug_str, get_time() - time);		// debug term
 
 	if (screen_raycast(env))
@@ -122,10 +120,9 @@ int	render(t_c3_env *env)
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%sfloor_and_ceiling: %3zums\n", debug_str, get_time() - time);	// debug term
 	// time = get_time();																	// debug term
-	if (render_map(env))
+	if (render_wall(env))
 		mlx_loop_end(env->mlx);
 	// sprintf(debug_str, "%srender_map: %3zums\n", debug_str, get_time() - time);			// debug term
-	draw_minimap(env);
 	// time = get_time();																	// debug term
 	// render_entities(env);
 	// sprintf(debug_str, "%srender_entities: %3zums\n", debug_str, get_time() - time);	// debug term
@@ -135,9 +132,7 @@ int	render(t_c3_env *env)
 	// mlx
 	// dprintf(2, "%s\n", debug_str);														// debug term
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	sprintf(fps_str, "FPS: %3d", (int)(1 / env->frame_time));
-	mlx_string_put(env->mlx, env->win, 10, 20, 0x00FFFFFF, fps_str);
+	if (env->options.fps)
+		display_fps(env);
 	return (0);
 }
-
-

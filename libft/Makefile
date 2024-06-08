@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+         #
+#    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 11:21:32 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/22 21:50:26 by ibertran         ###   ########lyon.fr    #
+#    Updated: 2024/06/08 17:15:20 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,21 +42,21 @@ MAKEFLAGS	=	--no-print-directory
 MODE_TRACE = $(MAKE_DIR).trace 
 LAST_MODE = $(shell cat $(MODE_TRACE) 2>/dev/null)
 
-MODE ?=
+LIBFT_MODE ?=
 
-ifneq ($(MODE),)
-BUILD_DIR := $(BUILD_DIR)$(MODE)/
+ifneq ($(LIBFT_MODE),)
+BUILD_DIR := $(BUILD_DIR)$(LIBFT_MODE)/
 endif
 
-ifeq ($(MODE),debug)
+ifeq ($(LIBFT_MODE),debug)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3
-else ifeq ($(MODE),fsanitize)
+else ifeq ($(LIBFT_MODE),fsanitize)
 CFLAGS := $(filter-out $(OFLAGS),$(CFLAGS)) -g3 -fsanitize=address
-else ifneq ($(MODE),)
-ERROR = MODE
+else ifneq ($(LIBFT_MODE),)
+ERROR = LIBFT_MODE
 endif
 
-ifneq ($(LAST_MODE),$(MODE))
+ifneq ($(LAST_MODE),$(LIBFT_MODE))
 $(NAME) : FORCE
 endif
 
@@ -74,7 +74,7 @@ all : $(NAME)
 $(NAME) : $(OBJS) | PREMAKE
 	@echo "$(AR) $(ARFLAGS) $(NAME) $(OBJS)" >> $(LOGFILE)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "$(MODE)" > $(MODE_TRACE)
+	@echo "$(LIBFT_MODE)" > $(MODE_TRACE)
 	@printf "\n\n$(BOLD)\
 ██╗  ██╗██████╗       ██╗     ██╗██████╗ ███████╗████████╗\n\
 ██║  ██║╚════██╗      ██║     ██║██╔══██╗██╔════╝╚══██╔══╝\n\
@@ -113,11 +113,11 @@ re : fclean
 
 .PHONY : debug
 debug :
-	$(MAKE) MODE=debug
+	$(MAKE) LIBFT_MODE=debug
 
 .PHONY : fsanitize
 fsanitize :
-	$(MAKE) MODE=fsanitize
+	$(MAKE) LIBFT_MODE=fsanitize
 
 NORM_LOG = $(MAKE_DIR)norminette.log
 
@@ -131,15 +131,15 @@ norminette :
 			&& < $(NORM_LOG) grep Error; fi
 	$(RM) $(NORM_LOG)
 
-.PHONY : print%
-print% :
-	@echo $(patsubst print%,%,$@)=
-	@echo $($(patsubst print%,%,$@))
+.PHONY : print-%
+print-% :
+	@echo $(patsubst print-%,%,$@)=
+	@echo $($(patsubst print-%,%,$@))
 
 .PHONY : count
 count :
 ifneq ($(AS_COUNTED),TRUE)
-	$(eval COUNT_TOTAL := $(shell $(MAKE) -j -n MODE=$(MODE) AS_COUNTED=TRUE | grep "$(NAME)_object" | wc -l))
+	$(eval COUNT_TOTAL := $(shell $(MAKE) -j -n LIBFT_MODE=$(LIBFT_MODE) AS_COUNTED=TRUE | grep "$(NAME)_object" | wc -l))
 	$(eval COUNT_DONE := 0)
 endif
 
@@ -155,13 +155,13 @@ endif
 FORCE :
 
 PREMAKE :
-ifneq ($(MODE),)
-	@printf "🔨 $(BOLD)Building $(NAME)($(MODE))...$(RESET)\n"
+ifneq ($(LIBFT_MODE),)
+	@printf "🔨 $(BOLD)Building $(NAME)($(LIBFT_MODE))...$(RESET)\n"
 else
 	@printf "🔨 $(BOLD)Building $(NAME)...$(RESET)\n"
 endif
-ifeq ($(ERROR),MODE)
-	$(error Invalid mode: $(MODE))
+ifeq ($(ERROR),LIBFT_MODE)
+	$(error Invalid mode: $(LIBFT_MODE))
 endif
 
 # *** FANCY STUFF ************************************************************ #

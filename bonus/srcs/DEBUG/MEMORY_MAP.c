@@ -57,6 +57,7 @@ void	MEMORY_MAP(t_c3_env *env)
 							dprintf(2, "\t\t\t\t\t.bits_per_pixel: %d\n", ptr1->frames[j].bits_per_pixel);
 							dprintf(2, "\t\t\t\t\t.line_length: %d\n", ptr1->frames[j].line_length);
 							dprintf(2, "\t\t\t\t\t.endian: %d\n", ptr1->frames[j].endian);
+							dprintf(2, "\t\t\t\t\t.average_color: %X\n", ptr1->frames[j].average_color.argb);
 						j++;
 					}
 					if (ptr1->n)
@@ -89,6 +90,7 @@ void	MEMORY_MAP(t_c3_env *env)
 							dprintf(2, "\t\t\t\t\t.bits_per_pixel: %d\n", ptr1->frames[j].bits_per_pixel);
 							dprintf(2, "\t\t\t\t\t.line_length: %d\n", ptr1->frames[j].line_length);
 							dprintf(2, "\t\t\t\t\t.endian: %d\n", ptr1->frames[j].endian);
+							dprintf(2, "\t\t\t\t\t.average_color: %X\n", ptr1->frames[j].average_color.argb);
 						j++;
 					}
 					if (ptr1->n)
@@ -121,6 +123,7 @@ void	MEMORY_MAP(t_c3_env *env)
 						dprintf(2, "\t\t\t\t\t.bits_per_pixel: %d\n", ptr1->frames[j].bits_per_pixel);
 						dprintf(2, "\t\t\t\t\t.line_length: %d\n", ptr1->frames[j].line_length);
 						dprintf(2, "\t\t\t\t\t.endian: %d\n", ptr1->frames[j].endian);
+						dprintf(2, "\t\t\t\t\t.average_color: %X\n", ptr1->frames[j].average_color.argb);
 					j++;
 				}
 				if (ptr1->n)

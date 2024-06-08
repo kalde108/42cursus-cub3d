@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "draw.h"
 
-static inline void 	vbar(t_color *dst, t_v2d_i center, t_v2d_i size)
+static inline void	vbar(t_color *dst, t_v2d_i center, t_v2d_i size)
 {
 	int		x;
 	int		y;
@@ -36,7 +36,8 @@ static inline void	hbar(t_color *dst, t_v2d_i center, t_v2d_i size)
 		x = center.x - (size.y >> 1);
 		while (x < center.x + (size.y >> 1))
 		{
-			if (x >= center.x - (size.x >> 1) && x <= center.x + (size.x >> 1) - 1)
+			if (x >= center.x - (size.x >> 1)
+				&& x <= center.x + (size.x >> 1) - 1)
 			{
 				x++;
 				continue ;

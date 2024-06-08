@@ -17,6 +17,8 @@ void	player_interaction(t_c3_env *env)
 			cell = get_interaction_cell(env);
 			if (EMPTY_CELL != cell)
 			{
+				start_timer(&env->player.interact);
+				env->player.succesful_interact = \
 				update_portal_status(&env->scene.portals, GET_PORTAL(cell));
 			}
 		}

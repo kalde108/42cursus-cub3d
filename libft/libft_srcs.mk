@@ -6,7 +6,7 @@
 #    By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 06:32:49 by ibertran          #+#    #+#              #
-#    Updated: 2024/05/30 18:04:57 by kchillon         ###   ########lyon.fr    #
+#    Updated: 2024/06/07 19:14:39 by kchillon         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ MATH_SRC = \
 	euclidean_dist \
 	rotate_v1 \
 	rotate_v2 \
+	rotate_v2_around \
 
 # *** MEMORY ***************************************************************** #
 

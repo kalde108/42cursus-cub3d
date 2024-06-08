@@ -45,6 +45,7 @@ typedef struct s_texdata
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	t_color	average_color;
 }	t_texdata;
 
 typedef struct s_elem
@@ -67,6 +68,8 @@ typedef int (*t_set_attr)(char *, char *, t_elem *elem);
 int set_animation_attr(char *identifier, char *str,  t_elem *elem);
 int set_frametime_attr(char *identifier, char *str,  t_elem *elem);
 int set_framestart_attr(char *identifier, char *str,  t_elem *elem);
+
+t_color	get_average_color(t_color *addr, int size);
 
 # define ANIM_NONE "none"
 # define ANIM_LOOP "loop"

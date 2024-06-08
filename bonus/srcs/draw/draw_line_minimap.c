@@ -1,6 +1,8 @@
+#include "cub3d.h"
 #include "draw.h"
+#include "minimap.h"
 
-static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color color, t_c3_env *env)
 {
 	int	dx;
 	int	dy;
@@ -22,7 +24,8 @@ static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color co
 	x = x1;
 	while (x <= x2)
 	{
-		put_pixel(img, x, y, color);
+		if (is_on_minimap(&env->options.minimap, x, y))
+			put_pixel(img, x, y, color);
 		if (d > 0)
 		{
 			y += yi;
@@ -33,7 +36,7 @@ static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color co
 	}
 }
 
-static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color color, t_c3_env *env)
 {
 	int	dx;
 	int	dy;
@@ -55,7 +58,8 @@ static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color c
 	x = x1;
 	while (y <= y2)
 	{
-		put_pixel(img, x, y, color);
+		if (is_on_minimap(&env->options.minimap, x, y))
+			put_pixel(img, x, y, color);
 		if (d > 0)
 		{
 			x += xi;
@@ -66,7 +70,7 @@ static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color c
 	}
 }
 
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+void	draw_line_minimap(t_img *img, int x1, int y1, int x2, int y2, t_color color, t_c3_env *env)
 {
 	int	dx;
 	int	dy;
@@ -76,15 +80,15 @@ void	draw_line(t_img *img, int x1, int y1, int x2, int y2, t_color color)
 	if (dy < dx)
 	{
 		if (x1 > x2)
-			draw_line_low(img, x2, y2, x1, y1, color);
+			draw_line_low(img, x2, y2, x1, y1, color, env);
 		else
-			draw_line_low(img, x1, y1, x2, y2, color);
+			draw_line_low(img, x1, y1, x2, y2, color, env);
 	}
 	else
 	{
 		if (y1 > y2)
-			draw_line_high(img, x2, y2, x1, y1, color);
+			draw_line_high(img, x2, y2, x1, y1, color, env);
 		else
-			draw_line_high(img, x1, y1, x2, y2, color);
+			draw_line_high(img, x1, y1, x2, y2, color, env);
 	}
 }
