@@ -6,14 +6,12 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:21:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 17:05:28 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 19:22:24 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBDEF_H
 # define CUBDEF_H
-
-#         define ENTITY_LIMIT 1 //REMOVE
 
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
 

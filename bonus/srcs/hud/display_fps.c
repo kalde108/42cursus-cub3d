@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 16:17:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 17:37:07 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/08 19:50:51 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static int	get_average_fps(size_t frame_time);
 
-void display_fps(t_c3_env *env)
+void	display_fps(t_c3_env *env)
 {
 	char	buffer[17];
 
