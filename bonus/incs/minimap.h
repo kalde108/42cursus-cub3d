@@ -16,8 +16,6 @@ int		is_on_minimap(t_minimap *minimap, int x, int y);
 
 void	mini_scene(t_c3_env *env, double angle);
 void	mini_player(t_img *img, double angle, t_minimap *minimap);
-
-// debug
-void	draw_view_cone(t_c3_env *env, double angle);
+void	mini_view_cone(t_c3_env *env);
 
 #endif
