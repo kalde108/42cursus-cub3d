@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 18:19:08 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/09 18:43:22 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static double	get_starting_y(t_hit_buffer *buffer, double step)
 		tex_y = -buffer->y1 * step;
 		buffer->y1 = 0;
 	}
+	buffer->y2 += 1.0;
 	if (buffer->y2 >= HEIGHT)
 		buffer->y2 = HEIGHT - 1;
 	return (tex_y);

@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:08 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/09 17:41:02 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/09 18:39:06 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static inline double	get_starting_y(t_hit_buffer *buffer, double step)
 		tex_y = -buffer->y1 * step;
 		buffer->y1 = 0;
 	}
+	buffer->y2 += 1.0;
 	if (buffer->y2 >= HEIGHT)
 		buffer->y2 = HEIGHT - 1;
 	return (tex_y);
