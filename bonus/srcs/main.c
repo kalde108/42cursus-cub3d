@@ -1,8 +1,7 @@
+#include <stdlib.h>
+
 #include "mlx.h"
 #include "cub3d.h"
-
-# include <stdlib.h>
-# include <stdio.h>
 
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
