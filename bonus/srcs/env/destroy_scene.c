@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 22:46:08 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/09 17:27:24 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "cubscene.h"
 
 static void	destroy_basic_textures(t_elem **texture, void *mlx_ptr);
-static void destroy_special_textures(t_elem **elems, void *mlx_ptr);
+static void	destroy_special_textures(t_elem **elems, void *mlx_ptr);
 
 void	destroy_scene(t_cubscene *scene, void *mlx_ptr)
 {
@@ -57,10 +57,10 @@ static void	destroy_basic_textures(t_elem **texture, void *mlx_ptr)
 	}
 }
 
-static void destroy_special_textures(t_elem **elems, void *mlx_ptr)
+static void	destroy_special_textures(t_elem **elems, void *mlx_ptr)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < SPECIAL_TEXTURES)
