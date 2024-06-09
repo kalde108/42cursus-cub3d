@@ -2,6 +2,7 @@
 # define MINIMAP_H
 
 # include "ft_math.h"
+# include "cub3d.h"
 
 # define MINIMAP_LOCK true
 # define MINIMAP_X 150
