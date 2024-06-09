@@ -6,7 +6,7 @@
 #include "libft.h"
 #include "cubdef.h"
 
-int	set_framestart_attr(char *identifier, char *str,  t_elem *elem)
+int	set_framestart_attr(char *identifier, char *str, t_elem *elem)
 {
 	long	value;
 	char	*end_ptr;
