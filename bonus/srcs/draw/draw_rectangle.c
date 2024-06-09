@@ -2,9 +2,9 @@
 
 void	draw_rectangle(t_img *img, t_v2d_i pos, t_v2d_i size, t_color color)
 {
-	int	x;
-	int	y;
-	t_v2d_i half_size;
+	int		x;
+	int		y;
+	t_v2d_i	half_size;
 
 	half_size.x = size.x >> 1;
 	half_size.y = size.y >> 1;

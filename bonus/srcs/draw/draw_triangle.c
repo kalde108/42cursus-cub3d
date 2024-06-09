@@ -1,10 +1,4 @@
-#include "cub3d.h"
 #include "draw.h"
-#include "minimap.h"
-#include "tile_address.h"
-
-# include <math.h>
-# include <stdio.h>
 
 static void	swap_vertex(t_vertex *v1, t_vertex *v2)
 {
@@ -42,7 +36,7 @@ void	draw_triangle_flat_bottom(t_img *img,
 	y = triangle.v1.y;
 	while (y <= triangle.v2.y)
 	{
-		draw_line(img, x1, y, x2, y, color);
+		draw_line(img, (t_v2d_i){x1, y}, (t_v2d_i){x2, y}, color);
 		x1 += slope1;
 		x2 += slope2;
 		y++;
@@ -66,7 +60,7 @@ void	draw_triangle_flat_top(t_img *img,
 	y = triangle.v3.y;
 	while (y > triangle.v1.y)
 	{
-		draw_line(img, x1, y, x2, y, color);
+		draw_line(img, (t_v2d_i){x1, y}, (t_v2d_i){x2, y}, color);
 		x1 -= slope1;
 		x2 -= slope2;
 		y--;
@@ -77,8 +71,6 @@ void	draw_triangle(t_img *img, t_triangle triangle, t_color color)
 {
 	t_vertex	d;
 
-	if (triangle.v1.y == triangle.v2.y && triangle.v1.y == triangle.v3.y)
-		return ;
 	order_vertex(&triangle);
 	if (triangle.v2.y == triangle.v3.y)
 		draw_triangle_flat_bottom(img, triangle, color);
@@ -96,7 +88,10 @@ void	draw_triangle(t_img *img, t_triangle triangle, t_color color)
 			(t_triangle){triangle.v2, d, triangle.v3},
 			color);
 	}
-	draw_line(img, triangle.v1.x, triangle.v1.y, triangle.v2.x , triangle.v2.y, color);
-	draw_line(img, triangle.v2.x, triangle.v2.y, triangle.v3.x , triangle.v3.y, color);
-	draw_line(img, triangle.v3.x, triangle.v3.y, triangle.v1.x , triangle.v1.y, color);
+	draw_line(img, (t_v2d_i){triangle.v1.x, triangle.v1.y},
+		(t_v2d_i){triangle.v2.x, triangle.v2.y}, color);
+	draw_line(img, (t_v2d_i){triangle.v2.x, triangle.v2.y},
+		(t_v2d_i){triangle.v3.x, triangle.v3.y}, color);
+	draw_line(img, (t_v2d_i){triangle.v3.x, triangle.v3.y},
+		(t_v2d_i){triangle.v1.x, triangle.v1.y}, color);
 }

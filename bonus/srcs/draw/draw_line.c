@@ -1,90 +1,86 @@
 #include "draw.h"
 
-static void	draw_line_low(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+static void	draw_line_low(t_img *img, t_v2d_i p1, t_v2d_i p2, t_color color)
 {
-	int	dx;
-	int	dy;
-	int	yi;
-	int	d;
-	int	y;
-	int	x;
+	t_v2d_i	delta;
+	int		yi;
+	int		d;
 
-	dx = x2 - x1;
-	dy = y2 - y1;
+	delta = (t_v2d_i){p2.x - p1.x, p2.y - p1.y};
 	yi = 1;
-	if (dy < 0)
+	if (delta.y < 0)
 	{
 		yi = -1;
-		dy = -dy;
+		delta.y = -delta.y;
 	}
-	d = 2 * dy - dx;
-	y = y1;
-	x = x1;
-	while (x <= x2)
+	d = 2 * delta.y - delta.x;
+	while (p1.x <= p2.x)
 	{
-		put_pixel(img, x, y, color);
+		if (p1.x >= 0 && p1.x < WIDTH && p1.y >= 0 && p1.y < HEIGHT)
+			img->addr[(p1.y << WIDTH_LOG2) + p1.x] = color;
 		if (d > 0)
 		{
-			y += yi;
-			d -= 2 * dx;
+			p1.y += yi;
+			d -= 2 * delta.x;
 		}
-		d += 2 * dy;
-		x++;
+		d += 2 * delta.y;
+		p1.x++;
 	}
 }
 
-static void	draw_line_high(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+static void	draw_line_high(t_img *img, t_v2d_i p1, t_v2d_i p2, t_color color)
 {
-	int	dx;
-	int	dy;
-	int	xi;
-	int	d;
-	int	y;
-	int	x;
+	t_v2d_i	delta;
+	int		xi;
+	int		d;
 
-	dx = x2 - x1;
-	dy = y2 - y1;
+	delta = (t_v2d_i){p2.x - p1.x, p2.y - p1.y};
 	xi = 1;
-	if (dx < 0)
+	if (delta.x < 0)
 	{
 		xi = -1;
-		dx = -dx;
+		delta.x = -delta.x;
 	}
-	d = 2 * dx - dy;
-	y = y1;
-	x = x1;
-	while (y <= y2)
+	d = 2 * delta.x - delta.y;
+	while (p1.y <= p2.y)
 	{
-		put_pixel(img, x, y, color);
+		if (p1.x >= 0 && p1.x < WIDTH && p1.y >= 0 && p1.y < HEIGHT)
+			img->addr[(p1.y << WIDTH_LOG2) + p1.x] = color;
 		if (d > 0)
 		{
-			x += xi;
-			d -= 2 * dy;
+			p1.x += xi;
+			d -= 2 * delta.y;
 		}
-		d += 2 * dx;
-		y++;
+		d += 2 * delta.x;
+		p1.y++;
 	}
 }
 
-void	draw_line(t_img *img, int x1, int y1, int x2, int y2, t_color color)
+void	draw_line(t_img *img, t_v2d_i p1, t_v2d_i p2, t_color color)
 {
 	int	dx;
 	int	dy;
 
-	dx = (x2 - x1 >= 0) ? x2 - x1 : x1 - x2;
-	dy = (y2 - y1 >= 0) ? y2 - y1 : y1 - y2;
+	if (p2.x - p1.x >= 0)
+		dx = p2.x - p1.x;
+	else
+		dx = p1.x - p2.x;
+	if (p2.y - p1.y >= 0)
+		dy = p2.y - p1.y;
+	else
+		dy = p1.y - p2.y;
 	if (dy < dx)
 	{
-		if (x1 > x2)
-			draw_line_low(img, x2, y2, x1, y1, color);
+		if (p1.x > p2.x)
+			draw_line_low(img, p2, p1, color);
 		else
-			draw_line_low(img, x1, y1, x2, y2, color);
+			draw_line_low(img, p1, p2, color);
 	}
 	else
 	{
-		if (y1 > y2)
-			draw_line_high(img, x2, y2, x1, y1, color);
+		if (p1.y > p2.y)
+			draw_line_high(img, p2, p1, color);
 		else
-			draw_line_high(img, x1, y1, x2, y2, color);
+			draw_line_high(img, p1, p2, color);
 	}
 }

@@ -95,8 +95,8 @@ void	view_cone_x(t_c3_env *env,
 		line_start = get_line_start(env, &ray, hit_buf, prev_z);
 		ray_hit = get_ray_hit(env, &ray, hit_buf);
 		hit_buf->camera.pos = get_new_camera_pos(env, hit_buf);
-		draw_line_minimap(&env->img, (int)(line_start.x), (int)(line_start.y),
-			(int)(ray_hit.x), (int)(ray_hit.y), (t_color){0x007F00}, env);
+		draw_line_minimap(env, (t_v2d_i){line_start.x, line_start.y},
+			(t_v2d_i){ray_hit.x, ray_hit.y}, (t_color){0x007F00});
 		put_dot(env, hit_buf->camera.pos, (t_color){0xffffff});
 		put_dot(env, line_start, (t_color){0xff7eeb});
 		put_dot(env, ray_hit, (t_color){0x11d280});
