@@ -4,8 +4,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-int	g_debug = 0;
-
 void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
 int	main(int ac, char **av)
