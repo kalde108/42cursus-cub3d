@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/10 19:42:39 by ibertran          #+#    #+#             */
+/*   Updated: 2024/06/10 19:42:40 by ibertran         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 
 #include "mlx.h"
 #include "cub3d.h"
-
-void DISPLAY_SHORT_MAP(t_c3_env *env); //REMOVE
 
 int	main(int ac, char **av)
 {
@@ -23,7 +33,6 @@ int	main(int ac, char **av)
 		destroy_cubenv(&env);
 		return (1);
 	}
-	DISPLAY_SHORT_MAP(&env);
 	mlx_loop(env.mlx);
 	destroy_cubenv(&env);
 	pthread_mutex_destroy(&env.call_mutex);

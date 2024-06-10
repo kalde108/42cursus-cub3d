@@ -1,4 +1,3 @@
-#include "cub3d.h"
 #include "options.h"
 
 void	cub_options(t_c3_env *env)

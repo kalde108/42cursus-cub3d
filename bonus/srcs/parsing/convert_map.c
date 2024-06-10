@@ -17,7 +17,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-#include "cubdef.h"
 #include "tile_address.h"
 
 static int	get_map_width(t_vector *map);

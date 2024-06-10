@@ -196,15 +196,6 @@ UPDATE_PLAYER_SRC = \
 	x_mouvement \
 	y_mouvement \
 
-# ********** DEBUG ********** #
-
-SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
-
-DEBUG_DIR = DEBUG/
-DEBUG_SRC = \
-	DISPLAY_SHORT_MAP \
-	MEMORY_MAP \
-
 # *** LIBRARIES && INCLUDES  ************************************************* #
 
 LIBS_PATH = \

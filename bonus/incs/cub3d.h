@@ -1,18 +1,10 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// # include <time.h>
 # include <pthread.h>
 
 # include "cubdef.h"
-# include "color.h"
-// # include "cub3d_types.h"
-# include "cubscene.h"
-# include "player.h"
-# include "entity.h"
-# include "ft_time.h"
 # include "key_index.h"
-# include "stdbool.h"
 # include "raycasting.h"
 
 typedef struct s_img
@@ -55,9 +47,9 @@ typedef struct s_c3_env
 	}	options;
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;
-	t_player		player;	// group in struct
+	t_player		player;
 	pthread_mutex_t	call_mutex;
-	double			z_buffer[WIDTH];	// group in struct
+	double			z_buffer[WIDTH];
 	size_t			frame_time;
 	t_timer			frame_timer;
 	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];

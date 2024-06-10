@@ -35,7 +35,11 @@ typedef struct s_hit_buffer
 void		ray_calculation(t_camera *camera, t_ray *ray);
 void		ft_dda(t_cubscene *scene, t_ray *ray);
 
-void		portal_hit_move(t_cubscene *scene, t_ray *ray, t_camera *camera, double *move);
+void		portal_hit_move(
+				t_cubscene *scene,
+				t_ray *ray,
+				t_camera *camera,
+				double *move);
 void		portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera);
 
 t_texdata	*get_wall_texture(t_cubscene *scene, int cell, t_elem **textures);
@@ -43,7 +47,10 @@ int			get_tex_x(t_ray *ray, int width, t_camera *camera);
 void		get_line_y(t_hit_buffer *hit_buff, double perp_wall_dist);
 
 void		screen_ray_calculation(t_camera *camera, t_ray *ray, int x);
-void		single_raycast(t_cubscene *scene, t_camera camera, t_hit_buffer hit_buf[MAX_LAYERS]);
+void		single_raycast(
+				t_cubscene *scene,
+				t_camera camera,
+				t_hit_buffer hit_buf[MAX_LAYERS]);
 
 int			get_relative_position(int f1, int f2);
 void		camera_rotation(t_camera *camera, double angle);

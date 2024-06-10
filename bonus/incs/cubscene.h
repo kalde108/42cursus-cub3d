@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/01 17:19:33 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/10 14:25:27 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ enum e_textype
 
 # define MAX_PORTALS 10
 
-typedef struct s_portal	// A DEPLACER
+typedef struct s_portal
 {
 	int		id;
 	t_v2d_i	pos;
-	int		face; // South-West-North-East
+	int		face;
 	bool	is_open;
 	int		linked_portal;
 }	t_portal;

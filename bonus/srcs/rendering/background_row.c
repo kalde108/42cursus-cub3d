@@ -92,8 +92,8 @@ void	background_row(t_c3_env *env, int y, t_elem **textures)
 	t_camera	camera;
 	int			x;
 
-	floor = (t_v2d_d){0};		// github action
-	floor_step = (t_v2d_d){0};	// github action
+	floor = (t_v2d_d){0}; // github action
+	floor_step = (t_v2d_d){0}; // github action
 	x = 0;
 	old_cam = (t_camera){.pos = (t_v2d_d){-1, -1}};
 	while (x < WIDTH)

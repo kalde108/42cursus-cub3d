@@ -17,12 +17,11 @@
 
 typedef struct s_player
 {
-	
 	t_camera	camera;
-	double	mv_speed;
-	double	rt_speed;
-	t_timer	interact;
-	bool	succesful_interact;
+	double		mv_speed;
+	double		rt_speed;
+	t_timer		interact;
+	bool		succesful_interact;
 }	t_player;
 
 #endif //PLAYER_H
