@@ -1,7 +1,7 @@
-NO assets/matrix_NO.xpm
-SO assets/matrix_SO.xpm
-WE assets/matrix_WE.xpm
-EA assets/matrix_EA.xpm
+NO assets/basic_wall.xpm
+SO assets/basic_wall.xpm
+WE assets/basic_wall.xpm
+EA assets/basic_wall.xpm
 
 F 74,74,74
 C 16,25,41
@@ -11,7 +11,7 @@ C 16,25,41
     1000000000001     
     1000000000001     
     1001000001001     
-    0000000000001     
+   00000000000001     
     1000000000001     
     1000000000001     
     1000000000001     

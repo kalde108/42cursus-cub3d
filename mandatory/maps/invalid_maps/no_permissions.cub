@@ -1,9 +1,13 @@
 NO assets/basic_wall.xpm
 SO assets/basic_wall.xpm
-WE assets/basic_wall.xpm
+WE assets/no_permissions.xpm
 EA assets/basic_wall.xpm
 
 F 220,0,0
 C 225,30,0
 
-1N1
+11111
+10001
+10S01
+10001
+11111
