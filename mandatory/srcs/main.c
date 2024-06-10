@@ -6,15 +6,12 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/10 20:56:06 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d.h"
-
-void		DEBUG_PRINT_MAP(t_cubscene scene);	//REMOVE
-void		DEBUG_print(t_cubscene *ptr);	//REMOVE
 
 int	main(int ac, char **av)
 {
