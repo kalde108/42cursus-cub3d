@@ -3,7 +3,7 @@
 void	init_timer(t_timer *timer, size_t delta, char autoreset)
 {
 	struct timeval	tv;
-	
+
 	timer->delta = delta;
 	timer->autoreset = autoreset;
 	if (timer->autoreset)

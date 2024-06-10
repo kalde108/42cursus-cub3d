@@ -13,9 +13,7 @@
 # include "ft_time.h"
 # include "key_index.h"
 # include "stdbool.h"
-# include "raycasting.h"	
-
-extern int	g_debug;
+# include "raycasting.h"
 
 typedef struct s_img
 {

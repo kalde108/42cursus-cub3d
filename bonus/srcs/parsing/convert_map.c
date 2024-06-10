@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 03:55:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/09 17:16:31 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	fill_lines(t_vector *map, int width)
 static int	*map_vector_to_array(t_vector map[LAYER_COUNT], t_cubscene *scene)
 {
 	const size_t	size = scene->width * scene->height;
-	int			*s_map;
+	int				*s_map;
 	size_t			i;
 
 	s_map = malloc(sizeof(int) * size);

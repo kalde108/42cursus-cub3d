@@ -4,7 +4,7 @@
 #include "cubdef.h"
 #include "libft.h"
 
-int	set_animation_attr(char *identifier, char *str,  t_elem *elem)
+int	set_animation_attr(char *identifier, char *str, t_elem *elem)
 {
 	const char	*value[] = {ANIM_NONE, ANIM_LOOP, ANIM_SWAY, ANIM_RANDOM};
 	t_anim		i;

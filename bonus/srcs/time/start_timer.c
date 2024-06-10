@@ -1,4 +1,4 @@
-# include "ft_time.h"
+#include "ft_time.h"
 
 void	start_timer(t_timer *timer)
 {

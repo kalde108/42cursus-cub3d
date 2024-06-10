@@ -6,13 +6,13 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:52:02 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/07 18:20:48 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/09 18:44:22 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "key_index.h"
-
 #include <X11/Xutil.h>
+
+#include "key_index.h"
 
 int	get_keyindex(int keycode)
 {
