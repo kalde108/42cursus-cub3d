@@ -1,4 +1,4 @@
-Wa assets/deepslate_tiles.xpm
+Wa assets/lava animation=sway frametime=5
 Wb assets/cracked_deepslate_tiles.xpm
 Wc assets/torchflower.xpm
 Wd assets/command_block
@@ -15,7 +15,7 @@ PORTAL assets/nether_portal frametime=50
         aaaaaaaaaaab     aPaPb  a
         a         aP            a
         a aa     aaa            P
-        a Pa                    b
+        a aa                    b
 aaaaabbaa aa     aaa            P
 a         ba     aaa aabaa baaPaa
 aaaa aaabaaaaa aaa      a   a
@@ -26,7 +26,7 @@ a               Pb      a N a
 a d             ea a b  a   a
 ab     baa a a aaaaaPbaab   aaa
 aaba aaa aaaPa a a aaaa a   a
-aaaaaaaa aaaaaba aaaaaaaaaaaa
+aaaaaaaa aaaaaba aaaaaaaaaPaa
 
            aa                    
 a                   aaaaaaaaaaaa 
