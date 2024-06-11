@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:59:01 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 16:59:12 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -64,60 +76,3 @@ int		load_textures(void *mlx_ptr, t_elem **textures);
 int		render(t_c3_env *env);
 
 #endif //CUB3D_H
-
-/*
-
-char
-00000000
-
-type
-11XXXXXX
-
-wall address
-00XXXXXX
-
-empty address
-01XXXXXX
-
-portal address
-10XXXXXX
-
-wall id
-XX111111
-
-floor id
-XXXXX111
-
-ceiling id
-XX111XXX
-
-portal id
-XX111111
-
-
-short
-00000000 00000000
-
-type
-1111XXXX XXXXXXXX
-
-wall address
-0000XXXX XXXXXXXX
-
-not wall address
-0001XXXX XXXXXXXX
-
-wall id
-XXXXXXXX 11111111
-
-floor id
-XXXXXXXX XXXX1111
-
-ceiling id
-XXXXXXXX 1111XXXX
-
-
-int
-00000000 00000000 00000000 00000000
-
-*/

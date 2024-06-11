@@ -1,7 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   x_mouvement.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:56:38 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 18:25:02 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 
 #include "update.h"
 #include "tile_address.h"
+
+static inline int	not_linked_portal(t_ray *ray, t_portals *portals)
+{
+	return (ray->cell & TYPE_PORTAL
+		&& NO_LINK == portals->tab[(ray->cell & PORTAL_MASK) \
+		>> PORTAL_SHIFT].linked_portal);
+}
 
 static int	change_x(t_ray *ray,
 						t_portals *portals,
@@ -10,8 +29,9 @@ static int	change_x(t_ray *ray,
 {
 	double	offset;
 
-	if (IS_PORTAL(ray->cell)
-		&& NO_LINK != portals->tab[GET_PORTAL(ray->cell)].linked_portal)
+	if (ray->cell & TYPE_PORTAL
+		&& NO_LINK != portals->tab[(ray->cell & PORTAL_MASK) \
+		>> PORTAL_SHIFT].linked_portal)
 		offset = PORTAL_OFFSET;
 	else
 		offset = PLAYER_SIZE;
@@ -44,10 +64,10 @@ void	x_mouvement(t_cubscene *scene,
 	camera.pos = player->camera.pos;
 	camera.dir = (t_v2d_d){(move_vec.x > 0) - (move_vec.x < 0), 0};
 	ray = (t_ray){0};
-	while (NOT_WALL(ray.cell) && !(IS_PORTAL(ray.cell) \
-		&& NO_LINK == scene->portals.tab[GET_PORTAL(ray.cell)].linked_portal))
+	while ((ray.cell & TYPE_MASK) ^ TYPE_WALL
+		&& !not_linked_portal(&ray, &scene->portals))
 	{
-		if (IS_PORTAL(ray.cell))
+		if (ray.cell & TYPE_PORTAL)
 		{
 			portal_hit_move(scene, &ray, &camera, &rot);
 			rotate_player(player, rot);

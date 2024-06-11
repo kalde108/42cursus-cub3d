@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:48 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 14:24:52 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 16:44:35 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_vline
 void	draw_wall(t_img *img, t_hit_buffer *hit_buff, int x);
 void	draw_portal(t_img *img, t_hit_buffer *hit_buff, int x);
 
-void	clean_screen(t_c3_env *env);
 void	put_pixel(t_img *img, int x, int y, t_color color);
 void	put_pixel_alpha(t_img *img, int x, int y, t_color color);
 void	draw_line(t_img *img, t_v2d_i p1, t_v2d_i p2, t_color color);

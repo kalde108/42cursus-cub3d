@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:53:20 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 15:05:50 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 17:45:19 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 
 static int	get_hit(t_cubscene *scene, t_ray *ray, size_t pos)
 {
-	if (IS_WALL(scene->map[pos])
-		&& !IS_PORTAL(ray->cell))
+	if (scene->map[pos] & TYPE_WALL
+		&& (ray->cell & TYPE_MASK) ^ TYPE_PORTAL)
 	{
 		ray->cell = scene->map[pos];
 		return (1);
 	}
-	if (IS_PORTAL(scene->map[pos]))
+	if (scene->map[pos] & TYPE_PORTAL)
 	{
-		if (!IS_PORTAL(ray->cell))
+		if ((ray->cell & TYPE_MASK) ^ TYPE_PORTAL)
 		{
 			ray->cell = scene->map[pos];
 			return (1);
 		}
-		if (scene->portals.tab[GET_PORTAL(ray->cell)].linked_portal
-			== GET_PORTAL(scene->map[pos]))
+		if (scene->portals.tab[(ray->cell & PORTAL_MASK) \
+			>> PORTAL_SHIFT].linked_portal
+			== (scene->map[pos] & PORTAL_MASK) >> PORTAL_SHIFT)
 			ray->cell = 0;
 	}
 	return (0);

@@ -68,7 +68,6 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	clean_screen \
 	draw_wall \
 	draw_portal \
 	draw_line \

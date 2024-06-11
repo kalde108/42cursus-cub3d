@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   portal_hit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:53:19 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 17:48:18 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "raycasting.h"
 #include "tile_address.h"
 
@@ -112,7 +124,7 @@ void	portal_hit(t_cubscene *scene, t_ray *ray, t_camera *camera)
 	t_portal	*portals;
 	t_v2d_d		diff;
 
-	portal_id = GET_PORTAL(ray->cell);
+	portal_id = (ray->cell & PORTAL_MASK) >> PORTAL_SHIFT;
 	portals = scene->portals.tab;
 	dest_portal_id = portals[portal_id].linked_portal;
 	diff.x = (portals[portal_id].pos.x + 0.5) - camera->pos.x;

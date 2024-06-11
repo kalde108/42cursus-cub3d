@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   y_mouvement.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:56:41 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 18:14:51 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <math.h>
 
 #include "update.h"
@@ -10,8 +22,9 @@ static int	change_y(t_ray *ray,
 {
 	double	offset;
 
-	if (IS_PORTAL(ray->cell)
-		&& NO_LINK != portals->tab[GET_PORTAL(ray->cell)].linked_portal)
+	if (ray->cell & TYPE_PORTAL
+		&& NO_LINK != portals->tab[(ray->cell & PORTAL_MASK) \
+		>> PORTAL_SHIFT].linked_portal)
 		offset = PORTAL_OFFSET;
 	else
 		offset = PLAYER_SIZE;
@@ -41,10 +54,11 @@ void	y_mouvement(t_cubscene *scene, t_player *player, t_v2d_d move_vec)
 	camera.pos = player->camera.pos;
 	camera.dir = (t_v2d_d){0, (move_vec.y > 0) - (move_vec.y < 0)};
 	ray = (t_ray){0};
-	while (NOT_WALL(ray.cell) && !(IS_PORTAL(ray.cell) \
-		&& NO_LINK == scene->portals.tab[GET_PORTAL(ray.cell)].linked_portal))
+	while ((ray.cell & TYPE_MASK) ^ TYPE_WALL && !(ray.cell & TYPE_PORTAL \
+		&& NO_LINK == scene->portals.tab[(ray.cell & PORTAL_MASK) \
+		>> PORTAL_SHIFT].linked_portal))
 	{
-		if (IS_PORTAL(ray.cell))
+		if (ray.cell & TYPE_PORTAL)
 		{
 			portal_hit_move(scene, &ray, &camera, &rot);
 			rotate_player(player, rot);

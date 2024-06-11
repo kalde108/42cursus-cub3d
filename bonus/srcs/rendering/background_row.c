@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   background_row.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:54:17 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 19:05:26 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "tile_address.h"
 #include "raycasting.h"
@@ -71,15 +83,16 @@ static inline void	background_pixel(t_c3_env *env,
 		|| cell_pos.x >= env->scene.width
 		|| cell_pos.y < 0
 		|| cell_pos.y >= env->scene.height
-		|| !IS_FL_CE(env->scene.map[pos]))
+		|| !(env->scene.map[pos] & TYPE_FL_CE))
 		return ;
 	cell = env->scene.map[pos];
 	(env->img.addr)[pixel.y * WIDTH + pixel.x].argb = \
-	get_background_color(textures[FLOOR][GET_FLOOR(cell)].current,
+	get_background_color(textures[FLOOR][cell & FLOOR_MASK].current,
 			floor,
 			cell_pos);
 	(env->img.addr)[(HEIGHT - pixel.y - 1) * WIDTH + pixel.x].argb = \
-	get_background_color(textures[CEILING][GET_CEILING(cell)].current,
+	get_background_color(textures[CEILING][(cell & CEILING_MASK) \
+			>> CEILING_SHIFT].current,
 			floor,
 			cell_pos);
 }
@@ -92,8 +105,6 @@ void	background_row(t_c3_env *env, int y, t_elem **textures)
 	t_camera	camera;
 	int			x;
 
-	floor = (t_v2d_d){0}; // github action
-	floor_step = (t_v2d_d){0}; // github action
 	x = 0;
 	old_cam = (t_camera){.pos = (t_v2d_d){-1, -1}};
 	while (x < WIDTH)

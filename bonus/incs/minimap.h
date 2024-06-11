@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 17:01:50 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 17:40:31 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINIMAP_H
 # define MINIMAP_H
 
@@ -12,7 +24,7 @@
 # define MINI_BACKGROUND 0x7F000000
 
 double	player_angle(t_v2d_d player);
-t_color	get_tile_color(t_c3_env *env, int cell);
+t_color	get_tile_color(t_cubscene *scene, int cell);
 int		is_on_minimap(t_minimap *minimap, int x, int y);
 
 void	mini_scene(t_c3_env *env, double angle);
