@@ -1,8 +1,7 @@
 Wa assets/deepslate_tiles.xpm
 Wb assets/cracked_deepslate_tiles.xpm
-Wc assets/torchflower.xpm
 Wd assets/command_block
-We assets/carpet1_128.xpm
+Wf assets/affreux animation=random frametime=2500
 Fa assets/basic_floor_128.xpm
 Fb assets/floor2_128.xpm
 Fc assets/carpet1_128.xpm
@@ -14,19 +13,19 @@ PORTAL assets/nether_portal frametime=50
                    abbbaaaaaaabaa
         aaaaaaaaaaab     aPaPb  a
         a         aP            a
-        a aa     aaa            P
-        a Pa                    b
-aaaaabbaa aa     aaa            P
+        a aa     aaa            a
+        a aa                    P
+aaaaPbbaa aa     aaa            b
 a         ba     aaa aabaa baaPaa
 aaaa aaabaaaaa aaa      a   a
 aaaa aabaaaaba aaa d d  a   b
-aa      ca b a aab      a   a
+aa     bfafafa aab      a   a
 a               aa d d  b   a
-a               Pb      a N a
-a d             ea a b  a   a
-ab     baa a a aaaaaPbaab   aaa
-aaba aaa aaaPa a a aaaa a   a
-aaaaaaaa aaaaaba aaaaaaaaaaaa
+P               ab      a N a
+a               aa a b  a   a
+ab     bfafafa aaaaaPbaab   aaa
+aabaPaa      a a a aaaa a   a
+             aPa aaaaaaaabbba
 
            aa                    
 a                   aaaaaaaaaaaa 

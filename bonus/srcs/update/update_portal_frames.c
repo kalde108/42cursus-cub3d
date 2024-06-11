@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:42:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 19:42:28 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 19:34:20 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	update_portal_frames(t_elem *portal_tex)
 {
 	size_t	passed_frame;
 
-	passed_frame = timer_is_over(&portal_tex->timer);
 	if (portal_tex->n > 1 && portal_tex->attr.animation != NONE)
 	{
+		passed_frame = timer_is_over(&portal_tex->timer);
 		portal_tex->current = get_current_frame(portal_tex, passed_frame);
 	}
 }
