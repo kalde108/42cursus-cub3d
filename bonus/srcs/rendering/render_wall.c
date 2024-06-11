@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_wall.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:54:35 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 19:04:59 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pthread.h>
 
 #include "raycasting.h"
@@ -19,10 +31,11 @@ void	render_map_chunk(t_c3_env *env, int start, int end)
 		while (hit_count-- > 0)
 		{
 			hit_buf = env->buffer[x] + hit_count;
-			if (IS_WALL(hit_buf->cell) || (IS_PORTAL(hit_buf->cell) && -1 \
-					== portals->tab[GET_PORTAL(hit_buf->cell)].linked_portal))
+			if (hit_buf->cell & TYPE_WALL || (hit_buf->cell & TYPE_PORTAL && -1
+					== portals->tab[(hit_buf->cell & PORTAL_MASK) \
+					>> PORTAL_SHIFT].linked_portal))
 				draw_wall(&env->img, hit_buf, x);
-			else if (IS_PORTAL(hit_buf->cell))
+			else if (hit_buf->cell & TYPE_PORTAL)
 				draw_portal(&env->img, hit_buf, x);
 		}
 		x++;

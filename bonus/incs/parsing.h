@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/10 14:28:05 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define PARSING_H
 
 # include "ft_vector.h"
-# include "cubscene.h"
-# include "player.h"
-# include "entity.h"
 # include "cub3d.h"
 
 //FILE EXTENTIONS
@@ -33,8 +30,10 @@
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
 # define INVAL_ID "Invalid identifier"
 # define MULTI_ID "Multiple definition of identifier"
-# define INVAL_PATH "Invalid definition, expected one file in format [*.xmp] or a directory"
-# define MISSING_PATH "Missing definition, expected one file in format [*.xmp] or a directory"
+# define INVAL_PATH "Invalid definition, expected one file in format [*.xmp] \
+or a directory"
+# define MISSING_PATH "Missing definition, expected one file in format [*.xmp] \
+or a directory"
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
 # define INVAL_RANGE "Color value out of range, expected [0,255]"
 # define INVAL_CHAR "Invalid character"

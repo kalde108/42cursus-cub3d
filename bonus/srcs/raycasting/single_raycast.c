@@ -1,5 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   single_raycast.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:53:32 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 18:29:09 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "tile_address.h"
+
+static inline int	not_linked_portal(t_ray *ray, t_portals *portals)
+{
+	return (ray->cell & TYPE_PORTAL
+		&& NO_LINK == portals->tab[(ray->cell & PORTAL_MASK) \
+		>> PORTAL_SHIFT].linked_portal);
+}
 
 void	single_raycast(t_cubscene *scene,
 						t_camera camera,
@@ -11,11 +30,11 @@ void	single_raycast(t_cubscene *scene,
 
 	hit_count = 0;
 	ray = (t_ray){0};
-	while ((NOT_WALL(ray.cell) && !(IS_PORTAL(ray.cell) \
-			&& -1 == scene->portals.tab[GET_PORTAL(ray.cell)].linked_portal)) \
-			&& hit_count < MAX_LAYERS)
+	while (((ray.cell & TYPE_MASK) ^ TYPE_WALL
+			&& !not_linked_portal(&ray, &scene->portals))
+		&& hit_count < MAX_LAYERS)
 	{
-		if (IS_PORTAL(ray.cell))
+		if (ray.cell & TYPE_PORTAL)
 			portal_hit(scene, &ray, &camera);
 		ray_calculation(&camera, &ray);
 		ft_dda(scene, &ray);

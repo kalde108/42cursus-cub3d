@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_scene.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:48:53 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 17:41:20 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "draw.h"
 #include "minimap.h"
@@ -17,7 +29,7 @@ static void	scene_pixel(t_c3_env *env, double angle, int i, int j)
 		&& pos.y >= 0 && pos.y < env->scene.height)
 	{
 		cell = env->scene.map[(int)pos.y * env->scene.width + (int)pos.x];
-		color = get_tile_color(env, cell);
+		color = get_tile_color(&env->scene, cell);
 		if (cell == EMPTY_CELL)
 			put_pixel_alpha(&env->img, j + env->options.minimap.pos.x,
 				i + env->options.minimap.pos.y, color);

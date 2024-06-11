@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "cubscene.h"
 #include "parsing.h"
-#include "cub3d.h"
 
 int	get_entities(t_vector *map, t_c3_env *env)
 {

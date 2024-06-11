@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifiers.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 22:59:24 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/17 19:26:09 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 17:01:30 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

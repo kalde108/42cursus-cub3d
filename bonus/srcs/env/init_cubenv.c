@@ -17,9 +17,7 @@
 
 #include "mlx.h"
 #include "parsing.h"
-#include "cub3d.h"
 #include "libft.h"
-#include "cubdef.h"
 #include "minimap.h"
 
 static int	init_texture(t_elem ***texture);

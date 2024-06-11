@@ -14,7 +14,6 @@
 
 #include "libft.h"
 #include "parsing.h"
-#include "cubdef.h"
 
 static int	check_scene_format(char *arg);
 

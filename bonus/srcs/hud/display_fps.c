@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "cubdef.h"
 #include "mlx.h"
 
 #include <stdio.h>

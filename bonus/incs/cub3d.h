@@ -1,18 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 16:59:01 by kchillon          #+#    #+#             */
+/*   Updated: 2024/06/11 16:59:12 by kchillon         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// # include <time.h>
 # include <pthread.h>
 
 # include "cubdef.h"
-# include "color.h"
-// # include "cub3d_types.h"
-# include "cubscene.h"
-# include "player.h"
-# include "entity.h"
-# include "ft_time.h"
 # include "key_index.h"
-# include "stdbool.h"
 # include "raycasting.h"
 
 typedef struct s_img
@@ -55,9 +59,9 @@ typedef struct s_c3_env
 	}	options;
 	int				key_state[KEY_COUNT];
 	t_mouse			mouse;
-	t_player		player;	// group in struct
+	t_player		player;
 	pthread_mutex_t	call_mutex;
-	double			z_buffer[WIDTH];	// group in struct
+	double			z_buffer[WIDTH];
 	size_t			frame_time;
 	t_timer			frame_timer;
 	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];
@@ -72,60 +76,3 @@ int		load_textures(void *mlx_ptr, t_elem **textures);
 int		render(t_c3_env *env);
 
 #endif //CUB3D_H
-
-/*
-
-char
-00000000
-
-type
-11XXXXXX
-
-wall address
-00XXXXXX
-
-empty address
-01XXXXXX
-
-portal address
-10XXXXXX
-
-wall id
-XX111111
-
-floor id
-XXXXX111
-
-ceiling id
-XX111XXX
-
-portal id
-XX111111
-
-
-short
-00000000 00000000
-
-type
-1111XXXX XXXXXXXX
-
-wall address
-0000XXXX XXXXXXXX
-
-not wall address
-0001XXXX XXXXXXXX
-
-wall id
-XXXXXXXX 11111111
-
-floor id
-XXXXXXXX XXXX1111
-
-ceiling id
-XXXXXXXX 1111XXXX
-
-
-int
-00000000 00000000 00000000 00000000
-
-*/

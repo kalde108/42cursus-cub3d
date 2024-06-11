@@ -68,7 +68,6 @@ SRC += $(addprefix $(DRAW_DIR),$(DRAW_SRC))
 
 DRAW_DIR = draw/
 DRAW_SRC = \
-	clean_screen \
 	draw_wall \
 	draw_portal \
 	draw_line \
@@ -195,15 +194,6 @@ UPDATE_PLAYER_SRC = \
 	player_rotation \
 	x_mouvement \
 	y_mouvement \
-
-# ********** DEBUG ********** #
-
-SRC += $(addprefix $(DEBUG_DIR),$(DEBUG_SRC))
-
-DEBUG_DIR = DEBUG/
-DEBUG_SRC = \
-	DISPLAY_SHORT_MAP \
-	MEMORY_MAP \
 
 # *** LIBRARIES && INCLUDES  ************************************************* #
 

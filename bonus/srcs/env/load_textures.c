@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 03:20:25 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/09 17:27:39 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/10 20:07:06 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 #include "libft.h"
 #include "mlx.h"
 #include "parsing.h"
-#include "cubdef.h"
-#include "color.h"
 
 static int	load_basic_textures(void *mlx_ptr, t_elem **textures);
 static int	load_portal_textures(void *mlx_ptr, t_elem *textures);
@@ -34,7 +32,6 @@ int	load_textures(void *mlx_ptr, t_elem **textures)
 	status = load_basic_textures(mlx_ptr, textures);
 	if (0 == status)
 		status = load_portal_textures(mlx_ptr, textures[PORTAL]);
-	ft_dprintf(STDERR_FILENO, "\n");
 	return (status);
 }
 

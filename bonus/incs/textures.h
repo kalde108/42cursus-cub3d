@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/10 14:39:36 by ibertran          #+#    #+#             */
+/*   Updated: 2024/06/10 17:39:55 by ibertran         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
@@ -11,11 +23,18 @@
 # define DEFAULT_FRAMETIME 100
 # define DEFAULT_ANIMATION LOOP
 
+	//ATTRIBUTES ASSIGNMENT
 # define ATTR_1 "animation="
 # define ATTR_2 "frametime="
 # define ATTR_3 "framestart="
 
-//ERROR MESSAGES
+	//ANIMATION MODE
+# define ANIM_NONE "none"
+# define ANIM_LOOP "loop"
+# define ANIM_SWAY "sway"
+# define ANIM_RANDOM "random"
+
+	//ERROR MESSAGES
 # define INVAL_ATTR "Invalid attribute"
 # define INVAL_ANIMATION "Invalid animation attribute value"
 # define INVAL_FRAMESTART "Invalid framestart attribute value"
@@ -59,24 +78,14 @@ typedef struct s_elem
 	t_timer			timer;
 }	t_elem;
 
-//ATTRIBUTES
-
 void	init_attributes(t_attributes *ptr);
 
-typedef int (*t_set_attr)(char *, char *, t_elem *elem);
+typedef int	(*t_set_attr)(char *, char *, t_elem *elem);
 
-int set_animation_attr(char *identifier, char *str,  t_elem *elem);
-int set_frametime_attr(char *identifier, char *str,  t_elem *elem);
-int set_framestart_attr(char *identifier, char *str,  t_elem *elem);
+int		set_animation_attr(char *identifier, char *str, t_elem *elem);
+int		set_frametime_attr(char *identifier, char *str, t_elem *elem);
+int		set_framestart_attr(char *identifier, char *str, t_elem *elem);
 
 t_color	get_average_color(t_color *addr, int size);
-
-# define ANIM_NONE "none"
-# define ANIM_LOOP "loop"
-# define ANIM_SWAY "sway"
-# define ANIM_RANDOM "random"
-
-# define YES "yes"
-# define NO "no"
 
 #endif
