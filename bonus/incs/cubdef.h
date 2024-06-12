@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdef.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:21:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/08 19:55:19 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 21:18:36 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define CUBDEF_H
 
 # define WIN_NAME	"Cub3D - @kchillon @ibertran"
-
-// # define RES_4K
 
 # ifdef RES_4K
 // 4K RESOLUTION

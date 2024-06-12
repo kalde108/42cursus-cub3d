@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:02:44 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 21:26:20 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 16:07:43 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,5 @@
 
 # define CEILING_SHIFT 6
 # define PORTAL_SHIFT 0
-
-// # define IS_WALL(x) (x & TYPE_WALL)
-// # define NOT_WALL(x) ((x & TYPE_MASK) ^ TYPE_WALL)
-// # define IS_FL_CE(x) (x & TYPE_FL_CE)
-// # define NOT_FL_CE(x) ((x & TYPE_MASK) ^ TYPE_FL_CE)
-// # define IS_PORTAL(x) (x & TYPE_PORTAL)
-// # define NOT_PORTAL(x) ((x & TYPE_MASK) ^ TYPE_PORTAL)
-
-// # define GET_TYPE(x) ((x & TYPE_MASK))
-// # define GET_WALL(x) (x & WALL_MASK)
-// # define GET_FLOOR(x) (x & FLOOR_MASK)
-// # define GET_CEILING(x) ((x & CEILING_MASK) >> CEILING_SHIFT)
-// # define GET_PORTAL(x) ((x & PORTAL_MASK) >> PORTAL_SHIFT)
 
 #endif

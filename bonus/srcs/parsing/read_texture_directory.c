@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:12:35 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/29 17:07:30 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 20:36:30 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 #include "libft.h"
 #include "cubscene.h"
 #include "cubdef.h"
+#include "parsing.h"
 
 static int	read_entries(DIR *dir, t_vector *frames, char *dirpath);
 static int	add_frame(t_vector *frames, char *dirpath, char *name);
-static int	set_frames(t_elem *texture, t_vector *frames);
+static int	set_frames(t_elem *texture, t_vector *frames, char *dirpath);
 static void	free_frame(void *ptr);
 
 int	get_directory_textures(char *dirpath, t_elem *texture)
@@ -41,8 +42,8 @@ int	get_directory_textures(char *dirpath, t_elem *texture)
 	if (0 == status)
 		status = read_entries(dir, &frames, dirpath);
 	if (0 == status)
-		status = set_frames(texture, &frames);
-	if (0 != status)
+		status = set_frames(texture, &frames, dirpath);
+	if (1 == status)
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, FATAL, strerror(errno));
 		ft_vector_free(&frames);
@@ -84,8 +85,13 @@ static int	add_frame(t_vector *frames, char *dirpath, char *name)
 	return (0);
 }
 
-static int	set_frames(t_elem *texture, t_vector *frames)
+static int	set_frames(t_elem *texture, t_vector *frames, char *dirpath)
 {
+	if (0 == frames->total)
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, dirpath, EMPTY_TEX_DIR);
+		return (-1);
+	}
 	if (ft_vector_trim(frames))
 		return (1);
 	ft_vector_sort(frames, vsort_str_ascending);

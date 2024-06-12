@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/11 21:22:11 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 16:07:05 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define BASIC_TEXTURE 3
 # define SPECIAL_TEXTURES 1
 
+# define MAX_PORTALS 20
 # define NO_LINK -1
 
 enum e_textype
@@ -39,8 +40,6 @@ enum e_textype
 	ENTITY,
 	TEXTURES_TYPES
 };
-
-# define MAX_PORTALS 20
 
 typedef struct s_portal
 {
