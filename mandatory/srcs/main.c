@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:49 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 20:56:06 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 20:25:39 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 	env = (t_c3_env){0};
 	if (check_arguments(ac, av) || init_cubenv(&env, av[1]))
 		return (1);
-	if (load_textures(env.mlx, &env.scene) || open_mlx_window(&env))
+	if (load_textures(env.mlx, &env.scene) || open_mlx_window(&env, av[1]))
 	{
 		destroy_cubenv(&env);
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 20:41:30 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 22:37:54 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,17 @@ static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 		id = get_identifier(identifier);
 	if (!identifier || id == ID_INVAL || is_defined(identifier, defined + id))
 		return (1);
-	value = ft_strtok(NULL, "");
+	value = ft_strtok(NULL, " ");
+	if (NULL == value)
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier , MISSING_DEFINITION);
+		return (1);
+	}
+	if (NULL != ft_strtok(NULL, " "))
+	{
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier , INVAL_DEFINITION);
+		return (1);
+	}
 	if (value && set_texture(identifier, value, id, ptr))
 		return (1);
 	return (0);

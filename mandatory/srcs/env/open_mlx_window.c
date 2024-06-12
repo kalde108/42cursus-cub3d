@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:17 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/07 22:51:19 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 21:37:24 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 static void	setup_mlx_hooks(t_c3_env *env);
 
-int	open_mlx_window(t_c3_env *env)
+int	open_mlx_window(t_c3_env *env, char *arg)
 {
-	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, WIN_NAME);
+	env->win = mlx_new_window(env->mlx, WIDTH, HEIGHT, arg);
 	if (!env->win)
 	{
 		ft_dprintf(STDERR_FILENO, MLX_ERR2, FATAL);
