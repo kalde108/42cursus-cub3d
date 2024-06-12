@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/11 19:57:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 16:06:38 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ or a directory"
 # define INVALID_PORTAL "Exposed portal"
 # define NON_ENCLOSED "Spawn position not surrounded by walls"
 # define EMPTY_TEX_DIR "Empty directory"
-# define INVAL_CELL "MAP: (x%d;y%d): Invalid cell\n"
+# define MISSING_FLOOR "Missing floor"
+# define MISSING_CEILING "Missing ceiling"
+# define MISSING_FLOOR_CEILING "Missing floor and ceiling"
+# define INVAL_CELL "MAP: (x%d;y%d): %s\n"
 # define INVAL_PORTAL_CELL "MAP: (x%d;y%d): Portal has multiple access\n"
 # define INVAL_WALL_CELL "MAP: (x%d;y%d): Missing wall\n"
 
