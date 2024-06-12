@@ -143,7 +143,6 @@ LOADING_BAR_SIZE = 48
 .PHONY : all
 all : $(NAME)
 
-
 $(NAME) : $(LIBS_PATH) $(OBJS) | PREMAKE
 	@echo "$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)" >> $(LOGFILE)
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
@@ -173,10 +172,6 @@ $(BUILD_DIR)%.o : $(SRCS_DIR)%.c | count PREMAKE
 $(LIBS_PATH): FORCE | PREMAKE
 	@$(MAKE) -C $(@D)
 
-.PHONY : bonus
-bonus :
-	$(MAKE) MODE=bonus
-
 .PHONY : debug
 debug :
 	$(MAKE) MODE=debug
@@ -184,10 +179,6 @@ debug :
 .PHONY : fsanitize
 fsanitize :
 	$(MAKE) MODE=fsanitize
-
-.PHONY : print
-print :
-	$(MAKE) MODE=debug DEFINES=PRINT
 
 .PHONY : clean
 clean :
@@ -218,10 +209,10 @@ norminette :
 			&& < $(NORM_LOG) grep Error; fi
 	$(RM) $(NORM_LOG)
 
-.PHONY : print%
-print% :
-	@echo $(patsubst print%,%,$@)=
-	@echo $($(patsubst print%,%,$@))
+.PHONY : print-%
+print-% :
+	@echo $(patsubst print-%,%,$@)=
+	@echo $($(patsubst print-%,%,$@))
 
 .PHONY : count
 count :
@@ -236,7 +227,6 @@ run : $(NAME)
 
 VALGRIND = \
 	valgrind \
-	--suppressions=.valgrindignore.txt \
 	--leak-check=full \
 	--trace-children=yes \
 	--track-fds=yes \
@@ -260,7 +250,7 @@ callgrind : debug
 
 .DEFAULT_GOAL := all
 
-.SILENT : bonus clean fclean re debug %debug fsanitize norminette
+.SILENT : clean fclean re debug fsanitize norminette
 
 .PHONY : FORCE
 FORCE :

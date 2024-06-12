@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 23:39:06 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/05 17:00:51 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 16:09:44 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "tile_address.h"
 
 static char	get_layer_cell(t_vector *map, int y, int x, int layer);
+static char	*cell_error(char floor, char ceiling);
 
 int	get_cell_value(t_vector map[LAYER_COUNT], int y, int x, int *cell)
 {
@@ -32,7 +33,7 @@ int	get_cell_value(t_vector map[LAYER_COUNT], int y, int x, int *cell)
 		*cell = TYPE_FL_CE | floor | (ceiling << CEILING_SHIFT);
 	else
 	{
-		ft_dprintf(STDERR_FILENO, INVAL_CELL, x, y);
+		ft_dprintf(STDERR_FILENO, INVAL_CELL, x, y, cell_error(floor, ceiling));
 		return (-1);
 	}
 	return (0);
@@ -53,4 +54,13 @@ static char	get_layer_cell(t_vector *map, int y, int x, int layer)
 	}
 	else
 		return ('\0');
+}
+
+static char	*cell_error(char floor, char ceiling)
+{
+	if (MISSING == floor && MISSING == ceiling)
+		return (MISSING_FLOOR_CEILING);
+	if (MISSING == floor)
+		return (MISSING_FLOOR);
+	return (MISSING_CEILING);
 }
