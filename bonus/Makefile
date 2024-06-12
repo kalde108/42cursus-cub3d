@@ -267,7 +267,6 @@ LOADING_BAR_SIZE = 48
 .PHONY : all
 all : $(NAME)
 
-
 $(NAME) : $(LIBS_PATH) $(OBJS) | PREMAKE
 	@echo "$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)" >> $(LOGFILE)
 	@$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
@@ -369,7 +368,7 @@ CALLGRIND = \
 	valgrind \
 	--tool=callgrind \
 
-MAP = maps/test.cub
+MAP = maps/hub.cub
 
 .PHONY : callgrind
 callgrind : debug
@@ -381,7 +380,7 @@ callgrind : debug
 
 .DEFAULT_GOAL := all
 
-.SILENT : clean fclean re debug %debug fsanitize norminette
+.SILENT : clean fclean re debug fsanitize norminette
 
 .PHONY : FORCE
 FORCE :
