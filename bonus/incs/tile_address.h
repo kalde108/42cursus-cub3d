@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:02:44 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 19:09:11 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 21:26:20 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 # define FLOOR_MASK 0x003F
 // 0b0000 0000 0000 0000 0000 1111 1100 0000
 # define CEILING_MASK 0x0FC0
-// 0b0000 0000 0000 0000 1111 0000 0000 0000
-# define PORTAL_MASK 0xF000
+// 0b0000 0000 0000 0000 0000 0000 1111 1111
+# define PORTAL_MASK 0x00FF
 
 # define CEILING_SHIFT 6
-# define PORTAL_SHIFT 12
+# define PORTAL_SHIFT 0
 
 // # define IS_WALL(x) (x & TYPE_WALL)
 // # define NOT_WALL(x) ((x & TYPE_MASK) ^ TYPE_WALL)

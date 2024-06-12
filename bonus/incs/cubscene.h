@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubscene.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:50:45 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 14:25:27 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/11 21:22:11 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ enum e_textype
 	TEXTURES_TYPES
 };
 
-# define MAX_PORTALS 10
+# define MAX_PORTALS 20
 
 typedef struct s_portal
 {
