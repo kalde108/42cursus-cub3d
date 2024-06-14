@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 22:51:53 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 19:20:50 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 22:07:26 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_c3_env
 int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
 void	destroy_cubenv(t_c3_env *env);
-int		open_mlx_window(t_c3_env *env);
+int		open_mlx_window(t_c3_env *env, char *arg);
 int		load_textures(void *mlx_ptr, t_cubscene *scene);
 
 int		render(t_c3_env *env);

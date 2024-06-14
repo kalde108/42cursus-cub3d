@@ -6,7 +6,7 @@
 /*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:49:51 by ibertran          #+#    #+#             */
-/*   Updated: 2024/05/08 18:25:32 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/12 22:36:48 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define TOO_MAN_ARG "Too many arguments, expected one file in format [*.cub]"
 # define INVAL_FILE "Invalid file format, expected [*.cub]"
 # define INVAL_ID "Invalid identifier"
+# define INVAL_DEFINITION "Invalid definition"
+# define MISSING_DEFINITION "Missing definition"
 # define MULTI_ID "Multiple definition of identifier"
 # define INVAL_PATH "Invalid definition, expected one file in format [*.xmp]"
 # define INVAL_COLOR "Invalid color format, expected [R,G,B] ranging [0,255]"
