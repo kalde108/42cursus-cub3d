@@ -9,13 +9,19 @@ Wh assets/aled.xpm
 Wk assets/nether_skull animation=random frametime=250
 Wm assets/cracked_nether_bricks.xpm
 Wn assets/nether_bricks.xpm
-Wo assets/oak_log.xpm
+Wo assets/trees animation=none framestart=0
 Wp assets/oak_planks_x4.xpm
+Wq assets/trees animation=none framestart=0
+Wr assets/trees animation=none framestart=0
 Ws assets/deepslate.xpm
+Wt assets/trees animation=none framestart=0
+Wu assets/trees animation=none framestart=0
 Wx assets/crying_obsidian.xpm
-Wy assets/command_block
+Wy assets/polished_blackstone_bricks.xpm
 Wz assets/affreux animation=none framestart=0
 Fa assets/basic_floor_128.xpm
+Fb assets/red_amethyst0 animation=sway frametime=50
+Fc assets/sculk_shrieker_bottom.xpm
 Fd assets/dirt_path_top.xpm
 Fe assets/wools animation=none framestart=0
 Ff assets/white_wool.xpm
@@ -23,105 +29,111 @@ Fg assets/grass.xpm
 Fh assets/wools/cyan_wool.xpm
 Fi assets/chiseled_quartz_block_top.xpm
 Fj assets/wools/red_wool.xpm
+Fk assets/red_amethyst0 animation=sway framestart=5 frametime=50
 Fl assets/lava animation=sway
 Fm assets/cracked_nether_bricks.xpm
 Fn assets/nether_bricks.xpm
+Fo assets/red_amethyst0 animation=sway framestart=11 frametime=50
 Fp assets/oak_planks.xpm
+Fq assets/red_amethyst0 animation=sway framestart=16 frametime=50
 Fs assets/deepslate_top.xpm
 Fw assets/water_flow
-Fx assets/white_concrete.xpm
-Fy assets/black_concrete.xpm
+Fx assets/planks/birch_planks.xpm
+Fy assets/planks/dark_oak_planks.xpm
 Ca assets/ceiling1_128.xpm
+Cb assets/black_concrete.xpm
 Cc assets/light_blue_concrete.xpm
 Cd assets/sky_leaves.xpm
 Ce assets/sky_leaves_flower.xpm
 Cf assets/stripped_spruce_log.xpm
 Cg assets/white_concrete.xpm
+Ci assets/spruce_planks_90.xpm
+Cj assets/planks/spruce_planks.xpm
 Cm assets/cracked_nether_bricks.xpm
 Cn assets/nether_bricks.xpm
 Cs assets/deepslate_top.xpm
 PORTAL assets/nether_portal frametime=50
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhh   hhhhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhh z hhhhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhh         hhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhh           hhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah    gg     gg    haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaah                 haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa                         haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaahhhhhh       hhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaahhhhhh       hhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaahhhhhhhhhPhhhhhhhhhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaaaaaaaaaaaPaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa          aaaaaaaa         aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa          aaaaaa             aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa          aaaaa               aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa          aaaa                 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaa          aaaa                 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeeeeeeeeeeeeeeeeaaaaaaa  aaaaaaa                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee            eaaaaaaa  aaaaaaa                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee  bbb bbb   eaaaaaaa  aaaaaaa                   aacccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee                                                 c    caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee  bbb                                               W caaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee                                                 c    caaaaaannnnnnnnnmnknnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee  bbb bbb   eaaaaaaa  aaaaaaa                   accccccaaaaaannnnnnnnm   nnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee            eaaaaas   saaaaaa                   aaaaaaaaaaaaannnnnnnnn n nnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee  bbb bbb   eaaaaas  saaaaaaa                   aaaaaaaaaaaaannnnmnnnn m nnmmnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaa
-eeeeeee            eaaaas  saaaaaaaaa                  aaaaaaaaaaaaam                    PaaaaaaaPaaaaaaaaaaaaaaaaa
-e            bbb   eaaaas saaaaaaaaaa                  aaaaaaaaaaaaam nnnnnmn nnnnnnn nmnaaaaa       aaaaaaaaaaaaaa
-e b p b p b        eaaas  saaasssaaaaa                 annnnmnnnaaaan nnnnnnn nnnnnnn nnnaaaa         aaaaaaaaaaaaa
-e b b b b b        eaaas  saas   saaaaa             a  n        nnnnn mnnnnnn nnnnmnn naaaaa   y y y   aaaaaaaaaaaa
-e b b b b b  eeeeeeeaas  saas     saaaaaa         aan  n nmnnnn mnnnn nnnnnnn nnm     naaaa             aaaaaaaaaaa
-e p b p b p  eeeeeeeaas  sas       saaaaaaa     aaaan    nnnmnn nnknn nnmmnnn nnn mkn naaa   y y y y y   aaaaaaaaaa
-e            eeeeeeeaas  ss         saaffffa   afffan                         nnn nnn naa                 aaaaaaaaa
-eeeeeeeeeeePeeeeeeeeaas             saff          ffannnmmnnn nnnnmnn nnnnnmm nnn nnn ma   y y y y y y y   aaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaas           saff            ffaaaaaaan mn   Pn mnnnnnm nnn nnn ma                   aaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaas           saf              ffaaaaaam nn nnnn nnnnnnn nnm     na y y y y   y y y y aaaaaaaa
-aaaaaaaaaaaaaaaaaaaaas            saff               faaaaaan         nnm  Pn nnnmnnn nP         x         Paaaaaaa
-aaaaaaaaaaaaaaaaaaaas             saf                faaaaaaann nmmnn nnn mnn mnnnnnn na y y y y   y y y y aaaaaaaa
-aaaaaaaaaaaaaaaaaaas             saaf          o     faaaaaaann nnnnn nnn nnn nnnknnn na                   aaaaaaaa
-aaaaaaaaaaaaaaaaaaas           ssaaff                faaaaaaanm nnnnm mmn nnn         na   y y y y y y y   aaaaaaaa
-aaaaaaaaaaaaaaaaaaas          saaaaf                 ffaaaaaann nnnnn         nmnnn mnnaa                 aaaaaaaaa
-aaaaaaaaaaaaaaaaaaaas     ssssaaffff      o           faaaaaann mnnnn nnnmmnnnnnnnn nnnaaa   y y y y y   aaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaas   saaaafff                     faaaaaann    mn knnnnnnnnnnnn nnnaaaa             aaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaasssaaafff                       faaaaaann nn    nnnnnnnnnnnnn nnnaaaaa   y y y   aaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaff                   o     faaaaaann nnmnn nnmnnnnnnnnnn mmnaaaaaa         aaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaff                          faaaaaann nnnnn                                aaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaff                           faaaaaann   nnn nnnnnnn nnnnn n naaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf           o               ffaaaaaannmm nnn nnnnnnm mnnnnPn naaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf                           faaaaaaannnn nnn nnnnnkm nnnnnnn naaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf                  o        faaaaaaannnn mnm nnn           n naaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf      d                    faaaaaaannnn nmn nnn nnm nmnnnnn maaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf     dP                   ffaaaaaaannnk     nnn nnm         naaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf     ddd                 ffaaaaaaaannnnnnnn mnn nnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf      d                 ffaaaaaaaaannnnnnnm     knnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaf                        faaaaaaaaaannnnnnnn nnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaff                     fffaaaaaaaaaannnnnnnm nnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaff                  fffaaaaaaaaaaaannnnnnnn mnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaafff        fffffffffaaaaaaaaaaaaaannnnnnnm mnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffaaaaaaaaaaaaaaaaaaaaaannnnnnnnPnnnnnnnnnnnnnnnnnaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                           hhhhh                                                          
+                                           h   h                                                          
+                                        hhhh z hhhh                                                          
+                                       hh         hh                                                          
+                                    hhhh           hhhh                                                          
+                                    h                 h                                                          
+                                    h                 h                                                          
+                                    h                 h                                                          
+                                    h                 h                                                          
+                                    h    gg     gg    h                 yPy                                      
+                                    h    gg     gg    h                yy yy                                      
+                                    h                 h               yy   yy                                     
+                                    h                 h              yy     yy                                    
+                                    h                 h             yy       yy                                   
+                                    h                 h            yy         yy                                  
+                                    h    gg     gg    h       yyyyyy           yyyyyy                            
+                                    h    gg     gg    h      yy                     yy                           
+                                    h                 h      y                       y                           
+                                    h                 h      y                       y                           
+                                    h                 h      y                       y                           
+                                    h                 h      y                       y                           
+                                    h    gg     gg    h     yy                       yy                          
+                                    h    gg     gg    h    yy                         yy                         
+                                    h                 h   yy                           yy                        
+                                    h                 h  yy                             yy                       
+                            aaaaaa  h                 h yy                               yy                      
+                            a    aaah                 hyy                                 yy                     
+                            a                         hP                 x                 P                    
+                            a    aaahhhhhh       hhhhhhyy                                 yy                     
+                            a    a       h       h      yy                               yy                 
+                            a    a       hhhhPhhhh       yy                             yy                  
+                            a    a       a aaPaa          yy                           yy                 
+                      aaaaaaa    a      aaaa   aaaa        yy                         yy                     
+                      a          a    aaa         aaa       yy                       yy                        
+                      a          a   aa             aa       y                       y                          
+                      a          a  aa               aa      y                       y                           
+                      a          a  a                 a      y                       y                           
+                      a          a aa                 aa     y                       y                            
+      eeeeeeeeeeeeeeaaaaaaa  aaaaa a                   a     yy                     yy                            
+      e            e      a  a     a                   a      yyyyyy           yyyyyy                             
+      e  bbb bbb   eaaaaaaa  aaaaaaa                   accPccc     yy         yy                                        
+      e                                                 c    c      yy       yy                                         
+      e  bbb                                               W c       yy     yy                                          
+      e                                                 c    c        yy   ynmnkn
+      e  bbb bbb   eaaaaaaa  aaaaaaa                   acccccc         yy yym   n
+      e            e     s   s     a                   a                y y n n n
+      e  bbb bbb   e    ss  ss     a                   a            nnnnm nnn m nnmmnnnnnm
+eeeeeee            e    s  ss      aa                  a            m                    P  
+e            bbb   e   ss ss        a                  a            m nnnnnmn nnnnnnn nmnn  
+e b p b p b        e   s  s  sssss  aa                 annnnmnnnn   n nnnnnnn nnnnnnn n 
+e b b b b b        e  ss  s ss   ss  aa             a  n        n   n mnnnnnn nnnnmnn n 
+e b b b b b  eeeeeee  s  ssss     ss  aaa         aan  n nmnnnn m   n nnnnnnn nnm     n 
+e p b p b p  e        s  sss       ss    aa     aaa n    nnnmnn nnknn nnmmnnn nnn mkn n 
+e            e        s  ss         s  ffffa   afff n                         nnn nnn n 
+eeeeeeeeeeePee        s             s ff          ffnnnnmmnnn nnnnmnn nnnnnmm nnn nnn m 
+                      ss           ssff            ff       n mn   Pn mnnnnnm nnn nnn m 
+                     sss           s f              ff      m nn nnnn nnnnnnn nnm     n 
+                    ss            ssff               f      n         nnm  Pn nnnmnnn n 
+                   ss             s f                f      nnn nmmnn nnn mnn mnnnnnn n 
+                   s             ss f          o     f        n nnnnn nnn nnn nnnknnn n 
+                   s           sss ff                f        m nnnnm mmn nnn         n 
+                   s          ss   f                 ff       n nnnnn         nmnnn mnn 
+                   ss     sssss ffff      q           f       n mnnnn nnnmmnnnnnnnn n   
+                    ss   ss   fff                     f       n    mn knnnnnnnnnnnn n   
+                     sssss  fff                       f       n nn    nnnnnnnnnnnnn n   
+                           ff                   r     f       n nnmnn nnmnnnnnnnnnn mmn 
+                          ff                          f       n nnnnn                 n 
+                         ff                           f       n   nnn nnnnnnn nnnnn n n 
+                         f           t               ff       nmm nnn nnnnnnm mnnnnPn n 
+                         f                           f          n nnn nnnnnkm nnnnnnn n
+                         f                  u        f          n mnm nnn           n n
+                         f      d                    f          n nmn nnn nnm nmnnnnn m
+                         f     dP                   ff          k     nnn nnm         n
+                         f     ddd                 ff           nnnnn mnn nnnnnnnnnnnnn
+                         f      d                 ff                m     k
+                         f                        f                 n nnnnn
+                         ff                     fff                 m n
+                          ff                  fff                   n m
+                           fff        fffffffff                     m m
+                             ffffffffff                             nPn
 
                                                                                                                     
                                             iii                                                                     
@@ -133,63 +145,63 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffaaaaaaaaaaaaaaaaaaaaaannnnnnnnPnnnnnnnnnn
                                      iiiiiiijjjiiiiiii                                                              
                                      iiiiiiijjjiiiiiii                                                              
                                      iiii  ijjji  iiii                                                              
-                                     iiii  ijjji  iiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiii  ijjji  iiii                                                              
-                                     iiii  ijjji  iiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiii  ijjji  iiii                                                              
-                                     iiii  ijjji  iiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                                     iiiiiiijjjiiiiiii                                                              
-                             aaaa    iiiiiiijjjiiiiiii                                                              
-                             aaaaaaaaiiiiiiijjjiiiiiii                                                              
-                             aaaa         iijjjii                                                                   
-                             aaaa         iijjjii                                                                   
-                             aaaa                                                                                   
-                             aaaa                                                                                   
-                             aaaa           xxx                                                                    
-                       aaaaaaaaaa        xxxxxxxxx                                                                 
-                       aaaaaaaaaa      xxxxxxxxxxxxx                                                               
-                       aaaaaaaaaa     xxxxxxxxxxxxxxx                                                              
-                       aaaaaaaaaa    xxxxxxxxxxxxxxxxx                                                             
-                       aaaaaaaaaa    xxxxxxxyyxyyyyxxx                                                             
-                           aa       xxxxxxxyyyxyxyyxxxx                                                            
-       hhhhhhhhhhhh        aa       xxxxxxyyyxxxxyyxxxx                                                            
-       hh   h   hhh        aa       xxxxyyyxxxxyyyxxxxx                                                           
-       hhhhhhhhhhhhaaaaaaaaaaaaaaaaxxxxxyyyxxxxyyyxxxxxx aaaf                                                      
-       hh   hhhhhhhaaaaaaaaaaaaaaaaxxxxxyyxxxxxyyxxxxxxxaaaae                                                      
-       hhhhhhhhhhhhaaaaaaasasaaaaaaxxxxxyyyyyyxyyxyxxxxx aaae                                                      
-       hh   h   hhh        ss       xxxxyyyyyyxyyyyxxxx                      nnn                                   
-       hhhhhhhhhhhh       sss       xxxxxxxxyyxxxxxxxxx                      n n                                   
-       hh   h   hhh       ss        xxxxxxxxyyxxxxxxxxx                      n n                                   
+                                     iiii  ijjji  iiii                   c                                          
+                                     iiiiiiijjjiiiiiii                  cqc                                         
+                                     iiiiiiijjjiiiiiii                 cqqqc                                        
+                                     iiiiiiijjjiiiiiii                cqqqqqc                                       
+                                     iiiiiiijjjiiiiiii               cocqqqcoc                                      
+                                     iiii  ijjji  iiii              cooocqcoooc                                     
+                                     iiii  ijjji  iiii         cccccooooocoooooccccc                                
+                                     iiiiiiijjjiiiiiii        cqqqqqcooockcooocqqqqqc                               
+                                     iiiiiiijjjiiiiiii        cqqqcccooockcooocccqqqc                               
+                                     iiiiiiijjjiiiiiii        cqqcooocockkkcocooocqqc                               
+                                     iiiiiiijjjiiiiiii        cqcooooocckkkccooooocqc                               
+                                     iiii  ijjji  iiii        cqcoooooocccccoooooocqc                               
+                                     iiii  ijjji  iiii       coccooooockkckkcoooooccoc                              
+                                     iiiiiiijjjiiiiiii      coooocooockkkckkkcooocooooc                             
+                                     iiiiiiijjjiiiiiii     coooooocockkkcbckkkcocooooooc                            
+                                     iiiiiiijjjiiiiiii    cqcooooccckkkcbbbckkkcccoooocqc                           
+                             aaaa    iiiiiiijjjiiiiiii   cqqqcocckkckkcbbbbbckkckkccocqqqc                          
+                             aaaaaaaaiiiiiiijjjiiiiiii  cqqqqqckkkkcccbbbcbbbccckkkkcqqqqqc                         
+                             aaaa         iijjjii        cqqqcocckkckkcbbbbbckkckkccocqqqc                          
+                             aaaa         iijjjii         cqcooooccckkkcbbbckkkcccoooocqc                           
+                             aaaa                          coooooocockkkcbckkkcocooooooc                            
+                             aaaa                           coooocooockkkckkkcooocooooc                             
+                             aaaa           xxx              coccooooockkckkcoooooccoc                             
+                       aaaaaaaaaa        xxxxxxxxx            cqcoooooocccccoooooocqc                              
+                       aaaaaaaaaa      xxxxxxxxxxxxx          cqcooooocckkkccooooocqc                              
+                       aaaaaaaaaa     xxxxxxxxxxxxxxx         cqqcooocockkkcocooocqqc                              
+                       aaaaaaaaaa    xxxxxxxxxxxxxxxxx        cqqqcccooockcooocccqqqc                              
+                       aaaaaaaaaa    xxxxxxxyyxyyyyxxx        cqqqqqcooockcooocqqqqqc                              
+                           aa       xxxxxxxyyyxyxyyxxxx        cccccooooocoooooccccc                               
+       hhhhhhhhhhhh        aa       xxxxxxyyyxxxxyyxxxx             cooocqcoooc                                    
+       hh   h   hhh        aa       xxxxxyyyxxxxyyyxxxx              cocqqqcoc                                    
+       hhhhhhhhhhhhaaaaaaaaaaaaaaaaxxxxxyyyxxxxyyyxxxxxx aaaf         cqqqqqc                                      
+       hh   hhhhhhhaaaaaaaaaaaaaaaaxxxxxyyxxxxxyyxxxxxxxaaaae          cqqqc                                       
+       hhhhhhhhhhhhaaaaaaasasaaaaaaxxxxxyyyyyyxyyxyxxxxx aaae           cqc                                        
+       hh   h   hhh        ss       xxxxyyyyyyxyyyyxxxx                  c   nnn                                   
+       hhhhhhhhhhhh       sss       xxxxxxxxyyxxxxxxxxx                  c   n n                                   
+       hh   h   hhh       ss        xxxxxxxxyyxxxxxxxxx                  c   n n                                   
        hhhhhhhhhhhh      ss          xxxxxxxyyxxxxxxxxx              nnnmnmnnnnnnnnnmnnnn                          
- hhhhhhhhhhhh   hhh      s           xxxxxxxxxxxxxxxxxx              n       n       n        aaaaaaa              
- h h h h h hhhhhhhh     ss            xxxxxxxxxxxxxxxxx              n       n       n       aaaaaaaaa             
- h h h h h hhhhhhhh     ss    lll      xxxxxxxxxxxxx nn nnnnnnnn     n       n       n      aaaaaaaaaaa            
- h h h h h hh          ss    lllll       xxxxxxxxx   nn n      n     n       n   mnnmn     aaaaaaaaaaaaa           
- h h h h h hh          ss   lllllll        xxxxx     nnnn      n     n       n   n   n    aaaaaaaaaaaaaaa          
- hhhhhhhhhhhh          ss  llllsslll        xxx      nnnnnnnnmnnnnnnnnmnnnnnnn   n   n   aaaaaaaaaaaaaaaaa         
-                       ssslllllsslll    ggggddddgg           n       m       n   n   n  aaaaaaaaaaaaaaaaaaa        
-                        ssssslllsll    gggggdddgggg          n  nnn  n       n   n   n  aaaaaaaaaaaaaaaaaaa        
-                        lssssslllll   wggggdddgggggg         n  m    n       n   nnmnn  aaaaaaaaaaaaaaaaaaa        
-                      lllllsssslll    wwgggddgggggggg        nnnnnnnnn   mm  n       n  aaaaaaaaaaaaaaaaaaa        
-                     lllllssslslll   wwwgggddgggggggg          n     n   n   n       n  aaaaaaaaaaaaaaaaaaa        
-                    lllsllsslllll    wwwgggddgg ggggg          n     n   n   n       n  aaaaaaaaaaaaaaaaaaa        
-                    llsssllllll      gwwggggdgggggggg          n     n   n   nnnnmnnnn  aaaaaaaaaaaaaaaaaaa        
-                    llssllllll      ggwwggggddggggggg          n     nmmnnnnnn     n     aaaaaaaaaaaaaaaaa         
-                     lllll          gggwgg ggdgggggggg         n     n             n      aaaaaaaaaaaaaaa          
-                      lll        ggggggwgggggdgggggggg         nnnn  n             n       aaaaaaaaaaaaa           
-                               ggggggggwwgggddgggggggg         n  nnnn             n        aaaaaaaaaaa            
-                             ggggggggggwwwggdggg ggggg         m     n             n         aaaaaaaaa             
-                            ggggggggggggwwggddgggggggg         m     nnmnmnnnnnnnmnnnnnnaaaaaaaaaaaaa              
+ hhhhhhhhhhhh   hhh      s           xxxxxxxxxxxxxxxxxx              n       n       n        
+ h h h h h hhhhhhhh     ss            xxxxxxxxxxxxxxxxx              n       n       n        
+ h h h h h hhhhhhhh     ss    lll      xxxxxxxxxxxxx nn nnnnnnnn     n       n       n        
+ h h h h h hh          ss    lllll       xxxxxxxxx   nn n      n     n       n   mnnmn        
+ h h h h h hh          ss   lllllll        xxxxx     nnnn      n     n       n   n   n        
+ hhhhhhhhhhhh          ss  llllsslll        xxx      nnnnnnnnmnnnnnnnnmnnnnnnn   n   n        
+                       ssslllllsslll    ggggddddgg           n       m       n   n   n        
+                        ssssslllsll    gggggdddgggg          n  nnn  n       n   n   n        
+                        lssssslllll   wggggdddgggggg         n  m    n       n   nnmnn        
+                      lllllsssslll    wwgggddgggggggg        nnnnnnnnn   mm  n       n        
+                     lllllssslslll   wwwgggddgggggggg          n     n   n   n       n        
+                    lllsllsslllll    wwwgggddgg ggggg          n     n   n   n       n        
+                    llsssllllll      gwwggggdgggggggg          n     n   n   nnnnmnnnn        
+                    llssllllll      ggwwggggddggggggg          n     nmmnnnnnn     n          
+                     lllll          gggwgg ggdgggggggg         n     n             n          
+                      lll        ggggggwgggggdgggggggg         nnnn  n             n          
+                               ggggggggwwgggddgggggggg         n  nnnn             n          
+                             ggggggggggwwwggdggg ggggg         m     n             n          
+                            ggggggggggggwwggddgggggggg         m     nnmnmnnnnnnnmnnnn        
                            gggggggggggggwwgggddggggggg         nnn   n       n     n n                             
                           ggggggggggg ggwwggggddggggg            n   n       n       n                             
                           gggggggggggggwwggggggdggggg            n   n       n       n                             
@@ -214,63 +226,63 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaffffffffffaaaaaaaaaaaaaaaaaaaaaannnnnnnnPnnnnnnnnnn
                                      ggggggggggggggggg                                                              
                                      ggggggggggggggggg                                                              
                                      gggg  ggggg  gggg                                                              
-                                     gggg  ggggg  gggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     gggg  ggggg  gggg                                                              
-                                     gggg  ggggg  gggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     gggg  ggggg  gggg                                                              
-                                     gggg  ggggg  gggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                                     ggggggggggggggggg                                                              
-                             aaaa    ggggggggggggggggg                                                              
-                             aaaaaaaaggggggggggggggggg                                                              
-                             aaaa         ggggggg                                                                   
-                             aaaa         ggggggg                                                                   
-                             aaaa                                                                                   
-                             aaaa                                                                                   
-                             aaaa           aaa                                                                    
-                       aaaaaaaaaa        aaaaaaaaa                                                                  
-                       aaaaaaaaaa      aaaaaaaaaaaaa                                                                
-                       aaaaaaaaaa     aaaaaaaaaaaaaaa                                                               
-                       aaaaaaaaaa    aaaaaaaaaaaaaaaaa                                                              
-                       aaaaaaaaaa    aaaaaaaaaaaaaaaaa                                                              
-                           aa       aaaaaaaaaaaaaaaaaaa                                                             
-       ffffffffffff        aa       aaaaaaaaaaaaaaaaaaa                                                             
-       ff   f   fff        aa       aaaaaaaaaaaaaaaaaaa                                                             
-       ffffffffffffaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaa                                                       
-       ff   fffffffaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa                                                       
-       ffffffffffffaaaaaaaasaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaa                                                       
-       ff   f   fff        ss       aaaaaaaaaaaaaaaaaaa                      nmn                                    
-       ffffffffffff       sss       aaaaaaaaaaaaaaaaaaa                      n n                                    
-       ff   f   fff       ss        aaaaaaaaaaaaaaaaaaa                      n n                                    
-       ffffffffffff      ss          aaaaaaaaaaaaaaaaaa              nnnnnnnmnnnnnnnnmnnn                           
- ffffffffffff   fff      s           aaaaaaaaaaaaaaaaaa              n       n       n        aaaaaaa               
- f f f f f ffffffff     ss            aaaaaaaaaaaaaaaaa              n       n       n       aaaaaaaaa              
- f f f f f ffffffff     ss    sss      aaaaaaaaaaaaa nn nnnnnmnn     n       n       n      aaaaaaaaaaa             
- f f f f f ff          ss    sssss       aaaaaaaaa   nn n      n     n       n   mnnnn     aaaaaaaaaaaaa            
- f f f f f ff          ss   sssssss        aaaaa     nnnn      n     n       n   m   n    aaaaaaaaaaaaaaa           
- ffffffffffff          ss  sssssssss        aaa      nnnnnnnnnnnnmmnnnnnnnmnnn   n   n   aaaaaaaaaaaaaaaaa          
-                       sssssssssssss    cccccccccc           n       n       n   n   n  aaaaaaaaaaaaaaaaaaa         
-                        sssssssssss    cccccccccccc          n  nmn  n       n   n   n  aaaaaaaaaaaaaaaaaaa         
-                        sssssssssss   cccccccccccccc         n  n    n       n   nnnnn  aaaaaaaaaaaaaaaaaaa         
-                      ssssssssssss    ccccccccccccccc        nnnnnnnnn   nn  n       m  aaaaaaaaaaaaaaaaaaa         
-                     sssssssssssss   cccccccccdedcccc          n     n   n   m       n  aaaaaaaaaaaaaaaaaaa         
-                    sssssssssssss    cccccccccd ecccc          m     n   n   n       n  aaaaaaaaaaaaaaaaaaa         
-                    sssssssssss      cccccccccdddcccc          n     n   n   nnnnnnnnn  aaaaaaaaaaaaaaaaaaa         
-                    ssssssssss      cccccdddccccccccc          n     nnnnnnmnn     n     aaaaaaaaaaaaaaaaa          
-                     sssss          cccccd dcccccccccc         n     n             n      aaaaaaaaaaaaaaa           
-                      sss        ccccccccddecccccccccc         nmnn  n             n       aaaaaaaaaaaaa            
-                               cccccccccccccccceedcccc         n  nnnn             n        aaaaaaaaaaa             
-                             ccccccccccccccccccd dcccc         n     n             n         aaaaaaaaa              
-                            cccccccccccccccccccdedcccc         n     mnnnnnnnnnnnmnnnnnnaaaaaaaaaaaaa               
+                                     gggg  ggggg  gggg                   b                                          
+                                     ggggggggggggggggg                  bbb                                         
+                                     ggggggggggggggggg                 bbbbb                                        
+                                     ggggggggggggggggg                bbbbbbb                                       
+                                     ggggggggggggggggg               bbbbbbbbb                                      
+                                     gggg  ggggg  gggg              bbbbbbbbbbb                                     
+                                     gggg  ggggg  gggg         bbbbbbbbbbbbbbbbbbbbb                                
+                                     ggggggggggggggggg        bbbbbbbbbbbbbbbbbbbbbbb                               
+                                     ggggggggggggggggg        bbbbbbbbbbbbbbbbbbbbbbb                               
+                                     ggggggggggggggggg        bbbbbbbbbbbbbbbbbbbbbbb                               
+                                     ggggggggggggggggg        bbbbbbbbbbbbbbbbbbbbbbb                               
+                                     gggg  ggggg  gggg        bbbbbbbbbbbbbbbbbbbbbbb                               
+                                     gggg  ggggg  gggg       bbbbbbbbbbbbbbbbbbbbbbbbb                              
+                                     ggggggggggggggggg      bbbbbbbbbbbbbbbbbbbbbbbbbbb                             
+                                     ggggggggggggggggg     bbbbbbbbbbbbbbbbbbbbbbbbbbbbb                            
+                                     ggggggggggggggggg    bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                           
+                             aaaa    ggggggggggggggggg   bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                          
+                             aaaaaaaaggggggggggggggggg  bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                         
+                             aaaa         ggggggg        bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                          
+                             aaaa         ggggggg         bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb                           
+                             aaaa                          bbbbbbbbbbbbbbbbbbbbbbbbbbbbb                            
+                             aaaa                           bbbbbbbbbbbbbbbbbbbbbbbbbbb                             
+                             aaaa           jij              bbbbbbbbbbbbbbbbbbbbbbbbb                             
+                       aaaaaaaaaa        jijijijij            bbbbbbbbbbbbbbbbbbbbbbb                               
+                       aaaaaaaaaa      ijijijijijiji          bbbbbbbbbbbbbbbbbbbbbbb                               
+                       aaaaaaaaaa     ijijijijijijiji         bbbbbbbbbbbbbbbbbbbbbbb                               
+                       aaaaaaaaaa    ijijijijijijijiji        bbbbbbbbbbbbbbbbbbbbbbb                               
+                       aaaaaaaaaa    jijijijijijijijij        bbbbbbbbbbbbbbbbbbbbbbb                               
+                           aa       jijijijijijijijijij        bbbbbbbbbbbbbbbbbbbbb                                
+       ffffffffffff        aa       ijijijijijijijijiji             bbbbbbbbbbb                                     
+       ff   f   fff        aa       jijijijijijijijijij              bbbbbbbbb                                      
+       ffffffffffffaaaaaaaaaaaaaaaaaijijijijijijijijijij aaaa         bbbbbbb                                       
+       ff   fffffffaaaaaaaaaaaaaaaaajijijijijijijijijijiaaaaa          bbbbb                                        
+       ffffffffffffaaaaaaaasaaaaaaaaijijijijijijijijijij aaaa           bbb                                         
+       ff   f   fff        ss       jijijijijijijijijij                  b   nmn                                    
+       ffffffffffff       sss       ijijijijijijijijiji                  b   n n                                    
+       ff   f   fff       ss        jijijijijijijijijij                  b   n n                                    
+       ffffffffffff      ss          jijijijijijijijiji              nnnnnnnmnnnnnnnnmnnn                           
+ ffffffffffff   fff      s           ijijijijijijijijij              n       n       n         
+ f f f f f ffffffff     ss            ijijijijijijijiji              n       n       n         
+ f f f f f ffffffff     ss    sss      ijijijijijiji nn nnnnnmnn     n       n       n         
+ f f f f f ff          ss    sssss       jijijijij   nn n      n     n       n   mnnnn         
+ f f f f f ff          ss   sssssss        ijiji     nnnn      n     n       n   m   n         
+ ffffffffffff          ss  sssssssss        iji      nnnnnnnnnnnnmmnnnnnnnmnnn   n   n         
+                       sssssssssssss    cccccccccc           n       n       n   n   n         
+                        sssssssssss    cccccccccccc          n  nmn  n       n   n   n         
+                        sssssssssss   cccccccccccccc         n  n    n       n   nnnnn         
+                      ssssssssssss    ccccccccccccccc        nnnnnnnnn   nn  n       m         
+                     sssssssssssss   cccccccccdedcccc          n     n   n   m       n         
+                    sssssssssssss    cccccccccd ecccc          m     n   n   n       n         
+                    sssssssssss      cccccccccdddcccc          n     n   n   nnnnnnnnn         
+                    ssssssssss      cccccdddccccccccc          n     nnnnnnmnn     n           
+                     sssss          cccccd dcccccccccc         n     n             n           
+                      sss        ccccccccddecccccccccc         nmnn  n             n           
+                               cccccccccccccccceedcccc         n  nnnn             n           
+                             ccccccccccccccccccd dcccc         n     n             n           
+                            cccccccccccccccccccdedcccc         n     mnnnnnnnnnnnmnnnn         
                            cccccccccdddccccccccccccccc         nnn   m       n     m n                              
                           ccccccccccd ecccccccccccccc            n   n       m       n                              
                           cccccdddcceddccccdddccccccc            n   n       n       n                              
