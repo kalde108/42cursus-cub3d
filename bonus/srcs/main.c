@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:42:39 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 19:42:40 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:47:24 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	if (pthread_mutex_init(&env.call_mutex, NULL))
+	{
+		destroy_cubenv(&env);
+		return (1);
+	}
+	if (init_hit_buffer(&env))
 	{
 		destroy_cubenv(&env);
 		return (1);

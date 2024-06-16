@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:53:32 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 18:29:09 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:49:54 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static inline int	not_linked_portal(t_ray *ray, t_portals *portals)
 
 void	single_raycast(t_cubscene *scene,
 						t_camera camera,
-						t_hit_buffer hit_buf[MAX_LAYERS])
+						t_hit_buffer *hit_buf)
 {
 	t_ray			ray;
 	int				hit_count;
