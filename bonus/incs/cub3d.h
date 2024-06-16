@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 16:59:01 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 16:59:12 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:37:36 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ typedef struct s_c3_env
 	double			z_buffer[WIDTH];
 	size_t			frame_time;
 	t_timer			frame_timer;
-	t_hit_buffer	buffer[WIDTH][MAX_LAYERS];
+	t_hit_buffer	**buffer;
 }	t_c3_env;
 
 int		check_arguments(int ac, char **av);
 int		init_cubenv(t_c3_env *env, char *arg);
+int		init_hit_buffer(t_c3_env *env);
 void	destroy_cubenv(t_c3_env *env);
 int		open_mlx_window(t_c3_env *env);
 int		load_textures(void *mlx_ptr, t_elem **textures);

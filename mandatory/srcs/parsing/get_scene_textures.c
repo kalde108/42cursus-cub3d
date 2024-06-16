@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene_textures.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:03:05 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/12 22:37:54 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:54:45 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static int	tokenize_line(char *line, t_cubscene *ptr, int *defined)
 	value = ft_strtok(NULL, " ");
 	if (NULL == value)
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier , MISSING_DEFINITION);
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier, MISSING_DEFINITION);
 		return (1);
 	}
 	if (NULL != ft_strtok(NULL, " "))
 	{
-		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier , INVAL_DEFINITION);
+		ft_dprintf(STDERR_FILENO, SCENE_ERR2, identifier, INVAL_DEFINITION);
 		return (1);
 	}
 	if (value && set_texture(identifier, value, id, ptr))

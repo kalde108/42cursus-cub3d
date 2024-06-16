@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cubdef.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:21:27 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/11 21:18:36 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:39:49 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define MAP_ERR2 	"Error\nMAP: %s\n"
 # define MLX_ERR 	"Error\nminilibx: %s: %s\n"
 # define MLX_ERR2 	"Error\nminilibx: %s\n"
+# define HITBUF_ERR "Error\nHit buffer: %s: %s\n"
 # define FATAL 		"Fatal"
 
 #endif //CUBDEF_H

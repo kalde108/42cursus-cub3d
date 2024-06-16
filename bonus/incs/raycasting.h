@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:02:23 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 17:02:24 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/16 16:49:36 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		screen_ray_calculation(t_camera *camera, t_ray *ray, int x);
 void		single_raycast(
 				t_cubscene *scene,
 				t_camera camera,
-				t_hit_buffer hit_buf[MAX_LAYERS]);
+				t_hit_buffer *hit_buf);
 
 int			get_relative_position(int f1, int f2);
 void		camera_rotation(t_camera *camera, double angle);
