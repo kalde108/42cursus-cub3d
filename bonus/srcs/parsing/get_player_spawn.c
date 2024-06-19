@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player_spawn.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 19:41:33 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/10 19:41:36 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/19 18:20:00 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ static void	get_player_orientation(char c, t_player *player)
 	player->camera.dir.y = y[i];
 	player->camera.plane.x = -y[i] * tan(FOV / 2.0 * PI / 180.0);
 	player->camera.plane.y = x[i] * tan(FOV / 2.0 * PI / 180.0);
-	player->mv_speed = PLAYER_MOVEMENT_SPEED;
+	player->mv_speed = PLAYER_WALKING_SPEED;
 	player->rt_speed = PLAYER_ROTATION_SPEED;
 }
