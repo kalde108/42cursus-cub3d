@@ -6,7 +6,7 @@
 /*   By: kchillon <kchillon@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:02:19 by kchillon          #+#    #+#             */
-/*   Updated: 2024/06/11 17:02:20 by kchillon         ###   ########lyon.fr   */
+/*   Updated: 2024/06/19 18:20:03 by kchillon         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "ft_time.h"
 # include "stdbool.h"
 
-# define PLAYER_MOVEMENT_SPEED 2.5
+# define PLAYER_WALKING_SPEED 2.5
+# define PLAYER_RUNNING_SPEED 5.0
 # define PLAYER_ROTATION_SPEED 1.5
 # define PLAYER_SIZE 0.1
 # define PORTAL_OFFSET 0.001
