@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: ian <ian@student.42lyon.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/12 22:40:41 by ibertran         ###   ########lyon.fr   */
+/*   Updated: 2024/06/22 15:33:40 by ian              ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 static int	set_texture_filepath(char *filepath, t_tex *ptr);
 static int	set_texture_color(char *idtok, char *str, __uint32_t *texture);
-static int	get_color_channel(char *tok,
+static int	is_color(char *tok);
+static int	get_color_channel(long value,
 				__uint32_t *color,
 				int channel,
 				char *idtok);
@@ -51,53 +52,59 @@ static int	set_texture_filepath(char *filepath, t_tex *ptr)
 
 static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 {
-	char	*tok;
+	long	value;
 
-	errno = 0;
-	tok = ft_strtok(str, ",");
-	if (tok && get_color_channel(tok, color, 16, idtok))
-		return (1);
-	tok = ft_strtok(NULL, ",");
-	if (tok && get_color_channel(tok, color, 8, idtok))
-		return (1);
-	tok = ft_strtok(NULL, ",");
-	if (tok && get_color_channel(tok, color, 0, idtok))
-		return (1);
-	tok = ft_strtok(NULL, "");
-	if (tok != NULL)
+	if (1 != is_color(str))
 	{
 		ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR);
 		return (1);
 	}
+	errno = 0;
+	value = ft_strtol(str, &str);
+	if (-1 == get_color_channel(value, color, 16, idtok))
+		return (1);
+	str++;
+	value = ft_strtol(str, &str);
+	str++;
+	if (-1 == get_color_channel(value, color, 8, idtok))
+		return (1);
+	value = ft_strtol(str, &str);
+	if (-1 == get_color_channel(value, color, 0, idtok))
+		return (1);
 	return (0);
 }
 
-static int	get_color_channel(char *tok,
+static int	get_color_channel(long value,
 				__uint32_t *color,
 				int channel,
 				char *idtok)
 {
-	long	value;
-	size_t	i;
-
-	i = 0;
-	if (tok[i] == '-')
-		i++;
-	while (tok[i])
-	{
-		if (!ft_isdigit(tok[i]))
-		{
-			ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_COLOR);
-			return (1);
-		}
-		i++;
-	}
-	value = ft_strtol(tok, NULL);
 	if (!errno && value >= 0 && value <= 255)
 	{
 		*color |= (value << channel);
 		return (0);
 	}
 	ft_dprintf(STDERR_FILENO, SCENE_ERR2, idtok, INVAL_RANGE);
-	return (1);
+	return (-1);
+}
+
+static int	is_color(char *tok)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j++ < 3)
+	{
+		if (tok[i] == '-')
+			i++;
+		if (!ft_isdigit(tok[i]))
+			return (0);
+		while (ft_isdigit(tok[i]))
+			i++;
+		if (j < 3 && tok[i++] != ',')
+			return (0);
+	}
+	return (tok[i] == '\0');
 }
