@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ian <ian@student.42lyon.fr>                +#+  +:+       +#+        */
+/*   By: ibertran <ibertran@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 01:26:19 by ibertran          #+#    #+#             */
-/*   Updated: 2024/06/22 15:33:40 by ian              ###   ########lyon.fr   */
+/*   Updated: 2024/06/22 15:39:31 by ibertran         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,10 @@ static int	set_texture_color(char *idtok, char *str, __uint32_t *color)
 	value = ft_strtol(str, &str);
 	if (-1 == get_color_channel(value, color, 16, idtok))
 		return (1);
-	str++;
-	value = ft_strtol(str, &str);
-	str++;
+	value = ft_strtol(str + 1, &str);
 	if (-1 == get_color_channel(value, color, 8, idtok))
 		return (1);
-	value = ft_strtol(str, &str);
+	value = ft_strtol(str + 1, &str);
 	if (-1 == get_color_channel(value, color, 0, idtok))
 		return (1);
 	return (0);
